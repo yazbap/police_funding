@@ -1,0 +1,863 @@
+---
+title: "Dissertation Analysis"
+output: html_document
+date: "2024-04-11"
+---
+
+<style type="text/css">
+.main-container {
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+## Research Question
+
+Do Black Lives Matter protests lead to reductions in police funding? And does the choice between peaceful and violent protest tactics drive varying impacts on this funding?
+
+
+```{r set_up, include = FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+# read in the libraries
+library(tidyverse) 
+library(scales)
+library(haven)
+library(readxl)
+library(gridExtra)
+library(MatchIt)
+library(missForest)
+library(knitr)
+
+library(tmap)
+library(sf)
+library(tigris)
+
+```
+
+```{r functions}
+# Function to standardize data types based on the first data frame
+standardize_data_types <- function(df, first_df) {
+  for (col_name in names(first_df)) {
+    col_type <- typeof(first_df[[col_name]])
+    if (col_type == "integer" || col_type == "numeric") {
+      df[[col_name]] <- as.numeric(df[[col_name]])
+    } else if (col_type == "character") {
+      df[[col_name]] <- as.character(df[[col_name]])
+    } else if (col_type == "logical") {
+      df[[col_name]] <- as.logical(df[[col_name]])
+    }
+    # Add conditions for other data types if necessary
+  }
+  return(df)
+}
+```
+
+## Data Sources
+
+- **2020 BLM protest Data**
+  - Accessed from The Armed Conflict Location & Event Data Project (ACLED)
+- **Department of Justice Financial Assistance Data**
+  - Grants Included
+    - BODY WORN CAMERA POLICY AND IMPLEMENTATION
+    - EDWARD BYRNE MEMORIAL JUSTICE ASSISTANCE GRANT PROGRAM
+    - EDWARD BYRNE MEMORIAL COMPETITIVE GRANT PROGRAM
+    - PROJECT SAFE NEIGHBORHOODS
+    - PUBLIC SAFETY PARTNERSHIP AND COMMUNITY POLICING GRANTS
+    - BYRNE CRIMINAL JUSTICE INNOVATION PROGRAM
+    - Some rows which state the amount of money given to a grantee are negative. The amount reduced should never exceed the amount granted but in some cases it did. Therefore, if I found a negative number, I changed the obligated amount to 0.
+  - Accessed from USA Spending
+- **Demographic County Data**
+  - Characteristics Included
+    - Percent Female
+    - Age 0-18, 19-35, 36-50, 50-65, 65+
+    - Percent Black, Asian, White, Hispanic or Latino
+    - Person's 25 and older educational attainment
+    - Median HH income
+  - Accessed from IPUMS National Historical Geographic Information System (NHGIS) from the 2022 American Community Survey (ACS) Summary Files which estimates average characteristics from 2018 to 2022. 
+- **County Ideology Data**
+  - Values are between 0 and 1, lower values are associated with politically left preferences and higher values with politically right preferences
+  - Ideology is based on surveys taken between 2017-2021
+  - Accessed from the Harvard Dataverse, dataset: Subnational ideology and presidential vote estimates (v2022)
+- **Police Killings Data**
+  - Average Police Killings Per Capita from 2016 - 2020
+  - Accessed from mapping Police Violence
+
+
+```{r get_protest_data, eval = FALSE}
+# Get protest data
+raw <- read.csv("data/2020-01-01-2024-04-19-United_States.csv")
+
+blm_df <- raw %>%
+  mutate(admin2 = ifelse(event_id_cnty %in% c( "USA4796", "USA17359", 
+                                               "USA12192", "USA9274", "USA9021", 
+                                               "USA8471", "USA18357"), "new york", admin2)) %>%
+  filter(year == 2020) %>%
+  filter(str_detect(tolower(assoc_actor_1), "blm")) %>%
+  filter(sub_event_type %in% c("Violent demonstration", "Mob violence", 
+                               "Peaceful protest", "Protest with intervention",
+                               "Excessive force against protesters")) %>%
+  mutate(violent_protest = ifelse(sub_event_type %in% 
+                                    c("Violent demonstration", "Mob violence"), 
+                                  1,0))
+
+blm_protestors_count <- blm_df %>%
+  filter(sub_event_type %in% c("Violent demonstration", "Mob violence",
+                               "Excessive force against protesters"))
+
+unique_count_admin2_protestors <- blm_protestors_count %>%
+  summarize(count_unique_admin2 = n_distinct(admin2))
+
+blm_df_processed <- blm_df %>%
+  mutate(admin2 = ifelse(admin2 == "", NA, admin2),  # Replace empty strings with NA
+         admin2 = tolower(admin2),                  # Convert admin2 to lowercase
+         admin1 = tolower(admin1),                  # Convert admin1 to lowercase
+         state_abbr = state.abb[match(admin1, tolower(state.name))],  # Map state names to abbreviations
+         county_state = paste(admin2, state_abbr, sep = "_")) %>%   # Create county_state column
+  group_by(county_state) %>%
+  summarize(violent_protest = sum(violent_protest),
+            peaceful_protest = n() - violent_protest) %>%
+  mutate(violent_protest = ifelse(violent_protest > 0 , 1, 0),
+         peaceful_protest = ifelse(peaceful_protest > 0 , 1, 0),
+         year = 2020) %>%
+  select(year, county_state, violent_protest, peaceful_protest)
+```
+
+```{r get_county_data, eval = FALSE}
+counties <- read_csv("data/uscounties.csv")
+
+counties_processed <- counties %>%
+  mutate(county_ascii = tolower(county_ascii),
+         county_state = paste(county_ascii, state_id, sep = "_")) %>%
+  select(county_state)
+
+years <- 2010:2023
+
+# Create a dataframe with all possible combinations of counties_processed and years
+combined_df <- crossing(year = years, counties_processed)
+```
+
+
+```{r get_fin_data}
+# Get assistance data from Department of Justice
+doj_grant_df_2010 <- read.csv("data/financials/FY2010_015_Assistance_Full_20240408_1.csv")
+doj_grant_df_2011 <- read.csv("data/financials/FY2011_015_Assistance_Full_20240409_1.csv")
+doj_grant_df_2012 <- read.csv("data/financials/FY2012_015_Assistance_Full_20240409_1.csv")
+doj_grant_df_2013 <- read.csv("data/financials/FY2013_015_Assistance_Full_20240409_1.csv")
+doj_grant_df_2014 <- read.csv("data/financials/FY2014_015_Assistance_Full_20240409_1.csv")
+doj_grant_df_2015 <- read.csv("data/financials/FY2015_015_Assistance_Full_20240409_1.csv")
+doj_grant_df_2016 <- read.csv("data/financials/FY2016_015_Assistance_Full_20240409_1.csv")
+doj_grant_df_2017 <- read.csv("data/financials/FY2017_015_Assistance_Full_20240410_1.csv")
+doj_grant_df_2018 <- read.csv("data/financials/FY2018_015_Assistance_Full_20240410_1.csv")
+doj_grant_df_2019 <- read.csv("data/financials/FY2019_015_Assistance_Full_20240410_1.csv")
+doj_grant_df_2020 <- read.csv("data/financials/FY2020_015_Assistance_Full_20240410_1.csv")
+doj_grant_df_2021 <- read.csv("data/financials/FY2021_015_Assistance_Full_20240410_1.csv")
+doj_grant_df_2022 <- read.csv("data/financials/FY2022_015_Assistance_Full_20240410_1.csv")
+doj_grant_df_2023 <- read.csv("data/financials/FY2023_015_Assistance_Full_20240410_1.csv")
+
+### PROCESS
+# Standardize data types for all data frames
+doj_grant_df_2011 <- standardize_data_types(doj_grant_df_2011, doj_grant_df_2010)
+doj_grant_df_2012 <- standardize_data_types(doj_grant_df_2012, doj_grant_df_2010)
+doj_grant_df_2013 <- standardize_data_types(doj_grant_df_2013, doj_grant_df_2010)
+doj_grant_df_2014 <- standardize_data_types(doj_grant_df_2014, doj_grant_df_2010)
+doj_grant_df_2015 <- standardize_data_types(doj_grant_df_2015, doj_grant_df_2010)
+doj_grant_df_2016 <- standardize_data_types(doj_grant_df_2016, doj_grant_df_2010)
+doj_grant_df_2017 <- standardize_data_types(doj_grant_df_2017, doj_grant_df_2010)
+doj_grant_df_2018 <- standardize_data_types(doj_grant_df_2018, doj_grant_df_2010)
+doj_grant_df_2019 <- standardize_data_types(doj_grant_df_2019, doj_grant_df_2010)
+doj_grant_df_2020 <- standardize_data_types(doj_grant_df_2020, doj_grant_df_2010)
+doj_grant_df_2021 <- standardize_data_types(doj_grant_df_2021, doj_grant_df_2010)
+doj_grant_df_2022 <- standardize_data_types(doj_grant_df_2022, doj_grant_df_2010)
+doj_grant_df_2023 <- standardize_data_types(doj_grant_df_2023, doj_grant_df_2010)
+
+# Combine all data frames
+doj_grant_df <- bind_rows(
+  doj_grant_df_2010,
+  doj_grant_df_2011,
+  doj_grant_df_2012,
+  doj_grant_df_2013,
+  doj_grant_df_2014,
+  doj_grant_df_2015,
+  doj_grant_df_2016,
+  doj_grant_df_2017,
+  doj_grant_df_2018,
+  doj_grant_df_2019,
+  doj_grant_df_2020,
+  doj_grant_df_2021,
+  doj_grant_df_2022,
+  doj_grant_df_2023
+)
+
+doj_grant_df <- doj_grant_df %>%
+  filter(business_types_description == "COUNTY GOVERNMENT") %>%
+  select(action_date, recipient_county_name, recipient_state_code, cfda_title, 
+         total_obligated_amount)
+
+keywords <- c("body worn camera", "edward byrne", "project safe neighborhoods", 
+              "public safety", "byrne criminal justice innovation program")
+
+doj_grant_df_processed <- doj_grant_df %>%
+  mutate(
+    is_for_police = ifelse(grepl(paste(keywords, collapse = "|"), cfda_title, ignore.case = TRUE), 1, 0),
+    action_date = as.Date(action_date),
+    year = year(action_date),
+    recipient_county_name = tolower(recipient_county_name),
+    county_state = paste(recipient_county_name, recipient_state_code, sep = "_"),
+    amount_for_police = total_obligated_amount * is_for_police
+  ) %>%
+  group_by(year, county_state) %>%
+  summarize(
+    total_obligated_amount = sum(total_obligated_amount, na.rm = TRUE),
+    amount_for_police = sum(amount_for_police, na.rm = TRUE)
+  ) %>%
+  mutate(
+    total_obligated_amount = ifelse(total_obligated_amount < 0, 0, total_obligated_amount),
+    amount_for_police = ifelse(amount_for_police < 0, 0, amount_for_police),
+    amount_for_police = ifelse(amount_for_police > total_obligated_amount, total_obligated_amount, amount_for_police),  # Ensure amount_for_police does not exceed total_obligated_amount
+    prop_police = ifelse(total_obligated_amount > 0, round(amount_for_police / total_obligated_amount, 2), 0)
+  ) %>%
+  ungroup() %>%
+  select(year, county_state, prop_police)
+
+```
+
+```{r get_political_data, eval = FALSE}
+pol_ideo_df <- read_dta("data/aip_counties_ideology_v2022a.dta")
+
+pol_ideo_df <- pol_ideo_df %>%
+  filter(survey_period == "2017-2021") %>% #Only use data from most recent surveys
+  mutate(state_abbr = state.abb[match(state, state.name)], #get abbreviated states
+         county_name = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", county_name)), #remove suffixes
+         county_state = paste(county_name, state_abbr, sep = "_")) %>% #combine county/states
+  select(county_state, mrp_ideology)
+
+```
+
+```{r get_demographic_data, eval = FALSE}
+demo_df <- read.csv("data/nhgis0004_ts_nominal_county.csv")
+
+demo_df <- demo_df %>%
+  rename(total_pop = AV0AA225,
+         num_female = AV1AB225,
+         age_under_5 = B57AA225,
+         age_5_9 = B57AB225,
+         age_10_14 = B57AC225,
+         age_15_17 = B57AD225,
+         age_18_19 = B57AE225,
+         age_20 = B57AF225,
+         age_21 = B57AG225,
+         age_22_24 = B57AH225,
+         age_25_29 = B57AI225,
+         age_30_34 = B57AJ225,
+         age_35_44 = B57AK225,
+         age_45_54 = B57AL225,
+         age_55_59 = B57AM225,
+         age_60_61 = B57AN225,
+         age_62_64 = B57AO225,
+         age_65_74 = B57AP225,
+         age_75_84 = B57AQ225,
+         age_85_up = B57AR225,
+         num_black = B07AB225,
+         num_white = B07AA225,
+         num_asian = B07AD225,
+         num_hispanic = A35AA225, 
+         num_less_hs = B85AA225,
+         num_hs_graduate_GED = B85AC225,
+         num_associates = B85AE225,
+         num_bachelors = B85AF225,
+         num_graduate_professional = B85AG225,
+         num_not_in_labor_force = B84AF225,
+         median_hh_income = B79AA225
+         )%>%
+  mutate(percent_female = num_female / total_pop,
+         perc_age_0_17 = (age_under_5 + 
+                            age_5_9 + 
+                            age_10_14 + 
+                            age_15_17) / total_pop,
+         perc_age_18_34 = (age_18_19 + 
+                             age_20 + 
+                             age_21 + 
+                             age_22_24 + 
+                             age_25_29 + 
+                             age_30_34) / total_pop,
+         perc_age_35_59 = (age_35_44 +
+                             age_45_54 +
+                             age_55_59) / total_pop,
+         perc_age_60_74 = (age_60_61 +
+                             age_62_64 +
+                             age_65_74) / total_pop,
+         perc_75_up = (age_75_84 +
+                         age_85_up) / total_pop,
+         perc_black = num_black / total_pop,
+         perc_asian = num_asian / total_pop,
+         perc_white = num_white / total_pop,
+         perc_hispanic = num_hispanic / total_pop,
+         perc_less_hs = num_less_hs / total_pop,
+         perc_associates = num_associates / total_pop,
+         perc_bachelors = num_bachelors / total_pop,
+         perc_graduate_professional = num_graduate_professional / total_pop,
+         perc_not_in_labor_force = num_not_in_labor_force / total_pop,
+         state_abbr = state.abb[match(STATE, state.name)],
+         COUNTY = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", COUNTY)), #remove suffixes
+         county_state = paste(COUNTY, state_abbr, sep = "_") #combine county/states
+         ) %>%
+  select(county_state, percent_female, perc_age_0_17, perc_age_18_34, 
+         perc_age_35_59, perc_age_60_74, perc_75_up, perc_black,
+         perc_asian, perc_white, perc_hispanic, perc_less_hs, perc_associates,
+         perc_bachelors, perc_graduate_professional, perc_not_in_labor_force,
+         median_hh_income)
+
+```
+
+```{r get_police_killings, eval = FALSE}
+police_killings_df <- read_excel("data/MPVDatasetDownload.xlsx", 
+                                sheet = "2013-2024 Police Killings")
+
+avg_pop_2016_2020 <- read_csv("data/nhgis0005_ts_nominal_county.csv")
+
+avg_pop_2016_2020 <- avg_pop_2016_2020 %>%
+  mutate(state_abbr = state.abb[match(STATE, state.name)],
+  COUNTY = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", COUNTY)), #remove suffixes
+  county_state = paste(COUNTY, state_abbr, sep = "_") #combine county/states
+  ) %>%
+  select(county_state, AV0AA205)
+
+police_killings <- police_killings_df %>%
+  filter(!is.na(County)) %>%
+  mutate(`Date of Incident (month/day/year)` = as.Date(`Date of Incident (month/day/year)`),
+         year = year(`Date of Incident (month/day/year)`),
+         County = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", County)),
+         county_state = paste(County, State, sep = "_")) %>%
+  filter(year >= 2016 & year <= 2020)
+
+# Summarize counts by county_state and year
+summary_df <- police_killings %>%
+  group_by(county_state, year) %>%
+  summarize(count = n(), .groups = 'drop')
+
+# Create a complete dataset with all combinations of county_state and year
+all_years <- tibble(year = 2016:2020)
+all_counties <- summary_df %>% distinct(county_state)
+complete_df <- expand_grid(county_state = all_counties$county_state, year = all_years$year)
+
+# Join the complete dataset with the summarized counts and replace NA with 0
+police_killings_num <- complete_df %>%
+  left_join(summary_df, by = c("county_state", "year")) %>%
+  mutate(count = replace_na(count, 0))
+
+police_killings_perc <- police_killings_num %>%
+  left_join(avg_pop_2016_2020) %>%
+  mutate(per_capita_killings = count / AV0AA205)%>%
+  group_by(county_state) %>%
+  summarize(mean_per_capita_killings = mean(per_capita_killings, na.rm = TRUE)) %>%
+  ungroup() %>%
+  select(county_state, mean_per_capita_killings) %>%
+  mutate(mean_per_capita_killings = ifelse(is.na(mean_per_capita_killings), 
+                                           0, mean_per_capita_killings))
+
+```
+
+## Descriptive Statistics
+
+```{r combine_dfs, eval = FALSE}
+# Combine financial data
+df <- left_join(combined_df, doj_grant_df_processed, by = c("year", "county_state")) %>%
+  mutate(prop_police = ifelse(is.na(prop_police), 0, prop_police))
+
+# Combine protest data
+df <- left_join(df, blm_df_processed, by = c("year", "county_state")) %>%
+  mutate(violent_protest = ifelse(is.na(violent_protest), 0, violent_protest),
+         peaceful_protest  = ifelse(is.na(peaceful_protest), 0, peaceful_protest))
+
+#Combine political data
+df <- left_join(df, pol_ideo_df)
+
+# Combine demographic data
+df <- left_join(df, demo_df)
+
+df <- left_join(df, police_killings_perc)
+
+protest_data <- df %>%
+  mutate(mean_per_capita_killings =  ifelse(is.na(mean_per_capita_killings), 
+                                            0, mean_per_capita_killings),
+        violent_protest = ifelse(year != 2020, NA, violent_protest),
+        peaceful_protest = ifelse(year != 2020, NA, peaceful_protest),
+        mrp_ideology = ifelse(year != 2020, NA, mrp_ideology),
+        percent_female = ifelse(year != 2020, NA, percent_female),
+        perc_age_0_17 = ifelse(year != 2020, NA, perc_age_0_17),
+        perc_age_18_34 = ifelse(year != 2020, NA, perc_age_18_34),
+        perc_age_35_59 = ifelse(year != 2020, NA, perc_age_35_59),
+        perc_age_60_74 = ifelse(year != 2020, NA, perc_age_60_74),
+        perc_75_up = ifelse(year != 2020, NA, perc_75_up),
+        perc_black = ifelse(year != 2020, NA, perc_black),
+        perc_asian = ifelse(year != 2020, NA, perc_asian),
+        perc_white = ifelse(year != 2020, NA, perc_white),
+        perc_hispanic = ifelse(year != 2020, NA, perc_hispanic),
+        perc_less_hs = ifelse(year != 2020, NA, perc_less_hs),
+        perc_associates = ifelse(year != 2020, NA, perc_associates),
+        perc_bachelors = ifelse(year != 2020, NA, perc_bachelors),
+        perc_graduate_professional = ifelse(year != 2020, NA, perc_graduate_professional),
+        perc_not_in_labor_force = ifelse(year != 2020, NA, perc_not_in_labor_force),
+        median_hh_income = ifelse(year != 2020, NA, median_hh_income),
+        mean_per_capita_killings = ifelse(year != 2020, NA, mean_per_capita_killings)
+  )
+
+protest_data_filtered <- protest_data %>%
+  filter(year == 2020) %>%
+  select(!county_state)
+
+protest_data_filtered <- as.data.frame(protest_data_filtered)
+
+protest_imputed <- missForest(protest_data_filtered)
+
+protest_data_final <- cbind(protest_data %>%
+                              filter(year == 2020) %>%
+                              select(county_state),
+                            protest_imputed$ximp)
+
+non_2020_data <- protest_data %>%
+  filter(year != 2020)
+
+# Combine the non-2020 data with the imputed 2020 data
+full_protest_data <- bind_rows(non_2020_data, protest_data_final)
+  
+save(full_protest_data, file = "full_protest_data.RData")
+
+```
+
+<br />
+
+#### Question 1: Do I need to change the scale of median_hh_income and mean_per_capita_killings for doing my propensity scores?
+```{r show_min_max}
+load("full_protest_data.RData")
+
+# Filter the data
+filtered_data <- full_protest_data %>%
+  filter(year == 2020)
+
+min_max <- sapply(filtered_data, function(x) c(min = min(x, na.rm = TRUE), max = max(x, na.rm = TRUE)))
+
+# Convert the result to a data frame for better readability
+min_max_df <- as.data.frame(t(min_max))
+
+rows_to_exclude <- c("county_state", "year", "violent_protest", "peaceful_protest")
+
+min_max_df <- min_max_df[!rownames(min_max_df) %in% rows_to_exclude, ]
+
+# Display the summary table
+kable(min_max_df, format = "markdown", caption = "Min and Max Values of Each Variable")
+  
+```
+
+<br />
+
+Overall, the proportion of federal funding allocated to counties steadily decreased until reaching an all-time low in 2020. However, after 2020, this trend reversed, and the funding increased and went back to levels pre-2020.
+
+When excluding counties that don't receive any federal funding for policing each year, the dynamics change significantly. In counties that do receive federal support for policing, the majority of the funding is often directed towards policing, and the trend appears much more erratic.
+
+```{r show_total_fed_funding}
+# Plot the aggregated data
+sum_by_date_filtered <- full_protest_data[full_protest_data$year != 2009, ]
+
+average_by_year_total <- sum_by_date_filtered %>%
+  group_by(year) %>%
+  summarize(average_obligated_amount = mean(prop_police, na.rm = TRUE) * 100) %>%
+  ungroup()
+
+# Plot the average obligated amount by year
+plot1 <- ggplot(average_by_year_total, aes(x = year, y = average_obligated_amount)) +
+  geom_point() +
+  labs(x = "Year", y = "Average Obligated Amount", 
+       title = "Total Federal Funding for County Policing") +
+  theme_minimal() +
+  scale_y_continuous(breaks = seq(0, 80, by = 10), limits = c(0, 80))
+
+```
+
+```{r show_filtered_fed_funding, fig.height = 8, fig.width = 18}
+# Plot the aggregated data
+sum_by_date_filtered <- doj_grant_df_processed[doj_grant_df_processed$year != 2009, ]
+
+average_by_year <- sum_by_date_filtered %>%
+  group_by(year) %>%
+  summarize(average_obligated_amount = mean(prop_police, na.rm = TRUE)* 100) %>%
+  ungroup()
+
+# Plot the average obligated amount by year
+plot2 <- ggplot(average_by_year, aes(x = year, y = average_obligated_amount)) +
+  geom_point() +
+  labs(x = "Year", y = "Average Obligated Amount", 
+       title = "Federal Funding for County Policing (Excludes Counties where police funding == 0 in a year") +
+  theme_minimal() +
+  scale_y_continuous(breaks = seq(0, 80, by = 10), limits = c(0, 80))
+
+grid.arrange(plot1, plot2, nrow = 1)
+
+```
+
+## Propensity Scores
+
+I tested producing propensity scores using 3 sets of data
+
+  - Historical Funding data
+  - County Demographics
+  - Historical Funding Data and County Demographics
+
+<br/ >
+
+### Historical
+```{r process_peaceful_hist}
+treatment_peaceful <- full_protest_data %>%
+  select(county_state, peaceful_protest) %>%
+  filter(!is.na(peaceful_protest))
+
+peaceful_protests_prop_scores <- full_protest_data %>%
+  group_by(county_state, year) %>%
+  summarise(prop_police = mean(prop_police, na.rm = TRUE)) %>%
+  pivot_wider(names_from = year, values_from = prop_police) %>%
+  select(-`2020`, -`2021`, -`2022`, -`2023`) %>%
+  left_join(treatment_peaceful)
+```
+
+```{r show_peaceful_hist_p_score, echo = TRUE}
+p_score <- glm(peaceful_protest ~ `2010` + `2011` + `2012` + `2013` + `2014` + 
+                 `2015` + `2016` + `2017` + `2018` + `2019`,
+               data = peaceful_protests_prop_scores,
+               family = binomial(link = "logit"))
+```
+
+```{r predict_peaceful_hist}
+peaceful_protests_prop_scores$p_score <- predict(p_score, type = "response")
+
+peaceful_p_scores <- ggplot(peaceful_protests_prop_scores) + 
+  aes(x = p_score, fill = factor(peaceful_protest), color = factor(peaceful_protest)) + 
+  geom_density(alpha = 0.5) +
+  xlab("P-Score") +
+  ylab("Density") +
+  labs(fill = "peaceful_protest", color = "peaceful_protest", 
+       title = "Propensity Scores: Peaceful Protest: Historical Funding") + theme_minimal()
+
+```
+
+
+```{r process_violent_hist, fig.height = 7, fig.width = 15}
+treatment_violent <- full_protest_data %>%
+  select(county_state, violent_protest) %>%
+  filter(!is.na(violent_protest))
+
+violent_protests_prop_scores <- full_protest_data %>%
+  group_by(county_state, year) %>%
+  summarise(prop_police = mean(prop_police, na.rm = TRUE)) %>%
+  pivot_wider(names_from = year, values_from = prop_police) %>%
+  select(-`2020`, -`2021`, -`2022`, -`2023`) %>%
+  left_join(treatment_violent)
+
+p_score <- glm(violent_protest ~ `2010` + `2011` + `2012` + `2013` + `2014` + 
+                 `2015` + `2016` + `2017` + `2018` + `2019`,
+               data = violent_protests_prop_scores,
+               family = binomial(link = "logit"))
+
+violent_protests_prop_scores$p_score <- predict(p_score, type = "response")
+
+violent_p_scores <- ggplot(violent_protests_prop_scores) + 
+  aes(x = p_score, fill = factor(violent_protest), color = factor(violent_protest)) + 
+  geom_density(alpha = 0.5) +
+  xlab("P-Score") +
+  ylab("Density") +
+  labs(fill = "violent_protest", color = "violent_protest",
+       title = "Propensity Scores: Violent Protest: Historical Funding") + 
+  theme_minimal()
+
+grid.arrange(peaceful_p_scores, violent_p_scores, nrow = 1)
+
+```
+
+### County Demographics
+
+```{r process_peaceful_demo, fig.height = 7, fig.width = 15}
+protest_data_demo <- full_protest_data %>%
+  filter(year == 2020) %>%
+  select(county_state, mrp_ideology, percent_female, perc_age_0_17, 
+         perc_age_18_34, perc_age_35_59, perc_age_60_74, perc_75_up,
+         perc_black, perc_asian, perc_white, perc_hispanic, perc_less_hs,
+         perc_associates, perc_bachelors, perc_graduate_professional,
+         perc_not_in_labor_force, median_hh_income, mean_per_capita_killings)
+
+peaceful_protests_prop_scores_demo <- protest_data_demo %>%
+  left_join(treatment_peaceful)
+
+```
+
+```{r show_peaceful_demo_p_score, echo = TRUE}
+p_scores_demo_peaceful <- glm(peaceful_protest ~ mrp_ideology + percent_female +
+                                perc_age_0_17 + perc_age_18_34 + perc_age_35_59 + 
+                                perc_age_60_74 + perc_75_up + perc_black + 
+                                perc_asian + perc_white + perc_hispanic +
+                                perc_less_hs + perc_associates + perc_bachelors + 
+                                perc_graduate_professional + perc_not_in_labor_force + 
+                                median_hh_income + mean_per_capita_killings,
+                              data = peaceful_protests_prop_scores_demo,
+                              family = binomial(link = "logit"))
+```
+
+```{r predict_peaceful_demo}
+peaceful_protests_prop_scores_demo$p_score <- predict(p_scores_demo_peaceful, 
+                                                      newdata = peaceful_protests_prop_scores_demo,
+                                                      type = "response")
+
+plot_demo_peaceful <- ggplot(peaceful_protests_prop_scores_demo) + 
+  aes(x = p_score, fill = factor(peaceful_protest), color = factor(peaceful_protest)) + 
+  geom_density(alpha = 0.5) +
+  xlab("P-Score") +
+  ylab("Density") +
+  labs(fill = "peaceful_protest", color = "peaceful_protest",
+       title = "Propensity Scores: Peaceful Protest: County Demographics") + 
+  theme_minimal()
+```
+
+```{r process_violent_demo, fig.height = 7, fig.width = 15}
+violent_protests_prop_scores_demo <- full_protest_data %>%
+  group_by(county_state, year) %>%
+  summarise(prop_police = mean(prop_police, na.rm = TRUE)) %>%
+  pivot_wider(names_from = year, values_from = prop_police) %>%
+  select(-`2020`, -`2021`, -`2022`, -`2023`) %>%
+  left_join(treatment_violent) %>%
+  left_join(protest_data_demo)
+
+p_scores_demo_violent <- glm(violent_protest ~ `2010` + `2011` + `2012` + `2013` + `2014` + 
+                 `2015` + `2016` + `2017` + `2018` + `2019` + mrp_ideology + percent_female + 
+                   perc_age_0_17 + perc_age_18_34 + perc_age_35_59 + 
+                   perc_age_60_74 + perc_75_up + perc_black + perc_asian + 
+                   perc_white + perc_hispanic +
+                   perc_less_hs + perc_associates + perc_bachelors + 
+                   perc_graduate_professional + perc_not_in_labor_force + 
+                   median_hh_income + mean_per_capita_killings,
+               data = violent_protests_prop_scores_demo,
+               family = binomial(link = "logit"))
+
+violent_protests_prop_scores_demo$p_score <- predict(p_scores_demo_violent, 
+                                                     newdata = violent_protests_prop_scores_demo,
+                                                     type = "response")
+
+plot_demo_violent <- ggplot(violent_protests_prop_scores_demo) + 
+  aes(x = p_score, fill = factor(violent_protest), color = factor(violent_protest)) + 
+  geom_density(alpha = 0.5) +
+  xlab("P-Score") +
+  ylab("Density") +
+  labs(fill = "violent_protest", color = "violent_protest",
+       title = "Propensity Scores: Violent Protest: County Demographics") + 
+  theme_minimal()
+
+grid.arrange(plot_demo_peaceful, plot_demo_violent, nrow = 1)
+```
+
+### Historical + County Demographics
+
+```{r process_peaceful_hist_demo}
+peaceful_protests_prop_scores_demo_hist <- full_protest_data %>%
+  group_by(county_state, year) %>%
+  summarise(prop_police = mean(prop_police, na.rm = TRUE)) %>%
+  pivot_wider(names_from = year, values_from = prop_police) %>%
+  select(-`2020`, -`2021`, -`2022`, -`2023`) %>%
+  left_join(treatment_peaceful) %>%
+  left_join(protest_data_demo)
+
+```
+
+```{r show_peaceful_hist_demo, echo = TRUE}
+p_scores_demo_hist_peaceful <- glm(peaceful_protest ~ `2010` + `2011` + `2012` + 
+                                `2013` + `2014` + `2015` + `2016` + `2017` + 
+                                `2018` + `2019` + mrp_ideology + percent_female +
+                                perc_age_0_17 + perc_age_18_34 + perc_age_35_59 + 
+                                perc_age_60_74 + perc_75_up + perc_black + 
+                                perc_asian + perc_white + perc_hispanic +
+                                perc_less_hs + perc_associates + perc_bachelors + 
+                                perc_graduate_professional + perc_not_in_labor_force + 
+                                median_hh_income + mean_per_capita_killings,
+                              data = peaceful_protests_prop_scores_demo_hist,
+                              family = binomial(link = "logit"))
+
+```
+
+```{r predict_peaceful_hist_demo}
+peaceful_protests_prop_scores_demo_hist$p_score <- predict(p_scores_demo_hist_peaceful, 
+                                                      newdata = peaceful_protests_prop_scores_demo_hist,
+                                                      type = "response")
+
+plot_demo_hist_peaceful <- ggplot(peaceful_protests_prop_scores_demo_hist) + 
+  aes(x = p_score, fill = factor(peaceful_protest), color = factor(peaceful_protest)) + 
+  geom_density(alpha = 0.5) +
+  xlab("P-Score") +
+  ylab("Density") +
+  labs(fill = "peaceful_protest", color = "peaceful_protest",
+       title = "Propensity Scores: Peaceful Protest: County Demographics + Historical") + 
+  theme_minimal()
+```
+
+```{r process_violent_hist_demo, fig.height = 7, fig.width = 15}
+violent_protests_prop_scores_demo_hist <- full_protest_data %>%
+  group_by(county_state, year) %>%
+  summarise(prop_police = mean(prop_police, na.rm = TRUE)) %>%
+  pivot_wider(names_from = year, values_from = prop_police) %>%
+  select(-`2020`, -`2021`, -`2022`, -`2023`) %>%
+  left_join(treatment_violent) %>%
+  left_join(protest_data_demo)
+
+p_scores_demo_hist_violent <- glm(violent_protest ~ `2010` + `2011` + `2012` + `2013` + `2014` + 
+                 `2015` + `2016` + `2017` + `2018` + `2019` + mrp_ideology + percent_female + 
+                   perc_age_0_17 + perc_age_18_34 + perc_age_35_59 + 
+                   perc_age_60_74 + perc_75_up + perc_black + perc_asian + 
+                   perc_white + perc_hispanic +
+                   perc_less_hs + perc_associates + perc_bachelors + 
+                   perc_graduate_professional + perc_not_in_labor_force + 
+                   median_hh_income + mean_per_capita_killings,
+               data = violent_protests_prop_scores_demo_hist,
+               family = binomial(link = "logit"))
+
+violent_protests_prop_scores_demo_hist$p_score <- predict(p_scores_demo_hist_violent, 
+                                                     newdata = violent_protests_prop_scores_demo_hist,
+                                                     type = "response")
+
+plot_demo_hist_violent <- ggplot(violent_protests_prop_scores_demo_hist) + 
+  aes(x = p_score, fill = factor(violent_protest), color = factor(violent_protest)) + 
+  geom_density(alpha = 0.5) +
+  xlab("P-Score") +
+  ylab("Density") +
+  labs(fill = "violent_protest", color = "violent_protest",
+       title = "Propensity Scores: Violent Protest: County Demographics + Historical") + 
+  theme_minimal()
+
+grid.arrange(plot_demo_hist_peaceful, plot_demo_hist_violent, nrow = 1)
+```
+
+#### Question 2a: Should I use the propensity scores with just county data because it shows a better difference in propensity scores for the treatment and control groups? (This is not obvious for violent protests but it seems obvious for peaceful protests)
+
+#### Question 2b: Given these density graphs, can I use the propensity scores with historical + county demographics for my sensitivity analysis?
+
+<br/ >
+
+## Matching
+
+#### Question 3: One to one matching, replacement and the genetic method seems to get me closer to the difference in the groups being not significant but I'm still not there with all the variables. What do I do?
+
+```{r, echo = TRUE}
+m_out <- MatchIt::matchit(peaceful_protest~p_score, 
+                          data = peaceful_protests_prop_scores_demo,
+                          method = "genetic",
+                          ratio = 1,
+                          replace = T,
+                          distance = "mahalanobis")
+
+```
+
+```{r}
+m_data <- MatchIt::match.data(m_out)
+
+counts <- table(m_data$peaceful_protest)
+num_control <- counts[as.character(0)]  # Number of control units
+num_treatment <- counts[as.character(1)]
+
+data_2020 <- full_protest_data %>%
+  filter(year == 2020)
+
+cat("The matched data set has", dim(m_data)[1], "counties.", num_control, "are in control",
+    num_treatment, "are in treatment.", "The original dataset had", nrow(data_2020), "counties.")
+
+```
+
+
+```{r}
+# Initialize an empty data frame to store results
+result_table <- data.frame(
+  Variable = character(),
+  Control_Mean = numeric(),
+  Treatment_Mean = numeric(),
+  P_Value = numeric(),
+  stringsAsFactors = FALSE
+)
+
+# List of variables to analyze
+variables <- c("mrp_ideology", "percent_female", "perc_age_0_17", "perc_age_18_34",
+                "perc_age_35_59", "perc_age_60_74", "perc_75_up", "perc_black",
+                "perc_asian", "perc_white", "perc_hispanic", "perc_less_hs",
+                "perc_associates", "perc_bachelors", "perc_graduate_professional",
+                "perc_not_in_labor_force", "median_hh_income", "mean_per_capita_killings")
+
+# Loop over each variable
+for (variable in variables) {
+  # Perform t-test and compute means for treatment and control groups
+  test <- t.test(m_data[[variable]][m_data$peaceful_protest == 1], 
+                 m_data[[variable]][m_data$peaceful_protest == 0])
+  mean_treatment <- mean(m_data[[variable]][m_data$peaceful_protest == 1], na.rm = TRUE)
+  mean_control <- mean(m_data[[variable]][m_data$peaceful_protest == 0], na.rm = TRUE)
+  
+  # Create a new row for the result_table
+  new_row <- data.frame(
+    Variable = variable,
+    Control_Mean = as.numeric(mean_control),
+    Treatment_Mean = as.numeric(mean_treatment),
+    P_Value = as.numeric(test$p.value),
+    stringsAsFactors = FALSE
+  )
+  
+  # Append the new row to result_table
+  result_table <- bind_rows(result_table, new_row)
+}
+
+# Print result_table
+kable(result_table)
+
+```
+
+```{r, eval = FALSE}
+tmap_mode("view")
+
+vis <- tm_shape(shp) + 
+  tm_borders()
+
+blm_filtered <- blm_df %>%
+  filter(year == 2020 & sub_event_type != "Peaceful protest")
+
+year_counts <- blm_filtered %>%
+  group_by(sub_event_type) %>%
+  summarize(count = n())
+
+# Display the counts
+print(year_counts) 
+
+unique(raw_filtered_2020$admin2)
+
+protests <- st_as_sf(raw_filtered_2020, coords = c("longitude", "latitude"))
+
+vis <- vis + tm_shape(protests) +
+  tm_bubbles(size=0.05, col = "event_type", alpha =0.5)
+```
+
+```{r, eval = FALSE}
+vis <- tm_shape(shp) + 
+  tm_borders()
+
+raw_filtered_2021 <- raw %>%
+  filter(year == 2021)
+
+protests <- st_as_sf(raw_filtered_2021, coords = c("longitude", "latitude"))
+
+vis <- vis + tm_shape(protests) +
+  tm_bubbles(size=0.2, col = "event_type", alpha =0.5)
+```
+
+```{r, eval = FALSE}
+vis <- tm_shape(shp) + 
+  tm_borders()
+
+raw_filtered_2022 <- raw %>%
+  filter(year == 2022)
+
+protests <- st_as_sf(raw_filtered_2022, coords = c("longitude", "latitude"))
+
+vis <- vis + tm_shape(protests) +
+  tm_bubbles(size=0.2, col = "event_type", alpha =0.5)
+```
+

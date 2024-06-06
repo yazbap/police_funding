@@ -1,0 +1,53 @@
+---
+title: "Dynamics of Collective Action"
+output: html_document
+date: "2024-03-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(foreign)
+
+# data is from https://web.stanford.edu/group/collectiveaction/cgi-bin/drupal/
+data <- read.dta("dynamics_of_collective_action.dta")
+
+View(data)
+
+summary(data)
+
+numbers_to_search <- c("434")
+
+data_filtered <- data %>%
+  filter(groups > 1 &
+         (grepl(paste(numbers_to_search, collapse = "|"), as.character(igrp1c1)) |
+          grepl(paste(numbers_to_search, collapse = "|"), as.character(igrp1c2)) |
+          grepl(paste(numbers_to_search, collapse = "|"), as.character(igrp2c1)) |
+          grepl(paste(numbers_to_search, collapse = "|"), as.character(igrp2c2)) |
+          grepl(paste(numbers_to_search, collapse = "|"), as.character(igrp3c1)) |
+          grepl(paste(numbers_to_search, collapse = "|"), as.character(igrp3c2)))
+         )
+
+
+View(data_filtered)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
