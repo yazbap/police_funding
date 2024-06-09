@@ -29,10 +29,13 @@ library(gridExtra)
 library(MatchIt)
 library(missForest)
 library(knitr)
+library(ggplot2)
+library(moments)
+library(patchwork)
 
-library(tmap)
-library(sf)
-library(tigris)
+#library(tmap)
+#library(sf)
+#library(tigris)
 
 ```
 
@@ -69,7 +72,7 @@ standardize_data_types <- function(df, first_df) {
     - Some rows which state the amount of money given to a grantee are negative. The amount reduced should never exceed the amount granted but in some cases it did. Therefore, if I found a negative number, I changed the obligated amount to 0.
   - Accessed from USA Spending
 - **Demographic County Data**
-  - Characteristics Included
+  - Characteristics
     - Percent Female
     - Age 0-18, 19-35, 36-50, 50-65, 65+
     - Percent Black, Asian, White, Hispanic or Latino
@@ -429,29 +432,121 @@ save(full_protest_data, file = "full_protest_data.RData")
 
 <br />
 
-#### Question 1: Do I need to change the scale of median_hh_income and mean_per_capita_killings for doing my propensity scores?
 ```{r show_min_max}
 load("full_protest_data.RData")
 
 # Filter the data
-filtered_data <- full_protest_data %>%
-  filter(year == 2020)
+#filtered_data <- full_protest_data %>%
+  #filter(year == 2020)
 
-min_max <- sapply(filtered_data, function(x) c(min = min(x, na.rm = TRUE), max = max(x, na.rm = TRUE)))
+#min_max <- sapply(filtered_data, function(x) c(min = min(x, na.rm = TRUE), max = max(x, na.rm = TRUE)))
 
 # Convert the result to a data frame for better readability
-min_max_df <- as.data.frame(t(min_max))
+#min_max_df <- as.data.frame(t(min_max))
 
-rows_to_exclude <- c("county_state", "year", "violent_protest", "peaceful_protest")
+#rows_to_exclude <- c("county_state", "year", "violent_protest", "peaceful_protest")
 
-min_max_df <- min_max_df[!rownames(min_max_df) %in% rows_to_exclude, ]
+#min_max_df <- min_max_df[!rownames(min_max_df) %in% rows_to_exclude, ]
 
 # Display the summary table
-kable(min_max_df, format = "markdown", caption = "Min and Max Values of Each Variable")
+#kable(min_max_df, format = "markdown", caption = "Min and Max Values of Each Variable")
   
 ```
 
-<br />
+```{r fix_skewness}
+transform_skewed_data <- function(data) {
+  before_skewness <- c()  # Vector to store skewness values before transformation
+  
+  for (col in colnames(data)) {
+    before_skewness <- c(before_skewness, moments::skewness(data[[col]]))  # Record skewness before transformation
+    
+    skewness_value <- moments::skewness(data[[col]])
+    
+    if (skewness_value > 1) {
+      # Log transform for high positive skewness
+      data[[col]] <- log(data[[col]] + 1)  # Adding 1 to avoid log(0)
+    } else if (skewness_value < -1) {
+      # Square root transform for high negative skewness
+      data[[col]] <- sqrt(max(data[[col]] + 1) - data[[col]])
+    } else if (skewness_value > 0.5) {
+      # Square root transform for moderate positive skewness
+      data[[col]] <- sqrt(data[[col]])
+    } else if (skewness_value < -0.7) {
+      # Square transform for moderate negative skewness
+      data[[col]] <- (max(data[[col]]) - data[[col]])^2
+    }
+    
+    # Standardize the data
+    #data[[col]] <- scale(data[[col]])
+  }
+  
+  after_skewness <- sapply(data, moments::skewness)  # Calculate skewness after transformation
+  
+  # Create a data frame to display skewness values before and after transformation
+  skewness_table <- data.frame(
+    Variable = colnames(data),
+    Before_Transformation = before_skewness,
+    After_Transformation = after_skewness
+  )
+  
+  return(data)
+}
+
+# Assuming your data frame is named full_protest_data
+test <- full_protest_data %>%
+  filter(year == 2020) %>%
+  select(mrp_ideology, percent_female, perc_age_0_17, 
+         perc_age_18_34, perc_age_35_59, perc_age_60_74, perc_75_up,
+         perc_black, perc_white, perc_hispanic, perc_less_hs,
+         perc_associates, perc_bachelors, perc_graduate_professional,
+         perc_not_in_labor_force, median_hh_income)
+
+# Transform and standardize skewed data
+normalized_test <- transform_skewed_data(test)
+
+# Function to create histogram using ggplot
+create_histogram <- function(data, var_name) { #add print to show skewness plots
+  hist <- ggplot(data, aes_string(x = var_name)) +
+    geom_histogram(binwidth = 0.5, fill = "blue", color = "black", alpha = 0.7) +
+    labs(title = paste("Histogram of", var_name), x = var_name, y = "Frequency") +
+    theme_minimal()
+}
+
+# Function to create Q-Q plot using ggplot
+create_qqplot <- function(data, var_name) { #add print to show skewness plots
+  qqplot<- ggplot(data, aes_string(sample = var_name)) +
+    stat_qq() +
+    stat_qq_line(col = "red") +
+    labs(title = paste("Q-Q Plot of", var_name), x = "Theoretical Quantiles", y = "Sample Quantiles") +
+    theme_minimal()
+}
+
+for (var_name in colnames(normalized_test)) {
+  create_histogram(normalized_test, var_name)
+  create_qqplot(normalized_test, var_name)
+}
+
+protest_data_filtered <- full_protest_data %>%
+  filter(year == 2020)
+
+year_2020 <- rep(2020, nrow(normalized_test))
+
+# Merge county_state column from full_protest_data with normalized_test
+normalized_test_with_county_state <- cbind(year = year_2020, 
+                                           county_state = protest_data_filtered$county_state,
+                                           prop_police = protest_data_filtered$prop_police,
+                                           violent_protest = protest_data_filtered$violent_protest,
+                                           peaceful_protest = protest_data_filtered$peaceful_protest,
+                                           normalized_test)
+
+full_protest_data <- full_protest_data %>%
+  select(-perc_asian, -mean_per_capita_killings) %>%
+  filter(year != 2020) %>%
+  rbind(normalized_test_with_county_state)
+  
+```
+
+#### Trends in Funding
 
 Overall, the proportion of federal funding allocated to counties steadily decreased until reaching an all-time low in 2020. However, after 2020, this trend reversed, and the funding increased and went back to levels pre-2020.
 
@@ -581,9 +676,9 @@ protest_data_demo <- full_protest_data %>%
   filter(year == 2020) %>%
   select(county_state, mrp_ideology, percent_female, perc_age_0_17, 
          perc_age_18_34, perc_age_35_59, perc_age_60_74, perc_75_up,
-         perc_black, perc_asian, perc_white, perc_hispanic, perc_less_hs,
+         perc_black, perc_white, perc_hispanic, perc_less_hs,
          perc_associates, perc_bachelors, perc_graduate_professional,
-         perc_not_in_labor_force, median_hh_income, mean_per_capita_killings)
+         perc_not_in_labor_force, median_hh_income)
 
 peaceful_protests_prop_scores_demo <- protest_data_demo %>%
   left_join(treatment_peaceful)
@@ -594,10 +689,10 @@ peaceful_protests_prop_scores_demo <- protest_data_demo %>%
 p_scores_demo_peaceful <- glm(peaceful_protest ~ mrp_ideology + percent_female +
                                 perc_age_0_17 + perc_age_18_34 + perc_age_35_59 + 
                                 perc_age_60_74 + perc_75_up + perc_black + 
-                                perc_asian + perc_white + perc_hispanic +
+                                perc_white + perc_hispanic +
                                 perc_less_hs + perc_associates + perc_bachelors + 
                                 perc_graduate_professional + perc_not_in_labor_force + 
-                                median_hh_income + mean_per_capita_killings,
+                                median_hh_income,
                               data = peaceful_protests_prop_scores_demo,
                               family = binomial(link = "logit"))
 ```
@@ -629,11 +724,11 @@ violent_protests_prop_scores_demo <- full_protest_data %>%
 p_scores_demo_violent <- glm(violent_protest ~ `2010` + `2011` + `2012` + `2013` + `2014` + 
                  `2015` + `2016` + `2017` + `2018` + `2019` + mrp_ideology + percent_female + 
                    perc_age_0_17 + perc_age_18_34 + perc_age_35_59 + 
-                   perc_age_60_74 + perc_75_up + perc_black + perc_asian + 
+                   perc_age_60_74 + perc_75_up + perc_black + 
                    perc_white + perc_hispanic +
                    perc_less_hs + perc_associates + perc_bachelors + 
                    perc_graduate_professional + perc_not_in_labor_force + 
-                   median_hh_income + mean_per_capita_killings,
+                   median_hh_income,
                data = violent_protests_prop_scores_demo,
                family = binomial(link = "logit"))
 
@@ -672,10 +767,10 @@ p_scores_demo_hist_peaceful <- glm(peaceful_protest ~ `2010` + `2011` + `2012` +
                                 `2018` + `2019` + mrp_ideology + percent_female +
                                 perc_age_0_17 + perc_age_18_34 + perc_age_35_59 + 
                                 perc_age_60_74 + perc_75_up + perc_black + 
-                                perc_asian + perc_white + perc_hispanic +
+                                perc_white + perc_hispanic +
                                 perc_less_hs + perc_associates + perc_bachelors + 
                                 perc_graduate_professional + perc_not_in_labor_force + 
-                                median_hh_income + mean_per_capita_killings,
+                                median_hh_income,
                               data = peaceful_protests_prop_scores_demo_hist,
                               family = binomial(link = "logit"))
 
@@ -708,11 +803,11 @@ violent_protests_prop_scores_demo_hist <- full_protest_data %>%
 p_scores_demo_hist_violent <- glm(violent_protest ~ `2010` + `2011` + `2012` + `2013` + `2014` + 
                  `2015` + `2016` + `2017` + `2018` + `2019` + mrp_ideology + percent_female + 
                    perc_age_0_17 + perc_age_18_34 + perc_age_35_59 + 
-                   perc_age_60_74 + perc_75_up + perc_black + perc_asian + 
+                   perc_age_60_74 + perc_75_up + perc_black +
                    perc_white + perc_hispanic +
                    perc_less_hs + perc_associates + perc_bachelors + 
                    perc_graduate_professional + perc_not_in_labor_force + 
-                   median_hh_income + mean_per_capita_killings,
+                   median_hh_income,
                data = violent_protests_prop_scores_demo_hist,
                family = binomial(link = "logit"))
 
@@ -732,15 +827,17 @@ plot_demo_hist_violent <- ggplot(violent_protests_prop_scores_demo_hist) +
 grid.arrange(plot_demo_hist_peaceful, plot_demo_hist_violent, nrow = 1)
 ```
 
-#### Question 2a: Should I use the propensity scores with just county data because it shows a better difference in propensity scores for the treatment and control groups? (This is not obvious for violent protests but it seems obvious for peaceful protests)
+#### Question 1a: Should I use the propensity scores with just county data because it shows a better difference in propensity scores for the treatment and control groups? (This is not obvious for violent protests but it seems obvious for peaceful protests)
 
-#### Question 2b: Given these density graphs, can I use the propensity scores with historical + county demographics for my sensitivity analysis?
+#### Question 1b: Given these density graphs, can I use the propensity scores with historical + county demographics for my sensitivity analysis?
 
 <br/ >
 
 ## Matching
 
-#### Question 3: One to one matching, replacement and the genetic method seems to get me closer to the difference in the groups being not significant but I'm still not there with all the variables. What do I do?
+#### Question 2: I removed Percent Asian and police killings per capita because the data was highly skewed and I couldn't get balance in the treatment and control groups. What do you think of this?
+
+#### Question 3: One to one matching, replacement and the genetic method seems to get me closest to the difference in the groups being not significant but when I calculate the p-values, I get a lot of them less than 0.05. What is going on here? (I am using `t.test` to calculate the p-value)
 
 ```{r, echo = TRUE}
 m_out <- MatchIt::matchit(peaceful_protest~p_score, 
@@ -781,9 +878,9 @@ result_table <- data.frame(
 # List of variables to analyze
 variables <- c("mrp_ideology", "percent_female", "perc_age_0_17", "perc_age_18_34",
                 "perc_age_35_59", "perc_age_60_74", "perc_75_up", "perc_black",
-                "perc_asian", "perc_white", "perc_hispanic", "perc_less_hs",
+                "perc_white", "perc_hispanic", "perc_less_hs",
                 "perc_associates", "perc_bachelors", "perc_graduate_professional",
-                "perc_not_in_labor_force", "median_hh_income", "mean_per_capita_killings")
+                "perc_not_in_labor_force", "median_hh_income")
 
 # Loop over each variable
 for (variable in variables) {
@@ -810,6 +907,73 @@ for (variable in variables) {
 kable(result_table)
 
 ```
+
+### First Attempt at Diff in Diff
+
+```{r diff_in_diff_set_up}
+outcome_vars <- full_protest_data %>%
+  group_by(county_state, year) %>%
+  summarise(prop_police = mean(prop_police, na.rm = TRUE)) %>%
+  filter(year == 2019 | year == 2021) %>%
+  mutate(year = ifelse(year == 2019, 0, 1)) %>%
+  rename(time = year)
+
+diff_in_diff_df <- m_data %>%
+  select(county_state, peaceful_protest) %>%
+  slice(rep(1:n(), each = 2)) %>%
+  mutate(time =rep(0:1, length.out = n()) ) %>%
+  left_join(outcome_vars, by = c("county_state", "time"))
+
+```
+
+```{r diff_in_diff, echo = TRUE}
+diff_diff_output <- lm(prop_police ~ peaceful_protest*time, data = diff_in_diff_df)
+
+summary(diff_diff_output)
+```
+
+#### First Attempt at Parallel Trends
+
+```{r testing_parallel_trends, echo = TRUE}
+parallel_trends_df <- full_protest_data %>%
+  group_by(county_state, year) %>%
+  summarise(prop_police = mean(prop_police, na.rm = TRUE)) %>%
+  left_join(protest_data_demo) %>%
+  left_join(treatment_peaceful)
+
+# Define the regression model
+reg1 <- lm(prop_police ~ peaceful_protest * factor(year), data = parallel_trends_df)
+
+# Extract coefficients for interaction terms
+coefs <- coef(reg1)[grep("peaceful_protest:factor\\(year\\)", names(coef(reg1)))]
+upper <- confint(reg1, vcov. = vcovHC(reg1, type = "HC0"))[grep("peaceful_protest:factor\\(year\\)", rownames(confint(reg1))), 2]
+lower <- confint(reg1, vcov. = vcovHC(reg1, type = "HC0"))[grep("peaceful_protest:factor\\(year\\)", rownames(confint(reg1))), 1]
+
+# Create a data frame with coefficients and confidence intervals
+estudy <- data.frame(
+  year = as.numeric(gsub("peaceful_protest:factor\\(year\\)", "", names(coefs))),
+  coefs = coefs,
+  lower = lower,
+  upper = upper
+)
+
+# Add a row for the baseline year
+new_row <- data.frame(coefs = 0, lower = 0, upper = 0, year = 2010)
+estudy <- rbind(estudy, new_row) %>% arrange(year)
+
+# Plot the coefficients
+ggplot(estudy, aes(x = year, y = coefs)) +
+  geom_vline(xintercept = 2020, color = "pink", linetype = 'dashed', alpha = 0.75, size = 1) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(color = "blue", size = 3, alpha = 0.75) +
+  geom_line(color = "blue") +
+  geom_errorbar(aes(ymin = lower, ymax = upper), color = "blue", width = 0.2) +
+  theme_minimal() +
+  labs(x = "Year", y = "Coefficient", title = "Parallel Trends Test") +
+  xlim(2010, NA)
+
+```
+
 
 ```{r, eval = FALSE}
 tmap_mode("view")
