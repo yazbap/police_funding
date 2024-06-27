@@ -14,7 +14,7 @@ date: "2024-04-11"
 
 ## Research Question
 
-Do Black Lives Matter protests lead to reductions in police funding? And does the choice between peaceful and violent protest tactics drive varying impacts on this funding?
+How do Black Lives Matter protests affect police funding?
 
 
 ```{r set_up, include = FALSE}
@@ -61,16 +61,6 @@ standardize_data_types <- function(df, first_df) {
 
 - **2020 BLM protest Data**
   - Accessed from The Armed Conflict Location & Event Data Project (ACLED)
-- **Department of Justice Financial Assistance Data**
-  - Grants Included
-    - BODY WORN CAMERA POLICY AND IMPLEMENTATION
-    - EDWARD BYRNE MEMORIAL JUSTICE ASSISTANCE GRANT PROGRAM
-    - EDWARD BYRNE MEMORIAL COMPETITIVE GRANT PROGRAM
-    - PROJECT SAFE NEIGHBORHOODS
-    - PUBLIC SAFETY PARTNERSHIP AND COMMUNITY POLICING GRANTS
-    - BYRNE CRIMINAL JUSTICE INNOVATION PROGRAM
-    - Some rows which state the amount of money given to a grantee are negative. The amount reduced should never exceed the amount granted but in some cases it did. Therefore, if I found a negative number, I changed the obligated amount to 0.
-  - Accessed from USA Spending
 - **Demographic County Data**
   - Characteristics
     - Percent Female
@@ -105,19 +95,26 @@ blm_df <- raw %>%
                                     c("Violent demonstration", "Mob violence"), 
                                   1,0))
 
-blm_protestors_count <- blm_df %>%
-  filter(sub_event_type %in% c("Violent demonstration", "Mob violence",
-                               "Excessive force against protesters"))
+cities_blm <- blm_df %>%
+  mutate(location = ifelse(location == "", NA, location),  # Replace empty strings with NA
+         location = tolower(location),                  # Convert admin2 to lowercase
+         admin1 = tolower(admin1),                  # Convert admin1 to lowercase
+         state_abbr = state.abb[match(admin1, tolower(state.name))],  # Map state names to abbreviation
+         city_state = paste(location, state_abbr, sep = "_")) %>%   # Create county_state column
+  group_by(city_state) %>%
+  summarize(violent_protest = sum(violent_protest),
+            peaceful_protest = n() - violent_protest) %>%
+  mutate(violent_protest = ifelse(violent_protest > 0 , 1, 0),
+         peaceful_protest = ifelse(peaceful_protest > 0 , 1, 0),
+         year = 2020) %>%
+  select(year, city_state, violent_protest, peaceful_protest)
 
-unique_count_admin2_protestors <- blm_protestors_count %>%
-  summarize(count_unique_admin2 = n_distinct(admin2))
-
-blm_df_processed <- blm_df %>%
+counties_blm <- blm_df %>%
   mutate(admin2 = ifelse(admin2 == "", NA, admin2),  # Replace empty strings with NA
          admin2 = tolower(admin2),                  # Convert admin2 to lowercase
          admin1 = tolower(admin1),                  # Convert admin1 to lowercase
          state_abbr = state.abb[match(admin1, tolower(state.name))],  # Map state names to abbreviations
-         county_state = paste(admin2, state_abbr, sep = "_")) %>%   # Create county_state column
+         county_state = paste(admin2, state_abbr, sep = "_")) %>%
   group_by(county_state) %>%
   summarize(violent_protest = sum(violent_protest),
             peaceful_protest = n() - violent_protest) %>%
@@ -127,121 +124,103 @@ blm_df_processed <- blm_df %>%
   select(year, county_state, violent_protest, peaceful_protest)
 ```
 
-```{r get_county_data, eval = FALSE}
-counties <- read_csv("data/uscounties.csv")
-
-counties_processed <- counties %>%
-  mutate(county_ascii = tolower(county_ascii),
-         county_state = paste(county_ascii, state_id, sep = "_")) %>%
-  select(county_state)
-
-years <- 2010:2023
-
-# Create a dataframe with all possible combinations of counties_processed and years
-combined_df <- crossing(year = years, counties_processed)
-```
-
-
-```{r get_fin_data}
-# Get assistance data from Department of Justice
-doj_grant_df_2010 <- read.csv("data/financials/FY2010_015_Assistance_Full_20240408_1.csv")
-doj_grant_df_2011 <- read.csv("data/financials/FY2011_015_Assistance_Full_20240409_1.csv")
-doj_grant_df_2012 <- read.csv("data/financials/FY2012_015_Assistance_Full_20240409_1.csv")
-doj_grant_df_2013 <- read.csv("data/financials/FY2013_015_Assistance_Full_20240409_1.csv")
-doj_grant_df_2014 <- read.csv("data/financials/FY2014_015_Assistance_Full_20240409_1.csv")
-doj_grant_df_2015 <- read.csv("data/financials/FY2015_015_Assistance_Full_20240409_1.csv")
-doj_grant_df_2016 <- read.csv("data/financials/FY2016_015_Assistance_Full_20240409_1.csv")
-doj_grant_df_2017 <- read.csv("data/financials/FY2017_015_Assistance_Full_20240410_1.csv")
-doj_grant_df_2018 <- read.csv("data/financials/FY2018_015_Assistance_Full_20240410_1.csv")
-doj_grant_df_2019 <- read.csv("data/financials/FY2019_015_Assistance_Full_20240410_1.csv")
-doj_grant_df_2020 <- read.csv("data/financials/FY2020_015_Assistance_Full_20240410_1.csv")
-doj_grant_df_2021 <- read.csv("data/financials/FY2021_015_Assistance_Full_20240410_1.csv")
-doj_grant_df_2022 <- read.csv("data/financials/FY2022_015_Assistance_Full_20240410_1.csv")
-doj_grant_df_2023 <- read.csv("data/financials/FY2023_015_Assistance_Full_20240410_1.csv")
-
-### PROCESS
-# Standardize data types for all data frames
-doj_grant_df_2011 <- standardize_data_types(doj_grant_df_2011, doj_grant_df_2010)
-doj_grant_df_2012 <- standardize_data_types(doj_grant_df_2012, doj_grant_df_2010)
-doj_grant_df_2013 <- standardize_data_types(doj_grant_df_2013, doj_grant_df_2010)
-doj_grant_df_2014 <- standardize_data_types(doj_grant_df_2014, doj_grant_df_2010)
-doj_grant_df_2015 <- standardize_data_types(doj_grant_df_2015, doj_grant_df_2010)
-doj_grant_df_2016 <- standardize_data_types(doj_grant_df_2016, doj_grant_df_2010)
-doj_grant_df_2017 <- standardize_data_types(doj_grant_df_2017, doj_grant_df_2010)
-doj_grant_df_2018 <- standardize_data_types(doj_grant_df_2018, doj_grant_df_2010)
-doj_grant_df_2019 <- standardize_data_types(doj_grant_df_2019, doj_grant_df_2010)
-doj_grant_df_2020 <- standardize_data_types(doj_grant_df_2020, doj_grant_df_2010)
-doj_grant_df_2021 <- standardize_data_types(doj_grant_df_2021, doj_grant_df_2010)
-doj_grant_df_2022 <- standardize_data_types(doj_grant_df_2022, doj_grant_df_2010)
-doj_grant_df_2023 <- standardize_data_types(doj_grant_df_2023, doj_grant_df_2010)
-
-# Combine all data frames
-doj_grant_df <- bind_rows(
-  doj_grant_df_2010,
-  doj_grant_df_2011,
-  doj_grant_df_2012,
-  doj_grant_df_2013,
-  doj_grant_df_2014,
-  doj_grant_df_2015,
-  doj_grant_df_2016,
-  doj_grant_df_2017,
-  doj_grant_df_2018,
-  doj_grant_df_2019,
-  doj_grant_df_2020,
-  doj_grant_df_2021,
-  doj_grant_df_2022,
-  doj_grant_df_2023
-)
-
-doj_grant_df <- doj_grant_df %>%
-  filter(business_types_description == "COUNTY GOVERNMENT") %>%
-  select(action_date, recipient_county_name, recipient_state_code, cfda_title, 
-         total_obligated_amount)
-
-keywords <- c("body worn camera", "edward byrne", "project safe neighborhoods", 
-              "public safety", "byrne criminal justice innovation program")
-
-doj_grant_df_processed <- doj_grant_df %>%
-  mutate(
-    is_for_police = ifelse(grepl(paste(keywords, collapse = "|"), cfda_title, ignore.case = TRUE), 1, 0),
-    action_date = as.Date(action_date),
-    year = year(action_date),
-    recipient_county_name = tolower(recipient_county_name),
-    county_state = paste(recipient_county_name, recipient_state_code, sep = "_"),
-    amount_for_police = total_obligated_amount * is_for_police
-  ) %>%
-  group_by(year, county_state) %>%
-  summarize(
-    total_obligated_amount = sum(total_obligated_amount, na.rm = TRUE),
-    amount_for_police = sum(amount_for_police, na.rm = TRUE)
-  ) %>%
-  mutate(
-    total_obligated_amount = ifelse(total_obligated_amount < 0, 0, total_obligated_amount),
-    amount_for_police = ifelse(amount_for_police < 0, 0, amount_for_police),
-    amount_for_police = ifelse(amount_for_police > total_obligated_amount, total_obligated_amount, amount_for_police),  # Ensure amount_for_police does not exceed total_obligated_amount
-    prop_police = ifelse(total_obligated_amount > 0, round(amount_for_police / total_obligated_amount, 2), 0)
-  ) %>%
-  ungroup() %>%
-  select(year, county_state, prop_police)
-
-```
-
 ```{r get_political_data, eval = FALSE}
-pol_ideo_df <- read_dta("data/aip_counties_ideology_v2022a.dta")
+cities_pol_ideo <- read_dta("data/aip_cities_ideology_v2022a.dta")
+countes_pol_ideo <- read_dta("data/aip_counties_ideology_v2022a.dta")
 
-pol_ideo_df <- pol_ideo_df %>%
+cities_pol_ideo <- cities_pol_ideo %>%
+  filter(survey_period == "2017-2021") %>% #Only use data from most recent surveys
+  mutate(state_abbr = state.abb[match(state, state.name)], #get abbreviated states
+         city_name = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", city_name)), #remove suffixes
+         city_state = paste(city_name, state_abbr, sep = "_")) %>% #combine county/states
+  select(city_state, mrp_ideology)
+
+counities_pol_ideo <- countes_pol_ideo %>%
   filter(survey_period == "2017-2021") %>% #Only use data from most recent surveys
   mutate(state_abbr = state.abb[match(state, state.name)], #get abbreviated states
          county_name = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", county_name)), #remove suffixes
          county_state = paste(county_name, state_abbr, sep = "_")) %>% #combine county/states
   select(county_state, mrp_ideology)
 
+
 ```
 
 ```{r get_demographic_data, eval = FALSE}
-demo_df <- read.csv("data/nhgis0004_ts_nominal_county.csv")
+cities_demo <- read.csv("data/nhgis0006_ts_nominal_place.csv")
+counties_demo <- read.csv("data/nhgis0004_ts_nominal_county.csv")
 
-demo_df <- demo_df %>%
+cities_demo <- cities_demo %>%
+  rename(total_pop = AV0AA225,
+         num_female = AV1AB225,
+         age_under_5 = B57AA225,
+         age_5_9 = B57AB225,
+         age_10_14 = B57AC225,
+         age_15_17 = B57AD225,
+         age_18_19 = B57AE225,
+         age_20 = B57AF225,
+         age_21 = B57AG225,
+         age_22_24 = B57AH225,
+         age_25_29 = B57AI225,
+         age_30_34 = B57AJ225,
+         age_35_44 = B57AK225,
+         age_45_54 = B57AL225,
+         age_55_59 = B57AM225,
+         age_60_61 = B57AN225,
+         age_62_64 = B57AO225,
+         age_65_74 = B57AP225,
+         age_75_84 = B57AQ225,
+         age_85_up = B57AR225,
+         num_black = B07AB225,
+         num_white = B07AA225,
+         num_asian = B07AD225,
+         num_hispanic = A35AA225, 
+         num_less_hs = B85AA225,
+         num_hs_graduate_GED = B85AC225,
+         num_associates = B85AE225,
+         num_bachelors = B85AF225,
+         num_graduate_professional = B85AG225,
+         num_not_in_labor_force = B84AF225,
+         median_hh_income = B79AA225
+         )%>%
+  mutate(percent_female = num_female / total_pop,
+         perc_age_0_17 = (age_under_5 + 
+                            age_5_9 + 
+                            age_10_14 + 
+                            age_15_17) / total_pop,
+         perc_age_18_34 = (age_18_19 + 
+                             age_20 + 
+                             age_21 + 
+                             age_22_24 + 
+                             age_25_29 + 
+                             age_30_34) / total_pop,
+         perc_age_35_59 = (age_35_44 +
+                             age_45_54 +
+                             age_55_59) / total_pop,
+         perc_age_60_74 = (age_60_61 +
+                             age_62_64 +
+                             age_65_74) / total_pop,
+         perc_75_up = (age_75_84 +
+                         age_85_up) / total_pop,
+         perc_black = num_black / total_pop,
+         perc_asian = num_asian / total_pop,
+         perc_white = num_white / total_pop,
+         perc_hispanic = num_hispanic / total_pop,
+         perc_less_hs = num_less_hs / total_pop,
+         perc_associates = num_associates / total_pop,
+         perc_bachelors = num_bachelors / total_pop,
+         perc_graduate_professional = num_graduate_professional / total_pop,
+         perc_not_in_labor_force = num_not_in_labor_force / total_pop,
+         state_abbr = state.abb[match(STATE, state.name)],
+         PLACE = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", PLACE)), #remove suffixes
+         city_state = paste(PLACE, state_abbr, sep = "_") #combine county/states
+         ) %>%
+  select(city_state, percent_female, perc_age_0_17, perc_age_18_34, 
+         perc_age_35_59, perc_age_60_74, perc_75_up, perc_black,
+         perc_asian, perc_white, perc_hispanic, perc_less_hs, perc_associates,
+         perc_bachelors, perc_graduate_professional, perc_not_in_labor_force,
+         median_hh_income)
+
+counties_demo <- counties_demo %>%
   rename(total_pop = AV0AA225,
          num_female = AV1AB225,
          age_under_5 = B57AA225,
@@ -318,49 +297,40 @@ demo_df <- demo_df %>%
 police_killings_df <- read_excel("data/MPVDatasetDownload.xlsx", 
                                 sheet = "2013-2024 Police Killings")
 
-avg_pop_2016_2020 <- read_csv("data/nhgis0005_ts_nominal_county.csv")
+city_police_killings <- police_killings_df %>%
+  filter(!is.na(City)) %>%
+  mutate(`Date of Incident (month/day/year)` = as.Date(`Date of Incident (month/day/year)`),
+         year = year(`Date of Incident (month/day/year)`),
+         City = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", City)),
+         city_state = paste(City, State, sep = "_")) %>%
+  filter(year >= 2016 & year <= 2020) %>%
+  group_by(city_state) %>%
+  summarize(count = n(), .groups = 'drop') %>%
+  mutate(has_police_killing = ifelse(count > 0, 1, 0))
 
-avg_pop_2016_2020 <- avg_pop_2016_2020 %>%
-  mutate(state_abbr = state.abb[match(STATE, state.name)],
-  COUNTY = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", COUNTY)), #remove suffixes
-  county_state = paste(COUNTY, state_abbr, sep = "_") #combine county/states
-  ) %>%
-  select(county_state, AV0AA205)
-
-police_killings <- police_killings_df %>%
+county_police_killings <- police_killings_df %>%
   filter(!is.na(County)) %>%
   mutate(`Date of Incident (month/day/year)` = as.Date(`Date of Incident (month/day/year)`),
          year = year(`Date of Incident (month/day/year)`),
          County = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", County)),
-         county_state = paste(County, State, sep = "_")) %>%
-  filter(year >= 2016 & year <= 2020)
-
-# Summarize counts by county_state and year
-summary_df <- police_killings %>%
-  group_by(county_state, year) %>%
-  summarize(count = n(), .groups = 'drop')
-
-# Create a complete dataset with all combinations of county_state and year
-all_years <- tibble(year = 2016:2020)
-all_counties <- summary_df %>% distinct(county_state)
-complete_df <- expand_grid(county_state = all_counties$county_state, year = all_years$year)
-
-# Join the complete dataset with the summarized counts and replace NA with 0
-police_killings_num <- complete_df %>%
-  left_join(summary_df, by = c("county_state", "year")) %>%
-  mutate(count = replace_na(count, 0))
-
-police_killings_perc <- police_killings_num %>%
-  left_join(avg_pop_2016_2020) %>%
-  mutate(per_capita_killings = count / AV0AA205)%>%
+         county_state = paste(City, State, sep = "_")) %>%
+  filter(year >= 2016 & year <= 2020) %>%
   group_by(county_state) %>%
-  summarize(mean_per_capita_killings = mean(per_capita_killings, na.rm = TRUE)) %>%
-  ungroup() %>%
-  select(county_state, mean_per_capita_killings) %>%
-  mutate(mean_per_capita_killings = ifelse(is.na(mean_per_capita_killings), 
-                                           0, mean_per_capita_killings))
-
+  summarize(count = n(), .groups = 'drop') %>%
+  mutate(has_police_killing = ifelse(count > 0, 1, 0))
 ```
+
+```{r get_funding_data}
+load(file='data/38651-0001-Data.rda')
+
+da38651.0001_filtered <- da38651.0001 %>%
+  filter(AGENCYSAMPTYPE != "(5) State police") %>%
+  dplyr::select(AGENCYNAME, AGENCYSAMPTYPE, CITY, STATE, OPBUDGET_2019,
+                OPBUDGET) %>%
+  mutate(CITY = str_trim(CITY, side = "both"),
+         City = tolower(CITY))
+```
+
 
 ## Descriptive Statistics
 

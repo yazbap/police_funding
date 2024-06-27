@@ -1,0 +1,106 @@
+Bibliography
+Law Enforcement Management and Administrative Statistics (LEMAS), 2020
+
+This bibliography includes published and unpublished works that are related 
+to ICPSR study 38651. It includes works that are based on primary
+or secondary analysis of the data, or which describe or critique those
+data or the collection methodology. 
+
+If you publish a work or know of other works that are based on these data,
+please send the complete citation and name of the ICPSR study used to:
+icpsr-biblio-notify@umich.edu 
+
+
+1. Brooks, Connor, "Primary State Law Enforcement Agencies: Personnel,
+2020." Bulletin. Washington, DC: Bureau of Justice Statistics, Jan 2024.
+Full text PDF: https://bjs.ojp.gov/document/psleap20.pdf
+
+2. Brooks, Connor, "Sheriffs' Offices Personnel, 2020." Bulletin. NCJ
+305200, Washington, DC: Bureau of Justice Statistics, Nov 2022.
+Full text PDF: https://bjs.ojp.gov/sites/g/files/xyckuh236/files/media/document/sop20.pdf
+
+3. Brooks, Connor, "Sheriffs' Offices, Procedures, Policies, and
+Technology, 2020." Statistical Tables. NCJ 307234, Washington, DC: Bureau
+of Justice Statistics, Nov 2023.
+Abstract: https://bjs.ojp.gov/library/publications/sheriffs-offices-procedures-policies-and-technology-2020-statistical-tables
+Full text PDF: https://bjs.ojp.gov/document/soppt20st.pdf
+This report provides data on authorized equipment and techniques, body-worn
+cameras, and K-9 units in sheriffs’ offices. It also presents tables on
+training, policies, and procedures. Additionally, the report describes the
+prevalence of community policing plans.
+
+4. Diamond, Jackson, "Who Do Civilian Review Boards Serve and Protect?
+Applying Andre Gorz's Non-Reformist Reform Theoretical Framework to
+Empirical Analysis from New York State." Thesis, City University of New
+York, 2024.
+Abstract: https://academicworks.cuny.edu/gc_etds/5835
+Full text PDF: https://academicworks.cuny.edu/cgi/viewcontent.cgi?article=6924&context=gc_etds
+
+5. Glascock, Jack, "Diversity and aggression on police TV dramas." Western
+Journal of Communication. In press 2023,. DOI:
+10.1080/10570314.2023.2244454
+Abstract: https://academicworks.cuny.edu/gc_etds/5835
+Full text PDF: https://academicworks.cuny.edu/cgi/viewcontent.cgi?article=6924&context=gc_etds
+
+6. Goodison, "Local Police Departments Personnel, 2020." Bulletin. NCJ
+305187, Washington, DC: Bureau of Justice Statistics, Nov 2022.
+Full text PDF: https://bjs.ojp.gov/sites/g/files/xyckuh236/files/media/document/lpdp20_emb.pdf
+
+7. Goodison, Sean, "Characteristics of local police department personnel:
+Selected findings from BJS's Law Enforcement Management and Administrative
+Statistics (LEMAS) survey." Presented at the American Society of
+Criminology 2022 Annual Meeting, American Society of Criminology, Atlanta,
+GA, Nov 17, 2022.
+Abstract: https://tinyurl.com/2zyqorcz
+
+8. Goodison, Sean E.; Brooks, Connor, "Local Police Departments,
+Procedures, Policies, and Technology, 2020." Statistical Tables. NCJ
+307405, Washington, DC: Bureau of Justice Statistics, Nov 2023.
+Abstract: https://bjs.ojp.gov/library/publications/local-police-departments-procedures-policies-and-technology-2020-statistical
+Full text PDF: https://bjs.ojp.gov/document/lpdppt20st.pdf
+This report provides data on authorized equipment and techniques, body-worn
+cameras, and K-9 units in local police departments. It also presents tables
+on training, policies, and procedures. Additionally, the report describes
+the prevalence of community policing plans.
+
+9. Jahn, Jaquelyn L.; Schwartz, Gabriel L., "Who are the 'police' in
+'police violence'? Fatal violence by U.S. law enforcement agencies across
+levels of government." Injury Epidemiology. 2024, 11, (13),. DOI:
+10.1186/s40621-024-00496-3
+Abstract: https://bjs.ojp.gov/library/publications/local-police-departments-procedures-policies-and-technology-2020-statistical
+Full text PDF: https://bjs.ojp.gov/document/lpdppt20st.pdf
+This report provides data on authorized equipment and techniques, body-worn
+cameras, and K-9 units in local police departments. It also presents tables
+on training, policies, and procedures. Additionally, the report describes
+the prevalence of community policing plans.
+
+10. Nowacki, Jeffrey S.; Olivarez, Cassandra; Hagan, Alexander; Hogan,
+Michael, "Police agencies and civil asset forfeiture: An organizational
+perspective." Policing (Oxford). in press 2024,. DOI:
+10.1093/police/paae035
+Abstract: https://bjs.ojp.gov/library/publications/local-police-departments-procedures-policies-and-technology-2020-statistical
+Full text PDF: https://bjs.ojp.gov/document/lpdppt20st.pdf
+This report provides data on authorized equipment and techniques, body-worn
+cameras, and K-9 units in local police departments. It also presents tables
+on training, policies, and procedures. Additionally, the report describes
+the prevalence of community policing plans.
+
+11. Payson, Julia; Parinandi, Srinivas, "Residency blues: The unintended
+consequences of police residency requirements." Journal of Politics. in
+press 2024,. DOI: 10.1086/730719
+Abstract: https://bjs.ojp.gov/library/publications/local-police-departments-procedures-policies-and-technology-2020-statistical
+Full text PDF: https://bjs.ojp.gov/document/lpdppt20st.pdf
+This report provides data on authorized equipment and techniques, body-worn
+cameras, and K-9 units in local police departments. It also presents tables
+on training, policies, and procedures. Additionally, the report describes
+the prevalence of community policing plans.
+
+12. Zidar, Michael, "Policing in the AI Era: A Mixed-Methods Analysis of
+Police Adoption of Information Technology." Dissertation, University of
+Cincinnati, 2023.
+Abstract: https://bjs.ojp.gov/library/publications/local-police-departments-procedures-policies-and-technology-2020-statistical
+Full text PDF: https://bjs.ojp.gov/document/lpdppt20st.pdf
+This report provides data on authorized equipment and techniques, body-worn
+cameras, and K-9 units in local police departments. It also presents tables
+on training, policies, and procedures. Additionally, the report describes
+the prevalence of community policing plans.

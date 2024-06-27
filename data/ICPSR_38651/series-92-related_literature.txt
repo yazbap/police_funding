@@ -1,0 +1,348 @@
+Bibliography
+Law Enforcement Management and Administrative Statistics (LEMAS) Series
+
+This bibliography includes published and unpublished works that are
+related to ICPSR series 92. It includes works that are based on
+primary or secondary analysis of the data, or which describe or critique
+those data or the collection methodology. This list represents all items
+known to ICPSR as of 2019-05-21.
+
+If you publish a work or know of other works that are based on these data,
+please send the complete citation and name of the ICPSR series used to:
+icpsr-biblio-notify@umich.edu 
+
+
+1. Ansari, Sami, Estimating Crime Rates from Police Reports and Victim
+Surveys: Progressive and Convergence in Time Series Analyses. El Paso, TX:
+LFB Scholarly Publishing, 2013.
+
+2. Barrick, Kelle; Hickman, Matthew J.; Strom, Kevin J., "Representative
+policing and violence towards the police." Policing. 2014, 8, (2), 193 -
+204. DOI: 10.1093/police/pau013
+
+3. Baumgart, Zach, "Crime, Arrests, Legitimacy or Race? Militarization of
+American Police From 1990 to 2007." dissertation, University of Wisconsin-
+Madison, 2016.
+
+4. Baumgart, Zach, "From Copper to Steel: Police Militarization at the End
+of the 20th Century." Madison, WI: University of Wisconsin, Sep 8, 2016.
+DOI: 10.17605/OSF.IO/M7J3V
+Abstract: https://osf.io/preprints/socarxiv/m7j3v/
+
+5. Cave, Breanne; Telep, Cody W.; Grieco, Julie, "Rigorous evaluation
+research among US police departments: special cases or a representative
+sample?." Police Practice and Research. 2015, 16, (3), 254 - 268. DOI:
+10.1080/15614263.2014.888348
+Abstract: https://osf.io/preprints/socarxiv/m7j3v/
+
+6. D'Alessio, Stewart J.; Stolzenberg, Lisa; Flexon, Jamie L., Are Drug
+Asset Forfeiture Laws Corrupting the Police?. Weston Publishing, 2015.
+Abstract: https://osf.io/preprints/socarxiv/m7j3v/
+
+7. DeCarlo, John; Jenkins, Michael J., Labor Unions, Management Innovation
+and Organizational Change in Police Departments. Springer Briefs in
+Criminology. Switzerland: Springer International Publishing, 2015. DOI:
+10.1007/978-3-319-21584-6
+Abstract: https://osf.io/preprints/socarxiv/m7j3v/
+
+8. Forst, Brian, "Improving Police Effectiveness and Transparency: National
+Information Needs on Law Enforcement." Presented at the Bureau of Justice
+Statistics Data User's Workshop, United States Department of Justice,
+Bureau of Justice Statistics, Washington, DC, Feb 12, 2008. NCJ 234182
+Full text PDF: http://www.bjs.gov/content/pub/pdf/bjsworkshop.pdf
+
+9. Garicano, Luis; Heaton, Paul, "Information technology, organization, and
+productivity in the public sector: Evidence from police departments."
+Journal of Labor Economics. Jan 2010, 28, (1), 167 - 201. DOI:
+10.1086/649844
+Full text PDF: http://www.bjs.gov/content/pub/pdf/bjsworkshop.pdf
+
+10. Hakstian, Anne-Marie G., "Racial and Ethnic Profiling in Massachusetts:
+An Examination of Police Policy and Practice." Dissertation, Northeastern
+University, 2013.
+Full text PDF: http://www.bjs.gov/content/pub/pdf/bjsworkshop.pdf
+
+11. Harmon, Rachel, "Why do we (still) lack data on policing?." Marquette
+Law Review. 2012, 96, (4), 1119 - 1146.
+Full text: http://scholarship.law.marquette.edu/mulr/vol96/iss4/8
+
+12. Hickman, Matthew J., "Impact of the military reserve activation on
+police staffing." Police Chief. Oct 2006, 73, (10),. NCJ 216225
+Abstract: http://www.ncjrs.gov/App/publications/abstract.aspx?ID=237834
+
+13. Hickman, Matthew J., "Police administrative records as social science
+data." In Reisig, Michael D.; Kane, Robert J., The Oxford Handbook of
+Police and Policing. The Oxford Handbooks in Criminology and Criminal
+Justice. 433 - 448, New York, NY: Oxford University Press,2014.
+Abstract: http://www.ncjrs.gov/App/publications/abstract.aspx?ID=237834
+
+14. Hur, Yongbeom, "Turnover, voluntary turnover, and organizational
+performance: Evidence from municipal police departments." Policing. 2014,
+37, (1),.
+Abstract: http://www.ncjrs.gov/App/publications/abstract.aspx?ID=237834
+
+15. James, Nathan; Council, Logan R., "How Crime in the United States is
+Measured." CRS Report for Congress. Washington, DC: Library of Congress,
+Congressional Research Service, Jan 2008.
+Abstract: http://www.ncjrs.gov/App/publications/abstract.aspx?ID=237834
+
+16. Johnson, Odis, Jr.; Gilbert, Keon; Ibrahim, Habiba, "Race, Gender, and
+the Contexts of Unarmed Fatal Interactions with Police." Feb 2018?..
+Full text PDF: https://cpb-us-west-2-juc1ugur1qwqqqo4.stackpathdns.com/sites.wustl.edu/dist/b/1205/files/2018/02/Race-Gender-and-Unarmed-1y6zo9a.pdf
+
+17. Johnson, Odis, Jr.; St. Vil, Christopher; Gilbert, Keon L.; Goodman,
+Melody; Johnson, Cassandra A., "Why Neighborhoods Matter in Deaths by Legal
+Intervention: Examining Fatal Interactions Between Police and Men of
+Color." Feb 2018?..
+Abstract: https://sites.wustl.edu/fips/studies/
+Full text PDF: https://sites.wustl.edu/fips/files/2018/02/Neighborhoods-and-MOCs-2nz6sf7.pdf
+
+18. Langworthy, Robert H., "LEMAS: A comparative organizational research
+platform." Justice Research and Policy. 2002, 4, (1/2), 21 - 38. DOI:
+10.3818/JRP.4.1.2002.21
+Abstract: https://sites.wustl.edu/fips/studies/
+Full text PDF: https://sites.wustl.edu/fips/files/2018/02/Neighborhoods-and-MOCs-2nz6sf7.pdf
+
+19. Legewie, Joscha; Fagan, Jeffrey, "Group Threat, Police Officer
+Diversity and the Deadly Use of Police Force." Columbia Law School Public
+Law and Legal Theory Working Paper Group. New York, NY: Columbia Law
+School, Dec 2016.
+Abstract: https://ssrn.com/abstract=2778692
+
+20. Lynch, James P., "Trends in Juvenile Violent Offending: An Analysis of
+Victim Survey Data." OJJDP Juvenile Justice Bulletin. NCJ 191052,
+Washington, DC: United States Department of Justice, Office of Justice
+Programs, Office of Juvenile Justice and Delinquency Prevention, Oct 2002.
+Abstract: http://www.ncjrs.gov/App/publications/abstract.aspx?ID=191052
+Full text PDF: https://www.ncjrs.gov/pdffiles1/ojjdp/191052.pdf
+This analysis was restricted to relatively serious violent crimes, namely,
+aggravated assault, robbery, and forcible rape. Both the Uniform Crime
+Reports (offenses known to police) and the NCVS (reports by victims of the
+offenses in which the offender was known to be a juvenile) showed that
+there were decreases in serious violent offending by juveniles until about
+1986-87 and increases thereafter until about 1994, when sharp decreases
+began and continued until 1998. Both race and gender disproportionately
+declined between 1980 and 1998, both in the Uniform Crime Reports and NCVS
+data, as the overrepresentation of male offenders and the
+overrepresentation of Black offenders decreased. The data from the NCVS
+showed that the majority of juvenile violent offending was done in groups,
+with male juveniles being more disposed to group offending than female
+juveniles and Black juveniles much more than white juveniles. The declines
+in juvenile offending rates for serious violent crimes between 1994 and
+1998 were greatest for juvenile co-offending, especially for Blacks.
+Possible explanations for this dramatic decrease in violent co-offending
+among Black juveniles should be explored, so as to enhance understanding of
+the recent decline in overall crime, with attention to the disparate
+declines in lone and group offending. 14 figures, 9 notes, and 17
+references
+
+21. Marion, Rebecca; Bibal, Adrien; Frenay, Benoit, "BIR: A method for
+selecting the best interpretable multidimensional scaling rotation using
+external variables." Neurocomputing. in press 2019,. DOI:
+10.1016/j.neucom.2018.11.093
+Abstract: http://www.ncjrs.gov/App/publications/abstract.aspx?ID=191052
+Full text PDF: https://www.ncjrs.gov/pdffiles1/ojjdp/191052.pdf
+This analysis was restricted to relatively serious violent crimes, namely,
+aggravated assault, robbery, and forcible rape. Both the Uniform Crime
+Reports (offenses known to police) and the NCVS (reports by victims of the
+offenses in which the offender was known to be a juvenile) showed that
+there were decreases in serious violent offending by juveniles until about
+1986-87 and increases thereafter until about 1994, when sharp decreases
+began and continued until 1998. Both race and gender disproportionately
+declined between 1980 and 1998, both in the Uniform Crime Reports and NCVS
+data, as the overrepresentation of male offenders and the
+overrepresentation of Black offenders decreased. The data from the NCVS
+showed that the majority of juvenile violent offending was done in groups,
+with male juveniles being more disposed to group offending than female
+juveniles and Black juveniles much more than white juveniles. The declines
+in juvenile offending rates for serious violent crimes between 1994 and
+1998 were greatest for juvenile co-offending, especially for Blacks.
+Possible explanations for this dramatic decrease in violent co-offending
+among Black juveniles should be explored, so as to enhance understanding of
+the recent decline in overall crime, with attention to the disparate
+declines in lone and group offending. 14 figures, 9 notes, and 17
+references
+
+22. Matusiak, Matthew C.; Campbell, Bradley A.; King, William R., "The
+legacy of LEMAS: Effects on police scholarship of a federally administered,
+multi-wave establishment survey." Policing. 2014, 37, (3), 630 - 648.
+Abstract: http://www.ncjrs.gov/App/publications/abstract.aspx?ID=191052
+Full text PDF: https://www.ncjrs.gov/pdffiles1/ojjdp/191052.pdf
+This analysis was restricted to relatively serious violent crimes, namely,
+aggravated assault, robbery, and forcible rape. Both the Uniform Crime
+Reports (offenses known to police) and the NCVS (reports by victims of the
+offenses in which the offender was known to be a juvenile) showed that
+there were decreases in serious violent offending by juveniles until about
+1986-87 and increases thereafter until about 1994, when sharp decreases
+began and continued until 1998. Both race and gender disproportionately
+declined between 1980 and 1998, both in the Uniform Crime Reports and NCVS
+data, as the overrepresentation of male offenders and the
+overrepresentation of Black offenders decreased. The data from the NCVS
+showed that the majority of juvenile violent offending was done in groups,
+with male juveniles being more disposed to group offending than female
+juveniles and Black juveniles much more than white juveniles. The declines
+in juvenile offending rates for serious violent crimes between 1994 and
+1998 were greatest for juvenile co-offending, especially for Blacks.
+Possible explanations for this dramatic decrease in violent co-offending
+among Black juveniles should be explored, so as to enhance understanding of
+the recent decline in overall crime, with attention to the disparate
+declines in lone and group offending. 14 figures, 9 notes, and 17
+references
+
+23. National Research Council, Ensuring the Quality, Credibility, and
+Relevance of U.S. Justice Statistics. Washington, DC: National Academies
+Press, 2009.
+Abstract: http://www.ncjrs.gov/App/publications/abstract.aspx?ID=191052
+Full text PDF: https://www.ncjrs.gov/pdffiles1/ojjdp/191052.pdf
+This analysis was restricted to relatively serious violent crimes, namely,
+aggravated assault, robbery, and forcible rape. Both the Uniform Crime
+Reports (offenses known to police) and the NCVS (reports by victims of the
+offenses in which the offender was known to be a juvenile) showed that
+there were decreases in serious violent offending by juveniles until about
+1986-87 and increases thereafter until about 1994, when sharp decreases
+began and continued until 1998. Both race and gender disproportionately
+declined between 1980 and 1998, both in the Uniform Crime Reports and NCVS
+data, as the overrepresentation of male offenders and the
+overrepresentation of Black offenders decreased. The data from the NCVS
+showed that the majority of juvenile violent offending was done in groups,
+with male juveniles being more disposed to group offending than female
+juveniles and Black juveniles much more than white juveniles. The declines
+in juvenile offending rates for serious violent crimes between 1994 and
+1998 were greatest for juvenile co-offending, especially for Blacks.
+Possible explanations for this dramatic decrease in violent co-offending
+among Black juveniles should be explored, so as to enhance understanding of
+the recent decline in overall crime, with attention to the disparate
+declines in lone and group offending. 14 figures, 9 notes, and 17
+references
+
+24. Nunn, Samuel, "Police information technology: Assessing the effects of
+computerization on urban police functions." Public Administration Review.
+2001, 61, (2), 221 - 234. DOI: 10.1111/0033-3352.00024
+Abstract: http://www.ncjrs.gov/App/publications/abstract.aspx?ID=191052
+Full text PDF: https://www.ncjrs.gov/pdffiles1/ojjdp/191052.pdf
+This analysis was restricted to relatively serious violent crimes, namely,
+aggravated assault, robbery, and forcible rape. Both the Uniform Crime
+Reports (offenses known to police) and the NCVS (reports by victims of the
+offenses in which the offender was known to be a juvenile) showed that
+there were decreases in serious violent offending by juveniles until about
+1986-87 and increases thereafter until about 1994, when sharp decreases
+began and continued until 1998. Both race and gender disproportionately
+declined between 1980 and 1998, both in the Uniform Crime Reports and NCVS
+data, as the overrepresentation of male offenders and the
+overrepresentation of Black offenders decreased. The data from the NCVS
+showed that the majority of juvenile violent offending was done in groups,
+with male juveniles being more disposed to group offending than female
+juveniles and Black juveniles much more than white juveniles. The declines
+in juvenile offending rates for serious violent crimes between 1994 and
+1998 were greatest for juvenile co-offending, especially for Blacks.
+Possible explanations for this dramatic decrease in violent co-offending
+among Black juveniles should be explored, so as to enhance understanding of
+the recent decline in overall crime, with attention to the disparate
+declines in lone and group offending. 14 figures, 9 notes, and 17
+references
+
+25. Planty, Michael, "The national crime victimization survey: 34 years of
+measuring crime in the United States." Statistical Journal of the United
+Nations Economic Commission for Europe. 2006, 23, (4), 289 - 301.
+Abstract: http://www.ncjrs.gov/App/publications/abstract.aspx?ID=191052
+Full text PDF: https://www.ncjrs.gov/pdffiles1/ojjdp/191052.pdf
+This analysis was restricted to relatively serious violent crimes, namely,
+aggravated assault, robbery, and forcible rape. Both the Uniform Crime
+Reports (offenses known to police) and the NCVS (reports by victims of the
+offenses in which the offender was known to be a juvenile) showed that
+there were decreases in serious violent offending by juveniles until about
+1986-87 and increases thereafter until about 1994, when sharp decreases
+began and continued until 1998. Both race and gender disproportionately
+declined between 1980 and 1998, both in the Uniform Crime Reports and NCVS
+data, as the overrepresentation of male offenders and the
+overrepresentation of Black offenders decreased. The data from the NCVS
+showed that the majority of juvenile violent offending was done in groups,
+with male juveniles being more disposed to group offending than female
+juveniles and Black juveniles much more than white juveniles. The declines
+in juvenile offending rates for serious violent crimes between 1994 and
+1998 were greatest for juvenile co-offending, especially for Blacks.
+Possible explanations for this dramatic decrease in violent co-offending
+among Black juveniles should be explored, so as to enhance understanding of
+the recent decline in overall crime, with attention to the disparate
+declines in lone and group offending. 14 figures, 9 notes, and 17
+references
+
+26. Redmond, Michael; Baveja, Alok, "A data-driven software tool for
+enabling cooperative information sharing among police departments."
+European Journal of Operational Research. Sep 2002, 141, (3), 660 - 678.
+DOI: 10.1016/S0377-2217(01)00264-8
+Abstract: http://www.ncjrs.gov/App/publications/abstract.aspx?ID=191052
+Full text PDF: https://www.ncjrs.gov/pdffiles1/ojjdp/191052.pdf
+This analysis was restricted to relatively serious violent crimes, namely,
+aggravated assault, robbery, and forcible rape. Both the Uniform Crime
+Reports (offenses known to police) and the NCVS (reports by victims of the
+offenses in which the offender was known to be a juvenile) showed that
+there were decreases in serious violent offending by juveniles until about
+1986-87 and increases thereafter until about 1994, when sharp decreases
+began and continued until 1998. Both race and gender disproportionately
+declined between 1980 and 1998, both in the Uniform Crime Reports and NCVS
+data, as the overrepresentation of male offenders and the
+overrepresentation of Black offenders decreased. The data from the NCVS
+showed that the majority of juvenile violent offending was done in groups,
+with male juveniles being more disposed to group offending than female
+juveniles and Black juveniles much more than white juveniles. The declines
+in juvenile offending rates for serious violent crimes between 1994 and
+1998 were greatest for juvenile co-offending, especially for Blacks.
+Possible explanations for this dramatic decrease in violent co-offending
+among Black juveniles should be explored, so as to enhance understanding of
+the recent decline in overall crime, with attention to the disparate
+declines in lone and group offending. 14 figures, 9 notes, and 17
+references
+
+27. Schuck, Amie M.; Rabe-Hemp, Cara, "Citizen complaints and gender
+diversity in police organisations." Policing and Society. 2016, 26, (8),
+859 - 874. DOI: 10.1080/10439463.2014.989161
+Abstract: http://www.ncjrs.gov/App/publications/abstract.aspx?ID=191052
+Full text PDF: https://www.ncjrs.gov/pdffiles1/ojjdp/191052.pdf
+This analysis was restricted to relatively serious violent crimes, namely,
+aggravated assault, robbery, and forcible rape. Both the Uniform Crime
+Reports (offenses known to police) and the NCVS (reports by victims of the
+offenses in which the offender was known to be a juvenile) showed that
+there were decreases in serious violent offending by juveniles until about
+1986-87 and increases thereafter until about 1994, when sharp decreases
+began and continued until 1998. Both race and gender disproportionately
+declined between 1980 and 1998, both in the Uniform Crime Reports and NCVS
+data, as the overrepresentation of male offenders and the
+overrepresentation of Black offenders decreased. The data from the NCVS
+showed that the majority of juvenile violent offending was done in groups,
+with male juveniles being more disposed to group offending than female
+juveniles and Black juveniles much more than white juveniles. The declines
+in juvenile offending rates for serious violent crimes between 1994 and
+1998 were greatest for juvenile co-offending, especially for Blacks.
+Possible explanations for this dramatic decrease in violent co-offending
+among Black juveniles should be explored, so as to enhance understanding of
+the recent decline in overall crime, with attention to the disparate
+declines in lone and group offending. 14 figures, 9 notes, and 17
+references
+
+28. Shoub, Kelsey; Baumgartner, Frank R.; Epp, Derek A., "Policing the
+powerless: How black political power reduces racial disparities in traffic
+stop outcomes." Presented at the Midwest Political Science Association,
+Chicago, IL, Apr 2017.
+Full text PDF: https://www.unc.edu/~fbaum/papers/ShoubBaumgartnerEpp-MPSA2017.pdf
+
+29. Smith, Brad W.; Wareham, Jennifer; Lambert, Eric G., "Community and
+organizational influences on voluntary turnover in law enforcement."
+Journal of Criminal Justice. Nov 2014, 37, (3), 377 - 398. DOI:
+10.1080/0735648X.2013.848170
+Full text PDF: https://www.unc.edu/~fbaum/papers/ShoubBaumgartnerEpp-MPSA2017.pdf
+
+30. Titus, Alfred S., Jr., "Realigning Community Policing in a Homeland
+Security Era." Dissertation, Walden University, 2017.
+Abstract: https://scholarworks.waldenu.edu/dissertations/4106/
+
+31. Warnken, Heather, "What does the data tell us about law enforcement-
+based victim services?." Police Chief Magazine. Apr 2018, (NCJ 251600),.
+Abstract: https://www.ncjrs.gov/app/publications/abstract.aspx?id=273794
+Full text: http://www.policechiefmagazine.org/what-does-the-data-tell-us/
+
+32. Xie, Min; Lauritsen, Janet L., "Racial context and crime reporting: A
+test of Black's stratification hypothesis." Journal of Quantitative
+Criminology. Jun 2012, 28, (2), 265 - 293. DOI: 10.1007/s10940-011-9140-z
+Abstract: https://www.ncjrs.gov/app/publications/abstract.aspx?id=273794
+Full text: http://www.policechiefmagazine.org/what-does-the-data-tell-us/
