@@ -69,7 +69,7 @@ standardize_data_types <- function(df, first_df) {
     - Person's 25 and older educational attainment
     - Median HH income
   - Accessed from IPUMS National Historical Geographic Information System (NHGIS) from the 2022 American Community Survey (ACS) Summary Files which estimates average characteristics from 2018 to 2022. 
-- **County Ideology Data**
+- **Ideology Data**
   - Values are between 0 and 1, lower values are associated with politically left preferences and higher values with politically right preferences
   - Ideology is based on surveys taken between 2017-2021
   - Accessed from the Harvard Dataverse, dataset: Subnational ideology and presidential vote estimates (v2022)
@@ -126,7 +126,7 @@ counties_blm <- blm_df %>%
 
 ```{r get_political_data, eval = FALSE}
 cities_pol_ideo <- read_dta("data/aip_cities_ideology_v2022a.dta")
-countes_pol_ideo <- read_dta("data/aip_counties_ideology_v2022a.dta")
+counties_pol_ideo <- read_dta("data/aip_counties_ideology_v2022a.dta")
 
 cities_pol_ideo <- cities_pol_ideo %>%
   filter(survey_period == "2017-2021") %>% #Only use data from most recent surveys
@@ -135,7 +135,7 @@ cities_pol_ideo <- cities_pol_ideo %>%
          city_state = paste(city_name, state_abbr, sep = "_")) %>% #combine county/states
   select(city_state, mrp_ideology)
 
-counities_pol_ideo <- countes_pol_ideo %>%
+counties_pol_ideo <- counties_pol_ideo %>%
   filter(survey_period == "2017-2021") %>% #Only use data from most recent surveys
   mutate(state_abbr = state.abb[match(state, state.name)], #get abbreviated states
          county_name = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", county_name)), #remove suffixes
@@ -211,7 +211,7 @@ cities_demo <- cities_demo %>%
          perc_graduate_professional = num_graduate_professional / total_pop,
          perc_not_in_labor_force = num_not_in_labor_force / total_pop,
          state_abbr = state.abb[match(STATE, state.name)],
-         PLACE = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", PLACE)), #remove suffixes
+         PLACE = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city| town| CDP| village| City", "", PLACE)), #remove suffixes
          city_state = paste(PLACE, state_abbr, sep = "_") #combine county/states
          ) %>%
   select(city_state, percent_female, perc_age_0_17, perc_age_18_34, 
@@ -325,14 +325,58 @@ load(file='data/38651-0001-Data.rda')
 
 da38651.0001_filtered <- da38651.0001 %>%
   filter(AGENCYSAMPTYPE != "(5) State police") %>%
-  dplyr::select(AGENCYNAME, AGENCYSAMPTYPE, CITY, STATE, OPBUDGET_2019,
-                OPBUDGET) %>%
-  mutate(CITY = str_trim(CITY, side = "both"),
-         City = tolower(CITY))
+  dplyr::select(AGENCYNAME, AGENCYSAMPTYPE, CITY, STATE, OPBUDGET_2019, OPBUDGET) %>%
+  mutate(
+    CITY = str_trim(CITY, side = "both"),
+    AGENCYNAME = str_trim(AGENCYNAME, side = "both"),
+    AGENCYNAME = tolower(AGENCYNAME),
+    City = tolower(CITY),
+    County = ifelse(AGENCYSAMPTYPE == "(4) County police", 
+                    str_extract(AGENCYNAME, ".*(?= county)"), NA),
+    County = case_when(
+       AGENCYNAME == "fraser winter park police department" ~ "grand",
+       AGENCYNAME == "colonial regional police department" ~ "northampton",
+       AGENCYNAME == "charleroi regional police department" ~ "washington",
+       AGENCYNAME == "clear lake-ventura police department" ~ "calhoun",
+       AGENCYNAME == "athens clarke county police department" ~ "clarke",
+       AGENCYNAME == "saint charles county police department" ~ "st. charles",
+       AGENCYNAME == "saint louis county police department" ~ "st. louis",
+       TRUE ~ County),
+    City = str_replace(City, " city$", ""),
+    is_city = ifelse(AGENCYSAMPTYPE == "(4) County police", 0, 1),
+    county_state = ifelse(AGENCYSAMPTYPE == "(4) County police", paste(County, STATE, sep= "_"), NA),
+    city_state = ifelse(AGENCYSAMPTYPE == "(3) Local police", paste(City, STATE, sep= "_"), NA)
+    ) %>%
+    filter(!is.na(OPBUDGET_2019) & !is.na(OPBUDGET)) # REMOVE EVENTUALLY
+
 ```
 
+```{r combine_dfs}
+counties <- da38651.0001_filtered %>%
+  filter(AGENCYSAMPTYPE == "(4) County police") %>%
+  left_join(counties_blm) %>%
+  left_join(counties_demo) %>%
+  left_join(counties_pol_ideo) %>%
+  left_join(county_police_killings) %>%
+  mutate(violent_protest = ifelse(is.na(violent_protest), 0, violent_protest),
+         peaceful_protest = ifelse(is.na(peaceful_protest), 0, peaceful_protest),
+         has_police_killing = ifelse(is.na(has_police_killing), 0, police_killings))
+  
+cities <- da38651.0001_filtered %>%
+  filter(AGENCYSAMPTYPE == "(3) Local police") %>%
+  left_join(counties_blm) %>%
+  left_join(cities_demo) %>%
+  left_join(cities_pol_ideo) %>%
+  left_join(city_police_killings) %>%
+  mutate(violent_protest = ifelse(is.na(violent_protest), 0, violent_protest),
+         peaceful_protest = ifelse(is.na(peaceful_protest), 0, peaceful_protest),
+         has_police_killing = ifelse(is.na(has_police_killing), 0, has_police_killing))
 
-## Descriptive Statistics
+View(filter(cities, is.na(percent_female)))
+View(cities_demo)
+  
+```
+
 
 ```{r combine_dfs, eval = FALSE}
 # Combine financial data
@@ -399,6 +443,8 @@ full_protest_data <- bind_rows(non_2020_data, protest_data_final)
 save(full_protest_data, file = "full_protest_data.RData")
 
 ```
+
+## Descriptive Statistics
 
 <br />
 
