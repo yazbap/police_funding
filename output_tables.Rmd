@@ -14,6 +14,7 @@ library(kableExtra)
 load("table1.rda")
 load("table2.rda")
 load("table3.rda")
+load("table4.rda")
 ```
 
 ## Table 1 - Peaceful Analysis Pre Matching
@@ -28,8 +29,26 @@ kable(table2, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
                         booktabs=TRUE)
 ```
 
-## Table 3 - DID Analysis Pre-Matching
+## Table 3 - DID Analysis Pre-Matching Peaceful
 ```{r table3, echo = FALSE, results='asis'}
 kable(table3, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
+                        booktabs=TRUE)
+```
+
+## Table 4 - DID Analysis Pre-Matching Violent
+```{r table4, echo = FALSE, results='asis'}
+kable(table4, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
+                        booktabs=TRUE)
+```
+
+## Table 5 - Peaceful Analysis Post-Matching
+```{r table4, echo = FALSE, results='asis'}
+kable(table4, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
+                        booktabs=TRUE)
+```
+
+## Table 6 - Violent Analysis Post-Matching
+```{r table4, echo = FALSE, results='asis'}
+kable(table4, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
                         booktabs=TRUE)
 ```

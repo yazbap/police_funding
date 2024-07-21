@@ -1363,7 +1363,21 @@ diff_in_diff_df <- rbind(outcome_vars_pre, outcome_vars_post)
 
 diff_diff_output <- lm(opbudget ~ violent_protest*time, data = diff_in_diff_df)
 
-summary(diff_diff_output)
+pre_violent_sum <- summary(diff_diff_output)
+
+# Extract the coefficients, standard errors, t-values, and p-values
+coefficients <- pre_violent_sum$coefficients
+
+# Convert to a data frame
+table4 <- data.frame(
+  Variable = rownames(coefficients),
+  Estimate = coefficients[, "Estimate"],
+  Std_Error = coefficients[, "Std. Error"],
+  t_value = coefficients[, "t value"],
+  P_Value = coefficients[, "Pr(>|t|)"]
+)
+
+save(table4, file = "table4.rda")
 ```
 
 ## Propensity Scores
@@ -1487,7 +1501,7 @@ variables <- c("mrp_ideology", "percent_female", "perc_age_0_17", "perc_age_18_3
                "perc_age_35_59", "perc_age_60_74", "perc_75_up", "perc_black",
                "perc_white", "perc_hispanic", "perc_less_hs",
                "perc_associates", "perc_bachelors", "perc_graduate_professional",
-               "perc_not_in_labor_force", "median_hh_income")
+               "perc_not_in_labor_force", "median_hh_income", "has_police_killing")
 
 variable_names <- c(
   "mrp_ideology" = "Ideology",
@@ -1500,42 +1514,74 @@ variable_names <- c(
   "perc_black" = "Percent Black",
   "perc_white" = "Percent White",
   "perc_hispanic" = "Percent Hispanic",
-  "perc_less_hs" = "Percent Less Than HS",
+  "perc_less_hs" = "Percent Less Than High School",
   "perc_associates" = "Percent Associates",
   "perc_bachelors" = "Percent Bachelors",
   "perc_graduate_professional" = "Percent Graduate/Professional",
   "perc_not_in_labor_force" = "Percent Not in Labor Force",
-  "median_hh_income" = "Median Household Income"
+  "median_hh_income" = "Median Household Income",
+  "has_police_killing" = "Has Police Killing"
 )
 
 # Loop over each variable
 for (variable in variables) {
-  # Perform t-test and compute means for treatment and control groups
-  test <- t.test(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 1], 
-                 m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 0])
-  mean_treatment <- mean(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 1], na.rm = TRUE)
-  mean_control <- mean(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 0], na.rm = TRUE)
-  sd_treatment <- sd(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 1], na.rm = TRUE)
-  sd_control <- sd(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 0], na.rm = TRUE)
-  
-  # Create a new row for the result_table
-  new_row <- data.frame(
-    Variable = variable_names[[variable]],
-    Control_Mean = as.numeric(mean_control),
-    Treatment_Mean = as.numeric(mean_treatment),
-    Control_SD = as.numeric(sd_control),
-    Treatment_SD = as.numeric(sd_treatment),
-    stringsAsFactors = FALSE
-  )
+  if (variable == "has_police_killing") {
+    # For binary variables, calculate proportions
+    prop_treatment <- mean(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 1], na.rm = TRUE)
+    prop_control <- mean(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 0], na.rm = TRUE)
+    
+    # Create a new row for the result_table for binary variable
+    new_row <- data.frame(
+      Variable = variable_names[[variable]],  # Use the new descriptive name
+      Control_Mean = NA,  # Not applicable
+      Treatment_Mean = NA, # Not applicable
+      Control_SD = NA, # Not applicable
+      Treatment_SD = NA, # Not applicable
+      Control_Percentage = as.numeric(prop_control),
+      Treatment_Percentage = as.numeric(prop_treatment),
+      stringsAsFactors = FALSE
+    )
+  } else {
+    # Perform t-test and compute means and standard deviations for continuous variables
+    test <- t.test(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 1], 
+                   m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 0])
+    mean_treatment <- mean(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 1], na.rm = TRUE)
+    mean_control <- mean(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 0], na.rm = TRUE)
+    sd_treatment <- sd(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 1], na.rm = TRUE)
+    sd_control <- sd(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 0], na.rm = TRUE)
+    
+    # Create a new row for the result_table
+    new_row <- data.frame(
+      Variable = variable_names[[variable]],  # Use the new descriptive name
+      Control_Mean = as.numeric(mean_control),
+      Treatment_Mean = as.numeric(mean_treatment),
+      Control_SD = as.numeric(sd_control),
+      Treatment_SD = as.numeric(sd_treatment),
+      Control_Percentage = NA, # Not applicable
+      Treatment_Percentage = NA, # Not applicable
+      stringsAsFactors = FALSE
+    )
+  }
   
   # Append the new row to result_table
   result_table <- bind_rows(result_table, new_row)
 }
 
-# Print result_table in an academic format
-kable(result_table, format = "markdown", caption = "Table 3: Peaceful Analysis Post Matching", 
-      col.names = c("Variable", "Control Mean", "Treatment Mean", "Control Std Dev", "Treatment Std Dev"))
+table5 <- result_table %>%
+  mutate(
+    Control_Mean = format(Control_Mean, scientific = FALSE, digits = 4),
+    Treatment_Mean = format(Treatment_Mean, scientific = FALSE, digits = 4),
+    Control_SD = format(Control_SD, scientific = FALSE, digits = 4),
+    Treatment_SD = format(Treatment_SD, scientific = FALSE, digits = 4)
+  )  %>%
+  rename(`Control Mean` = Control_Mean,
+         `Treatment Mean` = Treatment_Mean,
+         `Control Std Dev` = Control_SD,
+         `Treatment Std Dev` = Treatment_SD,
+         `Control Percentage` = Control_Percentage,
+         `Treatment Percentage` = Treatment_Percentage)
 
+save(table5, file = "table5.rda")
 ```
 
 ```{r show_group_metrics}
@@ -1554,7 +1600,7 @@ variables <- c("mrp_ideology", "percent_female", "perc_age_0_17", "perc_age_18_3
                "perc_age_35_59", "perc_age_60_74", "perc_75_up", "perc_black",
                "perc_white", "perc_hispanic", "perc_less_hs",
                "perc_associates", "perc_bachelors", "perc_graduate_professional",
-               "perc_not_in_labor_force", "median_hh_income")
+               "perc_not_in_labor_force", "median_hh_income", "has_police_killing")
 
 variable_names <- c(
   "mrp_ideology" = "Ideology",
@@ -1567,42 +1613,74 @@ variable_names <- c(
   "perc_black" = "Percent Black",
   "perc_white" = "Percent White",
   "perc_hispanic" = "Percent Hispanic",
-  "perc_less_hs" = "Percent Less Than HS",
+  "perc_less_hs" = "Percent Less Than High School",
   "perc_associates" = "Percent Associates",
   "perc_bachelors" = "Percent Bachelors",
   "perc_graduate_professional" = "Percent Graduate/Professional",
   "perc_not_in_labor_force" = "Percent Not in Labor Force",
-  "median_hh_income" = "Median Household Income"
+  "median_hh_income" = "Median Household Income",
+  "has_police_killing" = "Has Police Killing"
 )
 
 # Loop over each variable
 for (variable in variables) {
-  # Perform t-test and compute means for treatment and control groups
-  test <- t.test(m_data_violent[[variable]][m_data_violent$violent_protest == 1], 
-                 m_data_violent[[variable]][m_data_violent$violent_protest == 0])
-  mean_treatment <- mean(m_data_violent[[variable]][m_data_violent$violent_protest == 1], na.rm = TRUE)
-  mean_control <- mean(m_data_violent[[variable]][m_data_violent$violent_protest == 0], na.rm = TRUE)
-  sd_treatment <- sd(m_data_violent[[variable]][m_data_violent$violent_protest == 1], na.rm = TRUE)
-  sd_control <- sd(m_data_violent[[variable]][m_data_violent$violent_protest == 0], na.rm = TRUE)
-  
-  # Create a new row for the result_table
-  new_row <- data.frame(
-    Variable = variable_names[[variable]],
-    Control_Mean = as.numeric(mean_control),
-    Treatment_Mean = as.numeric(mean_treatment),
-    Control_SD = as.numeric(sd_control),
-    Treatment_SD = as.numeric(sd_treatment),
-    stringsAsFactors = FALSE
-  )
+  if (variable == "has_police_killing") {
+    # For binary variables, calculate proportions
+    prop_treatment <- mean(m_data_violent[[variable]][m_data_violent$violent_protest == 1], na.rm = TRUE)
+    prop_control <- mean(m_data_violent[[variable]][m_data_violent$violent_protest == 0], na.rm = TRUE)
+    
+    # Create a new row for the result_table for binary variable
+    new_row <- data.frame(
+      Variable = variable_names[[variable]],  # Use the new descriptive name
+      Control_Mean = NA,  # Not applicable
+      Treatment_Mean = NA, # Not applicable
+      Control_SD = NA, # Not applicable
+      Treatment_SD = NA, # Not applicable
+      Control_Percentage = as.numeric(prop_control),
+      Treatment_Percentage = as.numeric(prop_treatment),
+      stringsAsFactors = FALSE
+    )
+  } else {
+    # Perform t-test and compute means and standard deviations for continuous variables
+    test <- t.test(m_data_violent[[variable]][m_data_violent$violent_protest == 1], 
+                   m_data_violent[[variable]][m_data_violent$violent_protest == 0])
+    mean_treatment <- mean(m_data_violent[[variable]][m_data_peaceful$violent_protest == 1], na.rm = TRUE)
+    mean_control <- mean(m_data_violent[[variable]][m_data_peaceful$violent_protest == 0], na.rm = TRUE)
+    sd_treatment <- sd(m_data_violent[[variable]][m_data_peaceful$violent_protest == 1], na.rm = TRUE)
+    sd_control <- sd(m_data_violent[[variable]][m_data_peaceful$violent_protest == 0], na.rm = TRUE)
+    
+    # Create a new row for the result_table
+    new_row <- data.frame(
+      Variable = variable_names[[variable]],  # Use the new descriptive name
+      Control_Mean = as.numeric(mean_control),
+      Treatment_Mean = as.numeric(mean_treatment),
+      Control_SD = as.numeric(sd_control),
+      Treatment_SD = as.numeric(sd_treatment),
+      Control_Percentage = NA, # Not applicable
+      Treatment_Percentage = NA, # Not applicable
+      stringsAsFactors = FALSE
+    )
+  }
   
   # Append the new row to result_table
   result_table <- bind_rows(result_table, new_row)
 }
 
-# Print result_table in an academic format
-kable(result_table, format = "markdown", caption = "Table 4: Violent Analysis Post Matching", 
-      col.names = c("Variable", "Control Mean", "Treatment Mean", "Control Std Dev", "Treatment Std Dev"))
+table6 <- result_table %>%
+  mutate(
+    Control_Mean = format(Control_Mean, scientific = FALSE, digits = 4),
+    Treatment_Mean = format(Treatment_Mean, scientific = FALSE, digits = 4),
+    Control_SD = format(Control_SD, scientific = FALSE, digits = 4),
+    Treatment_SD = format(Treatment_SD, scientific = FALSE, digits = 4)
+  )  %>%
+  rename(`Control Mean` = Control_Mean,
+         `Treatment Mean` = Treatment_Mean,
+         `Control Std Dev` = Control_SD,
+         `Treatment Std Dev` = Treatment_SD,
+         `Control Percentage` = Control_Percentage,
+         `Treatment Percentage` = Treatment_Percentage)
 
+save(table6, file = "table6.rda")
 ```
 
 ### DID Post Matching
