@@ -1,0 +1,35 @@
+---
+title: "output_tables"
+output: pdf_document
+date: "2024-07-21"
+geometry: margin=0.75in
+---
+
+```{r setup, include=FALSE}
+# Load data into global environment. 
+library(finalfit)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+load("table1.rda")
+load("table2.rda")
+load("table3.rda")
+```
+
+## Table 1 - Peaceful Analysis Pre Matching
+```{r table1, echo = FALSE, results='asis'}
+kable(table1, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
+                        booktabs=TRUE)
+```
+
+## Table 2 - Violent Analysis Pre Matching
+```{r table2, echo = FALSE, results='asis'}
+kable(table2, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
+                        booktabs=TRUE)
+```
+
+## Table 3 - DID Analysis Pre-Matching
+```{r table3, echo = FALSE, results='asis'}
+kable(table3, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
+                        booktabs=TRUE)
+```
