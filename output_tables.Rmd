@@ -15,6 +15,8 @@ load("table1.rda")
 load("table2.rda")
 load("table3.rda")
 load("table4.rda")
+load("table5.rda")
+load("table6.rda")
 ```
 
 ## Table 1 - Peaceful Analysis Pre Matching
@@ -42,13 +44,13 @@ kable(table4, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
 ```
 
 ## Table 5 - Peaceful Analysis Post-Matching
-```{r table4, echo = FALSE, results='asis'}
-kable(table4, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
+```{r table5, echo = FALSE, results='asis'}
+kable(table5, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
                         booktabs=TRUE)
 ```
 
 ## Table 6 - Violent Analysis Post-Matching
-```{r table4, echo = FALSE, results='asis'}
-kable(table4, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
+```{r table6, echo = FALSE, results='asis'}
+kable(table6, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
                         booktabs=TRUE)
 ```

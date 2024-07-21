@@ -1485,7 +1485,7 @@ cat("The violent matched data set has", dim(m_data_violent)[1], "counties.", num
 ```
 
 
-```{r show_group_metrics}
+```{r show_group_metrics_peace}
 # Initialize an empty data frame to store results
 result_table <- data.frame(
   Variable = character(),
@@ -1584,7 +1584,7 @@ table5 <- result_table %>%
 save(table5, file = "table5.rda")
 ```
 
-```{r show_group_metrics}
+```{r show_group_metrics_violent}
 # Initialize an empty data frame to store results
 result_table <- data.frame(
   Variable = character(),
@@ -1644,10 +1644,10 @@ for (variable in variables) {
     # Perform t-test and compute means and standard deviations for continuous variables
     test <- t.test(m_data_violent[[variable]][m_data_violent$violent_protest == 1], 
                    m_data_violent[[variable]][m_data_violent$violent_protest == 0])
-    mean_treatment <- mean(m_data_violent[[variable]][m_data_peaceful$violent_protest == 1], na.rm = TRUE)
-    mean_control <- mean(m_data_violent[[variable]][m_data_peaceful$violent_protest == 0], na.rm = TRUE)
-    sd_treatment <- sd(m_data_violent[[variable]][m_data_peaceful$violent_protest == 1], na.rm = TRUE)
-    sd_control <- sd(m_data_violent[[variable]][m_data_peaceful$violent_protest == 0], na.rm = TRUE)
+    mean_treatment <- mean(m_data_violent[[variable]][m_data_violent$violent_protest == 1], na.rm = TRUE)
+    mean_control <- mean(m_data_violent[[variable]][m_data_violent$violent_protest == 0], na.rm = TRUE)
+    sd_treatment <- sd(m_data_violent[[variable]][m_data_violent$violent_protest == 1], na.rm = TRUE)
+    sd_control <- sd(m_data_violent[[variable]][m_data_violent$violent_protest == 0], na.rm = TRUE)
     
     # Create a new row for the result_table
     new_row <- data.frame(
