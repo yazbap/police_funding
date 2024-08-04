@@ -17,6 +17,11 @@ load("table3.rda")
 load("table4.rda")
 load("table5.rda")
 load("table6.rda")
+load("table7.rda")
+load("table8.rda")
+load("figure1.rda")
+load("figure2.rda")
+load("figure3.rda")
 ```
 
 ## Table 1 - Peaceful Analysis Pre Matching
@@ -52,5 +57,34 @@ kable(table5, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
 ## Table 6 - Violent Analysis Post-Matching
 ```{r table6, echo = FALSE, results='asis'}
 kable(table6, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
+                        booktabs=TRUE)
+```
+
+## Figure 3: Normalized RMSE of Successive Imputations: MICE vs missForest
+
+```{r}
+figure1
+```
+
+
+## Figure 2 - Peaceful Analysis: Comparison of Means for Removed vs. Not Removed Rows
+```{r figure1, echo = FALSE, results='asis'}
+figure2
+```
+
+## Figure 3 - Violent Analysis: Comparison of Means for Removed vs. Not Removed Rows
+```{r}
+figure3
+```
+
+## Table 7 - DID Analysis Post-Matching Peaceful
+```{r table7, echo = FALSE, results='asis'}
+kable(table7, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
+                        booktabs=TRUE)
+```
+
+## Table 8 - DID Analysis Post-Matching Violent
+```{r table8, echo = FALSE, results='asis'}
+kable(table8, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
                         booktabs=TRUE)
 ```

@@ -1,4 +1,4 @@
-AGENCYNAME,city,STATE,opbudget2019,oppudget_2021_2022,source
+AGENCYNAME,city,STATE,opbudget2019,opbudget_2021_2022,source
 abbeville county sheriff's office,abbeville,SC,2e+06,2699000,https://policescorecard.org/
 aberdeen police department,aberdeen,OH,3406300,,
 aberdeen police department,aberdeen,WA,6799803,,
@@ -36,9 +36,9 @@ alexandria police department,alexandria,LA,18917000,14651000,https://policescore
 alexandria police department,alexandria,VA,67793778,92909000,https://policescorecard.org/
 algonquin police department,algonquin,IL,9600000,9633000,https://policescorecard.org/
 allegany village police department,allegany,NY,420000,"275,627",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
-allegheny county police department,pittsburgh,PA,35645007,,
+allegheny county police department,pittsburgh,PA,35645007,37489716,https://www.alleghenycounty.us/files/assets/county/v/1/government/budget-amp-finance/operating-budget/2021-operating-budget-resolution.pdf
 allegheny county sheriff's office,pittsburgh,PA,95932187,37489716,https://www.alleghenycounty.us/files/assets/county/v/1/government/budget-amp-finance/proposed-operating-budgets/final-operating_2021-comprehensive-fiscal-plan.pdf
-allegheny township police department,leechburg,PA,1135872,,
+allegheny township police department,leechburg,PA,1135872,1150535,https://dced.pa.gov/local-government/municipal-statistics/
 allen county sheriff's department,fort wayne,IN,2.9e+07,69400000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
 allen parish sheriff's office,oberlin,LA,9600843,218000,https://policescorecard.org/
 allen police department,allen,OK,25000,,
@@ -114,14 +114,14 @@ ashland police department,ashland,IL,125000,"95,295",https://illinoiscomptroller
 ashland police department,ashland,NH,426620,370000,https://policescorecard.org/
 ashland police department,ashland,OH,3589667,3742000,https://policescorecard.org/
 ashland police department,ashland,VA,2948888,,
-ashley borough police department,ashley borough,PA,240000,,
+ashley borough police department,ashley borough,PA,240000,364426,https://dced.pa.gov/local-government/municipal-statistics/
 ashtabula county sheriff's office,jefferson,OH,7392147,6014000,https://policescorecard.org/
 ashville police department,ashville,AL,373682,438000,https://policescorecard.org/
 asotin police department,asotin,WA,155996,,
 aspen police department,aspen,CO,5948835,5355000,https://policescorecard.org/
-aston township police department,aston,PA,9530824,,
+aston township police department,aston,PA,9530824,5658160,https://dced.pa.gov/local-government/municipal-statistics/
 athens clarke county police department,athens,GA,24605832,,
-athens township police department,sayre,PA,4906312,,
+athens township police department,sayre,PA,4906312,444087,https://dced.pa.gov/local-government/municipal-statistics/
 atlanta police department,atlanta,GA,207814301,277000000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
 atlantic beach police department,atlantic beach,NC,1487071,152061,https://atlanticbeach-nc.com/wp-content/uploads/2015/07/FY-2021-22-Annual-Comprehensive-Financial-Report.pdf
 atlantic city police,atlantic,NJ,27801450,33649000,https://policescorecard.org/
@@ -157,7 +157,7 @@ baldwin county sheriff's office,bay minette,AL,28017120,16574000,https://polices
 baldwin park police department,baldwin park,CA,21800000,18633707,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
 baldwin police department,baldwin,GA,7306358,670000,https://georgiadata.org/
 baldwin police department,baldwin,LA,180000,601769,https://www.baldwinpark.com/DocumentCenter/View/346/FY21-22-Adopted-Budget---Police-PDF
-baldwin township police department,pittsburgh,PA,609000,,
+baldwin township police department,pittsburgh,PA,609000,3932289,https://dced.pa.gov/local-government/municipal-statistics/
 ballinger police department,ballinger,TX,782715,"1,015,181",https://www.baltx.org/_files/ugd/b59312_f069853c53f8421ea1466bb21b53f835.pdf
 baltimore city sheriff's office,baltimore,MD,97277060,530286000,https://policescorecard.org/
 baltimore county police,towson,MD,237613323,243231000,https://policescorecard.org/
@@ -243,7 +243,7 @@ berkeley police department,berkeley,MO,3042818,2732000,https://policescorecard.o
 berkeley police department,berkeley,CA,74979834,77374364,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
 berkley department of public safety,berkley,MI,3846369,549700,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
 berlin borough police,berlin borough,NJ,5886878,,
-bern township police department,reading,PA,1263950,,
+bern township police department,reading,PA,1263950,1325718,https://dced.pa.gov/local-government/municipal-statistics/
 bernalillo county sheriff's office,albuquerque,NM,6e+07,60748000,https://policescorecard.org/
 berne police department,berne,IN,795762,596319,https://gateway.ifionline.org/report_builder/Default3a.aspx?rpttype=budget&rpt=DetailedExpenditures&rptName=Line-Item%20Budget%20Estimate
 bertrand police department,bertrand,MO,27049,,
@@ -271,12 +271,12 @@ black creek police department,black creek,WI,169147,,
 black hawk county sheriff's office,waterloo,IA,14249777,7621000,https://policescorecard.org/
 black hawk police department,black hawk,CO,4306663,4333000,https://policescorecard.org/
 blackduck police department,blackduck,MN,6558926,,
-blacklick township police department,belsano,PA,147428,,
+blacklick township police department,belsano,PA,147428,41106,https://dced.pa.gov/local-government/municipal-statistics/
 blacksburg police department,blacksburg,SC,960000,,
 blackstone police department,blackstone,MA,2100000,,
 blaine county sheriff's office,chinook,MT,1200000,1306000,https://policescorecard.org/
 blaine county sheriff's office,watonga,OK,767000,,
-blair county sheriff's office,hollidaysburg,PA,10409544,,
+blair county sheriff's office,hollidaysburg,PA,10409544,"3,979,858",https://dced.pa.gov/local-government/municipal-statistics/
 blanding police department,blanding,UT,737852,513000,https://policescorecard.org/
 bledsoe county sheriff's office,pikeville,TN,12141419,812000,https://policescorecard.org/
 bloomfield police,bloomfield,NJ,16581350,16938000,https://policescorecard.org/
@@ -301,7 +301,7 @@ bolivar police department,bolivar,TN,1740329,,
 bollinger county sheriff's office,marble hill,MO,6997297,,
 bolton police department,bolton,MS,1341643,,
 bonneau police department,bonneau,SC,176287,,
-bonneauville borough police department,gettysburg borough,PA,85100,,
+bonneauville borough police department,gettysburg borough,PA,85100,72081,https://dced.pa.gov/local-government/municipal-statistics/
 bonner county sheriff's office,sandpoint,ID,8574388,5644000,https://policescorecard.org/
 bonney lake police department,bonney lake,WA,6875041,,
 booker police department,booker,TX,113186,,
@@ -327,7 +327,7 @@ boxford police department,boxford,MA,1267297,1301000,https://policescorecard.org
 boyce police department,boyce,LA,7611853,726147,https://app.lla.la.gov/publicreports.nsf/0/66a98d35320020f4862587f7006cbf56/$file/00026175.pdf
 boyd county sheriff's office,butte,NE,269950,,
 boyd police department,boyd,TX,325000,"559,953",https://www.cityofboyd.com/media/81
-boyertown borough police department,boyertown borough,PA,7719297,,
+boyertown borough police department,boyertown borough,PA,7719297,1071625,https://dced.pa.gov/local-government/municipal-statistics/
 boyle police department,boyle,MS,66607,,
 boynton beach police department,boynton beach,FL,33507073,33760000,https://policescorecard.org/
 bradenton police department,bradenton,FL,18497044,,
@@ -345,7 +345,7 @@ breckenridge police department,breckenridge,MI,150000,138690,https://micommunity
 brevard county sheriff's office,titusville,FL,88030079,65343000,https://policescorecard.org/
 brewster police department,brewster,WA,812678,,
 brick township police,brick,NJ,69742978,,
-bridgeport borough police department,bridgeport borough,PA,1216362,,
+bridgeport borough police department,bridgeport borough,PA,1216362,1337889,https://dced.pa.gov/local-government/municipal-statistics/
 bridgeport police department,bridgeport,CT,40131912,94393000,https://policescorecard.org/
 bridgeport police department,bridgeport,OH,4e+05,,
 bridgeton police department,bridgeton,MO,5700000,6153000,https://policescorecard.org/
@@ -361,7 +361,7 @@ bristol police department,bristol,VT,468769,,
 broadview heights police department,broadview heights,OH,4100000,4883000,https://policescorecard.org/
 broadview police department,broadview,IL,6661719,"9,732,571",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 brockton police department,brockton,MA,28646214,25086000,https://policescorecard.org/
-brockway borough police department,brockway borough,PA,224810,,
+brockway borough police department,brockway borough,PA,224810,211575,https://dced.pa.gov/local-government/municipal-statistics/
 broken arrow police department,broken arrow,OK,20404800,25212000,https://policescorecard.org/
 bronson police department,bronson,MI,510000,513930,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
 bronxville village police department,bronxville,NY,3145791,3745000,https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
@@ -449,7 +449,7 @@ campbell county sheriff's office,rustburg,VA,5659808,6448000,https://policescore
 campbell town police department,la crosse,WI,562480,,
 canadian county sheriff's office,el reno,OK,5091694,9569000,https://policescorecard.org/
 cannon beach police department,cannon beach,OR,1528019,"1,785,095",https://www.ci.cannon-beach.or.us/media/16976
-canton borough police department,canton borough,PA,189003,,
+canton borough police department,canton borough,PA,189003,164419,https://dced.pa.gov/local-government/municipal-statistics/
 canton police department,canton,KS,81000,,
 canton police department,canton,MA,4500000,5179000,https://policescorecard.org/
 canton police department,canton,MO,330790,,
@@ -498,7 +498,7 @@ catskill village police department,catskill,NY,1275860,"1,268,573",https://wwe1.
 cattaraugus county sheriff's office,little valley,NY,13736962,"30,491",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
 cave city police department,cave,AR,371531,,
 cave spring police department,cave spring,GA,170000,,
-cecil township police department,cecil,PA,3055593,,
+cecil township police department,cecil,PA,3055593,3843827,https://dced.pa.gov/local-government/municipal-statistics/
 cedar bluffs police department,cedar bluffs,NE,3529958,,
 cedar city police department,cedar,UT,5214072,4558000,https://policescorecard.org/
 cedar county sheriff's office,hartington,NE,4904620,,
@@ -525,7 +525,7 @@ chapman police department,chapman,KS,180000,,
 chariton county sheriff's office,keytesville,MO,7e+05,665246,https://www.chariton.org/vertical/sites/%7BA4F234CD-49D2-453F-B834-D4566EC7BDE3%7D/uploads/FY_2023_Budget_PDF.pdf
 chariton police department,chariton,IA,3720127,665000,https://policescorecard.org/
 charlemont police department,charlemont,MA,11098585,,
-charleroi regional police department,charleroi,PA,8e+05,,
+charleroi regional police department,charleroi,PA,8e+05,677585,https://dced.pa.gov/local-government/municipal-statistics/
 charles county sheriff's office,la plata,MD,94754000,103295000,https://policescorecard.org/
 charleston county sheriff's office,north charleston,SC,78444983,60335000,https://policescorecard.org/
 charleston police department,charleston,SC,50870319,56232000,https://policescorecard.org/
@@ -535,7 +535,7 @@ charlestown police department,charlestown,NH,933141,,
 charlotte county sheriff's office,punta gorda,FL,77739712,72311000,https://policescorecard.org/
 charlotte mecklenburg police department,charlotte,NC,282288482,300900000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
 charlottesville police department,charlottesville,VA,17357796,17028000,https://policescorecard.org/
-chartiers township police department,houston,PA,5045649,,
+chartiers township police department,houston,PA,5045649,1650983,https://dced.pa.gov/local-government/municipal-statistics/
 chataignier police department,chataignier,LA,7799585,,
 chatham county police department,savannah,GA,14153412,14555231,https://georgiadata.org/
 chatham county sheriff's department,savannah,GA,90547022,10191061,https://georgiadata.org/
@@ -579,7 +579,7 @@ childress police department,childress,TX,997000,"1,038,402",https://www.cityofch
 china grove police department,china grove,TX,267860,,
 chino police department,chino,CA,42021191,42211380,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
 chippewa county sheriff's office,sault st.e marie,MI,2540876,1970000,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
-chippewa township police department,beaver falls,PA,795000,,
+chippewa township police department,beaver falls,PA,795000,1112028,https://dced.pa.gov/local-government/municipal-statistics/
 chocowinity police department,chocowinity,NC,262400,0,https://logos.nctreasurer.com/Reporting/Report/External?applicationCode=AFIR
 choudrant police department,choudrant,LA,91753,,
 christian county sheriff's office,hopkinsville,KY,11918080,,
@@ -648,8 +648,8 @@ clive police department,clive,IA,3471014,4373000,https://policescorecard.org/
 cloverdale police department,cloverdale,CA,3900000,4241093,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
 clovis police department,clovis,CA,3.9e+07,37775540,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
 clyde hill police department,clyde hill,WA,1674018,,
-coal township police department,coal township,PA,5008742,,
-coatesville city police department,coatesville,PA,5748733,,
+coal township police department,coal township,PA,5008742,855167,https://dced.pa.gov/local-government/municipal-statistics/
+coatesville city police department,coatesville,PA,5748733,3648172,https://dced.pa.gov/local-government/municipal-statistics/
 cobb county police department,marietta,GA,78881622,79651600,https://georgiadata.org/
 cochran county sheriff,morton,TX,1200000,875314,https://www.co.cochran.tx.us/upload/page/1482/docs/Budgets/adopted2021budget091420_final%202.pdf
 coconut creek police department,coconut creek,FL,2356680,22575000,https://policescorecard.org/
@@ -666,7 +666,7 @@ collierville police department,collierville,TN,13239865,14340000,https://polices
 collin county sheriff's office,mckinney,TX,50243586,551500000,https://www.collincountytx.gov/Government/Budget/Documents/fy2022-adopted-budget.pdf
 collingswood police,collingswood,NJ,18823540,,
 collins police department,collins,MS,5939657,709000,https://policescorecard.org/
-colonial regional police department,bethlehem,PA,3850000,,
+colonial regional police department,bethlehem,PA,3850000,1753481,https://dced.pa.gov/local-government/municipal-statistics/
 colonie town police department,latham,NY,16164778,"12,178,222",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
 colorado springs police department,colorado springs,CO,130833487,158800000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
 columbia city police department,columbia,OR,375000,43232161,https://columbiapd.net/wp-content/uploads/2023/06/CPD_final-for-web-2021-annual-report.pdf
@@ -716,7 +716,7 @@ cotton plant police department,cotton plant,AR,4883059,,
 cottonwood county sheriff's office,windom,MN,1252066,,
 coulterville police department,coulterville,IL,2e+05,30422,https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 council bluffs police department,council bluffs,IA,17867084,19099000,https://policescorecard.org/
-courtdale borough police department,wilkes barre,PA,60000,,
+courtdale borough police department,wilkes barre,PA,60000,65161,https://dced.pa.gov/local-government/municipal-statistics/
 covington police department,covington,KY,15817928,10744000,https://policescorecard.org/
 covington police department,covington,VA,2292102,2333000,https://policescorecard.org/
 coweta county sheriff's office,newnan,GA,23811019,23997000,https://georgiadata.org/
@@ -750,7 +750,7 @@ cumberland city police department,cumberland,TN,6618736,,
 cumberland county sheriff's office,burkesville,KY,341000,,
 cumberland county sheriff's office,fayetteville,NC,117697214,38866000,https://policescorecard.org/
 cumberland county sheriff's office,crossville,TN,8811066,4130000,https://policescorecard.org/
-cumberland township police department,gettysburg,PA,1400000,,
+cumberland township police department,gettysburg,PA,1400000,1406572,https://dced.pa.gov/local-government/municipal-statistics/
 curry county sheriff's office,gold beach,OR,20640421,4093000,https://policescorecard.org/
 custer city police department,custer,OK,10500,,
 cuyahoga county sheriff's office,cleveland,OH,141025897,,
@@ -771,7 +771,7 @@ danube police department,danube,MN,105000,,
 danville police department,danville,VA,9934080,15779000,https://policescorecard.org/
 daphne police department,daphne,AL,7503019,4992000,https://policescorecard.org/
 darby police department,darby,MT,8846648,,
-darby township police department,sharon hill,PA,3464016,,
+darby township police department,sharon hill,PA,3464016,2100992,https://dced.pa.gov/local-government/municipal-statistics/
 darke county sheriff's office,greenville,OH,6524641,,
 darlington police department,darlington,SC,2835515,,
 dauphin island police department,dauphin island,AL,9592765,,
@@ -797,7 +797,7 @@ del rio police department,del rio,TX,5648000,"6,843,800",https://www.cityofdelri
 delaware city police department,delaware,DE,4e+05,,
 delaware county sheriff's office,delaware,OH,26006725,33122000,https://policescorecard.org/
 delbarton police department,delbarton,WV,80000,,
-delmont borough police department,delmont borough,PA,5e+05,,
+delmont borough police department,delmont borough,PA,5e+05,572062,https://dced.pa.gov/local-government/municipal-statistics/
 delray beach police department,delray beach,FL,38257150,39520000,https://policescorecard.org/
 denison police department,denison,TX,6100000,"5,447,762",https://www.cityofdenison.com/sites/default/files/fileattachments/accounting/page/5251/master_budgetfinal_-_fy22.pdf
 dennison police department,dennison,OH,7031297,,
@@ -830,7 +830,7 @@ dodge city police department,dodge,KS,5443700,,
 dodge county sheriff's office,mantorville,MN,10210793,,
 dolgeville village police department,dolgeville,NY,352036,,
 dona ana county sheriff's office,las cruces,NM,20890554,,
-donegal township police department,west alexander,PA,4103677,,
+donegal township police department,west alexander,PA,4103677,237171,https://dced.pa.gov/local-government/municipal-statistics/
 doniphan police department,doniphan,MO,6e+05,,
 donley county sheriff's office,clarendon,TX,744061,"426,907",https://www.co.donley.tx.us/upload/page/7990/image1077.pdf
 dora police department,dora,AL,5856340,,
@@ -843,7 +843,7 @@ douglas county sheriff's office,omaha,NE,16786749,18042000,https://policescoreca
 douglas county sheriff's office,minden,NV,17401378,20322412,https://cdnsm5-hosted.civiclive.com/UserFiles/Servers/Server_12493019/File/Finance/Finance_Budget/FY%2021-22/Douglas%20County%20Budget%20-%20State%20Format.pdf
 douglas police department,douglas,AL,627176,210000,https://policescorecard.org/
 douglas police department,douglas,GA,3700000,3700000,https://georgiadata.org/
-douglass township police department,boyertown,PA,950000,,
+douglass township police department,boyertown,PA,950000,2324296,https://dced.pa.gov/local-government/municipal-statistics/
 dover police department,dover,DE,17732932,18937000,https://policescorecard.org/
 dover police department,dover,TN,4235282,,
 downers grove police department,downers grove,IL,16930375,16649000,https://policescorecard.org/
@@ -856,10 +856,10 @@ dumas police department,dumas,TX,2700000,,
 dumfries police department,dumfries,VA,1263918,2173000,https://policescorecard.org/
 dundas police department,dundas,MN,11717898,,
 dunlap police department,dunlap,IA,210000,,
-dunmore borough police department,dunmore borough,PA,11989228,,
+dunmore borough police department,dunmore borough,PA,11989228,2113108,https://dced.pa.gov/local-government/municipal-statistics/
 dunnellon police department,dunnellon,FL,1993949,,
 dupage county sheriff's office,wheaton,IL,75033690,23025000,https://policescorecard.org/
-duquesne city police department,duquesne,PA,5324494,,
+duquesne city police department,duquesne,PA,5324494,1079688,https://dced.pa.gov/local-government/municipal-statistics/
 duquesne police department,joplin,MO,420000,47200,http://duquesnepa.us/budgets
 durham county sheriff's office,durham,NC,3.9e+07,28442000,https://policescorecard.org/
 durham police department,durham,NC,67553520,68900000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
@@ -872,7 +872,7 @@ eagle police department,eagle,WI,371428,,
 eagle river police department,eagle river,WI,767708,,
 east bank police department,east bank,WV,5794203,,
 east baton rouge parish sheriff's office,baton rouge,LA,86308495,,
-east conemaugh borough police department,conemaugh,PA,2e+05,,
+east conemaugh borough police department,conemaugh,PA,2e+05,171847,https://dced.pa.gov/local-government/municipal-statistics/
 east dundee police department,east dundee,IL,3124577,2572280,https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 east ellijay police department,east ellijay,GA,6586577,"837,900",https://georgiadata.org/
 east galesburg police department,east galesburg,IL,4694966,896,https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
@@ -882,7 +882,7 @@ east hartford police department,east hartford,CT,1.3e+07,17027000,https://police
 east kingston police department,east kingston,NH,778867,,
 east lyme police department,niantic,CT,2900000,2687000,https://policescorecard.org/
 east moline police department,east moline,IL,5090045,29056301,https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
-east norriton township police department,norristown,PA,3e+06,,
+east norriton township police department,norristown,PA,3e+06,3524600,https://dced.pa.gov/local-government/municipal-statistics/
 east orange police,east orange,NJ,27131838,24622000,https://policescorecard.org/
 east palo alto police department,east palo alto,CA,1.2e+07,11643800,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
 east point police department,east point,GA,12500000,10924000,https://georgiadata.org/
@@ -922,7 +922,7 @@ elberfeld police department,elberfeld,IN,3000,,
 elberton police department,elberton,GA,1600000,1589000,https://georgiadata.org/
 eldridge police department,eldridge,IA,950000,1241000,https://policescorecard.org/
 elgin police department,elgin,IL,46534881,50200000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
-elizabeth borough police department,elizabeth borough,PA,315736,,
+elizabeth borough police department,elizabeth borough,PA,315736,307224,https://dced.pa.gov/local-government/municipal-statistics/
 elizabeth city police department,elizabeth,NC,6100000,"7,883,429",https://npr.brightspotcdn.com/8e/f0/595051f446099972b9263cd7aa87/elizabeth-city-fy2021-audit.pdf
 elizabeth police,elizabeth,NJ,46625992,46892000,https://policescorecard.org/
 elizabeth police department,elizabeth,IL,101000,"91,702",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
@@ -946,9 +946,9 @@ england police department,england,AR,5547578,,
 enigma police department,enigma,GA,5009264,,
 enterprise police department,enterprise,MS,7948726,,
 enterprise police department,enterprise,OR,6784533,,
-ephrata police department,ephrata,PA,7507534,,
+ephrata police department,ephrata,PA,7507534,6950699,https://dced.pa.gov/local-government/municipal-statistics/
 erath police department,erath,LA,628732,798833,https://app.lla.la.gov/publicreports.nsf/0/bf0fffed4ffbfdff862587b900572e64/$file/00025654.pdf
-erie city police department,erie,PA,30569540,,
+erie city police department,erie,PA,30569540,7381183,https://dced.pa.gov/local-government/municipal-statistics/
 erie county sheriff's office,buffalo,NY,117335033,"32,202,915",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
 erie police department,erie,KS,3726198,207000,https://policescorecard.org/
 escambia county sheriff's office,pensacola,FL,79553713,61667000,https://policescorecard.org/
@@ -988,7 +988,7 @@ fairview police department,fairview,TX,2384029,"2,512,437",https://fairviewtexas
 fall river county sheriff's office,hot springs,SD,6246734,,
 fall river police department,fall river,MA,70176464,22579000,https://policescorecard.org/
 falls city police department,falls,NE,9e+05,1014000,https://policescorecard.org/
-falls township police department,fairless hills,PA,10113172,,
+falls township police department,fairless hills,PA,10113172,12737836,https://dced.pa.gov/local-government/municipal-statistics/
 far hills police,far hills,NJ,1e+06,,
 fargo police department,fargo,ND,21348525,23350000,https://policescorecard.org/
 farmington city police department,farmington,UT,2541584,2318000,https://policescorecard.org/
@@ -1035,7 +1035,7 @@ forest hill police department,forest hill,TX,12758979,,
 forest park police department,forest park,GA,9644212,7652000,https://georgiadata.org/
 forest park police department,forest park,IL,4938000,0,https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 forks police department,forks,WA,789000,,
-forks township police department,easton,PA,9458378,,
+forks township police department,easton,PA,9458378,3707652,https://dced.pa.gov/local-government/municipal-statistics/
 forsyth county sheriff's office,cumming,GA,47590754,49624000,https://georgiadata.org/
 forsyth county sheriff's office,winston-salem,NC,59469255,33692000,https://policescorecard.org/
 fort atkinson police department,fort atkinson,WI,2673074,,
@@ -1086,7 +1086,7 @@ fredonia marshal's office,fredonia,AZ,355000,,
 fredonia police department,fredonia,KS,3421821,,
 freeburg police department,freeburg,IL,1338865,"1,249,040",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 freehold borough police department,freehold borough,NJ,4107620,,
-freeland borough police department,freeland borough,PA,5218439,,
+freeland borough police department,freeland borough,PA,5218439,218294,https://dced.pa.gov/local-government/municipal-statistics/
 freeport police department,freeport,TX,4636779,4528000,https://policescorecard.org/
 freeport village police department,freeport,NY,20221119,"21,179,408",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
 fremont police department,fremont,CA,93307865,101900000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
@@ -1131,7 +1131,7 @@ gastonia police department,gastonia,NC,19933078,19402000,https://policescorecard
 gates county sheriff's office,gatesville,NC,3222858,"1,027,355",https://gatescountync.gov/vertical/sites/%7BC4993D33-7F3A-4388-B179-2EC1739C7E2E%7D/uploads/Gates_COunty_Annual_Financial_Report_Year_Ended_June_30_2021.pdf
 gatlinburg police department,gatlinburg,TN,3521500,3044000,https://policescorecard.org/
 gaylord police department,gaylord,MI,3473540,1750000,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
-geistown borough police department,johnstown,PA,350178,,
+geistown borough police department,johnstown,PA,350178,256172,https://dced.pa.gov/local-government/municipal-statistics/
 genesee county sheriff's office,flint,MI,32569709,3371000,https://policescorecard.org/
 genesee county sheriff's office,batavia,NY,11245341,"110,564",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
 geneva county sheriff's office,geneva,AL,1252500,,
@@ -1159,7 +1159,7 @@ glendale police department,glendale,CA,94746978,92802314,https://cities.bythenum
 glendora police department,glendora,MS,7776889,,
 glenmora police department,glenmora,LA,293000,397552,https://app.lla.state.la.us/PublicReports.nsf/0/99B93D154A0C292486258A89007DA856/$FILE/0000373B.pdf
 glennville police department,glennville,GA,8674406,932404,https://georgiadata.org/
-glenolden borough police department,glenolden borough,PA,1544922,,
+glenolden borough police department,glenolden borough,PA,1544922,1723301,https://dced.pa.gov/local-government/municipal-statistics/
 glenwood police department,glenwood,MN,3767237,,
 gloucester county sheriff's office,woodbury,NJ,15101817,,
 gloucester township police,blackwood,NJ,16231000,,
@@ -1190,7 +1190,7 @@ granite county sheriff's office,philipsburg,MT,812384,,
 grant county sheriff's office,milbank,SD,4709319,569000,https://policescorecard.org/
 grant parish sheriff's office,colfax,LA,8725597,8003670,https://app.lla.la.gov/publicreports.nsf/0/40049143aca1a4418625893c006c2dd8/$file/0000084e.pdf
 granville police department,granville,OH,1800000,,
-granville township police department,lewistown,PA,9e+05,,
+granville township police department,lewistown,PA,9e+05,1082040,https://dced.pa.gov/local-government/municipal-statistics/
 gray county sheriff's department,cimarron,KS,1e+06,1110000,https://policescorecard.org/
 grayling police department,grayling,MI,540663,735000,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
 grayson police department,grayson,KY,5755439,,
@@ -1202,7 +1202,7 @@ green cove springs police department,green cove springs,FL,3900000,3125000,https
 green mountain falls marshal's office,green mountain falls,CO,76900,,
 green township police department,cincinnati,OH,21182450,,
 greenburgh town police department,white plains,NY,"29,521","22,053,839",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
-greencastle borough police department,greencastle borough,PA,814454,,
+greencastle borough police department,greencastle borough,PA,814454,766245,https://dced.pa.gov/local-government/municipal-statistics/
 greendale police department,greendale,IN,1796903,1303000,https://policescorecard.org/
 greene county sheriff's office,jefferson,IA,1250000,1771000,https://policescorecard.org/
 greene county sheriff's office,springfield,MO,27855118,7174000,https://policescorecard.org/
@@ -1214,7 +1214,7 @@ greenfield police department,greenfield,MO,227000,,
 greenfield police department,greenfield,OH,4338909,,
 greenfield police department,greenfield,TN,452650,,
 greenfield police department,greenfield,WI,9855414,,
-greenfield township police department,claysburg,PA,3e+05,,
+greenfield township police department,claysburg,PA,3e+05,275233,https://dced.pa.gov/local-government/municipal-statistics/
 greensboro police department,greensboro,GA,8440525,1414839,https://georgiadata.org/
 greensboro police department,greensboro,NC,78902453,83700000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
 greensburg police department,greensburg,LA,325000,,
@@ -1223,7 +1223,7 @@ greenville county sheriff's office,greenville,SC,51784088,74211000,https://polic
 greenville police department,greenville,GA,425500,,
 greenville police department,greenville,KY,802438,,
 greenville police department,greenville,NC,24501924,24714000,https://policescorecard.org/
-greenville police department,greenville borough,PA,923484,,
+greenville police department,greenville borough,PA,923484,606528,https://dced.pa.gov/local-government/municipal-statistics/
 greenville police department,greenville,SC,27150611,26324000,https://policescorecard.org/
 greenwich police department,greenwich,CT,21938643,21584000,https://policescorecard.org/
 greenwood county sheriff's department,eureka,KS,1700000,,
@@ -1238,7 +1238,7 @@ grimes county sheriff's office,anderson,TX,2e+06,,
 grosse pointe farms division of public safety and security,grosse pointe farms,MI,4550000,4690000,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
 groton city police department,groton,CT,5289625,8508000,https://policescorecard.org/
 grottoes police department,grottoes,VA,608826,,
-grove city police department,grove,PA,1370082,,
+grove city police department,grove,PA,1370082,1120410,https://dced.pa.gov/local-government/municipal-statistics/
 groveland police department,groveland,MA,1565514,,
 guadalupe county sheriff's office,seguin,TX,23708343,12309000,https://policescorecard.org/
 guilford county sheriff's office,greensboro,NC,67929679,49270000,https://policescorecard.org/
@@ -1325,7 +1325,7 @@ heard county sheriff's office,franklin,GA,2e+06,,
 hearne police department,hearne,TX,672378,,
 heath police department,heath,OH,4336661,,
 helotes police department,helotes,TX,14647762,,
-hemlock township police department,bloomsburg,PA,608791,,
+hemlock township police department,bloomsburg,PA,608791,651678,https://dced.pa.gov/local-government/municipal-statistics/
 hempstead police department,hempstead,TX,1850448,,
 hempstead village police department,hempstead,NY,2.5e+07,"25,999,923",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
 henagar police department,henagar,AL,468900,,
@@ -1345,7 +1345,7 @@ henryetta police department,henryetta,OK,4366632,,
 herculaneum police department,herculaneum,MO,8e+05,840000,https://policescorecard.org/
 hercules police department,hercules,CA,7144000,8063561,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
 hermiston police department,hermiston,OR,5640830,5330000,https://policescorecard.org/
-hermitage police department,hermitage,PA,3337982,,
+hermitage police department,hermitage,PA,3337982,3336399,https://dced.pa.gov/local-government/municipal-statistics/
 hernando county sheriff's office,brooksville,FL,55153255,53113000,https://policescorecard.org/
 herscher police department,herscher,IL,358950,"261,435",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 hewitt police department,hewitt,TX,3235830,6484000,https://policescorecard.org/
@@ -1364,7 +1364,7 @@ highland police department,highland,IL,2870799,"2,752,462",https://illinoiscompt
 highland village police department,highland village,TX,20426289,,
 highlands county sheriff's office,sebring,FL,35388170,21403000,https://policescorecard.org/
 highmore police department,highmore,SD,3223364,,
-highspire borough police department,highspire borough,PA,918938,,
+highspire borough police department,highspire borough,PA,918938,840560,https://dced.pa.gov/local-government/municipal-statistics/
 hillcrest village city marshal's office,alvin,TX,12417205,,
 hilliard police department,hilliard,OH,11700000,8538000,https://policescorecard.org/
 hillsboro police department,hillsboro,AL,8302872,,
@@ -1398,7 +1398,7 @@ homeland police department,homeland,GA,8218945,66819,https://georgiadata.org/
 homestead police department,homestead,FL,27385683,24630000,https://policescorecard.org/
 hominy police department,hominy,OK,9524504,,
 hondo police department,hondo,TX,11464536,"2,175,515",https://www.hondo-tx.org/DocumentCenter/View/283/Fiscal-Year-2021-2022-Adopted-Budget-PDF?bidId=
-honey brook borough police department,honey brook borough,PA,7634295,,
+honey brook borough police department,honey brook borough,PA,7634295,210865,https://dced.pa.gov/local-government/municipal-statistics/
 honey grove police department,honey grove,TX,275721,,
 honolulu police department,honolulu,HI,302201305,300200000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
 hooksett police department,hooksett,NH,14417328,4526000,https://policescorecard.org/
@@ -1441,7 +1441,7 @@ imperial county sheriff's department,el centro,CA,3.7e+07,26444746,https://count
 independence police department,independence,IA,1e+06,1303000,https://policescorecard.org/
 independence police department,independence,MO,32153547,39810000,https://policescorecard.org/
 independence police department,independence,OR,3086855,"3,523,390",https://www.ci.independence.or.us/wp-content/uploads/2024/02/budget.fy2021-22.adopted.detailed.final_.pdf
-independence township police dep,aliquippa,PA,40000,,
+independence township police dep,aliquippa,PA,40000,127735,https://dced.pa.gov/local-government/municipal-statistics/
 indian creek village public safety,surfside,FL,2955518,,
 indian head park police department .,indian head park,IL,1458000,"1,632,216",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 indian hill police department,cincinnati,OH,17283687,3634000,https://policescorecard.org/
@@ -1585,7 +1585,7 @@ kitsap county sheriff's office,port orchard,WA,43442434,27879000,https://polices
 kittery police department,kittery,ME,2328280,2433000,https://policescorecard.org/
 klamath county sheriff's office,klamath falls,OR,13270222,4609000,https://policescorecard.org/
 knightdale police department,knightdale,NC,4200000,9011593,https://www.knightdalenc.gov/sites/default/files/uploads/Finance/acfr_2022.pdf
-knox borough police department,knox borough,PA,639000,,
+knox borough police department,knox borough,PA,639000,105605,https://dced.pa.gov/local-government/municipal-statistics/
 knox county sheriff's office,mount vernon,OH,7807370,2562000,https://policescorecard.org/
 knox county sheriff's office,knoxville,TN,88184235,120439000,https://policescorecard.org/
 knox county sheriff's office,benjamin,TX,9479609,,
@@ -1692,7 +1692,7 @@ lee county sheriff's office,montrose,IA,3795248,,
 lee county sheriff's office,dixon,IL,9592759,"5,869,201",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 lee county sheriff's office,giddings,TX,3737230,"1,564,588",https://www.co.lee.tx.us/upload/page/5439/2021-2022%20Lee%20County%20Adopted%20Budget.pdf
 lee police department,lee,NH,741137,,
-leechburg borough police department,leechburg borough,PA,244217,,
+leechburg borough police department,leechburg borough,PA,244217,245462,https://dced.pa.gov/local-government/municipal-statistics/
 lees summit police department,lees summit,MO,22170138,22228000,https://policescorecard.org/
 leesburg police department,leesburg,AL,7312230,,
 leesburg police department,leesburg,FL,8846552,9166000,https://policescorecard.org/
@@ -1721,7 +1721,7 @@ liberty police department,liberty,SC,1e+06,,
 liberty township police department,youngstown,OH,2150000,,
 libertyville police department,libertyville,IL,8691239,8885000,https://policescorecard.org/
 licking county sheriff's office,newark,OH,21844509,17069000,https://policescorecard.org/
-ligonier borough police department,ligonier borough,PA,985000,,
+ligonier borough police department,ligonier borough,PA,985000,913245,https://dced.pa.gov/local-government/municipal-statistics/
 lillington police department,lillington,NC,1065000,0,
 limerick township police department,limerick,PA,4874265,4897000,https://policescorecard.org/
 lincoln county sheriff's department,brookhaven,MS,3428000,4095000,https://policescorecard.org/
@@ -1741,7 +1741,7 @@ lino lakes public safety department,lino lakes,MN,3976112,4304000,https://police
 lipscomb police department,lipscomb,AL,10544514,,
 lisbon police department,lisbon,OH,910264,,
 lithopolis police department,lithopolis,OH,694671,,
-lititz borough police department,lititz borough,PA,2200000,,
+lititz borough police department,lititz borough,PA,2200000,2208198,https://dced.pa.gov/local-government/municipal-statistics/
 little egg harbor township police,little egg harbor,NJ,4500000,,
 little falls police department,little falls,NJ,14619247,,
 little ferry borough police,little ferry borough,NJ,3409085,3973000,https://policescorecard.org/
@@ -1790,10 +1790,10 @@ lovell police department,lovell,WY,9e+05,,
 lovelock police department,lovelock,NV,501082,,
 lowell police department,lowell,AR,1800000,,
 lowell police department,lowell,MA,28661086,28101000,https://policescorecard.org/
-lower frederick township police department,zieglerville,PA,623925,,
+lower frederick township police department,zieglerville,PA,623925,562759,https://dced.pa.gov/local-government/municipal-statistics/
 lower merion township police department,ardmore,PA,25777426,27944000,https://policescorecard.org/
-lower pottsgrove township police department,pottstown,PA,3.4e+07,,
-lower windsor township police department,wrightsville,PA,1685702,,
+lower pottsgrove township police department,pottstown,PA,3.4e+07,3230592,https://dced.pa.gov/local-government/municipal-statistics/
+lower windsor township police department,wrightsville,PA,1685702,3230592,https://dced.pa.gov/local-government/municipal-statistics/
 lowndes county sheriff's office,valdosta,GA,20471242,11435000,https://georgiadata.org/
 lowry city police department,lowry,MO,2827949,,
 lubbock county sheriff's office,lubbock,TX,118749132,"15,277,870",https://www.lubbockcounty.gov/egov/documents/1614360472_23386.pdf
@@ -1821,7 +1821,7 @@ mackinac island police department,mackinac island,MI,350000,971990,https://micom
 macomb county sheriff's office,mount clemens,MI,86582543,39289000,https://policescorecard.org/
 macomb police department,macomb,IL,3100000,0,https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 macon police department,macon,MO,885000,897000,https://policescorecard.org/
-macungie borough police department,macungie borough,PA,650000,,
+macungie borough police department,macungie borough,PA,650000,438731,https://dced.pa.gov/local-government/municipal-statistics/
 madison county sheriff's office,jackson,TN,60380326,8999000,https://policescorecard.org/
 madison county sheriff's office,huntsville,AL,3e+07,23584000,https://policescorecard.org/
 madison police department,madison center,CT,4757562,,
@@ -1833,7 +1833,7 @@ magazine police department,magazine,AR,80000,,
 magnolia police department,magnolia,AR,1630064,,
 magnolia police department,magnolia,NC,1130400,"216,682",
 magoffin county sheriff's office,salyersville,KY,5022038,,
-mahanoy township police department,mahanoy,PA,4052177,,
+mahanoy township police department,mahanoy,PA,4052177,18949,https://dced.pa.gov/local-government/municipal-statistics/
 mahoning county sheriff's office,youngstown,OH,22568000,,
 malden police department,malden,MA,103752021,11375000,https://policescorecard.org/
 malin police department,malin,OR,175000,,
@@ -1871,7 +1871,7 @@ markle police department,markle,IN,175000,49000,https://gateway.ifionline.org/re
 marlboro township police department,hartville,OH,423750,,
 marlborough police department,marlborough,MA,8164285,8402000,https://policescorecard.org/
 marmaduke police department,marmaduke,AR,323116,,
-mars borough police department,mars borough,PA,5603699,,
+mars borough police department,mars borough,PA,5603699,155144,https://dced.pa.gov/local-government/municipal-statistics/
 marseilles police department,marseilles,IL,1200000,1450094,https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 marshall county sheriff's office,guntersville,AL,2900000,4087000,https://policescorecard.org/
 marshall police department,marshall,MN,3400000,3211000,https://policescorecard.org/
@@ -1913,8 +1913,8 @@ mchenry county sheriff's office,woodstock,IL,36288536,25795000,https://policesco
 mchenry county sheriff's office,towner,ND,4971948,,
 mchenry police department,mchenry,IL,11647308,36920000,https://policescorecard.org/
 mcintosh county sheriff's department,darien,GA,10423893,3521000,https://georgiadata.org/
-mckees rocks borough police department,mc kees rocks,PA,1712682,,
-mckeesport city police department,mckeesport,PA,10313889,,
+mckees rocks borough police department,mc kees rocks,PA,1712682,1696683,https://dced.pa.gov/local-government/municipal-statistics/
+mckeesport city police department,mckeesport,PA,10313889,5152712,https://dced.pa.gov/local-government/municipal-statistics/
 mckinney police department,mckinney,TX,39699073,37215000,https://policescorecard.org/
 mcleansboro police department,mc leansboro,IL,350000,,
 mclennan county sheriff's office,waco,TX,67448952,12039000,https://policescorecard.org/
@@ -1946,7 +1946,7 @@ merrillan police department,merrillan,WI,73600,,
 merrimack county sheriff's office,boscawen,NH,10235201,7518000,https://policescorecard.org/
 mesa county sheriff's office,grand junction,CO,31218196,43586000,https://policescorecard.org/
 mesa police department,mesa,AZ,198152493,226000000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
-meshoppen borough police department,meshoppen borough,PA,125000,,
+meshoppen borough police department,meshoppen borough,PA,125000,169657,https://dced.pa.gov/local-government/municipal-statistics/
 mesquite police department,mesquite,TX,39693480,40578000,https://policescorecard.org/
 metamora township police department,metamora,MI,547000,525770,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
 metcalfe police department,metcalfe,MS,8610362,,
@@ -1970,7 +1970,7 @@ midland county sheriff's office,midland,TX,70058924,16737000,https://policescore
 midland police department,midland,MI,9843871,9227000,https://policescorecard.org/
 midland police department,midland,TX,87008702,27535000,https://policescorecard.org/
 mifflin township police department,columbus,OH,7e+05,,
-mifflinburg borough police department,mifflinburg borough,PA,950000,,
+mifflinburg borough police department,mifflinburg borough,PA,950000,907360,https://dced.pa.gov/local-government/municipal-statistics/
 milan police department,milan,MI,5045901,2004000,https://policescorecard.org/
 milford police department,milford,IA,605000,,
 milford police department,milford (balance),CT,13487289,15240000,https://policescorecard.org/
@@ -1984,9 +1984,9 @@ millersville police department,goodlettsville,TN,1251718,1077000,https://polices
 millerton village police department,millerton,NY,118809,"91,851",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
 millinocket police department,millinocket,ME,4916215,407000,https://policescorecard.org/
 milltown police department,milltown,IN,6070925,,
-millvale borough police department,millvale borough,PA,696112,,
+millvale borough police department,millvale borough,PA,696112,1125241,https://dced.pa.gov/local-government/municipal-statistics/
 milpitas police department,milpitas,CA,26918971,34802445,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
-milton borough police department,milton borough,PA,674681,,
+milton borough police department,milton borough,PA,674681,970565,https://dced.pa.gov/local-government/municipal-statistics/
 milton police department,milton,WV,9e+05,,
 milton township police department,lake milton,OH,6e+05,,
 milwaukee county sheriff's office,milwaukee,WI,111505926,298319000,https://policescorecard.org/
@@ -2017,12 +2017,12 @@ mocksville police department,mocksville,NC,13824295,"2,037,278",
 modesto police department,modesto,CA,67073643,32912754,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
 mohave county sheriff's office,kingman,AZ,26925425,13642000,https://policescorecard.org/
 mondovi police department,mondovi,WI,440000,,
-monongahela city police department,monongahela,PA,1068365,,
+monongahela city police department,monongahela,PA,1068365,1154561,https://dced.pa.gov/local-government/municipal-statistics/
 monroe city police department,monroe,MO,3982198,614701,https://auditor.mo.gov/LocalGov/ViewReportFile/51482
 monroe county sheriff's office,key west,FL,62187345,54689000,https://policescorecard.org/
 monroe county sheriff's office,waterloo,IL,3646860,"4,460,666",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 monroe county sheriff's office,rochester,NY,153114852,"58,256,190",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
-monroe county sheriff's office,stroudsburg,PA,10509323,,
+monroe county sheriff's office,stroudsburg,PA,10509323,"4,920,425",https://dced.pa.gov/local-government/municipal-statistics/
 monroe police department,monroe,LA,12499796,18188000,https://policescorecard.org/
 monroe police department,monroe,MI,8874675,1242000,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
 monroe police department,monroe,WA,7877945,,
@@ -2033,7 +2033,7 @@ montgomery city police department,montgomery,MO,460000,,
 montgomery county police,gaithersburg,MD,280038331,,
 montgomery county sheriff's department,crawfordsville,IN,5e+06,25561321,https://www.montgomerycountymd.gov/OMB/Resources/Files/omb/pdfs/FY21/psp_pdf/48-Sheriff-FY2021-APPR-Publication-Report.pdf
 montgomery county sheriff's office,dayton,OH,59865655,60694000,https://policescorecard.org/
-montgomery county sheriff's office,norristown,PA,58483308,,
+montgomery county sheriff's office,norristown,PA,58483308,"38,195,099",https://dced.pa.gov/local-government/municipal-statistics/
 montgomery county sheriff's office,clarksville,TN,32855809,17961000,https://policescorecard.org/
 montgomery county sheriff's office,conroe,TX,70864375,52466000,https://policescorecard.org/
 montgomery county sheriff's office,christiansburg,VA,15003161,9688000,https://policescorecard.org/
@@ -2084,8 +2084,8 @@ mountain city police department,mountain,GA,151186,,
 mountain city police department,mountain,TN,466601,,
 mountlake terrace police department,mountlake terrace,WA,5595762,,
 moville police department,moville,IA,190000,,
-mt oliver borough police department,pittsburgh,PA,750000,,
-mt pleasant township police department,hickory,PA,412000,,
+mt oliver borough police department,pittsburgh,PA,750000,929105,https://dced.pa.gov/local-government/municipal-statistics/
+mt pleasant township police department,hickory,PA,412000,3060,https://dced.pa.gov/local-government/municipal-statistics/
 mukilteo police department,mukilteo,WA,5400000,,
 multnomah county sheriff's office,portland,OR,159242318,50017000,https://policescorecard.org/
 muncie police department,muncie,IN,10994952,10487000,https://policescorecard.org/
@@ -2102,7 +2102,7 @@ myrtle beach police department,myrtle beach,SC,33228248,31989000,https://polices
 n. little rock police department,north little rock,AR,23338228,,
 nags head police department,nags head,NC,2684114,"7,966,936",
 nampa police department,nampa,ID,134284798,23062000,https://policescorecard.org/
-nanticoke city police department,nanticoke,PA,2349312,,
+nanticoke city police department,nanticoke,PA,2349312,2037190,https://dced.pa.gov/local-government/municipal-statistics/
 napa county sheriff's office,napa,CA,36717983,37813451,https://counties.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_1/Police+Protection/0/entity_name
 naperville police department,naperville,IL,44143885,55200000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
 narrows police department,narrows,VA,445800,,
@@ -2161,7 +2161,7 @@ newport police,newport,RI,66176732,19699000,https://policescorecard.org/
 newport police department,newport,NC,764903,0,
 newport police department,newport,TN,2365341,2322000,https://policescorecard.org/
 newport police department,newport,VT,1169307,1748000,https://policescorecard.org/
-newport township police department,nanticoke,PA,219035,,
+newport township police department,nanticoke,PA,219035,341527,https://dced.pa.gov/local-government/municipal-statistics/
 newton county sheriff's department,covington,GA,12668560,16084000,https://georgiadata.org/
 newton police department,newton,TX,350000,,
 newton police department,newton,IA,2263614,4017000,https://policescorecard.org/
@@ -2189,9 +2189,9 @@ north brookfield police department,north brookfield,MA,4972822,,
 north castle town police department,armonk,NY,8620753,"6,058,761",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
 north charleston police department,north charleston,SC,32311150,36533000,https://policescorecard.org/
 north chicago police department,north chicago,IL,8694402,0,https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
-north cornwall township police department,lebanon,PA,5686670,,
-north fayette township police department,oakdale,PA,5315952,,
-north franklin township police department,washington,PA,9095078,,
+north cornwall township police department,lebanon,PA,5686670,1015920,https://dced.pa.gov/local-government/municipal-statistics/
+north fayette township police department,oakdale,PA,5315952,4613633,https://dced.pa.gov/local-government/municipal-statistics/
+north franklin township police department,washington,PA,9095078,20353,https://dced.pa.gov/local-government/municipal-statistics/
 north haven police department,north haven,CT,6097641,,
 north kingstown police,north kingstown,RI,8400000,8784000,https://policescorecard.org/
 north kingsville police department,north kingsville,OH,5e+05,,
@@ -2309,7 +2309,7 @@ ottawa county sheriff's office,grand rapids,MI,34936781,22672000,https://polices
 ottumwa police department,ottumwa,IA,5800000,5691000,https://policescorecard.org/
 ouachita parish sheriff's office,monroe,LA,61520132,45871023,https://app.lla.la.gov/publicreports.nsf/0/10fa430400e10eac8625892c006ae04d/$file/00000664.pdf
 overland park police department,overland park,KS,39644150,,
-oxford borough police department,oxford borough,PA,1500000,,
+oxford borough police department,oxford borough,PA,1500000,"1,748,854",https://dced.pa.gov/local-government/municipal-statistics/
 oxford county sheriff's office,south paris,ME,2257632,,
 oxford police,oxford,MD,11327182,,
 oxford police department,oxford,AL,9151911,9045000,https://policescorecard.org/
@@ -2326,16 +2326,16 @@ palm bay police department,palm bay,FL,22437189,20805000,https://policescorecard
 palm beach county sheriff's office,west palm beach,FL,440145000,500995000,https://policescorecard.org/
 palm beach gardens police department,palm beach gardens,FL,6556893,30614000,https://policescorecard.org/
 palm valley police department,palm valley,TX,295000,54400,https://palmvalleytx.com/wp-content/uploads/2021/09/2022-Budget-Worksheet.pdf
-palmer township police department,easton,PA,5817419,,
-palmyra borough police department,palmyra borough,PA,1409981,,
+palmer township police department,easton,PA,5817419,5709537,https://dced.pa.gov/local-government/municipal-statistics/
+palmyra borough police department,palmyra borough,PA,1409981,1578039,https://dced.pa.gov/local-government/municipal-statistics/
 palos hills police department,palos hills,IL,4666888,"5,718,773",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 panama city police department,panama,FL,12148812,10997000,https://policescorecard.org/
 panola county sheriff's office,carthage,TX,5223396,4069886,https://www.co.panola.tx.us/upload/page/2892/2019/2021%20BUDGET%20FOR%20WEBSITE.pdf
 paradise police department,paradise,CA,4433851,3692997,https://www.townofparadise.com/sites/default/files/fileattachments/finance/page/2871/town_council_budget_packet_2021-2022.pdf
 park forest police department,park forest,IL,9422386,"9,168,494",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 park rapids police department,park rapids,MN,4111217,,
-parkesburg borough police department,parkesburg borough,PA,1100000,,
-parks township police department,vandergrift,PA,177000,,
+parkesburg borough police department,parkesburg borough,PA,1100000,1138489,https://dced.pa.gov/local-government/municipal-statistics/
+parks township police department,vandergrift,PA,177000,273226,https://dced.pa.gov/local-government/municipal-statistics/
 parkston police department,parkston,SD,260000,207000,https://policescorecard.org/
 parkton police department,parkton,NC,4913564,"102,416",
 parma heights police department,parma heights,OH,5100000,5936000,https://policescorecard.org/
@@ -2350,7 +2350,7 @@ passaic county sheriff's office,paterson,NJ,73460296,,
 passaic police,passaic,NJ,84779363,22731000,https://policescorecard.org/
 paterson police,paterson,NJ,48581544,46231000,https://policescorecard.org/
 patterson police department,patterson,AR,32000,,
-patton township police department,state college,PA,3046473,,
+patton township police department,state college,PA,3046473,3005596,https://dced.pa.gov/local-government/municipal-statistics/
 paulding county sheriff's office,dallas,GA,22611663,18466000,https://georgiadata.org/
 paw paw police department,paw paw,MI,1100000,1090000,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
 pawtucket police,pawtucket,RI,24388322,28708000,https://policescorecard.org/
@@ -2403,7 +2403,7 @@ pima county sheriff's department,tucson,AZ,80723285,216136000,https://policescor
 pinal county sheriff's office,florence,AZ,70192341,58101000,https://policescorecard.org/
 pinckneyville police department,pinckneyville,IL,808980,"800,365",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 pine bluff police department,pine bluff,AR,9955211,,
-pine creek township police department,avis,PA,4708506,,
+pine creek township police department,avis,PA,4708506,254029,https://dced.pa.gov/local-government/municipal-statistics/
 pine lake police department,pine lake,GA,14171691,,
 pine level police department,pine level,NC,2e+05,0,
 pine valley police,pine valley,NJ,4e+05,,
@@ -2418,7 +2418,7 @@ pittsfield police department,pittsfield,ME,7279635,501000,https://policescorecar
 pittsfield police department,pittsfield,NH,985000,,
 pittsfield township division of public safety and security,ann arbor,MI,7318404,5670000,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
 pittsford police department,pittsford,VT,218938,,
-pittston township police department,pittston,PA,8e+05,,
+pittston township police department,pittston,PA,8e+05,1035597,https://dced.pa.gov/local-government/municipal-statistics/
 pittsville police department,pittsville,WI,98435,,
 placer county sheriff's office/coroner,auburn,CA,61466311,80070175,https://counties.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_1/Police+Protection/0/entity_name
 plain dealing police department,plain dealing,LA,4854790,,
@@ -2430,16 +2430,16 @@ plaquemines parish sheriff's office,belle chasse,LA,30721000,2672000,https://pol
 platte county sheriff's office,wheatland,WY,650000,1873000,https://policescorecard.org/
 platte woods police department,platte woods,MO,235000,1250760,https://www.plattecity.org/files/documents/2021-2022AdoptedBudget1597043914013122PM.pdf
 pleasant grove police department,pleasant grove,UT,3781247,4083000,https://policescorecard.org/
-pleasant hills borough police department,pittsburgh,PA,2873658,,
+pleasant hills borough police department,pittsburgh,PA,2873658,3184220,https://dced.pa.gov/local-government/municipal-statistics/
 pleasant plains police department,pleasant plains,IL,95000,"81,213",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 pleasant ridge police department,pleasant ridge,MI,1003005,,
 pleasant view police department,pleasant view,TN,840000,,
-plumstead township police department,plumsteadville,PA,3250000,,
+plumstead township police department,plumsteadville,PA,3250000,3599490,https://dced.pa.gov/local-government/municipal-statistics/
 plymouth county sheriff's office,plymouth,MA,66493951,,
 plymouth police department,plymouth,MA,11200000,14685000,https://policescorecard.org/
 plymouth police department,plymouth,MN,14935375,12756000,https://policescorecard.org/
 plymouth police department,plymouth,NC,887747,0,
-plymouth township police department,plymouth meeting,PA,8239864,,
+plymouth township police department,plymouth meeting,PA,8239864,7615757,https://dced.pa.gov/local-government/municipal-statistics/
 pocahontas county sheriff's office,pocahontas,IA,5366209,1935000,https://policescorecard.org/
 point pleasant borough police,point pleasant boro,NJ,5199294,,
 poland village police department,poland,OH,6771321,,
@@ -2460,7 +2460,7 @@ port lavaca police department,port lavaca,TX,1935635,2605509,https://portlavaca.
 port neches police department,port neches,TX,3843300,3585400,https://cms8.revize.com/revize/portnechestx//FY%202021-2022%20Adopted%20Annual%20Budget.pdf
 port saint joe police department,port st. joe,FL,945,,
 port saint lucie police department,port st. lucie,FL,49262328,46986000,https://policescorecard.org/
-port vue borough police department,port vue borough,PA,1e+05,,
+port vue borough police department,port vue borough,PA,1e+05,296062,https://dced.pa.gov/local-government/municipal-statistics/
 portales police department,portales,NM,3800000,1262000,https://policescorecard.org/
 porterville police department,porterville,CA,1.3e+07,13373988,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
 portland police bureau,portland,OR,235876509,230000000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
@@ -2473,7 +2473,7 @@ postville police department,postville,IA,430150,,
 pottawatomie county sheriff's office,shawnee,OK,4583933,2334000,https://policescorecard.org/
 potter county sheriff's office,amarillo,TX,20891760,12712000,https://policescorecard.org/
 potts camp police department,potts camp,MS,25000,,
-pottstown borough police department,pottstown borough,PA,8028026,,
+pottstown borough police department,pottstown borough,PA,8028026,8337941,https://dced.pa.gov/local-government/municipal-statistics/
 pottsville city police department,pottsville,PA,3500000,2138000,https://policescorecard.org/
 pound ridge town police department,pound ridge,NY,1400000,"16,651,818",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
 powell police department,powell,OH,3245011,,
@@ -2545,7 +2545,7 @@ red boiling springs police department,red boiling springs,TN,436000,,
 red hook village police department,red hook,NY,6854762,"431,259",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
 redding police department,redding,CA,31641295,33655468,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
 redondo beach police department,redondo beach,CA,44433086,40673288,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
-redstone township police department,grindstone,PA,142299,,
+redstone township police department,grindstone,PA,142299,47819,https://dced.pa.gov/local-government/municipal-statistics/
 redwood falls police department,redwood falls,MN,1402663,1773000,https://policescorecard.org/
 reed city police department,reed,MI,485000,432140,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
 reform police department,reform,AL,543000,,
@@ -2606,7 +2606,7 @@ roaming shores police department,roaming shores,OH,375000,,
 roanoke city police department,roanoke,VA,22470382,21468000,https://policescorecard.org/
 roanoke county police department,roanoke,VA,12850306,22444000,https://policescorecard.org/
 roanoke police department,roanoke,IN,149352,,
-roaring spring borough police department,roaring spring borough,PA,6285724,,
+roaring spring borough police department,roaring spring borough,PA,6285724,257216,https://dced.pa.gov/local-government/municipal-statistics/
 robbins police department,robbins,IL,800612,"1,762,772",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 robeson county sheriff's office,lumberton,NC,10021656,"36,012,077",https://logos.nctreasurer.com/Reporting/Report/External?applicationCode=AFIR
 robins police department,robins,IA,9155554,168000,https://policescorecard.org/
@@ -2615,7 +2615,7 @@ rochester city police department,rochester,NY,99557000,90800000,https://abc7ny.c
 rochester police department,rochester,IL,857250,"809,259",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 rochester police department,rochester,IN,3891999,,
 rochester police department,rochester,MN,30792695,29494000,https://policescorecard.org/
-rochester township police department,rochester,PA,598000,,
+rochester township police department,rochester,PA,598000,620824,https://dced.pa.gov/local-government/municipal-statistics/
 rock county sheriff's office,janesville,WI,22506385,17356000,https://policescorecard.org/
 rock hill police department,rock hill,SC,16916308,18160000,https://policescorecard.org/
 rockdale county sheriff's office,conyers,GA,21148275,14808000,https://georgiadata.org/
@@ -2624,7 +2624,7 @@ rockford police department,rockford,IL,60892000,59826000,https://policescorecard
 rockingham county sheriff's office,wentworth,NC,67451573,24410073,https://www.rockinghamcountync.gov/files/documents/ComprehensiveAnnualFinancialReport20211357114321111821AM.pdf
 rockland county sheriff's office,new,NY,72279705,"27,589,482",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
 rockland police department,rockland,ME,2142631,2080000,https://policescorecard.org/
-rockledge borough police department,rockledge borough,PA,633500,,
+rockledge borough police department,rockledge borough,PA,633500,860962,https://dced.pa.gov/local-government/municipal-statistics/
 rockledge police department,rockledge,FL,6502800,,
 rocklin police department,rocklin,CA,15543000,18914767,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
 rockport police department,rockport,MA,10673960,1939000,https://policescorecard.org/
@@ -2659,9 +2659,9 @@ roy police department,roy,NM,10683260,,
 roy police department,roy,WA,280000,,
 royal city police department,royal,WA,436110,,
 royalton police department,royalton,IL,1e+05,"136,770",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
-royersford borough police department,royersford borough,PA,1200000,,
+royersford borough police department,royersford borough,PA,1200000,1455527,https://dced.pa.gov/local-government/municipal-statistics/
 runnemede police,runnemede,NJ,1508680,,
-rush township police department,tamaqua,PA,380000,,
+rush township police department,tamaqua,PA,380000,173654,https://dced.pa.gov/local-government/municipal-statistics/
 rusk county sheriff's office,ladysmith,WI,3572386,2718000,https://policescorecard.org/
 russells point police department,russells point,OH,289680,,
 russellville police department,russellville,AR,4248121,,
@@ -2707,7 +2707,7 @@ saline police department,saline,MI,2443785,2240000,https://micommunityfinancials
 salisbury city police,salisbury,MD,12573864,13512000,https://policescorecard.org/
 salisbury police department,salisbury,NC,7324747,9409000,https://policescorecard.org/
 salt lake city police department,salt lake,UT,82235729,80751000,https://policescorecard.org/
-saltsburg borough police department,saltsburg borough,PA,6641701,,
+saltsburg borough police department,saltsburg borough,PA,6641701,46304,https://dced.pa.gov/local-government/municipal-statistics/
 san angelo police department,san angelo,TX,22285766,21728000,https://policescorecard.org/
 san antonio police department,san antonio,TX,483591991,501300000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
 san bernardino county sheriff's office,san bernardino,CA,693156820,800600000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
@@ -2760,7 +2760,7 @@ sausalito police department,sausalito,CA,16323300,6229574,https://cities.bythenu
 savannah police department,savannah,GA,59354375,66042827,https://georgiadata.org/
 savannah police department,savannah,MO,475000,,
 sawyer police department,sawyer,OK,163833,,
-sayre borough police department,sayre borough,PA,1203104,,
+sayre borough police department,sayre borough,PA,1203104,1165291,https://dced.pa.gov/local-government/municipal-statistics/
 sayre police department,sayre,OK,782500,,
 scappoose police department,scappoose,OR,7683123,1456000,https://policescorecard.org/
 schaumburg police department,schaumburg,IL,30694375,"27,632,881",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
@@ -2773,7 +2773,7 @@ scotland county sheriff's office,laurinburg,NC,8248953,12001478,https://www.scot
 scott city police department,scott,KS,826837,671000,https://policescorecard.org/
 scott county sheriff's department,scottsburg,IN,2642888,273435,https://gateway.ifionline.org/report_builder/Default3a.aspx?rpttype=budget&rpt=DetailedExpenditures&rptName=Line-Item%20Budget%20Estimate
 scott police department,scott,LA,12341679,3079000,https://policescorecard.org/
-scott township police department,scott township,PA,3694380,,
+scott township police department,scott township,PA,3694380,3717459,https://dced.pa.gov/local-government/municipal-statistics/
 scotts bluff county sheriff's office,gering,NE,2100000,3936000,https://policescorecard.org/
 scotts hill police department,scotts hill,TN,101868,131000,https://policescorecard.org/
 scottsboro police department,scottsboro,AL,4917674,4299000,https://policescorecard.org/
@@ -2803,11 +2803,11 @@ sevier county sheriff's office,sevierville,TN,14900000,9494000,https://policesco
 seymour police department,seymour,IN,5070397,5264000,https://policescorecard.org/
 seymour police department,seymour,TX,5776334,"538,155",https://cityofseymour.org/wp-content/uploads/2021/09/2021-2022-City-of-Seymour-Financial-Statement.pdf
 shackelford county sheriff's office,albany,TX,1064299,,
-shade township police department,cairnbrook,PA,80000,,
+shade township police department,cairnbrook,PA,80000,10287,https://dced.pa.gov/local-government/municipal-statistics/
 shafter police department,shafter,CA,6875136,6982219,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
 shakopee police department,shakopee,MN,9e+06,9203000,https://policescorecard.org/
 shallowater police department,shallowater,TX,6451219,433354,https://shallowatertx.us/wp-content/uploads/2022/01/Budget-Summary-2021-22-Adopted-Budget.pdf
-shamokin dam borough police department,shamokin dam borough,PA,5680587,,
+shamokin dam borough police department,shamokin dam borough,PA,5680587,332450,https://dced.pa.gov/local-government/municipal-statistics/
 shannon county sheriff's office,eminence,MO,3348463,335546,https://auditor.mo.gov/AuditReport/ViewReport?report=2024002
 shaw police department,shaw,MS,6078678,306000,https://policescorecard.org/
 shawangunk town police department,wallkill,NY,9294625,"888,240",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
@@ -2820,9 +2820,9 @@ shelby county sheriff's office,memphis,TN,176882680,179572000,https://policescor
 shelby county sheriff's office,center,TX,12734907,,
 shelbyville police department,shelbyville,TN,3031287,3108000,https://policescorecard.org/
 shelton police department,shelton,CT,7700000,6022000,https://policescorecard.org/
-shenandoah borough police department,shenandoah borough,PA,5343559,,
+shenandoah borough police department,shenandoah borough,PA,5343559,444141,https://dced.pa.gov/local-government/municipal-statistics/
 shenandoah police department,shenandoah,TX,20597266,"3,466,627",https://www.shenandoahtx.us/DocumentCenter/View/4253/Adopted-Budget-2021-2022
-shenango township police department,new castle,PA,713895,,
+shenango township police department,new castle,PA,713895,1096976,https://dced.pa.gov/local-government/municipal-statistics/
 shepherdstown police department,shepherdstown,WV,425694,,
 sherborn police department,sherborn,MA,13354254,,
 shiocton police department,shiocton,WI,175000,,
@@ -2850,11 +2850,11 @@ sisseton police department,sisseton,SD,3847500,597000,https://policescorecard.or
 sistersville police department,sistersville,WV,4306235,,
 skiatook police department,skiatook,OK,1922120,1886000,https://policescorecard.org/
 skokie police department,skokie,IL,18050021,"24,864,210",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
-slatington borough police department,slatington borough,PA,820000,,
+slatington borough police department,slatington borough,PA,820000,767654,https://dced.pa.gov/local-government/municipal-statistics/
 slaton police department,slaton,TX,1e+06,,
 sleepy eye police department,sleepy eye,MN,606700,789000,https://policescorecard.org/
 smith county sheriff's office,tyler,TX,96401587,12665000,https://policescorecard.org/
-smith township police department,slovan,PA,390000,,
+smith township police department,slovan,PA,390000,40835,https://dced.pa.gov/local-government/municipal-statistics/
 smithfield police department,smithfield,NC,13838600,3561000,https://policescorecard.org/
 smithfield police department,smithfield,UT,1137660,1051000,https://policescorecard.org/
 smyth county sheriff's office,marion,VA,2975436,3117000,https://policescorecard.org/
@@ -2876,14 +2876,14 @@ south bend police department,south bend,WA,6e+05,,
 south brunswick police,monmouth junction,NJ,12153700,11310000,https://policescorecard.org/
 south charleston police department,south charleston,OH,350000,,
 south fulton police department,south fulton,TN,509217,,
-south heights borough police department,south heights borough,PA,6705360,,
+south heights borough police department,south heights borough,PA,6705360,68806,https://dced.pa.gov/local-government/municipal-statistics/
 south holland police department,south holland,IL,10616697,7105000,https://policescorecard.org/
 south kingstown police,wakefield,RI,9817362,10765000,https://policescorecard.org/
 south milwaukee police department,south milwaukee,WI,4600000,,
 south ogden city police department,south ogden,UT,11007810,3393000,https://policescorecard.org/
 south orange police,south orange,NJ,16982563,4867000,https://policescorecard.org/
 south palm beach public safety department,south palm beach,FL,12197998,,
-south park township police department,south park,PA,3020000,,
+south park township police department,south park,PA,3020000,2467561,https://dced.pa.gov/local-government/municipal-statistics/
 south rockwood police department,south rockwood,MI,375000,351110,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
 south roxana police department,south roxana,IL,809000,"353,169",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 south shore police department,south shore,KY,4224196,,
@@ -2910,7 +2910,7 @@ spokane county sheriff's office,spokane,WA,46070029,69100000,https://abc7ny.com/
 spokane police department,spokane,WA,61831752,68919000,https://policescorecard.org/
 sportsmen acres police department,pryor,OK,4562195,,
 spotsylvania county sheriff's office,spotsylvania courthouse,VA,24267944,22742000,https://policescorecard.org/
-spring city borough police department,spring borough,PA,13089410,,
+spring city borough police department,spring borough,PA,13089410,359478,https://dced.pa.gov/local-government/municipal-statistics/
 springdale police department,springdale,AR,18732990,20016320,https://www.springdalear.gov/documents/government/financial-transparency/city-budget/405138
 springdale police department,springdale,SC,7436034,,
 springfield police department,springfield,IL,65106017,"47,906,322",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
@@ -2959,7 +2959,7 @@ stilwell police department,stilwell,OK,1e+06,,
 stockton police department,stockton,CA,135600000,152900000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
 stockton police department,stockton,UT,131337,,
 stoddard county sheriff's office,bloomfield,MO,6240535,,
-stoneboro borough police department,stoneboro borough,PA,50000,,
+stoneboro borough police department,stoneboro borough,PA,50000,45225,https://dced.pa.gov/local-government/municipal-statistics/
 stover police department,stover,MO,187260,,
 strasburg police department,strasburg,OH,5722736,,
 stratford borough police,stratford borough,NJ,1776732,,
@@ -2980,7 +2980,7 @@ sullivan police department,sullivan,IL,3987671,"680,539",https://illinoiscomptro
 sulphur springs police department,sulphur springs,TX,3250000,3986000,https://policescorecard.org/
 sumas police department,sumas,WA,12434845,927000,https://policescorecard.org/
 summerdale police department,summersdale,AL,6055035,,
-summerhill township police department,beaverdale,PA,190512,,
+summerhill township police department,beaverdale,PA,190512,5450,https://dced.pa.gov/local-government/municipal-statistics/
 summersville police department,summersville,WV,1600000,,
 summerville police department,summerville,SC,17103672,5410000,https://policescorecard.org/
 summit county sheriff's office,akron,OH,4.36e+08,36494000,https://policescorecard.org/
@@ -3002,7 +3002,7 @@ swain county sheriff's office,bryson,NC,2933788,0,https://logos.nctreasurer.com/
 sweetwater police department,sweetwater,FL,12870766,7599000,https://policescorecard.org/
 swift county sheriff's office,benson,MN,2273076,2571000,https://policescorecard.org/
 sycamore police department,sycamore,GA,8678236,,
-sykesville borough police department,sykesville borough,PA,80000,,
+sykesville borough police department,sykesville borough,PA,80000,69329,https://dced.pa.gov/local-government/municipal-statistics/
 sylacauga police department,sylacauga,AL,3547809,3583000,https://policescorecard.org/
 sylvania police department,sylvania,AL,176000,,
 sylvania township police department,sylvania,OH,13189298,,
@@ -3020,10 +3020,10 @@ taney county sheriff's office,forsyth,MO,4579446,88882,https://media.taneycounty
 taneytown police,taneytown,MD,1646000,,
 tangipahoa parish sheriff's office,hammond,LA,20203500,11581000,https://policescorecard.org/
 taos county sheriff's office,taos,NM,2100000,2813000,https://policescorecard.org/
-tarentum borough police department,tarentum borough,PA,1169941,,
+tarentum borough police department,tarentum borough,PA,1169941,1320302,https://dced.pa.gov/local-government/municipal-statistics/
 tarrant county sheriff's office,fort worth,TX,154474105,84007000,https://policescorecard.org/
 tarrytown village police department,tarrytown,NY,5474852,"5,595,700",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
-tatamy borough police department,tatamy borough,PA,243675,,
+tatamy borough police department,tatamy borough,PA,243675,321166,https://dced.pa.gov/local-government/municipal-statistics/
 tate county sheriff's department,senatobia,MS,3750000,3229000,https://policescorecard.org/
 taunton police department,taunton,MA,66410738,18183000,https://policescorecard.org/
 taylor county sheriff's office,abilene,TX,15470025,8673178,https://www.taylorcounty.texas.gov/Archive/ViewFile/Item/830
@@ -3060,7 +3060,7 @@ thurston county sheriff's office,olympia,WA,19319092,22196000,https://policescor
 tift county sheriff's department,tifton,GA,8728282,,
 tillamook police department,tillamook,OR,8739097,"1,713,647",https://www.tillamookor.gov/media/566
 tillman county sheriff's office,frederick,OK,85800,,
-tinicum township police department,pipersville,PA,5005657,,
+tinicum township police department,pipersville,PA,5005657,3699746,https://dced.pa.gov/local-government/municipal-statistics/
 tippah county sheriff's department,ripley,MS,1027900,1317000,https://policescorecard.org/
 tipton police department,tipton,IA,3709245,660000,https://policescorecard.org/
 tipton police department,tipton,IN,4326739,1029000,https://policescorecard.org/
@@ -3088,9 +3088,9 @@ towner county sheriff's office,cando,ND,375000,749000,https://policescorecard.or
 township of cranbury police department,cranbury,NJ,2400000,,
 tracy police department,tracy,MN,323767,,
 traill county sheriff's office,hillsboro,ND,881070,1351000,https://policescorecard.org/
-trainer borough police department,trainer borough,PA,962000,,
+trainer borough police department,trainer borough,PA,962000,1162414,https://dced.pa.gov/local-government/municipal-statistics/
 travis county sheriff's office,austin,TX,198423870,93524000,https://policescorecard.org/
-tremont borough police department,tremont borough,PA,4229547,,
+tremont borough police department,tremont borough,PA,4229547,7378,https://dced.pa.gov/local-government/municipal-statistics/
 trempealeau county sheriff's office,whitehall,WI,5935345,,
 trenton police,trenton,NJ,33301459,,
 trenton police department,trenton,MI,4612884,4695000,https://policescorecard.org/
@@ -3133,18 +3133,18 @@ union point police department,union point,GA,5609653,217592,https://georgiadata.
 union police department,union,IL,93500,"90,623",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 union police department,union,OH,5143469,,
 union township police,union,NJ,20143898,,
-union township police department,ringtown,PA,45000,,
-uniontown city police department,uniontown,PA,5308809,,
+union township police department,ringtown,PA,45000,396040,https://dced.pa.gov/local-government/municipal-statistics/
+uniontown city police department,uniontown,PA,5308809,2955348,https://dced.pa.gov/local-government/municipal-statistics/
 uniontown police department,uniontown,OH,14058210,,
 unionville police department,unionville,MO,2e+05,,
 university heights police department,university heights,IA,496867,,
-upland borough police department,brookhaven borough,PA,1050000,,
+upland borough police department,brookhaven borough,PA,1050000,1456627,https://dced.pa.gov/local-government/municipal-statistics/
 upland police department,upland,CA,24184140,27688393,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
-upper allen township police department,mechanicsburg,PA,4380010,,
+upper allen township police department,mechanicsburg,PA,4380010,4619050,https://dced.pa.gov/local-government/municipal-statistics/
 upper darby township police department,upper darby,PA,31189051,26128000,https://policescorecard.org/
-upper nazareth township police department,nazareth,PA,1200000,,
-upper providence township police department,media,PA,2921315,,
-upper uwchlan township police department,chester springs,PA,2400000,,
+upper nazareth township police department,nazareth,PA,1200000,1782579,https://dced.pa.gov/local-government/municipal-statistics/
+upper providence township police department,media,PA,2921315,3076317,https://dced.pa.gov/local-government/municipal-statistics/
+upper uwchlan township police department,chester springs,PA,2400000,2031620,https://dced.pa.gov/local-government/municipal-statistics/
 upshur county sheriff's department,buckhannon,WV,1981455,795000,https://policescorecard.org/
 urbana police department,urbana,IA,284920,,
 urbana police department,urbana,OH,2213530,,
@@ -3166,7 +3166,7 @@ vanceboro police department,vanceboro,NC,235252,271717,
 vancouver police department,vancouver,WA,56257242,56529000,https://policescorecard.org/
 vandalia police department,vandalia,IL,9026383,"2,210,865",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 vanderburgh county sheriff's office,evansville,IN,22824489,23733000,https://policescorecard.org/
-venango county sheriff's office,franklin,PA,6780054,,
+venango county sheriff's office,franklin,PA,6780054,"6,305,480",https://dced.pa.gov/local-government/municipal-statistics/
 ventnor city police,ventnor,NJ,30816762,4578000,https://policescorecard.org/
 ventura county sheriff's office,san buenaventura (ventura),CA,208419353,350513269,https://counties.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_1/Police+Protection/0/entity_name
 ventura police department buenaventura,ventura,CA,44938301,298600000,https://abc7ny.com/where-police-departments-defunded-how-does-funding-impact-crime-defund-the-budgets/12324846/
@@ -3206,7 +3206,7 @@ walker county sheriff's department,lafayette,GA,8200000,,
 walker police department,walker,LA,2525100,2884000,https://policescorecard.org/
 wallington police department,wallington,NJ,3550000,,
 walnut police department,walnut,IL,297887,"102,164",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
-walnutport borough police department,walnutport borough,PA,398000,,
+walnutport borough police department,walnutport borough,PA,398000,485254,https://dced.pa.gov/local-government/municipal-statistics/
 walpole police department,north walpole,NH,9195672,948000,https://policescorecard.org/
 walthall county sheriff's department,tylertown,MS,1414251,1661000,https://policescorecard.org/
 waltham police department,waltham,MA,20270701,18129000,https://policescorecard.org/
@@ -3286,11 +3286,11 @@ weldon police department,weldon,NC,625647,0,
 wellford police department,wellford,SC,853000,,
 wellington police department,wellington,KS,1598378,1657000,https://policescorecard.org/
 wells police department,wells,MN,525000,,
-wesleyville borough police department,erie,PA,850000,,
+wesleyville borough police department,erie,PA,850000,582659,https://dced.pa.gov/local-government/municipal-statistics/
 west allis police department,west allis,WI,64959605,,
 west bend police department,west bend,IA,87285,,
 west blocton police department,west blocton,AL,7600434,,
-west brownsville borough police department,brownsville borough,PA,4771483,,
+west brownsville borough police department,brownsville borough,PA,4771483,115398,https://dced.pa.gov/local-government/municipal-statistics/
 west burlington police department,west burlington,IA,834058,,
 west chester police department,west chester,OH,17949208,12025000,https://policescorecard.org/
 west columbia police department,west columbia,TX,1200000,"1,511,055",https://www.westcolumbiatx.org/DocumentCenter/View/2586/2021-09-30-West-Columbia-Annual-Audit
@@ -3301,15 +3301,15 @@ west hamlin police department,west hamlin,WV,50000,,
 west hartford police department,west hartford,CT,16664943,19217000,https://policescorecard.org/
 west haven police department,west haven,CT,111963986,16000000,https://policescorecard.org/
 west jordan city police department,west jordan,UT,68971842,16595000,https://policescorecard.org/
-west lampeter township police department,lampeter,PA,1605372,,
-west manchester township police department,york,PA,14492920,,
+west lampeter township police department,lampeter,PA,1605372,1861783,https://dced.pa.gov/local-government/municipal-statistics/
+west manchester township police department,york,PA,14492920,3463258,https://dced.pa.gov/local-government/municipal-statistics/
 west milford township police,west milford,NJ,6705765,,
 west milton police department,west milton,OH,980000,,
 west milwaukee police department,west milwaukee,WI,2288033,,
 west new york police,west new york,NJ,15300000,15212000,https://policescorecard.org/
-west nottingham township police department,nottingham,PA,80000,,
+west nottingham township police department,nottingham,PA,80000,84241,https://dced.pa.gov/local-government/municipal-statistics/
 west palm beach police department,west palm beach,FL,65062499,61240000,https://policescorecard.org/
-west pike run township police department,daisytown,PA,4456002,,
+west pike run township police department,daisytown,PA,4456002,118508,https://dced.pa.gov/local-government/municipal-statistics/
 west plains police department,west plains,MO,2212426,208000,https://policescorecard.org/
 west police department,west,TX,503000,,
 west sacramento police department,w sacramento,CA,21002784,22269120,https://cities.bythenumbers.sco.ca.gov/#!/year/2021/operating/0/subcategory_2/Police_Current+Expenditures/0/entity_name
@@ -3321,10 +3321,10 @@ west tisbury police department,west tisbury,MA,1207703,,
 west university place police department,west university place,TX,17103268,,
 west valley city police department,west valley,UT,89404508,28707000,https://policescorecard.org/
 west view borough police department,pittsburgh,PA,1385380,1619000,https://policescorecard.org/
-west vincent township police department,chester springs,PA,1227600,,
+west vincent township police department,chester springs,PA,1227600,1388360,https://dced.pa.gov/local-government/municipal-statistics/
 west warwick police,west warwick,RI,7300000,8648000,https://policescorecard.org/
-west wyoming borough police department,pittston borough,PA,5158695,,
-west york borough police department,west york borough,PA,9656865,,
+west wyoming borough police department,pittston borough,PA,5158695,217766,https://dced.pa.gov/local-government/municipal-statistics/
+west york borough police department,west york borough,PA,9656865,1447779,https://dced.pa.gov/local-government/municipal-statistics/
 westchester county department of public safety,hawthorne,NY,56340861,"45,493,059",https://wwe1.osc.state.ny.us/localgov/findata/financial-data-for-local-governments.cfm
 westerly police,westerly,RI,7782004,7503000,https://policescorecard.org/
 westfield police department,westfield,MA,7900000,7623000,https://policescorecard.org/
@@ -3341,10 +3341,10 @@ wheaton police department,wheaton,MN,362000,,
 wheeling police department,wheeling,IL,13344195,"21,570,630",https://illinoiscomptroller.gov/constituent-services/local-government/local-government-warehouse/landingpage?code=001/000/00
 whigham police department,whigham,GA,270000,,
 whispering pines police department,whisper pnes,NC,851439,1488805,https://www.whisperingpinesnc.net/files/documents/2022ACFR1313114645122222AM.pdf
-whitaker borough police department,whitaker borough,PA,4898939,,
+whitaker borough police department,whitaker borough,PA,4898939,174470,https://dced.pa.gov/local-government/municipal-statistics/
 white county sheriff's office,cleveland,GA,7516495,193979,https://georgiadata.org/
 white house police department,white house,TN,7440526,2094000,https://policescorecard.org/
-white oak borough police department,white oak borough,PA,2194226,,
+white oak borough police department,white oak borough,PA,2194226,2569723,https://dced.pa.gov/local-government/municipal-statistics/
 white oak police department,white oak,TX,1120000,,
 white pigeon police department,white pigeon,MI,363675,334300,https://micommunityfinancials.michigan.gov/#!/browse?filterType=CITY&lat=44.022893636582694&lng=-83.88786025699642&zoom=6.586616922592568&year=2021&showSidebar=yes
 white pine police department,white pine,TN,948662,,

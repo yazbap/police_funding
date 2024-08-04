@@ -1,0 +1,3451 @@
+location,is_city,zip,County,STATE,City
+whitley_KY,0,40769,whitley,KY,williamsburg
+garrard_KY,0,40444,garrard,KY,lancaster
+grand_CO,0,80482,grand,CO,winter park
+new castle_DE,0,19720,new castle,DE,new castle
+chatham_GA,0,31405,chatham,GA,savannah
+clarke_GA,0,30605,clarke,GA,athens
+clayton_GA,0,30236,clayton,GA,jonesboro
+cobb_GA,0,30060,cobb,GA,marietta
+dekalb_GA,0,30084,dekalb,GA,tucker
+floyd_GA,0,30161,floyd,GA,rome
+glynn_GA,0,31525,glynn,GA,brunswick
+gwinnett_GA,0,30046,gwinnett,GA,lawrenceville
+henry_GA,0,30253,henry,GA,mcdonough
+walker_GA,0,30728,walker,GA,la fayette
+ware_GA,0,31501,ware,GA,waycross
+calhoun_IA,0,50428,calhoun,IA,clear lake
+riley_KS,0,66502,riley,KS,manhattan
+anne arundel_MD,0,21108,anne arundel,MD,millersville
+baltimore_MD,0,21286,baltimore,MD,towson
+howard_MD,0,21043,howard,MD,ellicott
+montgomery_MD,0,20878,montgomery,MD,gaithersburg
+prince george's_MD,0,20785,prince george's,MD,hyattsville
+st. charles_MO,0,63366,st. charles,MO,o fallon
+st. louis_MO,0,63105,st. louis,MO,st. louis
+gaston_NC,0,28053,gaston,NC,gastonia
+camden_NJ,0,8103,camden,NJ,camden
+nassau_NY,0,11501,nassau,NY,mineola
+suffolk_NY,0,11980,suffolk,NY,yaphank
+westchester_NY,0,10532,westchester,NY,hawthorne
+allegheny_PA,0,15220,allegheny,PA,pittsburgh
+northampton_PA,0,18017,northampton,PA,bethlehem
+washington_PA,0,15022,washington,PA,charleroi
+horry_SC,0,29526,horry,SC,conway
+albemarle_VA,0,22902,albemarle,VA,charlottesvle
+arlington_VA,0,22201,arlington,VA,arlington
+chesterfield_VA,0,23832,chesterfield,VA,chesterfield
+fairfax_VA,0,22030,fairfax,VA,fairfax
+henrico_VA,0,23273,henrico,VA,henrico
+prince william_VA,0,22192,prince william,VA,prince william
+roanoke_VA,0,24019,roanoke,VA,roanoke
+norphlet_AR,1,71759,NA,AR,norphlet
+lynn_AL,1,35575,NA,AL,lynn
+sanford_CO,1,81151,NA,CO,sanford
+whitaker borough_PA,1,15120,NA,PA,whitaker borough
+saltsburg borough_PA,1,15681,NA,PA,saltsburg borough
+stoneboro borough_PA,1,16153,NA,PA,stoneboro borough
+brownsville borough_PA,1,15417,NA,PA,brownsville borough
+china grove_TX,1,28023,NA,TX,china grove
+pittsford_VT,1,5763,NA,VT,pittsford
+west paterson borough_NJ,1,7424,NA,NJ,west paterson borough
+east granby_CT,1,6026,NA,CT,east granby
+denver_IA,1,50622,NA,IA,denver
+dunlap_IA,1,51529,NA,IA,dunlap
+ellsworth_IA,1,50075,NA,IA,ellsworth
+nora springs_IA,1,50458,NA,IA,nora springs
+west bend_IA,1,50597,NA,IA,west bend
+boyle_MS,1,38730,NA,MS,boyle
+osyka_MS,1,39657,NA,MS,osyka
+crofton_NE,1,68730,NA,NE,crofton
+spalding_NE,1,68665,NA,NE,spalding
+bethel heights_AR,1,72764,NA,AR,bethel heights
+sparkman_AR,1,71763,NA,AR,sparkman
+magazine_AR,1,72943,NA,AR,magazine
+bauxite_AR,1,72011,NA,AR,bauxite
+cotton plant_AR,1,72036,NA,AR,cotton plant
+patterson_AR,1,72123,NA,AR,patterson
+potts camp_MS,1,38659,NA,MS,potts camp
+rockmart_GA,1,30153,NA,GA,rockmart
+postville_IA,1,52162,NA,IA,postville
+urbana_IA,1,52345,NA,IA,urbana
+la porte_IA,1,50651,NA,IA,la porte
+sumner_IA,1,50674,NA,IA,sumner
+tripoli_IA,1,50676,NA,IA,tripoli
+readlyn_IA,1,50668,NA,IA,readlyn
+manson_IA,1,50563,NA,IA,manson
+nashua_IA,1,50658,NA,IA,nashua
+garnavillo_IA,1,52049,NA,IA,garnavillo
+granger_IA,1,50109,NA,IA,granger
+milford_IA,1,51351,NA,IA,milford
+cascade_IA,1,52033,NA,IA,cascade
+stuart_IA,1,50250,NA,IA,stuart
+logan_IA,1,51546,NA,IA,logan
+baxter_IA,1,50028,NA,IA,baxter
+university heights_IA,1,52246,NA,IA,university heights
+sigourney_IA,1,52591,NA,IA,sigourney
+keota_IA,1,52248,NA,IA,keota
+mitchellville_IA,1,50169,NA,IA,mitchellville
+avoca_IA,1,51521,NA,IA,avoca
+moville_IA,1,51039,NA,IA,moville
+ladd_IL,1,61329,NA,IL,ladd
+walnut_IL,1,61376,NA,IL,walnut
+oakland_IL,1,61943,NA,IL,oakland
+la harpe_IL,1,61450,NA,IL,la harpe
+union_IL,1,60180,NA,IL,union
+spaulding_IL,1,62561,NA,IL,spaulding
+hurst_IL,1,62949,NA,IL,hurst
+woodburn_IN,1,46797,NA,IN,woodburn
+hope_IN,1,47246,NA,IN,hope
+advance_IN,1,63730,NA,IN,advance
+flora_IN,1,46929,NA,IN,flora
+milltown_IN,1,47145,NA,IN,milltown
+westport_IN,1,6880,NA,IN,westport
+kingman_IN,1,47952,NA,IN,kingman
+fortville_IN,1,46040,NA,IN,fortville
+mccordsville_IN,1,46055,NA,IN,mccordsville
+pittsboro_IN,1,46167,NA,IN,pittsboro
+greentown_IN,1,46936,NA,IN,greentown
+warren_IN,1,46792,NA,IN,warren
+markle_IN,1,46770,NA,IN,markle
+roanoke_IN,1,46783,NA,IN,roanoke
+andrews_IN,1,46702,NA,IN,andrews
+remington_IN,1,47977,NA,IN,remington
+mentone_IN,1,46539,NA,IN,mentone
+silver lake_IN,1,46982,NA,IN,silver lake
+oolitic_IN,1,47451,NA,IN,oolitic
+summitville_IN,1,46070,NA,IN,summitville
+orestes_IN,1,46063,NA,IN,orestes
+bourbon_IN,1,46504,NA,IN,bourbon
+rising sun_IN,1,47040,NA,IN,rising sun
+poseyville_IN,1,47633,NA,IN,poseyville
+winamac_IN,1,46996,NA,IN,winamac
+new carlisle_IN,1,46552,NA,IN,new carlisle
+hamlet_IN,1,46532,NA,IN,hamlet
+hamilton_IN,1,46742,NA,IN,hamilton
+orland_IN,1,46776,NA,IN,orland
+carlisle_IN,1,47838,NA,IN,carlisle
+windfall_IN,1,46076,NA,IN,windfall
+chandler_IN,1,47610,NA,IN,chandler
+elberfeld_IN,1,47613,NA,IN,elberfeld
+chalmers_IN,1,47929,NA,IN,chalmers
+churubusco_IN,1,46723,NA,IN,churubusco
+ringgold_LA,1,71068,NA,LA,ringgold
+plain dealing_LA,1,71064,NA,LA,plain dealing
+mooringsport_LA,1,71060,NA,LA,mooringsport
+ida_LA,1,71044,NA,LA,ida
+chataignier_LA,1,70524,NA,LA,chataignier
+dry prong_LA,1,71423,NA,LA,dry prong
+fenton_LA,1,70640,NA,LA,fenton
+choudrant_LA,1,71227,NA,LA,choudrant
+simsboro_LA,1,71275,NA,LA,simsboro
+boyce_LA,1,71409,NA,LA,boyce
+greensburg_LA,1,70441,NA,LA,greensburg
+henderson_LA,1,71334,NA,LA,henderson
+sibley_LA,1,71073,NA,LA,sibley
+aitkin_MN,1,56431,NA,MN,aitkin
+rice_MN,1,56367,NA,MN,rice
+lake shore_MN,1,56311,NA,MN,lake shore
+pequot lakes_MN,1,56472,NA,MN,pequot lakes
+isanti_MN,1,55040,NA,MN,isanti
+pelican rapids_MN,1,56572,NA,MN,pelican rapids
+starbuck_MN,1,56381,NA,MN,starbuck
+danube_MN,1,56230,NA,MN,danube
+arlington_MN,1,55307,NA,MN,arlington
+enterprise_MS,1,39330,NA,MS,enterprise
+bolton_MS,1,39041,NA,MS,bolton
+mize_MS,1,39116,NA,MS,mize
+tutwiler_MS,1,38963,NA,MS,tutwiler
+tishomingo_MS,1,38873,NA,MS,tishomingo
+metcalfe_MS,1,38760,NA,MS,metcalfe
+mathiston_MS,1,39752,NA,MS,mathiston
+darby_MT,1,59829,NA,MT,darby
+cedar bluffs_NE,1,68015,NA,NE,cedar bluffs
+grafton_NH,0,3740,grafton,NH,bath
+roy_NM,1,87743,NA,NM,roy
+belmont_NY,1,14813,NA,NY,belmont
+millerton_NY,1,12546,NA,NY,millerton
+syosset_NY,1,11791,NA,NY,syosset
+westchester_NY,0,10589,westchester,NY,somers
+hamilton_OH,1,44408,NA,OH,hamilton
+cleveland_OH,1,44125,NA,OH,cleveland
+cincinnati_OH,1,45247,NA,OH,cincinnati
+marblehead_OH,1,43440,NA,OH,marblehead
+antwerp_OH,1,45813,NA,OH,antwerp
+garrettsville_OH,1,44231,NA,OH,garrettsville
+edon_OH,1,43518,NA,OH,edon
+geronimo_OK,1,73543,NA,OK,geronimo
+custer_OK,1,73639,NA,OK,custer
+alex_OK,1,73002,NA,OK,alex
+medford_OK,1,73759,NA,OK,medford
+pond creek_OK,1,73766,NA,OK,pond creek
+haworth_OK,1,74740,NA,OK,haworth
+pryor_OK,1,74361,NA,OK,pryor
+webbers falls_OK,1,74470,NA,OK,webbers falls
+arcadia_OK,1,73007,NA,OK,arcadia
+asher_OK,1,74826,NA,OK,asher
+rattan_OK,1,74562,NA,OK,rattan
+tyrone_OK,1,73951,NA,OK,tyrone
+gettysburg borough_PA,1,17325,NA,PA,gettysburg borough
+cairnbrook_PA,1,15924,NA,PA,cairnbrook
+mission_SD,1,57555,NA,SD,mission
+bell_TX,0,76554,bell,TX,little river academy
+angleton_TX,1,77515,NA,TX,angleton
+alvin_TX,1,77511,NA,TX,alvin
+cross plains_TX,1,76443,NA,TX,cross plains
+fairview_TX,1,75069,NA,TX,fairview
+josephine_TX,1,75164,NA,TX,josephine
+texline_TX,1,79087,NA,TX,texline
+maypearl_TX,1,76064,NA,TX,maypearl
+honey grove_TX,1,75446,NA,TX,honey grove
+mt. vernon_TX,1,75457,NA,TX,mt. vernon
+clear lake shores_TX,1,77565,NA,TX,clear lake shores
+bells_TX,1,75414,NA,TX,bells
+gunter_TX,1,75058,NA,TX,gunter
+estelline_TX,1,79233,NA,TX,estelline
+waskom_TX,1,75692,NA,TX,waskom
+mabank_TX,1,75147,NA,TX,mabank
+grandview_TX,1,76050,NA,TX,grandview
+buffalo_TX,1,75831,NA,TX,buffalo
+jewett_TX,1,75846,NA,TX,jewett
+booker_TX,1,79005,NA,TX,booker
+newton_TX,1,75966,NA,TX,newton
+east tawakoni_TX,1,75472,NA,TX,east tawakoni
+boyd_TX,1,76023,NA,TX,boyd
+alba_TX,1,75410,NA,TX,alba
+alma_WI,1,54610,NA,WI,alma
+webster_WI,1,54893,NA,WI,webster
+greenwood_WI,1,54437,NA,WI,greenwood
+cassville_WI,1,53806,NA,WI,cassville
+ridgeway_WI,1,53582,NA,WI,ridgeway
+merrillan_WI,1,54754,NA,WI,merrillan
+black creek_WI,1,54106,NA,WI,black creek
+la farge_WI,1,54639,NA,WI,la farge
+ontario_WI,1,54651,NA,WI,ontario
+walworth_WI,0,53195,walworth,WI,zenda
+minong_WI,1,54859,NA,WI,minong
+iola_WI,1,54945,NA,WI,iola
+pittsville_WI,1,54466,NA,WI,pittsville
+west hamlin_WV,1,25571,NA,WV,west hamlin
+savannah_GA,1,31401,NA,GA,savannah
+columbus_OH,1,43223,NA,OH,columbus
+hooper bay_AK,1,99604,NA,AK,hooper bay
+glendora_MS,1,38928,NA,MS,glendora
+morton_MS,1,39117,NA,MS,morton
+highmore_SD,1,57345,NA,SD,highmore
+lyon_MS,1,38645,NA,MS,lyon
+lyndon station_WI,1,53944,NA,WI,lyndon station
+malin_OR,1,97632,NA,OR,malin
+remington_VA,1,22734,NA,VA,remington
+henrietta_MO,1,64036,NA,MO,henrietta
+neosho_WI,1,53059,NA,WI,neosho
+lake norden_SD,1,57248,NA,SD,lake norden
+rothbury_MI,1,49452,NA,MI,rothbury
+anchorage_AK,1,99507,NA,AK,anchorage
+whittier_AK,1,99693,NA,AK,whittier
+dillingham_AK,1,99576,NA,AK,dillingham
+king salmon_AK,1,99613,NA,AK,king salmon
+bessemer_AL,1,35020,NA,AL,bessemer
+birmingham_AL,1,35203,NA,AL,birmingham
+fairfield_AL,1,35064,NA,AL,fairfield
+hoover_AL,1,35216,NA,AL,hoover
+brighton_AL,1,35020,NA,AL,brighton
+lipscomb_AL,1,35020,NA,AL,lipscomb
+mobile_AL,1,36606,NA,AL,mobile
+satsuma_AL,1,36572,NA,AL,satsuma
+creola_AL,1,36525,NA,AL,creola
+dauphin island_AL,1,36528,NA,AL,dauphin island
+montgomery_AL,1,36104,NA,AL,montgomery
+gulf shores_AL,1,36547,NA,AL,gulf shores
+daphne_AL,1,36526,NA,AL,daphne
+summersdale_AL,1,36580,NA,AL,summersdale
+west blocton_AL,1,35184,NA,AL,west blocton
+weaver_AL,1,36277,NA,AL,weaver
+oxford_AL,1,36203,NA,AL,oxford
+centre_AL,1,35960,NA,AL,centre
+leesburg_AL,1,35983,NA,AL,leesburg
+clanton_AL,1,35046,NA,AL,clanton
+jemison_AL,1,35085,NA,AL,jemison
+jackson_AL,1,36545,NA,AL,jackson
+ashland_AL,1,36251,NA,AL,ashland
+muscle shoals_AL,1,35662,NA,AL,muscle shoals
+cherokee_AL,1,35616,NA,AL,cherokee
+brantley_AL,1,36009,NA,AL,brantley
+daleville_AL,1,36322,NA,AL,daleville
+selma_AL,1,36702,NA,AL,selma
+henagar_AL,1,35978,NA,AL,henagar
+rainsville_AL,1,35986,NA,AL,rainsville
+sylvania_AL,1,35988,NA,AL,sylvania
+tallassee_AL,1,36078,NA,AL,tallassee
+eclectic_AL,1,36024,NA,AL,eclectic
+millbrook_AL,1,36054,NA,AL,millbrook
+gadsden_AL,1,35902,NA,AL,gadsden
+sardis_AL,1,35956,NA,AL,sardis
+fayette_AL,1,35555,NA,AL,fayette
+dothan_AL,1,36302,NA,AL,dothan
+scottsboro_AL,1,35768,NA,AL,scottsboro
+sulligent_AL,1,35586,NA,AL,sulligent
+florence_AL,1,35631,NA,AL,florence
+lexington_AL,1,35648,NA,AL,lexington
+hillsboro_AL,1,35643,NA,AL,hillsboro
+auburn_AL,1,36830,NA,AL,auburn
+hayneville_AL,1,36040,NA,AL,hayneville
+shorter_AL,1,36075,NA,AL,shorter
+huntsville_AL,1,35804,NA,AL,huntsville
+guin_AL,1,35563,NA,AL,guin
+bear creek_AL,1,35543,NA,AL,bear creek
+arab_AL,1,35016,NA,AL,arab
+douglas_AL,1,35964,NA,AL,douglas
+frisco_AL,1,36445,NA,AL,frisco
+decatur_AL,1,35602,NA,AL,decatur
+reform_AL,1,35481,NA,AL,reform
+phenix_AL,1,36867,NA,AL,phenix
+pell_AL,1,35125,NA,AL,pell
+ashville_AL,1,35953,NA,AL,ashville
+ragland_AL,1,35131,NA,AL,ragland
+columbiana_AL,1,35051,NA,AL,columbiana
+alabaster_AL,1,35007,NA,AL,alabaster
+harpersville_AL,1,35078,NA,AL,harpersville
+york_AL,1,36925,NA,AL,york
+livingston_AL,1,35470,NA,AL,livingston
+sylacauga_AL,1,35150,NA,AL,sylacauga
+talladega_AL,1,35161,NA,AL,talladega
+tuscaloosa_AL,1,35401,NA,AL,tuscaloosa
+dora_AL,1,35062,NA,AL,dora
+chatom_AL,1,36518,NA,AL,chatom
+gillett_AR,1,72055,NA,AR,gillett
+crossett_AR,1,71635,NA,AR,crossett
+hamburg_AR,1,71646,NA,AR,hamburg
+norfork_AR,1,72658,NA,AR,norfork
+rogers_AR,1,72758,NA,AR,rogers
+pea ridge_AR,1,72751,NA,AR,pea ridge
+lowell_AR,1,72745,NA,AR,lowell
+harrison_AR,1,72602,NA,AR,harrison
+diamond_AR,1,72630,NA,AR,diamond
+lake village_AR,1,71653,NA,AR,lake village
+arkadelphia_AR,1,71923,NA,AR,arkadelphia
+magnolia_AR,1,71754,NA,AR,magnolia
+jonesboro_AR,1,72401,NA,AR,jonesboro
+bay_AR,1,72411,NA,AR,bay
+alma_AR,1,72921,NA,AR,alma
+fordyce_AR,1,71742,NA,AR,fordyce
+conway_AR,1,72032,NA,AR,conway
+vilonia_AR,1,72173,NA,AR,vilonia
+garland_AR,0,71901,garland,AR,hot springs national park
+marmaduke_AR,1,72443,NA,AR,marmaduke
+nashville_AR,1,71852,NA,AR,nashville
+pine bluff_AR,1,71601,NA,AR,pine bluff
+clarksville_AR,1,72830,NA,AR,clarksville
+ravenden_AR,1,72459,NA,AR,ravenden
+marianna_AR,1,72360,NA,AR,marianna
+ashdown_AR,1,71822,NA,AR,ashdown
+england_AR,1,72046,NA,AR,england
+russellville_AR,1,72801,NA,AR,russellville
+jacksonville_AR,1,72076,NA,AR,jacksonville
+little rock_AR,1,72201,NA,AR,little rock
+north little rock_AR,1,72114,NA,AR,north little rock
+maumelle_AR,1,72113,NA,AR,maumelle
+bryant_AR,1,72022,NA,AR,bryant
+fort smith_AR,1,72901,NA,AR,fort smith
+cave_AR,1,72521,NA,AR,cave
+ash flat_AR,1,72513,NA,AR,ash flat
+el dorado_AR,1,71731,NA,AR,el dorado
+fairfield bay_AR,1,72088,NA,AR,fairfield bay
+fayetteville_AR,1,72701,NA,AR,fayetteville
+springdale_AR,1,72764,NA,AR,springdale
+west fork_AR,1,72774,NA,AR,west fork
+johnson_AR,1,72704,NA,AR,johnson
+bald knob_AR,1,72010,NA,AR,bald knob
+rose bud_AR,1,72137,NA,AR,rose bud
+st. johns_AZ,1,85936,NA,AZ,st. johns
+bisbee_AZ,1,85603,NA,AZ,bisbee
+flagstaff_AZ,1,86001,NA,AZ,flagstaff
+fredonia_AZ,1,86022,NA,AZ,fredonia
+thatcher_AZ,1,85552,NA,AZ,thatcher
+avondale_AZ,1,85323,NA,AZ,avondale
+buckeye_AZ,1,85326,NA,AZ,buckeye
+chandler_AZ,1,85244,NA,AZ,chandler
+el mirage_AZ,1,85335,NA,AZ,el mirage
+gilbert_AZ,1,85296,NA,AZ,gilbert
+glendale_AZ,1,85301,NA,AZ,glendale
+goodyear_AZ,1,85338,NA,AZ,goodyear
+mesa_AZ,1,85211,NA,AZ,mesa
+peoria_AZ,1,85345,NA,AZ,peoria
+phoenix_AZ,1,85003,NA,AZ,phoenix
+scottsdale_AZ,1,85251,NA,AZ,scottsdale
+surprise_AZ,1,85374,NA,AZ,surprise
+tempe_AZ,1,85281,NA,AZ,tempe
+tucson_AZ,1,85701,NA,AZ,tucson
+sahuarita_AZ,1,85629,NA,AZ,sahuarita
+oro valley_AZ,1,85737,NA,AZ,oro valley
+mammoth_AZ,1,85618,NA,AZ,mammoth
+nogales_AZ,1,85621,NA,AZ,nogales
+yuma_AZ,1,85364,NA,AZ,yuma
+san luis_AZ,1,85349,NA,AZ,san luis
+berkeley_CA,1,94704,NA,CA,berkeley
+fremont_CA,1,94538,NA,CA,fremont
+hayward_CA,1,94544,NA,CA,hayward
+oakland_CA,1,94607,NA,CA,oakland
+union_CA,1,94587,NA,CA,union
+ione_CA,1,95640,NA,CA,ione
+paradise_CA,1,95969,NA,CA,paradise
+colusa_CA,1,95932,NA,CA,colusa
+antioch_CA,1,94509,NA,CA,antioch
+concord_CA,1,94520,NA,CA,concord
+hercules_CA,1,94547,NA,CA,hercules
+richmond_CA,1,94804,NA,CA,richmond
+kensington_CA,1,94707,NA,CA,kensington
+martinez_CA,1,94553,NA,CA,martinez
+moraga_CA,1,94556,NA,CA,moraga
+clovis_CA,1,93612,NA,CA,clovis
+fresno_CA,1,93721,NA,CA,fresno
+kingsburg_CA,1,93631,NA,CA,kingsburg
+orland_CA,1,95963,NA,CA,orland
+bakersfield_CA,1,93302,NA,CA,bakersfield
+shafter_CA,1,93263,NA,CA,shafter
+clearlake_CA,1,95422,NA,CA,clearlake
+baldwin park_CA,1,91706,NA,CA,baldwin park
+bell_CA,1,90201,NA,CA,bell
+bell gardens_CA,1,90201,NA,CA,bell gardens
+beverly hills_CA,1,90210,NA,CA,beverly hills
+burbank_CA,1,91510,NA,CA,burbank
+culver_CA,1,90232,NA,CA,culver
+downey_CA,1,90241,NA,CA,downey
+el monte_CA,1,91731,NA,CA,el monte
+glendale_CA,1,91206,NA,CA,glendale
+inglewood_CA,1,90301,NA,CA,inglewood
+long beach_CA,1,46360,NA,CA,long beach
+los angeles_CA,1,90012,NA,CA,los angeles
+manhattan beach_CA,1,90266,NA,CA,manhattan beach
+pasadena_CA,1,91101,NA,CA,pasadena
+pomona_CA,1,91766,NA,CA,pomona
+redondo beach_CA,1,90277,NA,CA,redondo beach
+santa monica_CA,1,90401,NA,CA,santa monica
+torrance_CA,1,90503,NA,CA,torrance
+west covina_CA,1,91793,NA,CA,west covina
+whittier_CA,1,90602,NA,CA,whittier
+belvedere_CA,1,94920,NA,CA,belvedere
+mill valley_CA,1,94941,NA,CA,mill valley
+novato_CA,1,94945,NA,CA,novato
+sausalito_CA,1,94965,NA,CA,sausalito
+livingston_CA,1,95334,NA,CA,livingston
+greenfield_CA,1,93927,NA,CA,greenfield
+pacific grove_CA,1,93950,NA,CA,pacific grove
+salinas_CA,1,93901,NA,CA,salinas
+marina_CA,1,93933,NA,CA,marina
+calistoga_CA,1,94515,NA,CA,calistoga
+anaheim_CA,1,92803,NA,CA,anaheim
+costa mesa_CA,1,92626,NA,CA,costa mesa
+fullerton_CA,1,92832,NA,CA,fullerton
+garden grove_CA,1,92840,NA,CA,garden grove
+huntington beach_CA,1,92648,NA,CA,huntington beach
+newport beach_CA,1,92658,NA,CA,newport beach
+orange_CA,1,92867,NA,CA,orange
+santa ana_CA,1,92701,NA,CA,santa ana
+seal beach_CA,1,90740,NA,CA,seal beach
+irvine_CA,1,92623,NA,CA,irvine
+rocklin_CA,1,95677,NA,CA,rocklin
+roseville_CA,1,95678,NA,CA,roseville
+riverside_CA,1,92501,NA,CA,riverside
+corona_CA,1,92882,NA,CA,corona
+murrieta_CA,1,92562,NA,CA,murrieta
+galt_CA,1,95632,NA,CA,galt
+sacramento_CA,1,95822,NA,CA,sacramento
+elk grove_CA,1,95758,NA,CA,elk grove
+hollister_CA,1,95023,NA,CA,hollister
+chino_CA,1,91710,NA,CA,chino
+fontana_CA,1,92335,NA,CA,fontana
+ontario_CA,1,91761,NA,CA,ontario
+rialto_CA,1,92376,NA,CA,rialto
+san bernardino_CA,1,92402,NA,CA,san bernardino
+upland_CA,1,91786,NA,CA,upland
+carlsbad_CA,1,92010,NA,CA,carlsbad
+chula vista_CA,1,91910,NA,CA,chula vista
+el cajon_CA,1,92020,NA,CA,el cajon
+escondido_CA,1,92026,NA,CA,escondido
+la mesa_CA,1,91942,NA,CA,la mesa
+oceanside_CA,1,92058,NA,CA,oceanside
+san diego_CA,1,92101,NA,CA,san diego
+san francisco_CA,1,94158,NA,CA,san francisco
+stockton_CA,1,95202,NA,CA,stockton
+arroyo grande_CA,1,93420,NA,CA,arroyo grande
+brisbane_CA,1,94005,NA,CA,brisbane
+daly_CA,1,94015,NA,CA,daly
+menlo park_CA,1,94025,NA,CA,menlo park
+san mateo_CA,1,94403,NA,CA,san mateo
+east palo alto_CA,1,94303,NA,CA,east palo alto
+santa barbara_CA,1,93102,NA,CA,santa barbara
+santa maria_CA,1,93455,NA,CA,santa maria
+milpitas_CA,1,95035,NA,CA,milpitas
+san jose_CA,1,95103,NA,CA,san jose
+santa clara_CA,1,95050,NA,CA,santa clara
+sunnyvale_CA,1,94088,NA,CA,sunnyvale
+santa cruz_CA,1,95060,NA,CA,santa cruz
+redding_CA,1,96001,NA,CA,redding
+fairfield_CA,1,94533,NA,CA,fairfield
+rio vista_CA,1,94571,NA,CA,rio vista
+vacaville_CA,1,95688,NA,CA,vacaville
+vallejo_CA,1,94590,NA,CA,vallejo
+cloverdale_CA,1,95425,NA,CA,cloverdale
+healdsburg_CA,1,95448,NA,CA,healdsburg
+santa rosa_CA,1,95404,NA,CA,santa rosa
+modesto_CA,1,95354,NA,CA,modesto
+porterville_CA,1,93257,NA,CA,porterville
+tulare_CA,1,93274,NA,CA,tulare
+visalia_CA,1,93291,NA,CA,visalia
+oxnard_CA,1,93030,NA,CA,oxnard
+santa paula_CA,1,93060,NA,CA,santa paula
+ventura_CA,0,93003,ventura,CA,ventura
+simi valley_CA,1,93063,NA,CA,simi valley
+yolo_CA,0,95605,yolo,CA,w sacramento
+aurora_CO,1,80012,NA,CO,aurora
+commerce_CO,1,80022,NA,CO,commerce
+thornton_CO,1,80229,NA,CO,thornton
+worcester_CO,0,80031,worcester,CO,westminster
+columbine valley_CO,1,80123,NA,CO,columbine valley
+boulder_CO,1,80301,NA,CO,boulder
+longmont_CO,1,80501,NA,CO,longmont
+antonito_CO,1,81120,NA,CO,antonito
+la jara_CO,1,81140,NA,CO,la jara
+colorado springs_CO,1,80903,NA,CO,colorado springs
+green mountain falls_CO,1,80819,NA,CO,green mountain falls
+florence_CO,1,81226,NA,CO,florence
+black hawk_CO,1,80422,NA,CO,black hawk
+gunnison_CO,1,81230,NA,CO,gunnison
+la veta_CO,1,81055,NA,CO,la veta
+arvada_CO,1,80002,NA,CO,arvada
+edgewater_CO,1,80214,NA,CO,edgewater
+lakewood_CO,1,80226,NA,CO,lakewood
+burlington_CO,1,80807,NA,CO,burlington
+estes park_CO,1,80517,NA,CO,estes park
+fort collins_CO,1,80522,NA,CO,fort collins
+loveland_CO,1,80537,NA,CO,loveland
+grand junction_CO,1,81501,NA,CO,grand junction
+fruita_CO,1,81521,NA,CO,fruita
+mancos_CO,1,81328,NA,CO,mancos
+brush_CO,1,80723,NA,CO,brush
+fort morgan_CO,1,80701,NA,CO,fort morgan
+la junta_CO,1,81050,NA,CO,la junta
+aspen_CO,1,81611,NA,CO,aspen
+snowmass village_CO,1,81615,NA,CO,snowmass village
+pueblo_CO,1,81003,NA,CO,pueblo
+meeker_CO,1,81641,NA,CO,meeker
+cripple creek_CO,1,80813,NA,CO,cripple creek
+greeley_CO,1,80634,NA,CO,greeley
+ault_CO,1,80610,NA,CO,ault
+lochbuie_CO,1,80603,NA,CO,lochbuie
+broomfield_CO,1,80020,NA,CO,broomfield
+denver_CO,1,80204,NA,CO,denver
+ansonia_CT,1,6401,NA,CT,ansonia
+bridgeport_CT,1,6604,NA,CT,bridgeport
+bristol_CT,1,6010,NA,CT,bristol
+cheshire village_CT,1,6410,NA,CT,cheshire village
+danbury_CT,1,6810,NA,CT,danbury
+east hartford_CT,1,6108,NA,CT,east hartford
+niantic_CT,1,6357,NA,CT,niantic
+hartford_CT,1,6088,NA,CT,hartford
+long hill (fairfield)_CT,1,6096,NA,CT,long hill (fairfield)
+hartford_CT,1,6085,NA,CT,hartford
+greenwich_CT,1,6830,NA,CT,greenwich
+new haven_CT,1,6518,NA,CT,new haven
+hartford_CT,1,6103,NA,CT,hartford
+madison center_CT,1,6443,NA,CT,madison center
+manchester_CT,1,6045,NA,CT,manchester
+meriden_CT,1,6451,NA,CT,meriden
+new haven_CT,1,6762,NA,CT,new haven
+middletown_CT,1,6457,NA,CT,middletown
+milford (balance)_CT,1,6460,NA,CT,milford (balance)
+uncasville_CT,1,6382,NA,CT,uncasville
+new britain_CT,1,6051,NA,CT,new britain
+new haven_CT,1,6519,NA,CT,new haven
+new milford_CT,1,6776,NA,CT,new milford
+north haven_CT,1,6473,NA,CT,north haven
+norwalk_CT,1,6854,NA,CT,norwalk
+old saybrook center_CT,1,6475,NA,CT,old saybrook center
+naugatuck borough_CT,1,6712,NA,CT,naugatuck borough
+ridgefield_CT,1,6877,NA,CT,ridgefield
+shelton_CT,1,6484,NA,CT,shelton
+stamford_CT,1,6901,NA,CT,stamford
+stratford downtown_CT,1,6615,NA,CT,stratford downtown
+thomaston_CT,1,6787,NA,CT,thomaston
+waterbury_CT,1,6702,NA,CT,waterbury
+watertown_CT,1,6795,NA,CT,watertown
+west hartford_CT,1,6107,NA,CT,west hartford
+west haven_CT,1,6516,NA,CT,west haven
+weston_CT,1,6883,NA,CT,weston
+westport village_CT,1,6880,NA,CT,westport village
+groton_CT,1,6340,NA,CT,groton
+district of columbia_NA,0,20001,district of columbia,NA,washington
+dover_DE,1,19904,NA,DE,dover
+new castle_DE,1,19720,NA,DE,new castle
+newark_DE,1,19711,NA,DE,newark
+wilmington_DE,1,19801,NA,DE,wilmington
+delaware_DE,1,19706,NA,DE,delaware
+bridgeville_DE,1,19933,NA,DE,bridgeville
+lewes_DE,1,19958,NA,DE,lewes
+bethany beach_DE,1,19930,NA,DE,bethany beach
+dewey beach_DE,1,19971,NA,DE,dewey beach
+gainesville_FL,1,32601,NA,FL,gainesville
+panama_FL,1,32401,NA,FL,panama
+lynn haven_FL,1,32444,NA,FL,lynn haven
+melbourne_FL,1,32935,NA,FL,melbourne
+rockledge_FL,1,32955,NA,FL,rockledge
+palm bay_FL,1,32907,NA,FL,palm bay
+fort lauderdale_FL,1,33312,NA,FL,fort lauderdale
+hollywood_FL,1,33021,NA,FL,hollywood
+plantation_FL,1,33317,NA,FL,plantation
+pembroke pines_FL,1,33024,NA,FL,pembroke pines
+coconut creek_FL,1,33063,NA,FL,coconut creek
+davie_FL,1,33324,NA,FL,davie
+lauderhill_FL,1,33313,NA,FL,lauderhill
+margate_FL,1,33063,NA,FL,margate
+broward_FL,0,33025,broward,FL,mirmar
+sunrise_FL,1,33351,NA,FL,sunrise
+coral springs_FL,1,33065,NA,FL,coral springs
+green cove springs_FL,1,32043,NA,FL,green cove springs
+doral_FL,1,33172,NA,FL,doral
+coral gables_FL,1,33134,NA,FL,coral gables
+florida_FL,1,33034,NA,FL,florida
+hialeah_FL,1,33013,NA,FL,hialeah
+homestead_FL,1,33030,NA,FL,homestead
+miami_FL,1,33128,NA,FL,miami
+miami beach_FL,1,33139,NA,FL,miami beach
+north miami beach_FL,1,33162,NA,FL,north miami beach
+doral_FL,1,33178,NA,FL,doral
+north miami_FL,1,33161,NA,FL,north miami
+surfside_FL,1,33154,NA,FL,surfside
+sweetwater_FL,1,33174,NA,FL,sweetwater
+miami gardens_FL,1,33056,NA,FL,miami gardens
+jacksonville_FL,1,32202,NA,FL,jacksonville
+neptune beach_FL,1,32266,NA,FL,neptune beach
+pensacola_FL,1,32501,NA,FL,pensacola
+apalachicola_FL,1,32320,NA,FL,apalachicola
+quincy_FL,1,32351,NA,FL,quincy
+port st. joe_FL,1,32457,NA,FL,port st. joe
+jasper_FL,1,32052,NA,FL,jasper
+tampa_FL,1,33602,NA,FL,tampa
+sneads_FL,1,32460,NA,FL,sneads
+eustis_FL,1,32727,NA,FL,eustis
+leesburg_FL,1,34748,NA,FL,leesburg
+fort myers_FL,1,33901,NA,FL,fort myers
+cape coral_FL,1,33990,NA,FL,cape coral
+tallahassee_FL,1,32303,NA,FL,tallahassee
+bradenton_FL,1,34205,NA,FL,bradenton
+ocala_FL,1,34471,NA,FL,ocala
+dunnellon_FL,1,34432,NA,FL,dunnellon
+apopka_FL,1,32703,NA,FL,apopka
+ocoee_FL,1,34761,NA,FL,ocoee
+orlando_FL,1,32805,NA,FL,orlando
+kissimmee_FL,1,34741,NA,FL,kissimmee
+boca raton_FL,1,33432,NA,FL,boca raton
+boynton beach_FL,1,33425,NA,FL,boynton beach
+delray beach_FL,1,33444,NA,FL,delray beach
+riviera beach_FL,1,33404,NA,FL,riviera beach
+west palm beach_FL,1,33401,NA,FL,west palm beach
+jupiter_FL,1,33458,NA,FL,jupiter
+lantana_FL,1,33462,NA,FL,lantana
+north palm beach_FL,1,33408,NA,FL,north palm beach
+palm beach gardens_FL,1,33410,NA,FL,palm beach gardens
+south palm beach_FL,1,33480,NA,FL,south palm beach
+zephyrhills_FL,1,33542,NA,FL,zephyrhills
+clearwater_FL,1,33756,NA,FL,clearwater
+largo_FL,1,33770,NA,FL,largo
+pinellas park_FL,1,33781,NA,FL,pinellas park
+st. petersburg_FL,1,33705,NA,FL,st. petersburg
+lakeland_FL,1,33801,NA,FL,lakeland
+fort pierce_FL,1,34950,NA,FL,fort pierce
+port st. lucie_FL,1,34984,NA,FL,port st. lucie
+sarasota_FL,1,34237,NA,FL,sarasota
+north port_FL,1,34286,NA,FL,north port
+sanford_FL,1,32771,NA,FL,sanford
+lake mary_FL,1,32746,NA,FL,lake mary
+daytona beach_FL,1,32114,NA,FL,daytona beach
+ormond beach_FL,1,32174,NA,FL,ormond beach
+lake helen_FL,1,32744,NA,FL,lake helen
+willacoochee_GA,1,31650,NA,GA,willacoochee
+alma_GA,1,31510,NA,GA,alma
+cartersville_GA,1,30120,NA,GA,cartersville
+kingston_GA,1,30145,NA,GA,kingston
+euharlee_GA,1,30145,NA,GA,euharlee
+enigma_GA,1,31749,NA,GA,enigma
+richmond hill_GA,1,31324,NA,GA,richmond hill
+waynesboro_GA,1,30830,NA,GA,waynesboro
+sardis_GA,1,30456,NA,GA,sardis
+carrollton_GA,1,30112,NA,GA,carrollton
+homeland_GA,1,31537,NA,GA,homeland
+winterville_GA,1,30683,NA,GA,winterville
+forest park_GA,1,30297,NA,GA,forest park
+marietta_GA,1,30060,NA,GA,marietta
+douglas_GA,1,31533,NA,GA,douglas
+pine lake_GA,1,30072,NA,GA,pine lake
+albany_GA,1,31701,NA,GA,albany
+elberton_GA,1,30635,NA,GA,elberton
+cave spring_GA,1,30124,NA,GA,cave spring
+east point_GA,1,30344,NA,GA,east point
+alpharetta_GA,1,30009,NA,GA,alpharetta
+roswell_GA,1,30075,NA,GA,roswell
+sandy springs_GA,1,30350,NA,GA,sandy springs
+east ellijay_GA,1,30539,NA,GA,east ellijay
+fairmount_GA,1,30139,NA,GA,fairmount
+whigham_GA,1,39897,NA,GA,whigham
+greensboro_GA,1,30642,NA,GA,greensboro
+union point_GA,1,30669,NA,GA,union point
+baldwin_GA,1,30511,NA,GA,baldwin
+gainesville_GA,1,30503,NA,GA,gainesville
+hartwell_GA,1,30643,NA,GA,hartwell
+warner robins_GA,1,31093,NA,GA,warner robins
+commerce_GA,1,30529,NA,GA,commerce
+maysville_GA,1,30558,NA,GA,maysville
+wadley_GA,1,30477,NA,GA,wadley
+valdosta_GA,1,31601,NA,GA,valdosta
+hahira_GA,1,31632,NA,GA,hahira
+ideal_GA,1,31041,NA,GA,ideal
+danielsville_GA,1,30633,NA,GA,danielsville
+buena vista_GA,1,31803,NA,GA,buena vista
+greenville_GA,1,30222,NA,GA,greenville
+chatsworth_GA,1,30705,NA,GA,chatsworth
+columbus_GA,1,31902,NA,GA,columbus
+fort valley_GA,1,31030,NA,GA,fort valley
+cedartown_GA,1,30125,NA,GA,cedartown
+mountain_GA,1,37683,NA,GA,mountain
+griffin_GA,1,30224,NA,GA,griffin
+lumpkin_GA,1,31815,NA,GA,lumpkin
+plains_GA,1,31780,NA,GA,plains
+glennville_GA,1,30427,NA,GA,glennville
+reynolds_GA,1,31076,NA,GA,reynolds
+meigs_GA,1,31765,NA,GA,meigs
+ashburn_GA,1,31714,NA,GA,ashburn
+sycamore_GA,1,31790,NA,GA,sycamore
+lookout mountain_GA,1,30750,NA,GA,lookout mountain
+tennille_GA,1,31089,NA,GA,tennille
+tunnel hill_GA,1,30755,NA,GA,tunnel hill
+atlanta_GA,1,30303,NA,GA,atlanta
+hilo_HI,1,96720,NA,HI,hilo
+honolulu_HI,0,96813,honolulu,HI,honolulu
+lihue_HI,1,96766,NA,HI,lihue
+wailuku_HI,1,96793,NA,HI,wailuku
+evansdale_IA,1,50707,NA,IA,evansdale
+waterloo_IA,1,50703,NA,IA,waterloo
+boone_IA,1,50036,NA,IA,boone
+independence_IA,1,50644,NA,IA,independence
+tipton_IA,1,52772,NA,IA,tipton
+cherokee_IA,1,51012,NA,IA,cherokee
+guttenberg_IA,1,52052,NA,IA,guttenberg
+west burlington_IA,1,52655,NA,IA,west burlington
+spirit lake_IA,1,51360,NA,IA,spirit lake
+dubuque_IA,1,52001,NA,IA,dubuque
+fayette_IA,1,52142,NA,IA,fayette
+hampton_IA,1,50441,NA,IA,hampton
+iowa falls_IA,1,50126,NA,IA,iowa falls
+missouri valley_IA,1,51555,NA,IA,missouri valley
+newton_IA,1,50208,NA,IA,newton
+cedar rapids_IA,1,52404,NA,IA,cedar rapids
+robins_IA,1,52328,NA,IA,robins
+chariton_IA,1,50049,NA,IA,chariton
+st. ansgar_IA,1,50472,NA,IA,st. ansgar
+onawa_IA,1,51040,NA,IA,onawa
+emmetsburg_IA,1,50536,NA,IA,emmetsburg
+le mars_IA,1,51031,NA,IA,le mars
+ankeny_IA,1,50023,NA,IA,ankeny
+clive_IA,1,50325,NA,IA,clive
+des moines_IA,1,50309,NA,IA,des moines
+council bluffs_IA,1,51501,NA,IA,council bluffs
+davenport_IA,1,52801,NA,IA,davenport
+blue grass_IA,1,52726,NA,IA,blue grass
+eldridge_IA,1,52748,NA,IA,eldridge
+walcott_IA,1,52773,NA,IA,walcott
+sioux center_IA,1,51250,NA,IA,sioux center
+nevada_IA,1,50201,NA,IA,nevada
+toledo_IA,1,52342,NA,IA,toledo
+ottumwa_IA,1,52501,NA,IA,ottumwa
+carlisle_IA,1,50047,NA,IA,carlisle
+washington_IA,1,52353,NA,IA,washington
+fort dodge_IA,1,50501,NA,IA,fort dodge
+sioux_IA,1,51101,NA,IA,sioux
+clarion_IA,1,50525,NA,IA,clarion
+boise_ID,1,83704,NA,ID,boise
+meridian_ID,1,83642,NA,ID,meridian
+ketchum_ID,1,83340,NA,ID,ketchum
+hailey_ID,1,83333,NA,ID,hailey
+nampa_ID,1,83651,NA,ID,nampa
+preston_ID,1,83263,NA,ID,preston
+rathdrum_ID,1,83858,NA,ID,rathdrum
+homedale_ID,1,83628,NA,ID,homedale
+twin falls_ID,1,83303,NA,ID,twin falls
+mount sterling_IL,1,62353,NA,IL,mount sterling
+princeton_IL,1,61356,NA,IL,princeton
+chadwick_IL,1,61014,NA,IL,chadwick
+milledgeville_IL,1,61051,NA,IL,milledgeville
+mount carroll_IL,1,61053,NA,IL,mount carroll
+ashland_IL,1,62612,NA,IL,ashland
+beardstown_IL,1,62618,NA,IL,beardstown
+champaign_IL,1,61820,NA,IL,champaign
+ludlow_IL,1,60949,NA,IL,ludlow
+martinsville_IL,1,62442,NA,IL,martinsville
+arlington heights_IL,1,60005,NA,IL,arlington heights
+bartlett_IL,1,60103,NA,IL,bartlett
+berwyn_IL,1,60402,NA,IL,berwyn
+bridgeview_IL,1,60455,NA,IL,bridgeview
+broadview_IL,1,60155,NA,IL,broadview
+sauk village_IL,1,60411,NA,IL,sauk village
+cicero_IL,1,60804,NA,IL,cicero
+crestwood_IL,1,60445,NA,IL,crestwood
+schaumburg_IL,1,60194,NA,IL,schaumburg
+evanston_IL,1,60201,NA,IL,evanston
+forest park_IL,1,60130,NA,IL,forest park
+summit_IL,1,60501,NA,IL,summit
+harvey_IL,1,60426,NA,IL,harvey
+skokie_IL,1,60077,NA,IL,skokie
+thornton_IL,1,60476,NA,IL,thornton
+indian head park_IL,1,60525,NA,IL,indian head park
+lansing_IL,1,60438,NA,IL,lansing
+northfield_IL,1,60093,NA,IL,northfield
+north riverside_IL,1,60546,NA,IL,north riverside
+oak forest_IL,1,60452,NA,IL,oak forest
+south holland_IL,1,60473,NA,IL,south holland
+oak lawn_IL,1,60453,NA,IL,oak lawn
+oak park_IL,1,60302,NA,IL,oak park
+orland park_IL,1,60462,NA,IL,orland park
+palatine_IL,1,60067,NA,IL,palatine
+palos hills_IL,1,60465,NA,IL,palos hills
+park forest_IL,1,60466,NA,IL,park forest
+river grove_IL,1,60171,NA,IL,river grove
+robbins_IL,1,60472,NA,IL,robbins
+wheeling_IL,1,60090,NA,IL,wheeling
+palestine_IL,1,62451,NA,IL,palestine
+robinson_IL,1,62454,NA,IL,robinson
+malta_IL,1,60150,NA,IL,malta
+kingston_IL,1,60145,NA,IL,kingston
+clinton_IL,1,61727,NA,IL,clinton
+bloomingdale_IL,1,60108,NA,IL,bloomingdale
+downers grove_IL,1,60515,NA,IL,downers grove
+glendale heights_IL,1,60139,NA,IL,glendale heights
+hinsdale_IL,1,60521,NA,IL,hinsdale
+lombard_IL,1,60148,NA,IL,lombard
+naperville_IL,1,60540,NA,IL,naperville
+roselle_IL,1,60172,NA,IL,roselle
+effingham_IL,1,62401,NA,IL,effingham
+vandalia_IL,1,62471,NA,IL,vandalia
+royalton_IL,1,62983,NA,IL,royalton
+shawneetown_IL,1,62984,NA,IL,shawneetown
+hamilton_IL,0,62859,hamilton,IL,mc leansboro
+woodhull_IL,1,61490,NA,IL,woodhull
+mount vernon_IL,1,62864,NA,IL,mount vernon
+elizabeth_IL,1,61028,NA,IL,elizabeth
+goreville_IL,1,62939,NA,IL,goreville
+aurora_IL,1,60505,NA,IL,aurora
+east dundee_IL,1,60118,NA,IL,east dundee
+elgin_IL,1,60120,NA,IL,elgin
+hampshire_IL,1,60140,NA,IL,hampshire
+gilberts_IL,1,60136,NA,IL,gilberts
+bourbonnais_IL,1,60914,NA,IL,bourbonnais
+herscher_IL,1,60941,NA,IL,herscher
+east galesburg_IL,1,61430,NA,IL,east galesburg
+gurnee_IL,1,60031,NA,IL,gurnee
+highland park_IL,1,60035,NA,IL,highland park
+lake forest_IL,1,60045,NA,IL,lake forest
+libertyville_IL,1,60048,NA,IL,libertyville
+north chicago_IL,1,60064,NA,IL,north chicago
+lake_IL,0,60073,lake,IL,round lake pk
+waukegan_IL,1,60085,NA,IL,waukegan
+lincolnshire_IL,1,60069,NA,IL,lincolnshire
+kildeer_IL,1,60047,NA,IL,kildeer
+cook_IL,0,61301,cook,IL,la salle
+marseilles_IL,1,61341,NA,IL,marseilles
+mendota_IL,1,61342,NA,IL,mendota
+tonica_IL,1,61370,NA,IL,tonica
+lawrenceville_IL,1,62439,NA,IL,lawrenceville
+amboy_IL,1,61310,NA,IL,amboy
+pontiac_IL,1,61764,NA,IL,pontiac
+logan_IL,0,62548,logan,IL,mt pulaski
+macomb_IL,1,61455,NA,IL,macomb
+algonquin_IL,1,60102,NA,IL,algonquin
+fox river grove_IL,1,60021,NA,IL,fox river grove
+lake in the hills_IL,1,60156,NA,IL,lake in the hills
+mchenry_IL,1,60050,NA,IL,mchenry
+mchenry_IL,1,60050,NA,IL,mchenry
+richmond_IL,1,60071,NA,IL,richmond
+prairie grove_IL,1,60050,NA,IL,prairie grove
+bloomington_IL,1,61701,NA,IL,bloomington
+heyworth_IL,1,61745,NA,IL,heyworth
+le roy_IL,1,61752,NA,IL,le roy
+lexington_IL,1,61753,NA,IL,lexington
+decatur_IL,1,62523,NA,IL,decatur
+mount zion_IL,1,62549,NA,IL,mount zion
+bunker hill_IL,1,62014,NA,IL,bunker hill
+staunton_IL,1,62088,NA,IL,staunton
+bethalto_IL,1,62010,NA,IL,bethalto
+edwardsville_IL,1,66111,NA,IL,edwardsville
+highland_IL,1,62249,NA,IL,highland
+maryville_IL,1,62062,NA,IL,maryville
+south roxana_IL,1,62087,NA,IL,south roxana
+worden_IL,1,62097,NA,IL,worden
+havana_IL,1,62644,NA,IL,havana
+meredosia_IL,1,62665,NA,IL,meredosia
+sullivan_IL,1,61951,NA,IL,sullivan
+peoria_IL,1,61602,NA,IL,peoria
+pinckneyville_IL,1,62274,NA,IL,pinckneyville
+chester_IL,1,62233,NA,IL,chester
+sparta_IL,1,62286,NA,IL,sparta
+coulterville_IL,1,62237,NA,IL,coulterville
+east moline_IL,1,61244,NA,IL,east moline
+silvis_IL,1,61282,NA,IL,silvis
+caseyville_IL,1,62232,NA,IL,caseyville
+freeburg_IL,1,62243,NA,IL,freeburg
+lenzburg_IL,1,62255,NA,IL,lenzburg
+springfield_IL,1,62701,NA,IL,springfield
+rockingham_IL,0,62615,rockingham,IL,auburn
+chatham_IL,1,62629,NA,IL,chatham
+riverton_IL,1,62561,NA,IL,riverton
+williamsville_IL,1,62693,NA,IL,williamsville
+rochester_IL,1,62563,NA,IL,rochester
+pleasant plains_IL,1,62677,NA,IL,pleasant plains
+findlay_IL,1,62534,NA,IL,findlay
+pekin_IL,1,61554,NA,IL,pekin
+catlin_IL,1,61817,NA,IL,catlin
+rossville_IL,1,60963,NA,IL,rossville
+fairfield_IL,1,62837,NA,IL,fairfield
+carmi_IL,1,62821,NA,IL,carmi
+morrison_IL,1,61270,NA,IL,morrison
+bolingbrook_IL,1,60440,NA,IL,bolingbrook
+frankfort_IL,1,60423,NA,IL,frankfort
+joliet_IL,1,60432,NA,IL,joliet
+romeoville_IL,1,60446,NA,IL,romeoville
+wilmington_IL,1,60481,NA,IL,wilmington
+manhattan_IL,1,60442,NA,IL,manhattan
+rockford_IL,1,61101,NA,IL,rockford
+washburn_IL,1,61570,NA,IL,washburn
+chicago_IL,1,60653,NA,IL,chicago
+berne_IN,1,46711,NA,IN,berne
+fort wayne_IN,1,46802,NA,IN,fort wayne
+greendale_IN,1,47240,NA,IN,greendale
+muncie_IN,1,47305,NA,IN,muncie
+elkhart_IN,1,46516,NA,IN,elkhart
+goshen_IN,1,46528,NA,IN,goshen
+connersville_IN,1,47331,NA,IN,connersville
+new albany_IN,1,47150,NA,IN,new albany
+rochester_IN,1,46975,NA,IN,rochester
+oakland_IN,1,47660,NA,IN,oakland
+fairmount_IN,1,46928,NA,IN,fairmount
+carmel_IN,1,46032,NA,IN,carmel
+fishers_IN,1,46038,NA,IN,fishers
+brownsburg_IN,1,46112,NA,IN,brownsburg
+avon_IN,1,46123,NA,IN,avon
+new castle_IN,1,47362,NA,IN,new castle
+middletown_IN,1,47356,NA,IN,middletown
+seymour_IN,1,47274,NA,IN,seymour
+portland_IN,1,47371,NA,IN,portland
+new whiteland_IN,1,46184,NA,IN,new whiteland
+vincennes_IN,1,47591,NA,IN,vincennes
+gary_IN,1,46402,NA,IN,gary
+hammond_IN,1,46320,NA,IN,hammond
+laporte_IN,0,46350,laporte,IN,laporte
+long beach_IN,1,46360,NA,IN,long beach
+kingsford heights_IN,1,46346,NA,IN,kingsford heights
+westville_IN,1,46391,NA,IN,westville
+alexandria_IN,1,46001,NA,IN,alexandria
+anderson_IN,1,46016,NA,IN,anderson
+loogootee_IN,1,47553,NA,IN,loogootee
+bloomington_IN,1,47401,NA,IN,bloomington
+crawfordsville_IN,1,47933,NA,IN,crawfordsville
+martinsville_IN,1,46151,NA,IN,martinsville
+tell_IN,1,47586,NA,IN,tell
+kouts_IN,1,46347,NA,IN,kouts
+mishawaka_IN,1,46544,NA,IN,mishawaka
+south bend_IN,1,46601,NA,IN,south bend
+angola_IN,1,46703,NA,IN,angola
+lafayette_IN,1,47901,NA,IN,lafayette
+tipton_IN,1,46072,NA,IN,tipton
+evansville_IN,1,47708,NA,IN,evansville
+clinton_IN,1,47842,NA,IN,clinton
+terre haute_IN,1,47807,NA,IN,terre haute
+west terre haute_IN,1,47885,NA,IN,west terre haute
+marion_IN,0,46204,marion,IN,indianapolis
+iola_KS,1,66749,NA,KS,iola
+moran_KS,1,66755,NA,KS,moran
+medicine lodge_KS,1,67104,NA,KS,medicine lodge
+hoisington_KS,1,67544,NA,KS,hoisington
+claflin_KS,1,67525,NA,KS,claflin
+rose hill_KS,1,67133,NA,KS,rose hill
+baxter springs_KS,1,66713,NA,KS,baxter springs
+clay center_KS,1,67432,NA,KS,clay center
+udall_KS,1,67146,NA,KS,udall
+cherokee_KS,1,66724,NA,KS,cherokee
+chapman_KS,1,67431,NA,KS,chapman
+elwood_KS,1,66024,NA,KS,elwood
+lawrence_KS,1,66049,NA,KS,lawrence
+holcomb_KS,1,67851,NA,KS,holcomb
+dodge_KS,1,67801,NA,KS,dodge
+newton_KS,1,67114,NA,KS,newton
+olathe_KS,1,66051,NA,KS,olathe
+overland park_KS,1,66213,NA,KS,overland park
+roeland park_KS,1,66205,NA,KS,roeland park
+lansing_KS,1,66043,NA,KS,lansing
+mcpherson_KS,1,67460,NA,KS,mcpherson
+galva_KS,1,67443,NA,KS,galva
+canton_KS,1,67428,NA,KS,canton
+coffeyville_KS,1,67337,NA,KS,coffeyville
+seneca_KS,1,66538,NA,KS,seneca
+erie_KS,1,66733,NA,KS,erie
+norton_KS,1,67654,NA,KS,norton
+onaga_KS,1,66521,NA,KS,onaga
+haven_KS,1,67543,NA,KS,haven
+scott_KS,1,67871,NA,KS,scott
+wichita_KS,1,67202,NA,KS,wichita
+valley center_KS,1,67147,NA,KS,valley center
+clearwater_KS,1,67026,NA,KS,clearwater
+andale_KS,1,67001,NA,KS,andale
+liberal_KS,1,67905,NA,KS,liberal
+topeka_KS,1,66603,NA,KS,topeka
+rossville_KS,1,66533,NA,KS,rossville
+silver lake_KS,1,66539,NA,KS,silver lake
+goodland_KS,1,67735,NA,KS,goodland
+st. john_KS,1,67576,NA,KS,st. john
+wellington_KS,1,67152,NA,KS,wellington
+belle plaine_KS,1,67013,NA,KS,belle plaine
+argonia_KS,1,67004,NA,KS,argonia
+colby_KS,1,67701,NA,KS,colby
+fredonia_KS,1,66736,NA,KS,fredonia
+kansas_KS,1,66101,NA,KS,kansas
+edwardsville_KS,1,66111,NA,KS,edwardsville
+columbia_KY,1,42728,NA,KY,columbia
+bardwell_KY,1,42023,NA,KY,bardwell
+grayson_KY,1,41143,NA,KY,grayson
+brownsville_KY,1,42210,NA,KY,brownsville
+fayette_KY,0,40507,fayette,KY,lexington
+wayland_KY,1,41666,NA,KY,wayland
+fulton_KY,1,42041,NA,KY,fulton
+hickman_KY,1,42050,NA,KY,hickman
+warsaw_KY,1,41095,NA,KY,warsaw
+clarkson_KY,1,42726,NA,KY,clarkson
+south shore_KY,1,41175,NA,KY,south shore
+worthington_KY,1,41183,NA,KY,worthington
+ashland_KY,1,41101,NA,KY,ashland
+elizabethtown_KY,1,42701,NA,KY,elizabethtown
+evarts_KY,1,40828,NA,KY,evarts
+jefferson_KY,0,40202,jefferson,KY,louisville
+paintsville_KY,1,41240,NA,KY,paintsville
+covington_KY,1,41014,NA,KY,covington
+taylor mill_KY,1,41015,NA,KY,taylor mill
+pippa passes_KY,1,41844,NA,KY,pippa passes
+beattyville_KY,1,41311,NA,KY,beattyville
+whitesburg_KY,1,41858,NA,KY,whitesburg
+greenville_KY,1,42345,NA,KY,greenville
+beaver dam_KY,1,42320,NA,KY,beaver dam
+somerset_KY,1,42501,NA,KY,somerset
+morehead_KY,1,40351,NA,KY,morehead
+georgetown_KY,1,40324,NA,KY,georgetown
+morganfield_KY,1,42437,NA,KY,morganfield
+bowling green_KY,1,42101,NA,KY,bowling green
+williamsburg_KY,1,40769,NA,KY,williamsburg
+crowley_LA,1,70527,NA,LA,crowley
+church point_LA,1,70525,NA,LA,church point
+oberlin_LA,1,70655,NA,LA,oberlin
+moreauville_LA,1,71355,NA,LA,moreauville
+deridder_LA,1,70634,NA,LA,deridder
+bossier_LA,1,71111,NA,LA,bossier
+shreveport_LA,1,71101,NA,LA,shreveport
+greenwood_LA,1,71033,NA,LA,greenwood
+lake charles_LA,1,70602,NA,LA,lake charles
+clayton_LA,1,71326,NA,LA,clayton
+baton rouge_LA,1,70815,NA,LA,baton rouge
+jeanerette_LA,1,70544,NA,LA,jeanerette
+maringouin_LA,1,70757,NA,LA,maringouin
+gretna_LA,1,70053,NA,LA,gretna
+kenner_LA,1,70062,NA,LA,kenner
+carencro_LA,1,70520,NA,LA,carencro
+lafayette_LA,1,70502,NA,LA,lafayette
+scott_LA,1,70583,NA,LA,scott
+dubach_LA,1,71235,NA,LA,dubach
+grambling_LA,1,71245,NA,LA,grambling
+walker_LA,1,70785,NA,LA,walker
+french settlement_LA,1,70733,NA,LA,french settlement
+monroe_LA,1,71210,NA,LA,monroe
+alexandria_LA,1,71301,NA,LA,alexandria
+glenmora_LA,1,71433,NA,LA,glenmora
+lutcher_LA,1,70071,NA,LA,lutcher
+eunice_LA,1,70535,NA,LA,eunice
+opelousas_LA,1,70571,NA,LA,opelousas
+arnaudville_LA,1,70512,NA,LA,arnaudville
+palmetto_LA,1,71358,NA,LA,palmetto
+st. martinville_LA,1,70582,NA,LA,st. martinville
+baldwin_LA,1,70514,NA,LA,baldwin
+mandeville_LA,1,70448,NA,LA,mandeville
+hammond_LA,1,70404,NA,LA,hammond
+newellton_LA,1,71357,NA,LA,newellton
+houma_LA,1,70360,NA,LA,houma
+erath_LA,1,70533,NA,LA,erath
+franklinton_LA,1,70438,NA,LA,franklinton
+minden_LA,1,71058,NA,LA,minden
+new orleans_LA,1,70119,NA,LA,new orleans
+barnstable_MA,0,2601,barnstable,MA,hyannis
+orleans_MA,1,2653,NA,MA,orleans
+provincetown_MA,1,2657,NA,MA,provincetown
+williamstown_MA,1,1267,NA,MA,williamstown
+bristol_MA,0,2715,bristol,MA,dighton
+fall river_MA,1,2721,NA,MA,fall river
+new bedford_MA,1,2740,NA,MA,new bedford
+bristol_MA,0,2771,bristol,MA,seekonk
+taunton_MA,1,2780,NA,MA,taunton
+dukes_MA,0,2575,dukes,MA,west tisbury
+boxford_MA,1,1921,NA,MA,boxford
+essex_MA,0,1834,essex,MA,groveland
+lawrence_MA,1,1840,NA,MA,lawrence
+lynn_MA,1,1902,NA,MA,lynn
+essex_MA,0,1844,essex,MA,methuen
+peabody_MA,1,1960,NA,MA,peabody
+rockport_MA,1,1966,NA,MA,rockport
+salem_MA,1,1970,NA,MA,salem
+saugus_MA,1,1906,NA,MA,saugus
+franklin_MA,0,1330,franklin,MA,ashfield
+shelburne falls_MA,1,1370,NA,MA,shelburne falls
+charlemont_MA,1,1339,NA,MA,charlemont
+south deerfield_MA,1,1373,NA,MA,south deerfield
+chicopee_MA,1,1020,NA,MA,chicopee
+holyoke_MA,1,1040,NA,MA,holyoke
+springfield_MA,1,1105,NA,MA,springfield
+hampden_MA,0,1089,hampden,MA,west springfield
+westfield_MA,1,1085,NA,MA,westfield
+hampshire_MA,0,1073,hampshire,MA,southampton
+ayer_MA,1,1432,NA,MA,ayer
+cambridge_MA,1,2142,NA,MA,cambridge
+everett_MA,1,2149,NA,MA,everett
+framingham_MA,1,1702,NA,MA,framingham
+middlesex_MA,0,1460,middlesex,MA,littleton
+lowell_MA,1,1852,NA,MA,lowell
+malden_MA,1,2148,NA,MA,malden
+marlborough_MA,1,1752,NA,MA,marlborough
+medford_MA,1,2155,NA,MA,medford
+newton_MA,1,2465,NA,MA,newton
+sherborn_MA,1,1770,NA,MA,sherborn
+somerville_MA,1,2143,NA,MA,somerville
+middlesex_MA,0,1879,middlesex,MA,tyngsboro
+waltham_MA,1,2452,NA,MA,waltham
+wayland_MA,1,1778,NA,MA,wayland
+holbrook_MA,1,2322,NA,MA,holbrook
+brookline_MA,1,2445,NA,MA,brookline
+norfolk_MA,0,2021,norfolk,MA,canton
+norfolk_MA,0,2035,norfolk,MA,foxboro
+franklin town_MA,1,2038,NA,MA,franklin town
+norwood_MA,1,2062,NA,MA,norwood
+quincy_MA,1,2169,NA,MA,quincy
+westwood_MA,1,2090,NA,MA,westwood
+brockton_MA,1,2301,NA,MA,brockton
+plymouth_MA,0,2330,plymouth,MA,carver
+hingham_MA,1,2043,NA,MA,hingham
+plymouth_MA,1,2360,NA,MA,plymouth
+scituate_MA,1,2066,NA,MA,scituate
+boston_MA,1,2120,NA,MA,boston
+chelsea_MA,1,2150,NA,MA,chelsea
+revere_MA,1,2151,NA,MA,revere
+winthrop town_MA,1,2152,NA,MA,winthrop town
+worcester_MA,0,1504,worcester,MA,blackstone
+worcester_MA,0,1031,worcester,MA,hardwick
+cambridge_MA,1,1451,NA,MA,cambridge
+worcester_MA,0,1520,worcester,MA,holden
+north brookfield_MA,1,1535,NA,MA,north brookfield
+worcester_MA,0,1550,worcester,MA,southbridge
+worcester_MA,0,1473,worcester,MA,westminster
+worcester_MA,1,1608,NA,MA,worcester
+annapolis_MD,1,21401,NA,MD,annapolis
+denton_MD,1,21629,NA,MD,denton
+ridgely_MD,1,21660,NA,MD,ridgely
+taneytown_MD,1,21787,NA,MD,taneytown
+brunswick_MD,1,21716,NA,MD,brunswick
+frederick_MD,1,21701,NA,MD,frederick
+cottage_MD,1,20722,NA,MD,cottage
+district heights_MD,1,20747,NA,MD,district heights
+landover hills_MD,1,20784,NA,MD,landover hills
+oxford_MD,1,21654,NA,MD,oxford
+talbot_MD,0,21663,talbot,MD,st michaels
+salisbury_MD,1,21801,NA,MD,salisbury
+ocean_MD,1,21842,NA,MD,ocean
+baltimore_MD,1,21202,NA,MD,baltimore
+van buren_ME,1,4785,NA,ME,van buren
+portland_ME,1,4101,NA,ME,portland
+wilton_ME,1,4294,NA,ME,wilton
+bucksport_ME,1,4416,NA,ME,bucksport
+southwest harbor_ME,1,4679,NA,ME,southwest harbor
+augusta_ME,1,4330,NA,ME,augusta
+gardiner_ME,1,4345,NA,ME,gardiner
+hallowell_ME,1,4347,NA,ME,hallowell
+winthrop_ME,1,4364,NA,ME,winthrop
+clinton_ME,1,4927,NA,ME,clinton
+rockland_ME,1,4841,NA,ME,rockland
+boothbay harbor_ME,1,4538,NA,ME,boothbay harbor
+waldoboro_ME,1,4572,NA,ME,waldoboro
+mexico_ME,1,4257,NA,ME,mexico
+hampden_ME,1,4444,NA,ME,hampden
+millinocket_ME,1,4462,NA,ME,millinocket
+worcester_ME,0,4429,worcester,ME,holden
+pittsfield_ME,1,4967,NA,ME,pittsfield
+calais_ME,1,4619,NA,ME,calais
+eastport_ME,1,4631,NA,ME,eastport
+washington_ME,0,4694,washington,ME,baileyville
+kittery_ME,1,3904,NA,ME,kittery
+berwick_ME,1,3901,NA,ME,berwick
+north berwick_ME,1,3906,NA,ME,north berwick
+ogunquit_ME,1,3907,NA,ME,ogunquit
+york_ME,0,4093,york,ME,buxton
+otsego_MI,1,49078,NA,MI,otsego
+central lake_MI,1,49622,NA,MI,central lake
+delton_MI,1,49046,NA,MI,delton
+hastings_MI,1,49058,NA,MI,hastings
+essexville_MI,1,48732,NA,MI,essexville
+frankfort_MI,1,49635,NA,MI,frankfort
+bridgman_MI,1,49106,NA,MI,bridgman
+benton harbor_MI,1,49022,NA,MI,benton harbor
+st. joseph_MI,1,49085,NA,MI,st. joseph
+three oaks_MI,1,49128,NA,MI,three oaks
+bronson_MI,1,49028,NA,MI,bronson
+battle creek_MI,1,49014,NA,MI,battle creek
+dewitt_MI,1,48820,NA,MI,dewitt
+grayling_MI,1,49738,NA,MI,grayling
+eaton rapids_MI,1,48827,NA,MI,eaton rapids
+potterville_MI,1,48876,NA,MI,potterville
+flint_MI,1,48502,NA,MI,flint
+mount morris_MI,1,48458,NA,MI,mount morris
+burton_MI,1,48519,NA,MI,burton
+flint_MI,1,48507,NA,MI,flint
+montrose_MI,1,48457,NA,MI,montrose
+breckenridge_MI,1,48615,NA,MI,breckenridge
+laurium_MI,1,49913,NA,MI,laurium
+bay port_MI,1,48720,NA,MI,bay port
+pigeon_MI,1,48755,NA,MI,pigeon
+sebewaing_MI,1,48759,NA,MI,sebewaing
+lansing_MI,1,48933,NA,MI,lansing
+mason_MI,1,48854,NA,MI,mason
+lansing_MI,1,48917,NA,MI,lansing
+jackson_MI,1,49201,NA,MI,jackson
+kalamazoo_MI,1,49001,NA,MI,kalamazoo
+grand rapids_MI,1,49506,NA,MI,grand rapids
+grand rapids_MI,1,49503,NA,MI,grand rapids
+sparta_MI,1,49345,NA,MI,sparta
+wyoming_MI,1,49509,NA,MI,wyoming
+metamora_MI,1,48455,NA,MI,metamora
+adrian_MI,1,49221,NA,MI,adrian
+clinton_MI,1,49236,NA,MI,clinton
+tecumseh_MI,1,49286,NA,MI,tecumseh
+adrian_MI,1,49221,NA,MI,adrian
+brighton_MI,1,35020,NA,MI,brighton
+mackinac island_MI,1,49757,NA,MI,mackinac island
+center line_MI,1,48015,NA,MI,center line
+fraser_MI,1,48026,NA,MI,fraser
+roseville_MI,1,48066,NA,MI,roseville
+sterling heights_MI,1,48313,NA,MI,sterling heights
+warren_MI,1,48093,NA,MI,warren
+ishpeming_MI,1,49849,NA,MI,ishpeming
+ishpeming_MI,1,49849,NA,MI,ishpeming
+ludington_MI,1,49431,NA,MI,ludington
+midland_MI,1,48640,NA,MI,midland
+monroe_MI,1,48161,NA,MI,monroe
+south rockwood_MI,1,48173,NA,MI,south rockwood
+berkley_MI,1,48072,NA,MI,berkley
+birmingham_MI,1,48009,NA,MI,birmingham
+bloomfield hills_MI,1,48302,NA,MI,bloomfield hills
+farmington_MI,1,48335,NA,MI,farmington
+farmington hills_MI,1,48336,NA,MI,farmington hills
+lake angelus_MI,1,48326,NA,MI,lake angelus
+oxford_MI,1,48371,NA,MI,oxford
+pleasant ridge_MI,1,48069,NA,MI,pleasant ridge
+southfield_MI,1,48076,NA,MI,southfield
+troy_MI,1,48084,NA,MI,troy
+reed_MI,1,49677,NA,MI,reed
+gaylord_MI,1,49735,NA,MI,gaylord
+zeeland_MI,1,49464,NA,MI,zeeland
+st. helen_MI,1,48656,NA,MI,st. helen
+saginaw_MI,1,48603,NA,MI,saginaw
+saginaw_MI,1,48609,NA,MI,saginaw
+constantine_MI,1,49042,NA,MI,constantine
+sturgis_MI,1,49091,NA,MI,sturgis
+white pigeon_MI,1,49099,NA,MI,white pigeon
+croswell_MI,1,48422,NA,MI,croswell
+lexington_MI,1,48450,NA,MI,lexington
+laingsburg_MI,1,48848,NA,MI,laingsburg
+morrice_MI,1,48857,NA,MI,morrice
+perry_MI,1,48872,NA,MI,perry
+vernon_MI,1,48476,NA,MI,vernon
+kingston_MI,1,48741,NA,MI,kingston
+bangor_MI,1,49013,NA,MI,bangor
+lawton_MI,1,49065,NA,MI,lawton
+paw paw_MI,1,49079,NA,MI,paw paw
+ann arbor_MI,1,48104,NA,MI,ann arbor
+milan_MI,1,48160,NA,MI,milan
+saline_MI,1,48176,NA,MI,saline
+ann arbor_MI,1,48108,NA,MI,ann arbor
+dearborn_MI,1,48126,NA,MI,dearborn
+detroit_MI,1,48226,NA,MI,detroit
+flat rock_MI,1,48134,NA,MI,flat rock
+grosse pointe farms_MI,1,48236,NA,MI,grosse pointe farms
+inkster_MI,1,48141,NA,MI,inkster
+livonia_MI,1,48154,NA,MI,livonia
+river rouge_MI,1,48218,NA,MI,river rouge
+riverview_MI,1,48193,NA,MI,riverview
+rockwood_MI,1,48173,NA,MI,rockwood
+taylor_MI,1,48180,NA,MI,taylor
+trenton_MI,1,48183,NA,MI,trenton
+wayne_MI,0,48164,wayne,MI,new boston
+northville_MI,1,48168,NA,MI,northville
+wayne_MI,0,48183,wayne,MI,brownstown twp
+lino lakes_MN,1,55014,NA,MN,lino lakes
+detroit lakes_MN,1,56501,NA,MN,detroit lakes
+blackduck_MN,1,56630,NA,MN,blackduck
+sauk rapids_MN,1,56379,NA,MN,sauk rapids
+sleepy eye_MN,1,56085,NA,MN,sleepy eye
+lakeville_MN,1,55044,NA,MN,lakeville
+wells_MN,1,56097,NA,MN,wells
+albert lea_MN,1,56007,NA,MN,albert lea
+kenyon_MN,1,55946,NA,MN,kenyon
+bloomington_MN,1,55431,NA,MN,bloomington
+brooklyn park_MN,1,55443,NA,MN,brooklyn park
+minneapolis_MN,1,55422,NA,MN,minneapolis
+minneapolis_MN,1,55415,NA,MN,minneapolis
+minnetonka_MN,1,55345,NA,MN,minnetonka
+plymouth_MN,1,55447,NA,MN,plymouth
+richfield_MN,1,55423,NA,MN,richfield
+st louis park_MN,1,55416,NA,MN,st louis park
+corcoran_MN,1,55340,NA,MN,corcoran
+park rapids_MN,1,56470,NA,MN,park rapids
+cambridge_MN,1,55008,NA,MN,cambridge
+lakefield_MN,1,56150,NA,MN,lakefield
+international falls_MN,1,56649,NA,MN,international falls
+montgomery_MN,1,56069,NA,MN,montgomery
+marshall_MN,1,56258,NA,MN,marshall
+tracy_MN,1,56175,NA,MN,tracy
+rochester_MN,1,55904,NA,MN,rochester
+glenwood_MN,1,56334,NA,MN,glenwood
+st. paul_MN,1,55101,NA,MN,st. paul
+redwood falls_MN,1,56283,NA,MN,redwood falls
+northfield_MN,1,60093,NA,MN,northfield
+dundas_MN,1,55019,NA,MN,dundas
+roseau_MN,1,56751,NA,MN,roseau
+warroad_MN,1,56763,NA,MN,warroad
+babbitt_MN,1,55706,NA,MN,babbitt
+duluth_MN,1,55811,NA,MN,duluth
+gilbert_MN,1,55741,NA,MN,gilbert
+shakopee_MN,1,55379,NA,MN,shakopee
+st. cloud_MN,1,56303,NA,MN,st. cloud
+waite park_MN,1,56387,NA,MN,waite park
+sartell_MN,1,56377,NA,MN,sartell
+morris_MN,1,56267,NA,MN,morris
+appleton_MN,1,56208,NA,MN,appleton
+wheaton_MN,1,56296,NA,MN,wheaton
+kirksville_MO,1,63501,NA,MO,kirksville
+savannah_MO,1,64485,NA,MO,savannah
+adrian_MO,1,64720,NA,MO,adrian
+centralia_MO,1,65240,NA,MO,centralia
+columbia_MO,1,65201,NA,MO,columbia
+st. joseph_MO,1,64501,NA,MO,st. joseph
+auxvasse_MO,1,65231,NA,MO,auxvasse
+osage beach_MO,1,65065,NA,MO,osage beach
+belton_MO,1,64012,NA,MO,belton
+boonville_MO,1,65233,NA,MO,boonville
+pilot grove_MO,1,65276,NA,MO,pilot grove
+greenfield_MO,1,65661,NA,MO,greenfield
+buffalo_MO,1,65622,NA,MO,buffalo
+hornersville_MO,1,63855,NA,MO,hornersville
+springfield_MO,1,65802,NA,MO,springfield
+west plains_MO,1,65775,NA,MO,west plains
+blue springs_MO,1,64015,NA,MO,blue springs
+independence_MO,1,64050,NA,MO,independence
+jackson_MO,0,64086,jackson,MO,lees summit
+raytown_MO,1,64133,NA,MO,raytown
+lake tapawingo_MO,1,64015,NA,MO,lake tapawingo
+joplin_MO,1,64801,NA,MO,joplin
+arnold_MO,1,63010,NA,MO,arnold
+herculaneum_MO,1,63048,NA,MO,herculaneum
+edina_MO,1,63537,NA,MO,edina
+lebanon_MO,1,65536,NA,MO,lebanon
+aurora_MO,1,65605,NA,MO,aurora
+canton_MO,1,63435,NA,MO,canton
+moscow mills_MO,1,63362,NA,MO,moscow mills
+anderson_MO,1,64831,NA,MO,anderson
+lanagan_MO,1,64847,NA,MO,lanagan
+macon_MO,1,63552,NA,MO,macon
+lake ozark_MO,1,65049,NA,MO,lake ozark
+bertrand_MO,1,63823,NA,MO,bertrand
+monroe_MO,1,63456,NA,MO,monroe
+montgomery_MO,1,63361,NA,MO,montgomery
+stover_MO,1,65078,NA,MO,stover
+versailles_MO,1,65084,NA,MO,versailles
+seneca_MO,1,64865,NA,MO,seneca
+thayer_MO,1,65791,NA,MO,thayer
+linn_MO,1,65051,NA,MO,linn
+caruthersville_MO,1,63830,NA,MO,caruthersville
+hayti_MO,1,63851,NA,MO,hayti
+bowling green_MO,1,63334,NA,MO,bowling green
+platte woods_MO,1,64151,NA,MO,platte woods
+northmoor_MO,1,64151,NA,MO,northmoor
+humansville_MO,1,65674,NA,MO,humansville
+unionville_MO,1,63565,NA,MO,unionville
+center_MO,1,63436,NA,MO,center
+huntsville_MO,1,65259,NA,MO,huntsville
+orrick_MO,1,64077,NA,MO,orrick
+doniphan_MO,1,63935,NA,MO,doniphan
+st. charles_MO,0,63366,st. charles,MO,o fallon
+st. charles_MO,1,63303,NA,MO,st. charles
+st. peters_MO,1,63376,NA,MO,st. peters
+lowry_MO,1,64763,NA,MO,lowry
+berkeley_MO,1,63134,NA,MO,berkeley
+bridgeton_MO,1,63044,NA,MO,bridgeton
+calverton park_MO,1,63135,NA,MO,calverton park
+ferguson_MO,1,63135,NA,MO,ferguson
+frontenac_MO,1,63131,NA,MO,frontenac
+st. louis_MO,1,63119,NA,MO,st. louis
+st. louis_MO,1,63134,NA,MO,st. louis
+ste. genevieve_MO,0,63670,ste. genevieve,MO,st.e genevieve
+oran_MO,1,63771,NA,MO,oran
+eminence_MO,1,65466,NA,MO,eminence
+clarence_MO,1,63437,NA,MO,clarence
+crane_MO,1,65633,NA,MO,crane
+nevada_MO,1,64772,NA,MO,nevada
+rogersville_MO,1,65742,NA,MO,rogersville
+mansfield_MO,1,65704,NA,MO,mansfield
+kansas_MO,1,66101,NA,MO,kansas
+st. louis_MO,1,63103,NA,MO,st. louis
+shaw_MS,1,38773,NA,MS,shaw
+clarksdale_MS,1,38614,NA,MS,clarksdale
+crystal springs_MS,1,39059,NA,MS,crystal springs
+collins_MS,1,39428,NA,MS,collins
+southaven_MS,1,38671,NA,MS,southaven
+hattiesburg_MS,1,39401,NA,MS,hattiesburg
+biloxi_MS,1,39530,NA,MS,biloxi
+gulfport_MS,1,39501,NA,MS,gulfport
+jackson_MS,1,39205,NA,MS,jackson
+clinton_MS,1,39056,NA,MS,clinton
+lexington_MS,1,39095,NA,MS,lexington
+bay springs_MS,1,39422,NA,MS,bay springs
+sandersville_MS,1,39477,NA,MS,sandersville
+tupelo_MS,1,38804,NA,MS,tupelo
+columbus_MS,1,39701,NA,MS,columbus
+canton_MS,1,39046,NA,MS,canton
+winona_MS,1,38967,NA,MS,winona
+decatur_MS,1,39327,NA,MS,decatur
+starkville_MS,1,39759,NA,MS,starkville
+poplarville_MS,1,39470,NA,MS,poplarville
+mccomb_MS,1,39649,NA,MS,mccomb
+brandon_MS,1,39043,NA,MS,brandon
+florence_MS,1,39073,NA,MS,florence
+leland_MS,1,38756,NA,MS,leland
+waynesboro_MS,1,39367,NA,MS,waynesboro
+havre_MT,1,59501,NA,MT,havre
+missoula_MT,1,59802,NA,MT,missoula
+livingston_MT,1,59047,NA,MT,livingston
+deer lodge_MT,1,59722,NA,MT,deer lodge
+billings_MT,1,59103,NA,MT,billings
+ravenna_NE,1,68869,NA,NE,ravenna
+lyons_NE,1,68038,NA,NE,lyons
+tekamah_NE,1,68061,NA,NE,tekamah
+harvard_NE,1,68944,NA,NE,harvard
+gothenburg_NE,1,69138,NA,NE,gothenburg
+scribner_NE,1,68057,NA,NE,scribner
+omaha_NE,1,68102,NA,NE,omaha
+wymore_NE,1,68466,NA,NE,wymore
+minden_NE,1,68959,NA,NE,minden
+lincoln_NE,1,68508,NA,NE,lincoln
+norfolk_NE,1,68701,NA,NE,norfolk
+central_NE,1,68826,NA,NE,central
+superior_NE,1,68978,NA,NE,superior
+falls_NE,1,68355,NA,NE,falls
+crete_NE,1,68333,NA,NE,crete
+bellevue_NE,1,68005,NA,NE,bellevue
+burlington_NC,1,27216,NA,NC,burlington
+mebane_NC,1,27302,NA,NC,mebane
+wadesboro_NC,1,28170,NA,NC,wadesboro
+jefferson_NC,1,28640,NA,NC,jefferson
+washington_NC,1,27889,NA,NC,washington
+chocowinity_NC,1,27817,NA,NC,chocowinity
+windsor_NC,1,27983,NA,NC,windsor
+ocean isle beach_NC,1,28469,NA,NC,ocean isle beach
+asheville_NC,1,28802,NA,NC,asheville
+montreat_NC,1,28757,NA,NC,montreat
+concord_NC,1,28026,NA,NC,concord
+atlantic beach_NC,1,28512,NA,NC,atlantic beach
+newport_NC,1,28570,NA,NC,newport
+cape carteret_NC,1,28584,NA,NC,cape carteret
+emerald isle_NC,1,28594,NA,NC,emerald isle
+hickory_NC,1,28602,NA,NC,hickory
+claremont_NC,1,28610,NA,NC,claremont
+fair bluff_NC,1,28439,NA,NC,fair bluff
+vanceboro_NC,1,28586,NA,NC,vanceboro
+fayetteville_NC,1,28301,NA,NC,fayetteville
+nags head_NC,1,27959,NA,NC,nags head
+thomasville_NC,1,27361,NA,NC,thomasville
+mocksville_NC,1,27028,NA,NC,mocksville
+magnolia_NC,1,28453,NA,NC,magnolia
+durham_NC,1,27701,NA,NC,durham
+rocky mount_NC,1,27802,NA,NC,rocky mount
+forsyth_NC,0,27101,forsyth,NC,winston salem
+louisburg_NC,1,27549,NA,NC,louisburg
+franklinton_NC,1,27525,NA,NC,franklinton
+dallas_NC,1,28034,NA,NC,dallas
+gastonia_NC,1,28052,NA,NC,gastonia
+butner_NC,1,27509,NA,NC,butner
+greensboro_NC,1,27402,NA,NC,greensboro
+high point_NC,1,27260,NA,NC,high point
+middlesex_NC,0,27850,middlesex,NC,littleton
+weldon_NC,1,27890,NA,NC,weldon
+lillington_NC,1,27546,NA,NC,lillington
+canton_NC,1,28716,NA,NC,canton
+laurel park_NC,1,28739,NA,NC,laurel park
+smithfield_NC,1,27577,NA,NC,smithfield
+pine level_NC,1,27568,NA,NC,pine level
+princeton_NC,1,27569,NA,NC,princeton
+selma_NC,1,27576,NA,NC,selma
+sanford_NC,1,27331,NA,NC,sanford
+lincolnton_NC,1,28093,NA,NC,lincolnton
+old fort_NC,1,28762,NA,NC,old fort
+charlotte_NC,1,28202,NA,NC,charlotte
+davidson_NC,1,28036,NA,NC,davidson
+matthews_NC,1,28105,NA,NC,matthews
+pinehurst_NC,1,28374,NA,NC,pinehurst
+moore_NC,0,28327,moore,NC,whisper pnes
+wilmington_NC,1,28401,NA,NC,wilmington
+wrightsville beach_NC,1,28480,NA,NC,wrightsville beach
+conway_NC,1,27820,NA,NC,conway
+jacksonville_NC,1,28541,NA,NC,jacksonville
+chapel hill_NC,1,27514,NA,NC,chapel hill
+elizabeth_NC,1,27909,NA,NC,elizabeth
+greenville_NC,1,27835,NA,NC,greenville
+ramseur_NC,1,27316,NA,NC,ramseur
+lumberton_NC,1,28359,NA,NC,lumberton
+maxton_NC,1,28364,NA,NC,maxton
+fairmont_NC,1,28340,NA,NC,fairmont
+parkton_NC,1,28371,NA,NC,parkton
+madison_NC,1,27025,NA,NC,madison
+landis_NC,1,28088,NA,NC,landis
+salisbury_NC,1,28145,NA,NC,salisbury
+stanfield_NC,1,28163,NA,NC,stanfield
+king_NC,1,27021,NA,NC,king
+pilot mountain_NC,1,27041,NA,NC,pilot mountain
+dobson_NC,1,27017,NA,NC,dobson
+marshville_NC,1,28103,NA,NC,marshville
+waxhaw_NC,1,28173,NA,NC,waxhaw
+stallings_NC,1,28104,NA,NC,stallings
+raleigh_NC,1,27615,NA,NC,raleigh
+cary_NC,1,27512,NA,NC,cary
+knightdale_NC,1,27545,NA,NC,knightdale
+holly springs_NC,1,27540,NA,NC,holly springs
+plymouth_NC,1,27962,NA,NC,plymouth
+blowing rock_NC,1,28605,NA,NC,blowing rock
+wilkesboro_NC,1,28697,NA,NC,wilkesboro
+wilson_NC,1,27894,NA,NC,wilson
+boonville_NC,1,27011,NA,NC,boonville
+bismarck_ND,1,58506,NA,ND,bismarck
+fargo_ND,1,58102,NA,ND,fargo
+wishek_ND,1,58495,NA,ND,wishek
+mandan_ND,1,58554,NA,ND,mandan
+wahpeton_ND,1,58075,NA,ND,wahpeton
+dickinson_ND,1,58601,NA,ND,dickinson
+grafton_ND,1,58237,NA,ND,grafton
+burlington_ND,1,58722,NA,ND,burlington
+belknap_NH,0,3226,belknap,NH,center harbor
+meredith_NH,1,3253,NA,NH,meredith
+carroll_NH,0,3816,carroll,NH,center tuftonboro
+cheshire_NH,0,3450,cheshire,NH,harrisville
+north walpole_NH,1,3609,NA,NH,north walpole
+winchester_NH,1,3470,NA,NH,winchester
+coos_NH,0,3598,coos,NH,carroll
+ashland_NH,1,3217,NA,NH,ashland
+north haverhill_NH,1,3774,NA,NH,north haverhill
+manchester_NH,1,3110,NA,NH,manchester
+bennington_NH,1,3442,NA,NH,bennington
+hillsborough_NH,0,3033,hillsborough,NH,brookline
+hancock_NH,1,3449,NA,NH,hancock
+manchester_NH,1,3103,NA,NH,manchester
+nashua_NH,1,3061,NA,NH,nashua
+new boston_NH,1,3070,NA,NH,new boston
+hillsborough_NH,0,3076,hillsborough,NH,pelham
+wilton_NH,1,3086,NA,NH,wilton
+merrimack_NH,0,3304,merrimack,NH,bow
+bradford_NH,1,3221,NA,NH,bradford
+concord_NH,1,3301,NA,NH,concord
+franklin_NH,1,3235,NA,NH,franklin
+hooksett_NH,1,3106,NA,NH,hooksett
+pittsfield_NH,1,3263,NA,NH,pittsfield
+rockingham_NH,0,3032,rockingham,NH,auburn
+chester_NH,1,3036,NA,NH,chester
+derry_NH,1,3038,NA,NH,derry
+rockingham_NH,0,3827,rockingham,NH,east kingston
+rockingham_NH,0,3858,rockingham,NH,newton
+rockingham_NH,0,3290,rockingham,NH,nottingham
+portsmouth_NH,1,3801,NA,NH,portsmouth
+salem_NH,1,3079,NA,NH,salem
+strafford_NH,0,3861,strafford,NH,lee
+charlestown_NH,1,3603,NA,NH,charlestown
+atlantic_NJ,1,8401,NA,NJ,atlantic
+hammonton_NJ,1,8037,NA,NJ,hammonton
+ventnor_NJ,1,8406,NA,NJ,ventnor
+bergen_NJ,0,7020,bergen,NJ,edgewater
+hackensack_NJ,1,7601,NA,NJ,hackensack
+hasbrouck heights_NJ,1,7604,NA,NJ,hasbrouck heights
+bergen_NJ,0,7423,bergen,NJ,ho ho kus
+little ferry borough_NJ,1,7643,NA,NJ,little ferry borough
+bergen_NJ,0,7645,bergen,NJ,montvale
+north arlington_NJ,1,7031,NA,NJ,north arlington
+bergen_NJ,0,7648,bergen,NJ,norwood
+oakland borough_NJ,1,7436,NA,NJ,oakland borough
+old tappan_NJ,1,7675,NA,NJ,old tappan
+bergen_NJ,0,7675,bergen,NJ,rivervale
+bergen_NJ,0,7057,bergen,NJ,wallington
+bergen_NJ,0,7677,bergen,NJ,woodcliff lake
+wyckoff_NJ,1,7481,NA,NJ,wyckoff
+cinnaminson_NJ,1,8077,NA,NJ,cinnaminson
+burlington_NJ,0,8075,burlington,NJ,riverside
+berlin borough_NJ,1,8009,NA,NJ,berlin borough
+gloucester_NJ,1,8030,NA,NJ,gloucester
+collingswood_NJ,1,8108,NA,NJ,collingswood
+camden_NJ,0,8002,camden,NJ,cherry hill
+blackwood_NJ,1,8012,NA,NJ,blackwood
+camden_NJ,0,8035,camden,NJ,haddon heights
+camden_NJ,0,8059,camden,NJ,mount ephraim
+camden_NJ,0,8021,camden,NJ,pine valley
+camden_NJ,0,8078,camden,NJ,runnemede
+stratford borough_NJ,1,8084,NA,NJ,stratford borough
+atco_NJ,1,8004,NA,NJ,atco
+woodlynne borough_NJ,1,8107,NA,NJ,woodlynne borough
+cape may_NJ,0,8202,cape may,NJ,avalon
+cape may_NJ,1,8204,NA,NJ,cape may
+north wildwood_NJ,1,8260,NA,NJ,north wildwood
+wildwood_NJ,1,8260,NA,NJ,wildwood
+vineland_NJ,1,8360,NA,NJ,vineland
+essex_NJ,0,7109,essex,NJ,belleville
+essex_NJ,0,7003,essex,NJ,bloomfield
+essex_NJ,0,7009,essex,NJ,cedar grove
+east orange_NJ,1,7018,NA,NJ,east orange
+essex_NJ,0,7111,essex,NJ,irvington
+essex_NJ,0,7042,essex,NJ,montclair
+essex_NJ,0,7050,essex,NJ,orange
+south orange_NJ,1,7079,NA,NJ,south orange
+essex_NJ,0,7044,essex,NJ,verona
+west deptford_NJ,1,8086,NA,NJ,west deptford
+bayonne_NJ,1,7002,NA,NJ,bayonne
+hoboken_NJ,1,7030,NA,NJ,hoboken
+jersey_NJ,1,7302,NA,NJ,jersey
+kearny_NJ,1,7032,NA,NJ,kearny
+hudson_NJ,0,7047,hudson,NJ,north bergen
+union_NJ,1,7087,NA,NJ,union
+hudson_NJ,0,7086,hudson,NJ,weehawken
+west new york_NJ,1,7093,NA,NJ,west new york
+high bridge_NJ,1,8829,NA,NJ,high bridge
+hunterdon_NJ,0,7830,hunterdon,NJ,califon
+mercer_NJ,0,8619,mercer,NJ,hamilton
+lawrenceville_NJ,1,8648,NA,NJ,lawrenceville
+trenton_NJ,1,8609,NA,NJ,trenton
+cranbury_NJ,1,8512,NA,NJ,cranbury
+middlesex_NJ,0,8817,middlesex,NJ,edison
+highland park_NJ,1,8904,NA,NJ,highland park
+old bridge_NJ,1,8857,NA,NJ,old bridge
+new brunswick_NJ,1,8901,NA,NJ,new brunswick
+perth amboy_NJ,1,8861,NA,NJ,perth amboy
+monmouth junction_NJ,1,8852,NA,NJ,monmouth junction
+woodbridge_NJ,1,7095,NA,NJ,woodbridge
+monmouth_NJ,0,7716,monmouth,NJ,atlantic highlands
+freehold borough_NJ,1,7728,NA,NJ,freehold borough
+howell_NJ,1,7731,NA,NJ,howell
+long branch_NJ,1,7740,NA,NJ,long branch
+matawan borough_NJ,1,7747,NA,NJ,matawan borough
+middletown_NJ,1,7748,NA,NJ,middletown
+monmouth_NJ,0,7753,monmouth,NJ,neptune
+monmouth_NJ,0,7730,monmouth,NJ,hazlet
+red bank_NJ,1,7701,NA,NJ,red bank
+netcong borough_NJ,1,7857,NA,NJ,netcong borough
+parsippany_NJ,1,7054,NA,NJ,parsippany
+morris_NJ,0,7457,morris,NJ,riverdale
+ocean_NJ,0,8722,ocean,NJ,beachwood
+brick_NJ,1,8723,NA,NJ,brick
+toms river_NJ,1,8753,NA,NJ,toms river
+ocean_NJ,0,8527,ocean,NJ,jackson
+lakewood_NJ,1,8701,NA,NJ,lakewood
+ocean_NJ,0,8735,ocean,NJ,lavallette
+ocean_NJ,0,8087,ocean,NJ,little egg harbor
+ocean_NJ,0,8742,ocean,NJ,point pleasant boro
+ocean_NJ,0,8751,ocean,NJ,seaside heights
+barnegat_NJ,1,8005,NA,NJ,barnegat
+clifton_NJ,1,7013,NA,NJ,clifton
+haledon borough_NJ,1,7508,NA,NJ,haledon borough
+little falls_NJ,1,7424,NA,NJ,little falls
+passaic_NJ,1,7055,NA,NJ,passaic
+paterson_NJ,1,7505,NA,NJ,paterson
+passaic_NJ,0,7508,passaic,NJ,prospect park
+ringwood borough_NJ,1,7456,NA,NJ,ringwood borough
+passaic_NJ,0,7470,passaic,NJ,wayne
+passaic_NJ,0,7480,passaic,NJ,west milford
+carneys point_NJ,1,8069,NA,NJ,carneys point
+bedminster_NJ,1,7921,NA,NJ,bedminster
+somerset_NJ,0,7931,somerset,NJ,far hills
+somerset_NJ,1,8873,NA,NJ,somerset
+franklin borough_NJ,1,7416,NA,NJ,franklin borough
+sussex_NJ,0,7439,sussex,NJ,ogdensburg
+sussex_NJ,0,7874,sussex,NJ,stanhope
+sussex_NJ,0,7462,sussex,NJ,vernon
+union_NJ,0,7066,union,NJ,clark
+cranford_NJ,1,7016,NA,NJ,cranford
+elizabeth_NJ,1,7201,NA,NJ,elizabeth
+linden_NJ,1,7036,NA,NJ,linden
+plainfield_NJ,1,7060,NA,NJ,plainfield
+union_NJ,1,7083,NA,NJ,union
+union_NJ,0,7036,union,NJ,winfield park
+warren_NJ,0,7882,warren,NJ,washington
+newark_NJ,1,7108,NA,NJ,newark
+albuquerque_NM,1,87102,NA,NM,albuquerque
+cimarron_NM,1,87714,NA,NM,cimarron
+las cruces_NM,1,88004,NA,NM,las cruces
+anthony_NM,1,88021,NA,NM,anthony
+silver_NM,1,88061,NA,NM,silver
+hurley_NM,1,88043,NA,NM,hurley
+alamogordo_NM,1,88310,NA,NM,alamogordo
+tularosa_NM,1,88352,NA,NM,tularosa
+portales_NM,1,88130,NA,NM,portales
+corrales_NM,1,87048,NA,NM,corrales
+jemez springs_NM,1,87025,NA,NM,jemez springs
+rio rancho_NM,1,87124,NA,NM,rio rancho
+farmington_NM,1,87401,NA,NM,farmington
+santa fe_NM,1,87507,NA,NM,santa fe
+truth or consequences_NM,1,87901,NA,NM,truth or consequences
+questa_NM,1,87556,NA,NM,questa
+belen_NM,1,87002,NA,NM,belen
+las vegas_NV,1,89106,NA,NV,las vegas
+north las vegas_NV,1,89030,NA,NV,north las vegas
+henderson_NV,1,71334,NA,NV,henderson
+lovelock_NV,1,89419,NA,NV,lovelock
+reno_NV,1,89505,NA,NV,reno
+sparks_NV,1,89434,NA,NV,sparks
+albany_NY,1,12210,NA,NY,albany
+latham_NY,1,12110,NA,NY,latham
+friendship_NY,1,14739,NA,NY,friendship
+binghamton_NY,1,13901,NA,NY,binghamton
+allegany_NY,1,14706,NA,NY,allegany
+franklinville_NY,1,14737,NA,NY,franklinville
+horseheads_NY,1,14845,NA,NY,horseheads
+cortland_NY,1,13045,NA,NY,cortland
+walton_NY,1,13856,NA,NY,walton
+downsville_NY,1,13755,NA,NY,downsville
+beacon_NY,1,12508,NA,NY,beacon
+red hook_NY,1,12571,NA,NY,red hook
+buffalo_NY,1,14202,NA,NY,buffalo
+tonawanda_NY,1,14150,NA,NY,tonawanda
+hamburg_NY,1,14075,NA,NY,hamburg
+akron_NY,1,14001,NA,NY,akron
+erie_NY,0,14228,erie,NY,amherst
+cheektowaga_NY,1,14227,NA,NY,cheektowaga
+kenmore_NY,1,14223,NA,NY,kenmore
+west seneca_NY,1,14224,NA,NY,west seneca
+ticonderoga_NY,1,12883,NA,NY,ticonderoga
+le roy_NY,1,14482,NA,NY,le roy
+catskill_NY,1,12414,NA,NY,catskill
+greene_NY,0,12439,greene,NY,hensonville
+dolgeville_NY,1,13329,NA,NY,dolgeville
+adams_NY,1,13605,NA,NY,adams
+cape vincent_NY,1,13618,NA,NY,cape vincent
+carthage_NY,1,13619,NA,NY,carthage
+nunda_NY,1,14517,NA,NY,nunda
+oneida_NY,1,13421,NA,NY,oneida
+rochester_NY,1,14614,NA,NY,rochester
+rochester_NY,1,14617,NA,NY,rochester
+rochester_NY,1,14612,NA,NY,rochester
+spencerport_NY,1,14559,NA,NY,spencerport
+freeport_NY,1,11520,NA,NY,freeport
+hempstead_NY,1,11550,NA,NY,hempstead
+sands point_NY,1,11050,NA,NY,sands point
+lake success_NY,1,11020,NA,NY,lake success
+oyster bay_NY,1,11771,NA,NY,oyster bay
+new york_NY,1,10038,NA,NY,new york
+niagara falls_NY,1,68355,NA,NY,niagara falls
+youngstown_NY,1,14174,NA,NY,youngstown
+utica_NY,1,13502,NA,NY,utica
+new york mills_NY,1,13417,NA,NY,new york mills
+new hartford_NY,1,13413,NA,NY,new hartford
+whitesboro_NY,1,13492,NA,NY,whitesboro
+syracuse_NY,1,13202,NA,NY,syracuse
+liverpool_NY,1,13088,NA,NY,liverpool
+syracuse_NY,1,13219,NA,NY,syracuse
+clifton springs_NY,1,14432,NA,NY,clifton springs
+shortsville_NY,1,14548,NA,NY,shortsville
+middletown_NY,1,10940,NA,NY,middletown
+pine bush_NY,1,12566,NA,NY,pine bush
+chester_NY,1,10918,NA,NY,chester
+goshen_NY,1,10924,NA,NY,goshen
+holley_NY,1,14470,NA,NY,holley
+putnam_NY,0,10512,putnam,NY,kent lakes
+troy_NY,1,12180,NA,NY,troy
+hoosick falls_NY,1,12090,NA,NY,hoosick falls
+new_NY,1,10954,NA,NY,new
+suffern_NY,1,10901,NA,NY,suffern
+waterford_NY,1,12188,NA,NY,waterford
+schenectady_NY,1,12305,NA,NY,schenectady
+interlaken_NY,1,14847,NA,NY,interlaken
+hampton bays_NY,1,11946,NA,NY,hampton bays
+monticello_NY,1,12701,NA,NY,monticello
+waverly_NY,1,14892,NA,NY,waverly
+ithaca_NY,1,14851,NA,NY,ithaca
+ellenville_NY,1,12429,NA,NY,ellenville
+woodstock_NY,1,12498,NA,NY,woodstock
+wallkill_NY,1,12589,NA,NY,wallkill
+whitehall_NY,1,12887,NA,NY,whitehall
+white plains_NY,1,10601,NA,NY,white plains
+mount vernon_NY,1,10550,NA,NY,mount vernon
+new rochelle_NY,1,10801,NA,NY,new rochelle
+yonkers_NY,1,10701,NA,NY,yonkers
+bronxville_NY,1,10708,NA,NY,bronxville
+tarrytown_NY,1,10591,NA,NY,tarrytown
+larchmont_NY,1,10538,NA,NY,larchmont
+white plains_NY,1,10607,NA,NY,white plains
+armonk_NY,1,10504,NA,NY,armonk
+westchester_NY,0,10576,westchester,NY,pound ridge
+yorktown heights_NY,1,10598,NA,NY,yorktown heights
+ossining_NY,1,10562,NA,NY,ossining
+penn yan_NY,1,14527,NA,NY,penn yan
+seaman_OH,1,45679,NA,OH,seaman
+ashland_OH,1,44805,NA,OH,ashland
+conneaut_OH,1,44030,NA,OH,conneaut
+geneva_OH,1,44041,NA,OH,geneva
+north kingsville_OH,1,44048,NA,OH,north kingsville
+roaming shores_OH,1,44084,NA,OH,roaming shores
+bridgeport_OH,1,43912,NA,OH,bridgeport
+martins ferry_OH,1,43935,NA,OH,martins ferry
+st. clairsville_OH,1,43950,NA,OH,st. clairsville
+aberdeen_OH,1,45101,NA,OH,aberdeen
+hamilton_OH,1,45011,NA,OH,hamilton
+hamilton_OH,1,45011,NA,OH,hamilton
+hamilton_OH,0,45069,hamilton,OH,west chester
+urbana_OH,1,43078,NA,OH,urbana
+st. paris_OH,1,43072,NA,OH,st. paris
+springfield_OH,1,45502,NA,OH,springfield
+south charleston_OH,1,45368,NA,OH,south charleston
+springfield_OH,1,45504,NA,OH,springfield
+newtonsville_OH,1,45158,NA,OH,newtonsville
+lisbon_OH,1,44432,NA,OH,lisbon
+new washington_OH,1,44854,NA,OH,new washington
+beachwood_OH,1,44122,NA,OH,beachwood
+berea_OH,1,44017,NA,OH,berea
+broadview heights_OH,1,44147,NA,OH,broadview heights
+brooklyn heights_OH,1,44131,NA,OH,brooklyn heights
+chagrin falls_OH,1,44022,NA,OH,chagrin falls
+cleveland heights_OH,1,44118,NA,OH,cleveland heights
+maple heights_OH,1,44137,NA,OH,maple heights
+north randall_OH,1,44128,NA,OH,north randall
+olmsted falls_OH,1,44138,NA,OH,olmsted falls
+cuyahoga_OH,0,44022,cuyahoga,OH,orange village
+parma_OH,1,44129,NA,OH,parma
+parma heights_OH,1,44130,NA,OH,parma heights
+rocky river_OH,1,44116,NA,OH,rocky river
+highland hills_OH,1,44122,NA,OH,highland hills
+ansonia_OH,1,45303,NA,OH,ansonia
+defiance_OH,1,43512,NA,OH,defiance
+powell_OH,1,43065,NA,OH,powell
+lithopolis_OH,1,43136,NA,OH,lithopolis
+pickerington_OH,1,43147,NA,OH,pickerington
+hilliard_OH,1,43026,NA,OH,hilliard
+reynoldsburg_OH,1,43068,NA,OH,reynoldsburg
+whitehall_OH,1,43213,NA,OH,whitehall
+columbus_OH,1,43204,NA,OH,columbus
+columbus_OH,1,43224,NA,OH,columbus
+archbold_OH,1,43502,NA,OH,archbold
+fayette_OH,1,43521,NA,OH,fayette
+wauseon_OH,1,43567,NA,OH,wauseon
+xenia_OH,1,45385,NA,OH,xenia
+cedarville_OH,1,45314,NA,OH,cedarville
+byesville_OH,1,43723,NA,OH,byesville
+blue ash_OH,1,45242,NA,OH,blue ash
+cincinnati_OH,1,45243,NA,OH,cincinnati
+greenfield_OH,1,45123,NA,OH,greenfield
+jackson_OH,1,45640,NA,OH,jackson
+steubenville_OH,1,43952,NA,OH,steubenville
+toronto_OH,1,43964,NA,OH,toronto
+mentor_OH,1,44060,NA,OH,mentor
+hanging rock_OH,1,45638,NA,OH,hanging rock
+granville_OH,1,43023,NA,OH,granville
+heath_OH,1,43056,NA,OH,heath
+johnstown_OH,1,43031,NA,OH,johnstown
+utica_OH,1,43080,NA,OH,utica
+buckeye lake_OH,1,43008,NA,OH,buckeye lake
+russells point_OH,1,43348,NA,OH,russells point
+lorain_OH,1,44052,NA,OH,lorain
+lagrange_OH,1,44050,NA,OH,lagrange
+sylvania_OH,1,43560,NA,OH,sylvania
+toledo_OH,1,43604,NA,OH,toledo
+waterville_OH,1,43566,NA,OH,waterville
+boardman_OH,1,44512,NA,OH,boardman
+poland_OH,1,44514,NA,OH,poland
+sebring_OH,1,44672,NA,OH,sebring
+youngstown_OH,1,44503,NA,OH,youngstown
+new springfield_OH,1,44443,NA,OH,new springfield
+lake milton_OH,1,44429,NA,OH,lake milton
+lowellville_OH,1,44436,NA,OH,lowellville
+marion_OH,1,43302,NA,OH,marion
+racine_OH,1,45771,NA,OH,racine
+syracuse_OH,1,45779,NA,OH,syracuse
+west milton_OH,1,45383,NA,OH,west milton
+dayton_OH,1,45402,NA,OH,dayton
+miamisburg_OH,1,45342,NA,OH,miamisburg
+moraine_OH,1,45439,NA,OH,moraine
+clayton_OH,1,45315,NA,OH,clayton
+riverside_OH,1,45424,NA,OH,riverside
+union_OH,1,45322,NA,OH,union
+farmersville_OH,1,45325,NA,OH,farmersville
+new concord_OH,1,43762,NA,OH,new concord
+graytown_OH,1,43432,NA,OH,graytown
+crooksville_OH,1,43731,NA,OH,crooksville
+shawnee_OH,1,43782,NA,OH,shawnee
+thornville_OH,1,43076,NA,OH,thornville
+circleville_OH,1,43113,NA,OH,circleville
+streetsboro_OH,1,44241,NA,OH,streetsboro
+mansfield_OH,1,44902,NA,OH,mansfield
+fort loramie_OH,1,45845,NA,OH,fort loramie
+canton_OH,1,44702,NA,OH,canton
+beach_OH,1,44608,NA,OH,beach
+wilmot_OH,1,44689,NA,OH,wilmot
+hartville_OH,1,44632,NA,OH,hartville
+massillon_OH,1,44646,NA,OH,massillon
+uniontown_OH,1,44685,NA,OH,uniontown
+akron_OH,1,44308,NA,OH,akron
+tallmadge_OH,1,44278,NA,OH,tallmadge
+youngstown_OH,1,44505,NA,OH,youngstown
+leavittsburg_OH,1,44430,NA,OH,leavittsburg
+trumbull_OH,0,44418,trumbull,OH,fowler
+dennison_OH,1,44621,NA,OH,dennison
+bolivar_OH,1,44612,NA,OH,bolivar
+strasburg_OH,1,44680,NA,OH,strasburg
+mercer_OH,0,45039,mercer,OH,hamilton township
+belpre_OH,1,45714,NA,OH,belpre
+orrville_OH,1,44667,NA,OH,orrville
+dalton_OH,1,44618,NA,OH,dalton
+haskins_OH,1,43525,NA,OH,haskins
+risingsun_OH,1,43457,NA,OH,risingsun
+cincinnati_OH,1,45214,NA,OH,cincinnati
+cleveland_OH,1,44113,NA,OH,cleveland
+columbus_OH,1,43215,NA,OH,columbus
+stilwell_OK,1,74960,NA,OK,stilwell
+stringtown_OK,1,74569,NA,OK,stringtown
+elk_OK,1,73644,NA,OK,elk
+sayre_OK,1,73662,NA,OK,sayre
+calera_OK,1,74730,NA,OK,calera
+lone grove_OK,1,73443,NA,OK,lone grove
+hulbert_OK,1,74441,NA,OK,hulbert
+sawyer_OK,1,74756,NA,OK,sawyer
+norman_OK,1,73069,NA,OK,norman
+lawton_OK,1,73501,NA,OK,lawton
+clinton_OK,1,73601,NA,OK,clinton
+jay_OK,1,74346,NA,OK,jay
+minco_OK,1,73059,NA,OK,minco
+lamont_OK,1,74643,NA,OK,lamont
+waurika_OK,1,73573,NA,OK,waurika
+hennessey_OK,1,73742,NA,OK,hennessey
+okarche_OK,1,73762,NA,OK,okarche
+hobart_OK,1,73651,NA,OK,hobart
+wilburton_OK,1,74578,NA,OK,wilburton
+marietta_OK,1,73448,NA,OK,marietta
+newcastle_OK,1,73065,NA,OK,newcastle
+edmond_OK,1,73034,NA,OK,edmond
+oklahoma_OK,1,73102,NA,OK,oklahoma
+spencer_OK,1,73084,NA,OK,spencer
+henryetta_OK,1,74437,NA,OK,henryetta
+fairfax_OK,1,74637,NA,OK,fairfax
+hominy_OK,1,74035,NA,OK,hominy
+allen_OK,1,74825,NA,OK,allen
+seminole_OK,1,74868,NA,OK,seminole
+vian_OK,1,74962,NA,OK,vian
+guymon_OK,1,73942,NA,OK,guymon
+broken arrow_OK,1,74012,NA,OK,broken arrow
+skiatook_OK,1,74070,NA,OK,skiatook
+tulsa_OK,1,74103,NA,OK,tulsa
+mooreland_OK,1,73852,NA,OK,mooreland
+gladstone_OR,1,97027,NA,OR,gladstone
+oregon_OR,1,97045,NA,OR,oregon
+cannon beach_OR,1,97110,NA,OR,cannon beach
+scappoose_OR,1,97056,NA,OR,scappoose
+columbia_OR,1,97018,NA,OR,columbia
+north bend_OR,1,97459,NA,OR,north bend
+gold beach_OR,1,97444,NA,OR,gold beach
+bend_OR,1,97701,NA,OR,bend
+medford_OR,1,97501,NA,OR,medford
+cottage grove_OR,1,97424,NA,OR,cottage grove
+eugene_OR,1,97401,NA,OR,eugene
+salem_OR,1,97301,NA,OR,salem
+turner_OR,1,97392,NA,OR,turner
+aumsville_OR,1,97325,NA,OR,aumsville
+boardman_OR,1,97818,NA,OR,boardman
+gresham_OR,1,97030,NA,OR,gresham
+portland_OR,1,97204,NA,OR,portland
+independence_OR,1,97351,NA,OR,independence
+tillamook_OR,1,97141,NA,OR,tillamook
+hermiston_OR,1,97838,NA,OR,hermiston
+la grande_OR,1,97850,NA,OR,la grande
+enterprise_OR,1,97828,NA,OR,enterprise
+beaverton_OR,1,97076,NA,OR,beaverton
+hillsboro_OR,1,97123,NA,OR,hillsboro
+adams_PA,0,17325,adams,PA,gettysburg
+duquesne_PA,1,15110,NA,PA,duquesne
+pittsburgh_PA,1,15234,NA,PA,pittsburgh
+white oak borough_PA,1,15131,NA,PA,white oak borough
+oakdale_PA,1,15071,NA,PA,oakdale
+pittsburgh_PA,1,15238,NA,PA,pittsburgh
+mckeesport_PA,1,15132,NA,PA,mckeesport
+allegheny_PA,0,15136,allegheny,PA,mc kees rocks
+millvale borough_PA,1,15209,NA,PA,millvale borough
+allegheny_PA,0,15129,allegheny,PA,south park
+pittsburgh_PA,1,15236,NA,PA,pittsburgh
+pittsburgh_PA,1,15236,NA,PA,pittsburgh
+elizabeth borough_PA,1,15037,NA,PA,elizabeth borough
+pittsburgh_PA,1,15210,NA,PA,pittsburgh
+port vue borough_PA,1,15133,NA,PA,port vue borough
+tarentum borough_PA,1,15084,NA,PA,tarentum borough
+pittsburgh_PA,1,15229,NA,PA,pittsburgh
+leechburg borough_PA,1,15656,NA,PA,leechburg borough
+armstrong_PA,0,15690,armstrong,PA,vandergrift
+beaver borough_PA,1,15009,NA,PA,beaver borough
+beaver falls_PA,1,15010,NA,PA,beaver falls
+aliquippa_PA,1,15001,NA,PA,aliquippa
+beaver_PA,0,15074,beaver,PA,rochester
+south heights borough_PA,1,15081,NA,PA,south heights borough
+boyertown borough_PA,1,19512,NA,PA,boyertown borough
+kutztown borough_PA,1,19530,NA,PA,kutztown borough
+reading_PA,1,19601,NA,PA,reading
+reading_PA,1,19605,NA,PA,reading
+berks_PA,0,19512,berks,PA,boyertown
+roaring spring borough_PA,1,16673,NA,PA,roaring spring borough
+claysburg_PA,1,16625,NA,PA,claysburg
+canton borough_PA,1,17724,NA,PA,canton borough
+sayre borough_PA,1,18840,NA,PA,sayre borough
+sayre_PA,1,18840,NA,PA,sayre
+bensalem_PA,1,19020,NA,PA,bensalem
+fairless hills_PA,1,19030,NA,PA,fairless hills
+bucks_PA,0,18974,bucks,PA,warminster
+quakertown_PA,1,18951,NA,PA,quakertown
+plumsteadville_PA,1,18902,NA,PA,plumsteadville
+bucks_PA,0,18912,bucks,PA,buckingham
+pipersville_PA,1,18947,NA,PA,pipersville
+butler_PA,1,16001,NA,PA,butler
+mars borough_PA,1,16046,NA,PA,mars borough
+cambria_PA,0,15909,cambria,PA,conemaugh
+johnstown_PA,1,15904,NA,PA,johnstown
+belsano_PA,1,15922,NA,PA,belsano
+beaverdale_PA,1,15921,NA,PA,beaverdale
+lehighton borough_PA,1,18235,NA,PA,lehighton borough
+centre_PA,0,16803,centre,PA,state college
+coatesville_PA,1,19320,NA,PA,coatesville
+oxford borough_PA,1,19363,NA,PA,oxford borough
+parkesburg borough_PA,1,19365,NA,PA,parkesburg borough
+spring borough_PA,1,19475,NA,PA,spring borough
+chester_PA,0,19425,chester,PA,chester springs
+honey brook borough_PA,1,19344,NA,PA,honey brook borough
+chester_PA,0,19425,chester,PA,chester springs
+nottingham_PA,1,19362,NA,PA,nottingham
+knox borough_PA,1,16232,NA,PA,knox borough
+avis_PA,1,17721,NA,PA,avis
+bloomsburg_PA,1,17815,NA,PA,bloomsburg
+cumberland_PA,0,17055,cumberland,PA,mechanicsburg
+harrisburg_PA,1,17101,NA,PA,harrisburg
+highspire borough_PA,1,17034,NA,PA,highspire borough
+aston_PA,1,19014,NA,PA,aston
+delaware_PA,0,19079,delaware,PA,sharon hill
+glenolden borough_PA,1,19036,NA,PA,glenolden borough
+trainer borough_PA,1,19061,NA,PA,trainer borough
+brookhaven borough_PA,1,19015,NA,PA,brookhaven borough
+delaware_PA,0,19082,delaware,PA,upper darby
+delaware_PA,0,19063,delaware,PA,media
+erie_PA,1,16501,NA,PA,erie
+erie_PA,1,16510,NA,PA,erie
+uniontown_PA,1,15401,NA,PA,uniontown
+grindstone_PA,1,15442,NA,PA,grindstone
+greencastle borough_PA,1,17225,NA,PA,greencastle borough
+brockway borough_PA,1,15824,NA,PA,brockway borough
+sykesville borough_PA,1,15865,NA,PA,sykesville borough
+dunmore borough_PA,1,18512,NA,PA,dunmore borough
+scranton_PA,1,18503,NA,PA,scranton
+lackawanna_PA,0,18447,lackawanna,PA,scott township
+lancaster_PA,0,17522,lancaster,PA,ephrata
+lancaster_PA,1,17603,NA,PA,lancaster
+lititz borough_PA,1,17543,NA,PA,lititz borough
+lampeter_PA,1,17602,NA,PA,lampeter
+new castle_PA,1,16101,NA,PA,new castle
+lawrence_PA,0,17967,lawrence,PA,ringtown
+palmyra borough_PA,1,17078,NA,PA,palmyra borough
+lebanon_PA,1,17042,NA,PA,lebanon
+allentown_PA,1,18101,NA,PA,allentown
+slatington borough_PA,1,18080,NA,PA,slatington borough
+macungie borough_PA,1,18062,NA,PA,macungie borough
+freeland borough_PA,1,18224,NA,PA,freeland borough
+nanticoke_PA,1,18634,NA,PA,nanticoke
+ashley borough_PA,1,18706,NA,PA,ashley borough
+pittston borough_PA,1,18644,NA,PA,pittston borough
+pittston_PA,1,18640,NA,PA,pittston
+luzerne_PA,0,18704,luzerne,PA,wilkes barre
+williamsport_PA,1,17701,NA,PA,williamsport
+greenville borough_PA,1,16125,NA,PA,greenville borough
+mercer_PA,0,16127,mercer,PA,grove
+hermitage_PA,1,16148,NA,PA,hermitage
+mifflin_PA,0,17044,mifflin,PA,lewistown
+bridgeport borough_PA,1,19405,NA,PA,bridgeport borough
+montgomery_PA,0,19401,montgomery,PA,norristown
+ardmore_PA,1,19003,NA,PA,ardmore
+montgomery_PA,0,19464,montgomery,PA,pottstown
+plymouth meeting_PA,1,19462,NA,PA,plymouth meeting
+pottstown borough_PA,1,19464,NA,PA,pottstown borough
+rockledge borough_PA,1,19046,NA,PA,rockledge borough
+royersford borough_PA,1,19468,NA,PA,royersford borough
+montgomery_PA,0,19492,montgomery,PA,zieglerville
+montgomery_PA,0,19468,montgomery,PA,limerick
+bethlehem_PA,1,18018,NA,PA,bethlehem
+easton_PA,1,18042,NA,PA,easton
+easton_PA,1,18045,NA,PA,easton
+easton_PA,1,18040,NA,PA,easton
+tatamy borough_PA,1,18085,NA,PA,tatamy borough
+walnutport borough_PA,1,18088,NA,PA,walnutport borough
+northampton_PA,0,18064,northampton,PA,nazareth
+milton borough_PA,1,17847,NA,PA,milton borough
+coal township_PA,1,17866,NA,PA,coal township
+trevorton_PA,1,17881,NA,PA,trevorton
+nanticoke_PA,1,18634,NA,PA,nanticoke
+pottsville_PA,1,17901,NA,PA,pottsville
+shenandoah borough_PA,1,17976,NA,PA,shenandoah borough
+tamaqua borough_PA,1,18252,NA,PA,tamaqua borough
+mahanoy_PA,1,17948,NA,PA,mahanoy
+tremont borough_PA,1,17981,NA,PA,tremont borough
+schuylkill_PA,0,18252,schuylkill,PA,tamaqua
+shamokin dam borough_PA,1,17876,NA,PA,shamokin dam borough
+mifflinburg borough_PA,1,17844,NA,PA,mifflinburg borough
+monongahela_PA,1,15063,NA,PA,monongahela
+washington_PA,0,15321,washington,PA,cecil
+houston_PA,1,15342,NA,PA,houston
+west alexander_PA,1,15376,NA,PA,west alexander
+washington_PA,1,15301,NA,PA,washington
+slovan_PA,1,15078,NA,PA,slovan
+hickory_PA,1,15340,NA,PA,hickory
+daisytown_PA,1,15427,NA,PA,daisytown
+ligonier borough_PA,1,15658,NA,PA,ligonier borough
+westmoreland_PA,0,15656,westmoreland,PA,leechburg
+delmont borough_PA,1,15626,NA,PA,delmont borough
+meshoppen borough_PA,1,18630,NA,PA,meshoppen borough
+york_PA,1,17401,NA,PA,york
+york_PA,1,17408,NA,PA,york
+west york borough_PA,1,17404,NA,PA,west york borough
+york_PA,0,17368,york,PA,wrightsville
+philadelphia_PA,1,19106,NA,PA,philadelphia
+pittsburgh_PA,1,15233,NA,PA,pittsburgh
+warwick_RI,1,2886,NA,RI,warwick
+kent_RI,0,2893,kent,RI,west warwick
+newport_RI,1,2840,NA,RI,newport
+cranston_RI,1,2920,NA,RI,cranston
+pawtucket_RI,1,2860,NA,RI,pawtucket
+providence_RI,1,2903,NA,RI,providence
+providence_RI,0,2896,providence,RI,north smithfield
+washington_RI,0,2852,washington,RI,north kingstown
+washington_RI,0,2879,washington,RI,wakefield
+westerly_RI,1,2891,NA,RI,westerly
+charlestown_RI,1,2813,NA,RI,charlestown
+washington_RI,0,2807,washington,RI,block island
+calhoun falls_SC,1,29628,NA,SC,calhoun falls
+aiken_SC,1,29801,NA,SC,aiken
+bath_SC,1,29816,NA,SC,bath
+anderson_SC,1,29624,NA,SC,anderson
+pendleton_SC,1,29670,NA,SC,pendleton
+bonneau_SC,1,29431,NA,SC,bonneau
+goose creek_SC,1,29445,NA,SC,goose creek
+st. matthews_SC,1,29135,NA,SC,st. matthews
+charleston_SC,1,29403,NA,SC,charleston
+mount pleasant_SC,1,29464,NA,SC,mount pleasant
+north charleston_SC,1,29406,NA,SC,north charleston
+blacksburg_SC,1,29702,NA,SC,blacksburg
+darlington_SC,1,29540,NA,SC,darlington
+summerville_SC,1,29483,NA,SC,summerville
+florence_SC,1,29501,NA,SC,florence
+fountain inn_SC,1,29644,NA,SC,fountain inn
+greenville_SC,1,29601,NA,SC,greenville
+greer_SC,1,29650,NA,SC,greer
+myrtle beach_SC,1,29577,NA,SC,myrtle beach
+ridgeland_SC,1,29936,NA,SC,ridgeland
+springdale_SC,1,29170,NA,SC,springdale
+mccormick_SC,0,29835,mccormick,SC,mc cormick
+marion_SC,1,29571,NA,SC,marion
+prosperity_SC,1,29127,NA,SC,prosperity
+seneca_SC,1,29679,NA,SC,seneca
+walhalla_SC,1,29691,NA,SC,walhalla
+salem_SC,1,29676,NA,SC,salem
+holly hill_SC,1,29059,NA,SC,holly hill
+norway_SC,1,29113,NA,SC,norway
+liberty_SC,1,29657,NA,SC,liberty
+columbia_SC,1,29201,NA,SC,columbia
+spartanburg_SC,1,29306,NA,SC,spartanburg
+woodruff_SC,1,29388,NA,SC,woodruff
+inman_SC,1,29349,NA,SC,inman
+wellford_SC,1,29385,NA,SC,wellford
+sumter_SC,1,29150,NA,SC,sumter
+rock hill_SC,1,29730,NA,SC,rock hill
+avon_SD,1,57315,NA,SD,avon
+wagner_SD,1,57380,NA,SD,wagner
+webster_SD,1,57274,NA,SD,webster
+eagle butte_SD,1,57625,NA,SD,eagle butte
+miller_SD,1,57362,NA,SD,miller
+pierre_SD,1,57501,NA,SD,pierre
+parkston_SD,1,57366,NA,SD,parkston
+sioux falls_SD,1,57104,NA,SD,sioux falls
+rapid_SD,1,57701,NA,SD,rapid
+sisseton_SD,1,57262,NA,SD,sisseton
+elk point_SD,1,57025,NA,SD,elk point
+shelbyville_TN,1,37160,NA,TN,shelbyville
+cleveland_TN,1,37311,NA,TN,cleveland
+jellico_TN,1,37762,NA,TN,jellico
+clarksburg_TN,1,26301,NA,TN,clarksburg
+pleasant view_TN,1,37146,NA,TN,pleasant view
+newport_TN,1,37822,NA,TN,newport
+tullahoma_TN,1,37388,NA,TN,tullahoma
+davidson_TN,0,37210,davidson,TN,nashville
+dickson_TN,1,37055,NA,TN,dickson
+trimble_TN,1,38259,NA,TN,trimble
+pulaski_TN,1,38478,NA,TN,pulaski
+minor hill_TN,1,38473,NA,TN,minor hill
+ardmore_TN,1,38449,NA,TN,ardmore
+bean station_TN,1,37708,NA,TN,bean station
+morristown_TN,1,37816,NA,TN,morristown
+chattanooga_TN,1,37406,NA,TN,chattanooga
+bolivar_TN,1,38008,NA,TN,bolivar
+rogersville_TN,1,37857,NA,TN,rogersville
+scotts hill_TN,1,38374,NA,TN,scotts hill
+waverly_TN,1,37185,NA,TN,waverly
+gainesboro_TN,1,38562,NA,TN,gainesboro
+white pine_TN,1,37890,NA,TN,white pine
+mountain_TN,1,37683,NA,TN,mountain
+knoxville_TN,1,37927,NA,TN,knoxville
+henning_TN,1,38041,NA,TN,henning
+loretto_TN,1,38469,NA,TN,loretto
+ethridge_TN,1,38456,NA,TN,ethridge
+calhoun_TN,1,37309,NA,TN,calhoun
+adamsville_TN,1,38310,NA,TN,adamsville
+red boiling springs_TN,1,37150,NA,TN,red boiling springs
+jackson_TN,1,38302,NA,TN,jackson
+kimball_TN,1,24853,NA,TN,kimball
+lewisburg_TN,1,37091,NA,TN,lewisburg
+clarksville_TN,1,37040,NA,TN,clarksville
+south fulton_TN,1,38257,NA,TN,south fulton
+obion_TN,1,38240,NA,TN,obion
+copperhill_TN,1,37317,NA,TN,copperhill
+benton_TN,1,37307,NA,TN,benton
+baxter_TN,1,38544,NA,TN,baxter
+oliver springs_TN,1,37840,NA,TN,oliver springs
+murfreesboro_TN,1,37130,NA,TN,murfreesboro
+la vergne_TN,1,37086,NA,TN,la vergne
+gatlinburg_TN,1,37738,NA,TN,gatlinburg
+pigeon forge_TN,1,37868,NA,TN,pigeon forge
+collierville_TN,1,38017,NA,TN,collierville
+germantown_TN,1,38138,NA,TN,germantown
+bartlett_TN,1,38133,NA,TN,bartlett
+cumberland_TN,1,37050,NA,TN,cumberland
+dover_TN,1,37058,NA,TN,dover
+kingsport_TN,1,37660,NA,TN,kingsport
+white house_TN,1,37188,NA,TN,white house
+hendersonville_TN,1,37077,NA,TN,hendersonville
+goodlettsville_TN,1,37072,NA,TN,goodlettsville
+brighton_TN,1,35020,NA,TN,brighton
+johnson_TN,1,37601,NA,TN,johnson
+jonesborough_TN,1,37659,NA,TN,jonesborough
+gleason_TN,1,38229,NA,TN,gleason
+greenfield_TN,1,38230,NA,TN,greenfield
+franklin_TN,1,37064,NA,TN,franklin
+mount juliet_TN,1,37121,NA,TN,mount juliet
+memphis_TN,1,38103,NA,TN,memphis
+rockport_TX,1,78382,NA,TX,rockport
+lytle_TX,1,78052,NA,TX,lytle
+jourdanton_TX,1,78026,NA,TX,jourdanton
+seymour_TX,1,76380,NA,TX,seymour
+killeen_TX,1,76542,NA,TX,killeen
+temple_TX,1,76501,NA,TX,temple
+belton_TX,1,76513,NA,TX,belton
+san antonio_TX,1,78213,NA,TX,san antonio
+kirby_TX,1,78219,NA,TX,kirby
+live oak_TX,1,78233,NA,TX,live oak
+helotes_TX,1,78023,NA,TX,helotes
+danbury_TX,1,77534,NA,TX,danbury
+freeport_TX,1,77541,NA,TX,freeport
+lake jackson_TX,1,77566,NA,TX,lake jackson
+manvel_TX,1,77578,NA,TX,manvel
+pearland_TX,1,77581,NA,TX,pearland
+west columbia_TX,1,77486,NA,TX,west columbia
+bryan_TX,1,77805,NA,TX,bryan
+college station_TX,1,77840,NA,TX,college station
+bangs_TX,1,76823,NA,TX,bangs
+somerville_TX,1,77879,NA,TX,somerville
+luling_TX,1,78648,NA,TX,luling
+port lavaca_TX,1,77979,NA,TX,port lavaca
+brownsville_TX,1,78520,NA,TX,brownsville
+harlingen_TX,1,78550,NA,TX,harlingen
+palm valley_TX,1,78552,NA,TX,palm valley
+queen_TX,1,75572,NA,TX,queen
+childress_TX,1,79201,NA,TX,childress
+allen_TX,1,75013,NA,TX,allen
+frisco_TX,1,75034,NA,TX,frisco
+mckinney_TX,1,75071,NA,TX,mckinney
+plano_TX,1,75086,NA,TX,plano
+prosper_TX,1,75078,NA,TX,prosper
+new braunfels_TX,1,78130,NA,TX,new braunfels
+gainesville_TX,1,76240,NA,TX,gainesville
+gainesville_TX,1,76240,NA,TX,gainesville
+copperas cove_TX,1,76522,NA,TX,copperas cove
+paducah_TX,1,79248,NA,TX,paducah
+lorenzo_TX,1,79343,NA,TX,lorenzo
+carrollton_TX,1,75006,NA,TX,carrollton
+garland_TX,1,75042,NA,TX,garland
+grand prairie_TX,1,75052,NA,TX,grand prairie
+irving_TX,1,75015,NA,TX,irving
+mesquite_TX,1,75185,NA,TX,mesquite
+richardson_TX,1,75083,NA,TX,richardson
+argyle_TX,1,76226,NA,TX,argyle
+denton_TX,1,76205,NA,TX,denton
+lake dallas_TX,1,75065,NA,TX,lake dallas
+lewisville_TX,1,75029,NA,TX,lewisville
+the colony_TX,1,75056,NA,TX,the colony
+highland village_TX,1,75077,NA,TX,highland village
+northlake_TX,1,76247,NA,TX,northlake
+spur_TX,1,79370,NA,TX,spur
+odessa_TX,1,79761,NA,TX,odessa
+italy_TX,1,76651,NA,TX,italy
+el paso_TX,1,79903,NA,TX,el paso
+lott_TX,1,76656,NA,TX,lott
+flatonia_TX,1,78941,NA,TX,flatonia
+lockney_TX,1,79241,NA,TX,lockney
+crowell_TX,1,79227,NA,TX,crowell
+missouri_TX,1,77459,NA,TX,missouri
+sugar land_TX,1,77478,NA,TX,sugar land
+fairfield_TX,1,75840,NA,TX,fairfield
+teague_TX,1,75860,NA,TX,teague
+galveston_TX,1,77552,NA,TX,galveston
+hitchcock_TX,1,77563,NA,TX,hitchcock
+league_TX,1,77573,NA,TX,league
+bayou vista_TX,1,77563,NA,TX,bayou vista
+denison_TX,1,75020,NA,TX,denison
+longview_TX,1,75606,NA,TX,longview
+white oak_TX,1,75693,NA,TX,white oak
+seguin_TX,1,78155,NA,TX,seguin
+baytown_TX,1,77521,NA,TX,baytown
+pasadena_TX,1,77505,NA,TX,pasadena
+west university place_TX,1,77005,NA,TX,west university place
+san marcos_TX,1,78666,NA,TX,san marcos
+kyle_TX,1,78640,NA,TX,kyle
+seven points_TX,1,75143,NA,TX,seven points
+edinburg_TX,1,78539,NA,TX,edinburg
+la villa_TX,1,78562,NA,TX,la villa
+mcallen_TX,1,78505,NA,TX,mcallen
+mission_TX,1,78572,NA,TX,mission
+pharr_TX,1,78577,NA,TX,pharr
+penitas_TX,1,78576,NA,TX,penitas
+anton_TX,1,79313,NA,TX,anton
+sulphur springs_TX,1,75482,NA,TX,sulphur springs
+west tawakoni_TX,1,75474,NA,TX,west tawakoni
+edna_TX,1,77957,NA,TX,edna
+ganado_TX,1,77962,NA,TX,ganado
+beaumont_TX,1,77704,NA,TX,beaumont
+nederland_TX,1,77627,NA,TX,nederland
+port arthur_TX,1,77641,NA,TX,port arthur
+port neches_TX,1,77651,NA,TX,port neches
+burleson_TX,1,76028,NA,TX,burleson
+kaufman_TX,1,75142,NA,TX,kaufman
+terrell_TX,1,75160,NA,TX,terrell
+lampasas_TX,1,76550,NA,TX,lampasas
+kempner_TX,1,76539,NA,TX,kempner
+lubbock_TX,1,79457,NA,TX,lubbock
+shallowater_TX,1,79363,NA,TX,shallowater
+slaton_TX,1,79364,NA,TX,slaton
+ransom canyon_TX,1,79366,NA,TX,ransom canyon
+hewitt_TX,1,76643,NA,TX,hewitt
+lorena_TX,1,76655,NA,TX,lorena
+waco_TX,1,76708,NA,TX,waco
+west_TX,1,76691,NA,TX,west
+riesel_TX,1,76682,NA,TX,riesel
+madisonville_TX,1,77864,NA,TX,madisonville
+castroville_TX,1,78009,NA,TX,castroville
+hondo_TX,1,78861,NA,TX,hondo
+midland_TX,1,79701,NA,TX,midland
+cameron_TX,1,76520,NA,TX,cameron
+rockdale_TX,1,76567,NA,TX,rockdale
+nocona_TX,1,76255,NA,TX,nocona
+conroe_TX,1,77301,NA,TX,conroe
+shenandoah_TX,1,77381,NA,TX,shenandoah
+montgomery_TX,1,77356,NA,TX,montgomery
+dumas_TX,1,79029,NA,TX,dumas
+corsicana_TX,1,75110,NA,TX,corsicana
+roscoe_TX,1,79545,NA,TX,roscoe
+corpus christi_TX,1,78469,NA,TX,corpus christi
+port aransas_TX,1,78373,NA,TX,port aransas
+springtown_TX,1,76082,NA,TX,springtown
+willow park_TX,1,76087,NA,TX,willow park
+onalaska_TX,1,77360,NA,TX,onalaska
+amarillo_TX,1,79101,NA,TX,amarillo
+clarksville_TX,1,75426,NA,TX,clarksville
+hearne_TX,1,77859,NA,TX,hearne
+ballinger_TX,1,76821,NA,TX,ballinger
+ingleside_TX,1,78362,NA,TX,ingleside
+mathis_TX,1,78368,NA,TX,mathis
+snyder_TX,1,79549,NA,TX,snyder
+stratford downtown_TX,1,6615,NA,TX,stratford downtown
+tyler_TX,1,75702,NA,TX,tyler
+whitehouse_TX,1,75791,NA,TX,whitehouse
+la grulla_TX,1,78548,NA,TX,la grulla
+arlington_TX,1,76011,NA,TX,arlington
+arlington_TX,1,76016,NA,TX,arlington
+everman_TX,1,76140,NA,TX,everman
+forest hill_TX,1,76119,NA,TX,forest hill
+fort worth_TX,1,76107,NA,TX,fort worth
+lakeside_TX,1,76108,NA,TX,lakeside
+north richland hills_TX,1,76180,NA,TX,north richland hills
+sansom park_TX,1,76114,NA,TX,sansom park
+abilene_TX,1,79604,NA,TX,abilene
+san angelo_TX,1,76903,NA,TX,san angelo
+austin_TX,1,78768,NA,TX,austin
+del rio_TX,1,78840,NA,TX,del rio
+grand saline_TX,1,75140,NA,TX,grand saline
+victoria_TX,1,77901,NA,TX,victoria
+huntsville_TX,1,77340,NA,TX,huntsville
+hempstead_TX,1,77445,NA,TX,hempstead
+laredo_TX,1,78041,NA,TX,laredo
+el campo_TX,1,77437,NA,TX,el campo
+wichita falls_TX,1,76301,NA,TX,wichita falls
+raymondville_TX,1,78580,NA,TX,raymondville
+round rock_TX,1,78665,NA,TX,round rock
+taylor_TX,1,76574,NA,TX,taylor
+cedar park_TX,1,78613,NA,TX,cedar park
+jarrell_TX,1,76537,NA,TX,jarrell
+la vernia_TX,1,78121,NA,TX,la vernia
+wink_TX,1,79789,NA,TX,wink
+quitman_TX,1,75783,NA,TX,quitman
+graham_TX,1,76450,NA,TX,graham
+olney_TX,1,76374,NA,TX,olney
+dallas_TX,1,75215,NA,TX,dallas
+houston_TX,1,77002,NA,TX,houston
+san antonio_TX,1,78207,NA,TX,san antonio
+smithfield_UT,1,84335,NA,UT,smithfield
+farmington_UT,1,84025,NA,UT,farmington
+woods cross_UT,1,84087,NA,UT,woods cross
+cedar_UT,1,84720,NA,UT,cedar
+salt lake_UT,1,84101,NA,UT,salt lake
+sandy_UT,1,84070,NA,UT,sandy
+west jordan_UT,1,84088,NA,UT,west jordan
+west valley_UT,1,84119,NA,UT,west valley
+blanding_UT,1,84511,NA,UT,blanding
+richfield_UT,1,84701,NA,UT,richfield
+kamas_UT,1,84036,NA,UT,kamas
+tooele_UT,1,84074,NA,UT,tooele
+stockton_UT,1,84071,NA,UT,stockton
+pleasant grove_UT,1,84062,NA,UT,pleasant grove
+provo_UT,1,84603,NA,UT,provo
+highland_UT,1,84003,NA,UT,highland
+st. george_UT,1,84770,NA,UT,st. george
+ogden_UT,1,84401,NA,UT,ogden
+south ogden_UT,1,84403,NA,UT,south ogden
+bedford_VA,1,24523,NA,VA,bedford
+pearisburg_VA,1,24134,NA,VA,pearisburg
+pembroke_VA,1,24136,NA,VA,pembroke
+narrows_VA,1,24124,NA,VA,narrows
+ashland_VA,1,23005,NA,VA,ashland
+windsor_VA,1,23487,NA,VA,windsor
+kilmarnock_VA,1,22482,NA,VA,kilmarnock
+orange_VA,1,22960,NA,VA,orange
+chatham_VA,1,24531,NA,VA,chatham
+hurt_VA,1,24563,NA,VA,hurt
+haymarket_VA,1,20169,NA,VA,haymarket
+dumfries_VA,1,22026,NA,VA,dumfries
+occoquan_VA,1,22125,NA,VA,occoquan
+lexington_VA,1,24450,NA,VA,lexington
+grottoes_VA,1,24441,NA,VA,grottoes
+weber_VA,1,24290,NA,VA,weber
+big stone gap_VA,1,24219,NA,VA,big stone gap
+st. paul_VA,1,24283,NA,VA,st. paul
+wise_VA,1,24293,NA,VA,wise
+alexandria_VA,1,22304,NA,VA,alexandria
+charlottesville_VA,1,22902,NA,VA,charlottesville
+chesapeake_VA,1,23322,NA,VA,chesapeake
+covington_VA,1,24426,NA,VA,covington
+danville_VA,1,24543,NA,VA,danville
+hampton_VA,1,23669,NA,VA,hampton
+harrisonburg_VA,1,22802,NA,VA,harrisonburg
+hopewell_VA,1,23860,NA,VA,hopewell
+lynchburg_VA,1,24504,NA,VA,lynchburg
+newport news_VA,1,23605,NA,VA,newport news
+norfolk_VA,1,23510,NA,VA,norfolk
+portsmouth_VA,1,23704,NA,VA,portsmouth
+radford_VA,1,24141,NA,VA,radford
+richmond_VA,1,23220,NA,VA,richmond
+roanoke_VA,1,24016,NA,VA,roanoke
+staunton_VA,1,24401,NA,VA,staunton
+suffolk_VA,1,23434,NA,VA,suffolk
+virginia beach_VA,1,23456,NA,VA,virginia beach
+bristol_VT,1,5443,NA,VT,bristol
+hinesburg_VT,1,5461,NA,VT,hinesburg
+morrisville_VT,1,5661,NA,VT,morrisville
+bradford_VT,1,5033,NA,VT,bradford
+newport_VT,1,5855,NA,VT,newport
+rutland_VT,0,5736,rutland,VT,center rutland
+barre_VT,1,5641,NA,VT,barre
+brattleboro_VT,1,5301,NA,VT,brattleboro
+wilmington_VT,1,5363,NA,VT,wilmington
+ascutney_VT,1,44420,NA,VT,ascutney
+asotin_WA,1,99402,NA,WA,asotin
+kennewick_WA,1,99336,NA,WA,kennewick
+port angeles_WA,1,98362,NA,WA,port angeles
+forks_WA,1,98331,NA,WA,forks
+camas_WA,1,98607,NA,WA,camas
+vancouver_WA,1,98661,NA,WA,vancouver
+washougal_WA,1,98671,NA,WA,washougal
+pasco_WA,1,99301,NA,WA,pasco
+quincy_WA,1,98848,NA,WA,quincy
+mattawa_WA,1,99349,NA,WA,mattawa
+royal_WA,1,99357,NA,WA,royal
+aberdeen_WA,1,98520,NA,WA,aberdeen
+montesano_WA,1,98563,NA,WA,montesano
+cosmopolis_WA,1,98537,NA,WA,cosmopolis
+ocean shores_WA,1,98569,NA,WA,ocean shores
+oak harbor_WA,1,98277,NA,WA,oak harbor
+langley_WA,1,98260,NA,WA,langley
+rockingham_WA,0,98002,rockingham,WA,auburn
+bellevue_WA,1,98009,NA,WA,bellevue
+kent_WA,1,98032,NA,WA,kent
+kirkland_WA,1,98034,NA,WA,kirkland
+renton_WA,1,98057,NA,WA,renton
+clyde hill_WA,1,98004,NA,WA,clyde hill
+federal way_WA,1,98003,NA,WA,federal way
+morton_WA,1,98356,NA,WA,morton
+reardan_WA,1,99029,NA,WA,reardan
+brewster_WA,1,98812,NA,WA,brewster
+tonasket_WA,1,98855,NA,WA,tonasket
+south bend_WA,1,98586,NA,WA,south bend
+puyallup_WA,1,98371,NA,WA,puyallup
+tacoma_WA,1,98409,NA,WA,tacoma
+fife_WA,1,98424,NA,WA,fife
+roy_WA,1,98580,NA,WA,roy
+steilacoom_WA,1,98388,NA,WA,steilacoom
+bonney lake_WA,1,98391,NA,WA,bonney lake
+fircrest_WA,1,98466,NA,WA,fircrest
+ruston_WA,1,98407,NA,WA,ruston
+lakewood_WA,1,98499,NA,WA,lakewood
+anacortes_WA,1,98221,NA,WA,anacortes
+arlington_WA,1,98223,NA,WA,arlington
+everett_WA,1,98201,NA,WA,everett
+lynnwood_WA,1,98046,NA,WA,lynnwood
+marysville_WA,1,98270,NA,WA,marysville
+mountlake terrace_WA,1,98043,NA,WA,mountlake terrace
+monroe_WA,1,98272,NA,WA,monroe
+mukilteo_WA,1,98275,NA,WA,mukilteo
+spokane_WA,1,99260,NA,WA,spokane
+college place_WA,1,99324,NA,WA,college place
+bellingham_WA,1,98225,NA,WA,bellingham
+lynden_WA,1,98264,NA,WA,lynden
+sumas_WA,1,98295,NA,WA,sumas
+grandview_WA,1,98930,NA,WA,grandview
+yakima_WA,1,98901,NA,WA,yakima
+chehalis_WA,1,98532,NA,WA,chehalis
+seattle_WA,1,98124,NA,WA,seattle
+chetek_WI,1,54728,NA,WI,chetek
+iron river_WI,1,54847,NA,WI,iron river
+green bay_WI,1,54301,NA,WI,green bay
+hobart_WI,1,54155,NA,WI,hobart
+mondovi_WI,1,54755,NA,WI,mondovi
+siren_WI,1,54872,NA,WI,siren
+lodi_WI,1,53555,NA,WI,lodi
+prairie du chien_WI,1,53821,NA,WI,prairie du chien
+madison_WI,1,53703,NA,WI,madison
+mount horeb_WI,1,53572,NA,WI,mount horeb
+cross plains_WI,1,53528,NA,WI,cross plains
+marshall_WI,1,53559,NA,WI,marshall
+deforest_WI,1,53532,NA,WI,deforest
+fox lake_WI,1,53933,NA,WI,fox lake
+theresa_WI,1,53091,NA,WI,theresa
+menomonie_WI,1,54751,NA,WI,menomonie
+eau claire_WI,1,54703,NA,WI,eau claire
+altoona_WI,1,54720,NA,WI,altoona
+crandon_WI,1,54520,NA,WI,crandon
+princeton_WI,1,54968,NA,WI,princeton
+mineral point_WI,1,53565,NA,WI,mineral point
+fort atkinson_WI,1,53538,NA,WI,fort atkinson
+lake mills_WI,1,53551,NA,WI,lake mills
+elroy_WI,1,53929,NA,WI,elroy
+mauston_WI,1,53948,NA,WI,mauston
+new lisbon_WI,1,53950,NA,WI,new lisbon
+kenosha_WI,1,53140,NA,WI,kenosha
+bangor_WI,1,54614,NA,WI,bangor
+la crosse_WI,1,54603,NA,WI,la crosse
+holmen_WI,1,54636,NA,WI,holmen
+greenfield_WI,1,53220,NA,WI,greenfield
+oak creek_WI,1,53154,NA,WI,oak creek
+river hills_WI,1,53217,NA,WI,river hills
+south milwaukee_WI,1,53172,NA,WI,south milwaukee
+west allis_WI,1,53227,NA,WI,west allis
+west milwaukee_WI,1,53215,NA,WI,west milwaukee
+whitefish bay_WI,1,53217,NA,WI,whitefish bay
+oconto falls_WI,1,54154,NA,WI,oconto falls
+appleton_WI,1,54911,NA,WI,appleton
+shiocton_WI,1,54170,NA,WI,shiocton
+ellsworth_WI,1,54011,NA,WI,ellsworth
+amery_WI,1,54001,NA,WI,amery
+racine_WI,1,53403,NA,WI,racine
+caledonia_WI,1,53108,NA,WI,caledonia
+richland center_WI,1,53581,NA,WI,richland center
+janesville_WI,1,53548,NA,WI,janesville
+hudson_WI,1,54016,NA,WI,hudson
+somerset_WI,1,54025,NA,WI,somerset
+baraboo_WI,1,53913,NA,WI,baraboo
+kohler_WI,1,53044,NA,WI,kohler
+eagle river_WI,1,54521,NA,WI,eagle river
+walworth_WI,1,53184,NA,WI,walworth
+pell lake_WI,1,53157,NA,WI,pell lake
+east troy_WI,1,53120,NA,WI,east troy
+fontana-on-geneva lake_WI,1,53125,NA,WI,fontana-on-geneva lake
+genoa_WI,1,53128,NA,WI,genoa
+elm grove_WI,1,53122,NA,WI,elm grove
+new berlin_WI,1,53151,NA,WI,new berlin
+waukesha_WI,1,53188,NA,WI,waukesha
+muskego_WI,1,53150,NA,WI,muskego
+hartland_WI,1,53029,NA,WI,hartland
+pewaukee_WI,1,53072,NA,WI,pewaukee
+eagle_WI,1,53119,NA,WI,eagle
+big bend_WI,1,53103,NA,WI,big bend
+new london_WI,1,54961,NA,WI,new london
+oshkosh_WI,1,54903,NA,WI,oshkosh
+milwaukee_WI,1,53233,NA,WI,milwaukee
+belington_WV,1,26250,NA,WV,belington
+burnsville_WV,1,26335,NA,WV,burnsville
+milton_WV,1,25541,NA,WV,milton
+lumberport_WV,1,26386,NA,WV,lumberport
+ravenswood_WV,1,26164,NA,WV,ravenswood
+ripley_WV,1,25271,NA,WV,ripley
+shepherdstown_WV,1,25443,NA,WV,shepherdstown
+charleston_WV,1,25330,NA,WV,charleston
+east bank_WV,1,25067,NA,WV,east bank
+rivesville_WV,1,26588,NA,WV,rivesville
+farmington_WV,1,26571,NA,WV,farmington
+mcmechen_WV,1,26040,NA,WV,mcmechen
+delbarton_WV,1,25670,NA,WV,delbarton
+matewan_WV,1,25678,NA,WV,matewan
+morgantown_WV,1,26505,NA,WV,morgantown
+summersville_WV,1,26651,NA,WV,summersville
+st. marys_WV,1,15857,NA,WV,st. marys
+winfield_WV,1,25213,NA,WV,winfield
+mabscott_WV,1,25871,NA,WV,mabscott
+grafton_WV,1,26354,NA,WV,grafton
+sistersville_WV,1,26175,NA,WV,sistersville
+laramie_WY,1,82070,NA,WY,laramie
+lovell_WY,1,82431,NA,WY,lovell
+lander_WY,1,82520,NA,WY,lander
+shoshoni_WY,1,82649,NA,WY,shoshoni
+cheyenne_WY,1,82001,NA,WY,cheyenne
+diamondville_WY,1,83116,NA,WY,diamondville
+worland_WY,1,82401,NA,WY,worland
+newcastle_WY,1,82701,NA,WY,newcastle
+buena vista_VA,1,24416,NA,VA,buena vista
+new york_NY,1,10038,NA,NY,new york
+hotsprings_SD,1,57747,NA,SD,hotsprings
+birmingham_AL,1,35203,NA,AL,birmingham
+mobile_AL,1,36601,NA,AL,mobile
+montgomery_AL,1,36103,NA,AL,montgomery
+bay minette_AL,1,36507,NA,AL,bay minette
+union springs_AL,1,36089,NA,AL,union springs
+grove hill_AL,1,36451,NA,AL,grove hill
+heflin_AL,1,36264,NA,AL,heflin
+tuscumbia_AL,1,36351,NA,AL,tuscumbia
+cullman_AL,1,35055,NA,AL,cullman
+ozark_AL,1,36361,NA,AL,ozark
+russellville_AL,1,35653,NA,AL,russellville
+geneva_AL,1,36340,NA,AL,geneva
+greensboro_AL,1,36744,NA,AL,greensboro
+scottsboro_AL,1,35768,NA,AL,scottsboro
+huntsville_AL,1,35801,NA,AL,huntsville
+guntersville_AL,1,35976,NA,AL,guntersville
+decatur_AL,1,35601,NA,AL,decatur
+marion_AL,1,36756,NA,AL,marion
+columbiana_AL,1,35051,NA,AL,columbiana
+dadeville_AL,1,36853,NA,AL,dadeville
+tuscaloosa_AL,1,35401,NA,AL,tuscaloosa
+chatom_AL,1,36518,NA,AL,chatom
+mountain home_AR,1,72653,NA,AR,mountain home
+bentonville_AR,1,72712,NA,AR,bentonville
+heber springs_AR,1,72543,NA,AR,heber springs
+morrilton_AR,1,72110,NA,AR,morrilton
+newport_AR,1,72112,NA,AR,newport
+star_AR,1,69101,NA,AR,star
+lonoke_AR,1,72086,NA,AR,lonoke
+des arc_AR,1,72040,NA,AR,des arc
+little rock_AR,1,72204,NA,AR,little rock
+fort smith_AR,1,72901,NA,AR,fort smith
+el dorado_AR,1,71730,NA,AR,el dorado
+fayetteville_AR,1,72701,NA,AR,fayetteville
+phoenix_AZ,1,85003,NA,AZ,phoenix
+kingman_AZ,1,86402,NA,AZ,kingman
+tucson_AZ,1,85714,NA,AZ,tucson
+florence_AZ,1,85132,NA,AZ,florence
+oakland_CA,1,94612,NA,CA,oakland
+jackson_CA,1,95642,NA,CA,jackson
+oroville_CA,1,95965,NA,CA,oroville
+colusa_CA,1,95932,NA,CA,colusa
+martinez_CA,1,94553,NA,CA,martinez
+placerville_CA,1,95667,NA,CA,placerville
+fresno_CA,1,93721,NA,CA,fresno
+el centro_CA,1,92244,NA,CA,el centro
+bakersfield_CA,1,93308,NA,CA,bakersfield
+los angeles_CA,1,91754,NA,CA,los angeles
+san rafael_CA,1,94903,NA,CA,san rafael
+ukiah_CA,1,95482,NA,CA,ukiah
+merced_CA,1,95340,NA,CA,merced
+salinas_CA,1,93906,NA,CA,salinas
+napa_CA,1,94558,NA,CA,napa
+santa ana_CA,1,92703,NA,CA,santa ana
+auburn_CA,1,95603,NA,CA,auburn
+riverside_CA,1,92502,NA,CA,riverside
+sacramento_CA,1,95812,NA,CA,sacramento
+san bernardino_CA,1,92415,NA,CA,san bernardino
+san diego_CA,1,92193,NA,CA,san diego
+french camp_CA,1,95231,NA,CA,french camp
+san luis obispo_CA,1,93405,NA,CA,san luis obispo
+redwood_CA,1,94063,NA,CA,redwood
+santa barbara_CA,1,93110,NA,CA,santa barbara
+san jose_CA,1,95110,NA,CA,san jose
+santa cruz_CA,1,95062,NA,CA,santa cruz
+fairfield_CA,1,94533,NA,CA,fairfield
+santa rosa_CA,1,95403,NA,CA,santa rosa
+modesto_CA,1,95358,NA,CA,modesto
+weaverville_CA,1,96093,NA,CA,weaverville
+visalia_CA,1,93291,NA,CA,visalia
+san buenaventura (ventura)_CA,1,93009,NA,CA,san buenaventura (ventura)
+brighton_CO,1,80601,NA,CO,brighton
+alamosa_CO,1,81101,NA,CO,alamosa
+centennial_CO,1,80112,NA,CO,centennial
+boulder_CO,1,80301,NA,CO,boulder
+castle rock_CO,1,80109,NA,CO,castle rock
+eagle_CO,1,81631,NA,CO,eagle
+colorado springs_CO,1,80903,NA,CO,colorado springs
+glenwood springs_CO,1,81601,NA,CO,glenwood springs
+golden_CO,1,80401,NA,CO,golden
+leadville_CO,1,80461,NA,CO,leadville
+durango_CO,1,81303,NA,CO,durango
+fort collins_CO,1,80525,NA,CO,fort collins
+grand junction_CO,1,81502,NA,CO,grand junction
+creede_CO,1,81130,NA,CO,creede
+la junta_CO,1,81050,NA,CO,la junta
+pueblo_CO,1,81003,NA,CO,pueblo
+akron_CO,1,80720,NA,CO,akron
+greeley_CO,1,80631,NA,CO,greeley
+gainesville_FL,1,32627,NA,FL,gainesville
+panama_FL,1,32405,NA,FL,panama
+titusville_FL,1,32780,NA,FL,titusville
+fort lauderdale_FL,1,33312,NA,FL,fort lauderdale
+blountstown_FL,1,32424,NA,FL,blountstown
+punta gorda_FL,1,33982,NA,FL,punta gorda
+inverness_FL,1,34450,NA,FL,inverness
+green cove springs_FL,1,32043,NA,FL,green cove springs
+naples_FL,1,34112,NA,FL,naples
+lake_FL,1,32055,NA,FL,lake
+pensacola_FL,1,32501,NA,FL,pensacola
+bunnell_FL,1,32110,NA,FL,bunnell
+brooksville_FL,1,34601,NA,FL,brooksville
+sebring_FL,1,33870,NA,FL,sebring
+tampa_FL,1,33601,NA,FL,tampa
+vero beach_FL,1,32960,NA,FL,vero beach
+tavares_FL,1,32778,NA,FL,tavares
+fort myers_FL,1,33912,NA,FL,fort myers
+tallahassee_FL,1,32302,NA,FL,tallahassee
+bradenton_FL,1,34205,NA,FL,bradenton
+ocala_FL,1,34478,NA,FL,ocala
+stuart_FL,1,34994,NA,FL,stuart
+key west_FL,1,33040,NA,FL,key west
+yulee_FL,1,32097,NA,FL,yulee
+shalimar_FL,1,32579,NA,FL,shalimar
+orlando_FL,1,32802,NA,FL,orlando
+kissimmee_FL,1,34744,NA,FL,kissimmee
+west palm beach_FL,1,33406,NA,FL,west palm beach
+new port richey_FL,1,34654,NA,FL,new port richey
+largo_FL,1,33779,NA,FL,largo
+winter haven_FL,1,33880,NA,FL,winter haven
+palatka_FL,1,32178,NA,FL,palatka
+st. augustine_FL,1,32084,NA,FL,st. augustine
+fort pierce_FL,1,34981,NA,FL,fort pierce
+milton_FL,1,32572,NA,FL,milton
+sarasota_FL,1,34237,NA,FL,sarasota
+sanford_FL,1,32773,NA,FL,sanford
+bushnell_FL,1,33513,NA,FL,bushnell
+lake butler_FL,1,32054,NA,FL,lake butler
+deland_FL,1,32721,NA,FL,deland
+defuniak springs_FL,1,32433,NA,FL,defuniak springs
+baxley_GA,1,31513,NA,GA,baxley
+newton_GA,1,39870,NA,GA,newton
+milledgeville_GA,1,31059,NA,GA,milledgeville
+winder_GA,1,30680,NA,GA,winder
+cartersville_GA,1,30121,NA,GA,cartersville
+macon-bibb_GA,1,31202,NA,GA,macon-bibb
+nahunta_GA,1,31553,NA,GA,nahunta
+quitman_GA,1,31643,NA,GA,quitman
+statesboro_GA,1,30458,NA,GA,statesboro
+carrollton_GA,1,30116,NA,GA,carrollton
+savannah_GA,1,31412,NA,GA,savannah
+summerville_GA,1,30747,NA,GA,summerville
+canton_GA,1,30115,NA,GA,canton
+appling_GA,1,32055,NA,GA,appling
+newnan_GA,1,30263,NA,GA,newnan
+douglasville_GA,1,80109,NA,GA,douglasville
+fayetteville_GA,1,30214,NA,GA,fayetteville
+cumming_GA,1,30040,NA,GA,cumming
+gibson_GA,1,30810,NA,GA,gibson
+north calhoun_GA,1,30701,NA,GA,north calhoun
+cairo_GA,1,39828,NA,GA,cairo
+gainesville_GA,1,30504,NA,GA,gainesville
+buchanan_GA,1,30113,NA,GA,buchanan
+franklin_GA,1,30217,NA,GA,franklin
+warner robins_GA,1,31088,NA,GA,warner robins
+ocilla_GA,1,31774,NA,GA,ocilla
+jefferson_GA,1,30549,NA,GA,jefferson
+millen_GA,1,30442,NA,GA,millen
+barnesville_GA,1,30204,NA,GA,barnesville
+ludowici_GA,1,31316,NA,GA,ludowici
+valdosta_GA,1,31603,NA,GA,valdosta
+darien_GA,1,31305,NA,GA,darien
+chatsworth_GA,1,30705,NA,GA,chatsworth
+columbus_GA,1,31902,NA,GA,columbus
+covington_GA,1,30014,NA,GA,covington
+dallas_GA,1,30132,NA,GA,dallas
+cedartown_GA,1,30125,NA,GA,cedartown
+clayton_GA,1,30525,NA,GA,clayton
+augusta-richmond consolidated government (balance)_GA,1,30901,NA,GA,augusta-richmond consolidated government (balance)
+conyers_GA,1,30012,NA,GA,conyers
+ellaville_GA,1,31806,NA,GA,ellaville
+griffin_GA,1,30224,NA,GA,griffin
+tifton_GA,1,31793,NA,GA,tifton
+lyons_GA,1,30436,NA,GA,lyons
+lafayette_GA,1,30728,NA,GA,lafayette
+monroe_GA,1,30655,NA,GA,monroe
+waycross_GA,1,31503,NA,GA,waycross
+sandersville_GA,1,31082,NA,GA,sandersville
+cleveland_GA,1,30528,NA,GA,cleveland
+dalton_GA,1,30722,NA,GA,dalton
+abbeville_GA,1,31001,NA,GA,abbeville
+irwinton_GA,1,31042,NA,GA,irwinton
+vinton_IA,1,52349,NA,IA,vinton
+waterloo_IA,1,50703,NA,IA,waterloo
+storm lake_IA,1,50588,NA,IA,storm lake
+jefferson_IA,1,50129,NA,IA,jefferson
+webster_IA,1,50595,NA,IA,webster
+humboldt_IA,1,50548,NA,IA,humboldt
+montrose_IA,1,52639,NA,IA,montrose
+cedar rapids_IA,1,52406,NA,IA,cedar rapids
+pocahontas_IA,1,50574,NA,IA,pocahontas
+des moines_IA,1,50313,NA,IA,des moines
+montezuma_IA,1,50171,NA,IA,montezuma
+mount ayr_IA,1,50854,NA,IA,mount ayr
+sac_IA,1,95814,NA,IA,sac
+orange_IA,1,51041,NA,IA,orange
+keosauqua_IA,1,52565,NA,IA,keosauqua
+ottumwa_IA,1,52501,NA,IA,ottumwa
+clarion_IA,1,50525,NA,IA,clarion
+boise_ID,1,83704,NA,ID,boise
+pocatello_ID,1,83205,NA,ID,pocatello
+sandpoint_ID,1,83864,NA,ID,sandpoint
+fairfield_ID,1,83327,NA,ID,fairfield
+soda springs_ID,1,83276,NA,ID,soda springs
+burley_ID,1,83318,NA,ID,burley
+mountain home_ID,1,83647,NA,ID,mountain home
+preston_ID,1,83263,NA,ID,preston
+jerome_ID,1,83338,NA,ID,jerome
+driggs_ID,1,83422,NA,ID,driggs
+quincy_IL,1,62301,NA,IL,quincy
+hardin_IL,1,62047,NA,IL,hardin
+chicago_IL,1,60602,NA,IL,chicago
+wheaton_IL,1,60187,NA,IL,wheaton
+lewistown_IL,1,61542,NA,IL,lewistown
+shawneetown_IL,1,62984,NA,IL,shawneetown
+murphysboro_IL,1,62966,NA,IL,murphysboro
+newton_IL,1,62448,NA,IL,newton
+waukegan_IL,1,60085,NA,IL,waukegan
+dixon_IL,1,61021,NA,IL,dixon
+macomb_IL,1,61455,NA,IL,macomb
+woodstock_IL,1,60098,NA,IL,woodstock
+waterloo_IL,1,62298,NA,IL,waterloo
+jacksonville_IL,1,62650,NA,IL,jacksonville
+pinckneyville_IL,1,62274,NA,IL,pinckneyville
+rushville_IL,1,62681,NA,IL,rushville
+danville_IL,1,61832,NA,IL,danville
+mount carmel_IL,1,62863,NA,IL,mount carmel
+monmouth_IL,1,61462,NA,IL,monmouth
+morrison_IL,1,61270,NA,IL,morrison
+joliet_IL,1,60432,NA,IL,joliet
+rockford_IL,1,61102,NA,IL,rockford
+fort wayne_IN,1,46802,NA,IN,fort wayne
+logansport_IN,1,46947,NA,IN,logansport
+corydon_IN,1,47112,NA,IN,corydon
+crown point_IN,1,46307,NA,IN,crown point
+la porte_IN,1,46350,NA,IN,la porte
+crawfordsville_IN,1,47933,NA,IN,crawfordsville
+south bend_IN,1,46601,NA,IN,south bend
+scottsburg_IN,1,47170,NA,IN,scottsburg
+shelbyville_IN,1,46176,NA,IN,shelbyville
+angola_IN,1,46703,NA,IN,angola
+sullivan_IN,1,47882,NA,IN,sullivan
+evansville_IN,1,47711,NA,IN,evansville
+columbia_IN,1,46725,NA,IN,columbia
+medicine lodge_KS,1,67104,NA,KS,medicine lodge
+hiawatha_KS,1,66434,NA,KS,hiawatha
+columbus_KS,1,66725,NA,KS,columbus
+cimarron_KS,1,67835,NA,KS,cimarron
+tribune_KS,1,67879,NA,KS,tribune
+eureka_KS,1,67045,NA,KS,eureka
+olathe_KS,1,66061,NA,KS,olathe
+lakin_KS,1,67860,NA,KS,lakin
+oswego_KS,1,67356,NA,KS,oswego
+marion_KS,1,66861,NA,KS,marion
+beloit_KS,1,67420,NA,KS,beloit
+erie_KS,1,66733,NA,KS,erie
+phillipsburg_KS,1,67661,NA,KS,phillipsburg
+stockton_KS,1,67669,NA,KS,stockton
+wichita_KS,1,67203,NA,KS,wichita
+topeka_KS,1,66603,NA,KS,topeka
+johnson_KS,1,68779,NA,KS,johnson
+colby_KS,1,67701,NA,KS,colby
+alma_KS,1,66401,NA,KS,alma
+burlington_KY,1,41005,NA,KY,burlington
+hopkinsville_KY,1,42240,NA,KY,hopkinsville
+marion_KY,1,42064,NA,KY,marion
+burkesville_KY,1,42717,NA,KY,burkesville
+flemingsburg_KY,1,41041,NA,KY,flemingsburg
+frankfort_KY,1,40602,NA,KY,frankfort
+warsaw_KY,1,41095,NA,KY,warsaw
+elizabethtown_KY,1,42702,NA,KY,elizabethtown
+west louisville_KY,1,40202,NA,KY,west louisville
+vanceburg_KY,1,41179,NA,KY,vanceburg
+paducah_KY,1,42003,NA,KY,paducah
+salyersville_KY,1,41465,NA,KY,salyersville
+west liberty_KY,1,41472,NA,KY,west liberty
+morehead_KY,1,40351,NA,KY,morehead
+taylorsville_KY,1,40071,NA,KY,taylorsville
+bedford_KY,1,40006,NA,KY,bedford
+dixon_KY,1,42409,NA,KY,dixon
+oberlin_LA,1,70655,NA,LA,oberlin
+donaldsonville_LA,1,70346,NA,LA,donaldsonville
+marksville_LA,1,71351,NA,LA,marksville
+benton_LA,1,71006,NA,LA,benton
+shreveport_LA,1,71101,NA,LA,shreveport
+lake charles_LA,1,70615,NA,LA,lake charles
+columbia_LA,1,71418,NA,LA,columbia
+harrisonburg_LA,1,71340,NA,LA,harrisonburg
+baton rouge_LA,1,70821,NA,LA,baton rouge
+winnsboro_LA,1,71295,NA,LA,winnsboro
+colfax_LA,1,71417,NA,LA,colfax
+new iberia_LA,1,70560,NA,LA,new iberia
+plaquemine_LA,1,70764,NA,LA,plaquemine
+harvey_LA,1,70058,NA,LA,harvey
+jennings_LA,1,70546,NA,LA,jennings
+lafayette_LA,1,70501,NA,LA,lafayette
+thibodaux_LA,1,70301,NA,LA,thibodaux
+livingston_LA,1,70754,NA,LA,livingston
+bastrop_LA,1,71220,NA,LA,bastrop
+natchitoches_LA,1,71458,NA,LA,natchitoches
+monroe_LA,1,71201,NA,LA,monroe
+belle chasse_LA,1,70037,NA,LA,belle chasse
+alexandria_LA,1,71301,NA,LA,alexandria
+rayville_LA,1,71269,NA,LA,rayville
+chalmette_LA,1,70043,NA,LA,chalmette
+hahnville_LA,1,70057,NA,LA,hahnville
+convent_LA,1,70723,NA,LA,convent
+laplace_LA,1,70068,NA,LA,laplace
+opelousas_LA,1,70571,NA,LA,opelousas
+st. martinville_LA,1,70582,NA,LA,st. martinville
+franklin_LA,1,70538,NA,LA,franklin
+covington_LA,1,70433,NA,LA,covington
+hammond_LA,1,70403,NA,LA,hammond
+houma_LA,1,70361,NA,LA,houma
+farmerville_LA,1,71241,NA,LA,farmerville
+abbeville_LA,1,70510,NA,LA,abbeville
+leesville_LA,1,71496,NA,LA,leesville
+franklinton_LA,1,70438,NA,LA,franklinton
+minden_LA,1,71058,NA,LA,minden
+medford_MA,1,2155,NA,MA,medford
+plymouth_MA,1,2360,NA,MA,plymouth
+baltimore_MD,1,21202,NA,MD,baltimore
+prince frederick_MD,1,20678,NA,MD,prince frederick
+westminster_MD,1,21157,NA,MD,westminster
+la plata_MD,1,20646,NA,MD,la plata
+frederick_MD,1,21701,NA,MD,frederick
+bel air_MD,1,21015,NA,MD,bel air
+chestertown_MD,1,21620,NA,MD,chestertown
+leonardtown_MD,1,20650,NA,MD,leonardtown
+hagerstown_MD,1,21740,NA,MD,hagerstown
+salisbury_MD,1,21801,NA,MD,salisbury
+snow hill_MD,1,21863,NA,MD,snow hill
+houlton_ME,1,4730,NA,ME,houlton
+south paris_ME,1,4281,NA,ME,south paris
+harrisville_MI,1,48740,NA,MI,harrisville
+bellaire_MI,1,49615,NA,MI,bellaire
+sault st.e marie_MI,1,49783,NA,MI,sault st.e marie
+st. johns_MI,1,48879,NA,MI,st. johns
+grayling_MI,1,49738,NA,MI,grayling
+charlotte_MI,1,48813,NA,MI,charlotte
+flint_MI,1,48502,NA,MI,flint
+gladwin_MI,1,48624,NA,MI,gladwin
+hillsdale_MI,1,49242,NA,MI,hillsdale
+crystal falls_MI,1,49920,NA,MI,crystal falls
+mount pleasant_MI,1,48858,NA,MI,mount pleasant
+kalamazoo_MI,1,49048,NA,MI,kalamazoo
+grand rapids_MI,1,49503,NA,MI,grand rapids
+mount clemens_MI,1,48043,NA,MI,mount clemens
+pontiac_MI,1,48341,NA,MI,pontiac
+grand rapids_MI,1,49460,NA,MI,grand rapids
+paw paw_MI,1,49079,NA,MI,paw paw
+ann arbor_MI,1,48105,NA,MI,ann arbor
+detroit_MI,1,48201,NA,MI,detroit
+andover_MN,1,55304,NA,MN,andover
+windom_MN,1,56101,NA,MN,windom
+mantorville_MN,1,55955,NA,MN,mantorville
+minneapolis_MN,1,55415,NA,MN,minneapolis
+park rapids_MN,1,56470,NA,MN,park rapids
+international falls_MN,1,56649,NA,MN,international falls
+milaca_MN,1,56353,NA,MN,milaca
+ada_MN,1,56510,NA,MN,ada
+thief river falls_MN,1,56701,NA,MN,thief river falls
+glenwood_MN,1,56334,NA,MN,glenwood
+st. paul_MN,1,55101,NA,MN,st. paul
+duluth_MN,1,55802,NA,MN,duluth
+benson_MN,1,56215,NA,MN,benson
+long prairie_MN,1,56347,NA,MN,long prairie
+stillwater_MN,1,55082,NA,MN,stillwater
+st. james_MN,1,56081,NA,MN,st. james
+winona_MN,1,55987,NA,MN,winona
+buffalo_MN,1,55313,NA,MN,buffalo
+marble hill_MO,1,63764,NA,MO,marble hill
+columbia_MO,1,65202,NA,MO,columbia
+camdenton_MO,1,65020,NA,MO,camdenton
+keytesville_MO,1,65261,NA,MO,keytesville
+liberty_MO,1,64068,NA,MO,liberty
+steelville_MO,1,65565,NA,MO,steelville
+union_MO,1,63084,NA,MO,union
+albany_MO,1,64402,NA,MO,albany
+springfield_MO,1,65802,NA,MO,springfield
+clinton_MO,1,64735,NA,MO,clinton
+lee's summit_MO,1,64064,NA,MO,lee's summit
+carthage_MO,1,64836,NA,MO,carthage
+hillsboro_MO,1,63050,NA,MO,hillsboro
+centerview_MO,1,64019,NA,MO,centerview
+lebanon_MO,1,65536,NA,MO,lebanon
+troy_MO,1,69101,NA,MO,troy
+linneus_MO,1,64653,NA,MO,linneus
+maryville_MO,1,64468,NA,MO,maryville
+linn_MO,1,65051,NA,MO,linn
+caruthersville_MO,1,63830,NA,MO,caruthersville
+bowling green_MO,1,63334,NA,MO,bowling green
+centerville_MO,1,63633,NA,MO,centerville
+eminence_MO,1,65466,NA,MO,eminence
+bloomfield_MO,1,63825,NA,MO,bloomfield
+forsyth_MO,1,65653,NA,MO,forsyth
+greenville_MO,1,63944,NA,MO,greenville
+liberty_MS,1,39645,NA,MS,liberty
+port gibson_MS,1,39150,NA,MS,port gibson
+hernando_MS,1,38632,NA,MS,hernando
+gulfport_MS,1,39502,NA,MS,gulfport
+jackson_MS,1,39205,NA,MS,jackson
+pascagoula_MS,1,39568,NA,MS,pascagoula
+fayette_MS,1,39069,NA,MS,fayette
+de kalb_MS,1,39328,NA,MS,de kalb
+brookhaven_MS,1,39602,NA,MS,brookhaven
+columbia_MS,1,39429,NA,MS,columbia
+new augusta_MS,1,39462,NA,MS,new augusta
+marks_MS,1,38646,NA,MS,marks
+brandon_MS,1,39042,NA,MS,brandon
+indianola_MS,1,38751,NA,MS,indianola
+senatobia_MS,1,38668,NA,MS,senatobia
+ripley_MS,1,38663,NA,MS,ripley
+tunica_MS,1,38676,NA,MS,tunica
+tylertown_MS,1,39667,NA,MS,tylertown
+eupora_MS,1,39744,NA,MS,eupora
+louisville_MS,1,39339,NA,MS,louisville
+chinook_MT,1,59523,NA,MT,chinook
+glendive_MT,1,59330,NA,MT,glendive
+jordan_MT,1,59337,NA,MT,jordan
+philipsburg_MT,1,59858,NA,MT,philipsburg
+boulder_MT,1,59632,NA,MT,boulder
+polson_MT,1,59860,NA,MT,polson
+white sulphur springs_MT,1,59645,NA,MT,white sulphur springs
+roundup_MT,1,59072,NA,MT,roundup
+glasgow_MT,1,59230,NA,MT,glasgow
+wibaux_MT,1,59353,NA,MT,wibaux
+neligh_NE,1,68756,NA,NE,neligh
+butte_NE,1,68722,NA,NE,butte
+hartington_NE,1,68739,NA,NE,hartington
+valentine_NE,1,69201,NA,NE,valentine
+sidney_NE,1,69162,NA,NE,sidney
+omaha_NE,1,80109,NA,NE,omaha
+franklin_NE,1,68939,NA,NE,franklin
+beaver_NE,1,68926,NA,NE,beaver
+burwell_NE,1,68823,NA,NE,burwell
+bridgeport_NE,1,69334,NA,NE,bridgeport
+nebraska_NE,1,68410,NA,NE,nebraska
+pierce_NE,1,68767,NA,NE,pierce
+osceola_NE,1,68651,NA,NE,osceola
+wilber_NE,1,68465,NA,NE,wilber
+papillion_NE,1,68046,NA,NE,papillion
+gering_NE,1,69341,NA,NE,gering
+stanton_NE,1,68779,NA,NE,stanton
+graham_NC,1,27253,NA,NC,graham
+wadesboro_NC,1,28170,NA,NC,wadesboro
+bolivia_NC,1,28422,NA,NC,bolivia
+asheville_NC,1,28801,NA,NC,asheville
+concord_NC,1,28026,NA,NC,concord
+newton_NC,1,28658,NA,NC,newton
+pittsboro_NC,1,27312,NA,NC,pittsboro
+murphy_NC,1,28906,NA,NC,murphy
+shelby_NC,1,28151,NA,NC,shelby
+fayetteville_NC,1,28301,NA,NC,fayetteville
+lexington_NC,1,27292,NA,NC,lexington
+durham_NC,1,27702,NA,NC,durham
+tarboro_NC,1,27886,NA,NC,tarboro
+winston-salem_NC,1,27101,NA,NC,winston-salem
+louisburg_NC,1,27549,NA,NC,louisburg
+gatesville_NC,1,27938,NA,NC,gatesville
+greensboro_NC,1,27402,NA,NC,greensboro
+lillington_NC,1,27546,NA,NC,lillington
+hendersonville_NC,1,28792,NA,NC,hendersonville
+statesville_NC,1,28687,NA,NC,statesville
+sylva_NC,1,28779,NA,NC,sylva
+smithfield_NC,1,27577,NA,NC,smithfield
+lincolnton_NC,1,69101,NA,NC,lincolnton
+marion_NC,1,28752,NA,NC,marion
+castle hayne_NC,1,28401,NA,NC,castle hayne
+jackson_NC,1,27845,NA,NC,jackson
+jacksonville_NC,1,28540,NA,NC,jacksonville
+hillsborough_NC,1,27278,NA,NC,hillsborough
+greenville_NC,1,27835,NA,NC,greenville
+asheboro_NC,1,27205,NA,NC,asheboro
+lumberton_NC,1,28358,NA,NC,lumberton
+wentworth_NC,1,27375,NA,NC,wentworth
+salisbury_NC,1,28144,NA,NC,salisbury
+laurinburg_NC,1,28353,NA,NC,laurinburg
+albemarle_NC,1,28001,NA,NC,albemarle
+bryson_NC,1,28713,NA,NC,bryson
+monroe_NC,1,28112,NA,NC,monroe
+raleigh_NC,1,27602,NA,NC,raleigh
+goldsboro_NC,1,27533,NA,NC,goldsboro
+wilkesboro_NC,1,28697,NA,NC,wilkesboro
+valley_ND,1,58072,NA,ND,valley
+medora_ND,1,58645,NA,ND,medora
+bowbells_ND,1,58721,NA,ND,bowbells
+bismarck_ND,1,58501,NA,ND,bismarck
+fargo_ND,1,58107,NA,ND,fargo
+lamoure_ND,1,58458,NA,ND,lamoure
+towner_ND,1,58788,NA,ND,towner
+lakota_ND,1,58344,NA,ND,lakota
+mohall_ND,1,58761,NA,ND,mohall
+wahpeton_ND,1,58075,NA,ND,wahpeton
+fort yates_ND,1,58538,NA,ND,fort yates
+cando_ND,1,58324,NA,ND,cando
+hillsboro_ND,1,58045,NA,ND,hillsboro
+williston_ND,1,58801,NA,ND,williston
+keene_NH,1,3431,NA,NH,keene
+boscawen_NH,1,3303,NA,NH,boscawen
+mays landing_NJ,1,8330,NA,NJ,mays landing
+hackensack_NJ,1,7601,NA,NJ,hackensack
+cape may court house_NJ,1,8210,NA,NJ,cape may court house
+newark_NJ,1,7102,NA,NJ,newark
+woodbury_NJ,1,8096,NA,NJ,woodbury
+jersey_NJ,1,7302,NA,NJ,jersey
+trenton_NJ,1,8608,NA,NJ,trenton
+new brunswick_NJ,1,8901,NA,NJ,new brunswick
+paterson_NJ,1,7505,NA,NJ,paterson
+somerville borough_NJ,1,8876,NA,NJ,somerville borough
+newton_NJ,1,7860,NA,NJ,newton
+albuquerque_NM,1,87102,NA,NM,albuquerque
+las cruces_NM,1,88007,NA,NM,las cruces
+española_NM,1,87532,NA,NM,española
+portales_NM,1,88130,NA,NM,portales
+aztec_NM,1,87410,NA,NM,aztec
+las vegas_NM,1,87701,NA,NM,las vegas
+truth or consequences_NM,1,87901,NA,NM,truth or consequences
+socorro_NM,1,87801,NA,NM,socorro
+taos_NM,1,87571,NA,NM,taos
+estancia_NM,1,87016,NA,NM,estancia
+los lunas_NM,1,87031,NA,NM,los lunas
+minden_NV,1,80109,NA,NV,minden
+eureka_NV,1,89316,NA,NV,eureka
+battle mountain_NV,1,89820,NA,NV,battle mountain
+pahrump_NV,1,89060,NA,NV,pahrump
+carson_NV,1,89701,NA,NV,carson
+reno_NV,1,89512,NA,NV,reno
+albany_NY,1,12207,NA,NY,albany
+little valley_NY,1,14755,NA,NY,little valley
+mayville_NY,1,14757,NA,NY,mayville
+elmira_NY,1,14902,NA,NY,elmira
+poughkeepsie_NY,1,12601,NA,NY,poughkeepsie
+buffalo_NY,1,14202,NA,NY,buffalo
+batavia_NY,1,14020,NA,NY,batavia
+catskill_NY,1,12414,NA,NY,catskill
+geneseo_NY,1,14454,NA,NY,geneseo
+rochester_NY,1,14614,NA,NY,rochester
+lockport_NY,1,14095,NA,NY,lockport
+syracuse_NY,1,13202,NA,NY,syracuse
+goshen_NY,1,10924,NA,NY,goshen
+carmel_NY,1,10512,NA,NY,carmel
+new_NY,1,10977,NA,NY,new
+ballston spa_NY,1,12020,NA,NY,ballston spa
+watkins glen_NY,1,14891,NA,NY,watkins glen
+bath_NY,1,14810,NA,NY,bath
+riverhead_NY,1,11901,NA,NY,riverhead
+lake george_NY,1,12845,NA,NY,lake george
+jefferson_OH,1,44047,NA,OH,jefferson
+hamilton_OH,1,45011,NA,OH,hamilton
+springfield_OH,1,45502,NA,OH,springfield
+cleveland_OH,1,44113,NA,OH,cleveland
+greenville_OH,1,45331,NA,OH,greenville
+delaware_OH,1,43015,NA,OH,delaware
+lancaster_OH,1,43130,NA,OH,lancaster
+washington court house_OH,1,43160,NA,OH,washington court house
+columbus_OH,1,43215,NA,OH,columbus
+xenia_OH,1,45385,NA,OH,xenia
+cincinnati_OH,1,45202,NA,OH,cincinnati
+logan_OH,1,43138,NA,OH,logan
+jackson_OH,1,45640,NA,OH,jackson
+mount vernon_OH,1,43050,NA,OH,mount vernon
+painesville_OH,1,44077,NA,OH,painesville
+ironton_OH,1,45638,NA,OH,ironton
+newark_OH,1,43055,NA,OH,newark
+toledo_OH,1,43604,NA,OH,toledo
+youngstown_OH,1,44503,NA,OH,youngstown
+dayton_OH,1,45422,NA,OH,dayton
+circleville_OH,1,43113,NA,OH,circleville
+canton_OH,1,44705,NA,OH,canton
+akron_OH,1,44308,NA,OH,akron
+lebanon_OH,1,45036,NA,OH,lebanon
+upper sandusky_OH,1,43351,NA,OH,upper sandusky
+sayre_OK,1,73662,NA,OK,sayre
+watonga_OK,1,73772,NA,OK,watonga
+el reno_OK,1,73036,NA,OK,el reno
+ardmore_OK,1,73401,NA,OK,ardmore
+taloga_OK,1,73667,NA,OK,taloga
+enid_OK,1,73702,NA,OK,enid
+marietta_OK,1,73448,NA,OK,marietta
+muskogee_OK,1,74401,NA,OK,muskogee
+oklahoma_OK,1,73102,NA,OK,oklahoma
+pawhuska_OK,1,74056,NA,OK,pawhuska
+stillwater_OK,1,74074,NA,OK,stillwater
+shawnee_OK,1,74801,NA,OK,shawnee
+sallisaw_OK,1,74955,NA,OK,sallisaw
+frederick_OK,1,73542,NA,OK,frederick
+tulsa_OK,1,74103,NA,OK,tulsa
+oregon_OR,1,97045,NA,OR,oregon
+coquille_OR,1,97423,NA,OR,coquille
+gold beach_OR,1,97444,NA,OR,gold beach
+madras_OR,1,97741,NA,OR,madras
+klamath falls_OR,1,97603,NA,OR,klamath falls
+albany_OR,1,97322,NA,OR,albany
+portland_OR,1,97214,NA,OR,portland
+hillsboro_OR,1,97123,NA,OR,hillsboro
+mcminnville_OR,1,97128,NA,OR,mcminnville
+pittsburgh_PA,1,15129,NA,PA,pittsburgh
+hollidaysburg_PA,1,16648,NA,PA,hollidaysburg
+stroudsburg_PA,1,18360,NA,PA,stroudsburg
+norristown_PA,1,19404,NA,PA,norristown
+franklin_PA,1,16323,NA,PA,franklin
+abbeville_SC,1,29620,NA,SC,abbeville
+aiken_SC,1,29801,NA,SC,aiken
+anderson_SC,1,29623,NA,SC,anderson
+beaufort_SC,1,29901,NA,SC,beaufort
+moncks corner_SC,1,29461,NA,SC,moncks corner
+north charleston_SC,1,29405,NA,SC,north charleston
+gaffney_SC,1,29340,NA,SC,gaffney
+summerville_SC,1,29483,NA,SC,summerville
+florence_SC,1,29541,NA,SC,florence
+georgetown_SC,1,29442,NA,SC,georgetown
+greenville_SC,1,29601,NA,SC,greenville
+ridgeland_SC,1,29936,NA,SC,ridgeland
+lancaster_SC,1,29721,NA,SC,lancaster
+lexington_SC,1,29071,NA,SC,lexington
+mullins_SC,1,29574,NA,SC,mullins
+walhalla_SC,1,29691,NA,SC,walhalla
+orangeburg_SC,1,29116,NA,SC,orangeburg
+pickens_SC,1,29671,NA,SC,pickens
+columbia_SC,1,29223,NA,SC,columbia
+spartanburg_SC,1,29304,NA,SC,spartanburg
+sumter_SC,1,29153,NA,SC,sumter
+york_SC,1,29745,NA,SC,york
+brookings_SD,1,57006,NA,SD,brookings
+gann valley_SD,1,57341,NA,SD,gann valley
+mound_SD,1,41031,NA,SD,mound
+ipswich_SD,1,57451,NA,SD,ipswich
+hot springs_SD,1,57747,NA,SD,hot springs
+faulkton_SD,1,57438,NA,SD,faulkton
+milbank_SD,1,57252,NA,SD,milbank
+hayti_SD,1,57241,NA,SD,hayti
+madison_SD,1,57042,NA,SD,madison
+salem_SD,1,57058,NA,SD,salem
+sioux falls_SD,1,57104,NA,SD,sioux falls
+redfield_SD,1,57469,NA,SD,redfield
+pikeville_TN,1,37367,NA,TN,pikeville
+maryville_TN,1,37804,NA,TN,maryville
+cleveland_TN,1,37311,NA,TN,cleveland
+huntingdon_TN,1,38344,NA,TN,huntingdon
+elizabethton_TN,1,37643,NA,TN,elizabethton
+ashland_TN,1,37015,NA,TN,ashland
+manchester_TN,1,37355,NA,TN,manchester
+crossville_TN,1,38555,NA,TN,crossville
+dyersburg_TN,1,38024,NA,TN,dyersburg
+pulaski_TN,1,38478,NA,TN,pulaski
+chattanooga_TN,1,37402,NA,TN,chattanooga
+erin_TN,1,37061,NA,TN,erin
+knoxville_TN,1,37902,NA,TN,knoxville
+jackson_TN,1,38301,NA,TN,jackson
+jasper_TN,1,37347,NA,TN,jasper
+clarksville_TN,1,37040,NA,TN,clarksville
+wartburg_TN,1,37887,NA,TN,wartburg
+linden_TN,1,37096,NA,TN,linden
+murfreesboro_TN,1,37129,NA,TN,murfreesboro
+sevierville_TN,1,37862,NA,TN,sevierville
+memphis_TN,1,38103,NA,TN,memphis
+dover_TN,1,37058,NA,TN,dover
+blountville_TN,1,37617,NA,TN,blountville
+gallatin_TN,1,37066,NA,TN,gallatin
+spencer_TN,1,38585,NA,TN,spencer
+jonesborough_TN,1,37659,NA,TN,jonesborough
+franklin_TN,1,37064,NA,TN,franklin
+lebanon_TN,1,37087,NA,TN,lebanon
+belton_TX,1,76513,NA,TX,belton
+san antonio_TX,1,78207,NA,TX,san antonio
+gail_TX,1,79738,NA,TX,gail
+angleton_TX,1,77515,NA,TX,angleton
+bryan_TX,1,77803,NA,TX,bryan
+burnet_TX,1,78611,NA,TX,burnet
+olmito_TX,1,78520,NA,TX,olmito
+rusk_TX,1,75785,NA,TX,rusk
+morton_TX,1,79346,NA,TX,morton
+mckinney_TX,1,75071,NA,TX,mckinney
+new braunfels_TX,1,78130,NA,TX,new braunfels
+dallas_TX,1,75207,NA,TX,dallas
+hereford_TX,1,79045,NA,TX,hereford
+denton_TX,1,76205,NA,TX,denton
+dickens_TX,1,79229,NA,TX,dickens
+clarendon_TX,1,79226,NA,TX,clarendon
+san diego_TX,1,78384,NA,TX,san diego
+odessa_TX,1,79760,NA,TX,odessa
+el paso_TX,1,79938,NA,TX,el paso
+crowell_TX,1,79227,NA,TX,crowell
+richmond_TX,1,77469,NA,TX,richmond
+galveston_TX,1,77551,NA,TX,galveston
+longview_TX,1,75601,NA,TX,longview
+anderson_TX,1,77830,NA,TX,anderson
+seguin_TX,1,78155,NA,TX,seguin
+houston_TX,1,77002,NA,TX,houston
+marshall_TX,1,75671,NA,TX,marshall
+haskell_TX,1,79521,NA,TX,haskell
+san marcos_TX,1,78666,NA,TX,san marcos
+edinburg_TX,1,78541,NA,TX,edinburg
+crockett_TX,1,75835,NA,TX,crockett
+mertzon_TX,1,76941,NA,TX,mertzon
+edna_TX,1,77957,NA,TX,edna
+jasper_TX,1,75951,NA,TX,jasper
+fort davis_TX,1,79734,NA,TX,fort davis
+beaumont_TX,1,77705,NA,TX,beaumont
+anson_TX,1,79501,NA,TX,anson
+karnes_TX,1,78118,NA,TX,karnes
+kerrville_TX,1,78028,NA,TX,kerrville
+benjamin_TX,1,79505,NA,TX,benjamin
+giddings_TX,1,78942,NA,TX,giddings
+centerville_TX,1,75833,NA,TX,centerville
+george west_TX,1,78022,NA,TX,george west
+lubbock_TX,1,79401,NA,TX,lubbock
+waco_TX,1,76701,NA,TX,waco
+stanton_TX,1,79782,NA,TX,stanton
+menard_TX,1,76859,NA,TX,menard
+midland_TX,1,79701,NA,TX,midland
+conroe_TX,1,77301,NA,TX,conroe
+corpus christi_TX,1,78401,NA,TX,corpus christi
+orange_TX,1,77631,NA,TX,orange
+carthage_TX,1,75633,NA,TX,carthage
+farwell_TX,1,79325,NA,TX,farwell
+fort stockton_TX,1,79735,NA,TX,fort stockton
+amarillo_TX,1,79111,NA,TX,amarillo
+amarillo_TX,1,79118,NA,TX,amarillo
+big lake_TX,1,76932,NA,TX,big lake
+leakey_TX,1,78873,NA,TX,leakey
+rockwall_TX,1,75087,NA,TX,rockwall
+albany_TX,1,76430,NA,TX,albany
+center_TX,1,75935,NA,TX,center
+tyler_TX,1,75702,NA,TX,tyler
+rio grande_TX,1,78582,NA,TX,rio grande
+breckenridge_TX,1,76424,NA,TX,breckenridge
+fort worth_TX,1,76196,NA,TX,fort worth
+abilene_TX,1,79602,NA,TX,abilene
+sanderson_TX,1,79848,NA,TX,sanderson
+austin_TX,1,78751,NA,TX,austin
+canton_TX,1,75103,NA,TX,canton
+victoria_TX,1,77901,NA,TX,victoria
+laredo_TX,1,78040,NA,TX,laredo
+georgetown_TX,1,78626,NA,TX,georgetown
+decatur_TX,1,76234,NA,TX,decatur
+graham_TX,1,76450,NA,TX,graham
+beaver_UT,1,84713,NA,UT,beaver
+logan_UT,1,84321,NA,UT,logan
+farmington_UT,1,84025,NA,UT,farmington
+panguitch_UT,1,84759,NA,UT,panguitch
+kanab_UT,1,84741,NA,UT,kanab
+fillmore_UT,1,84631,NA,UT,fillmore
+randolph_UT,1,84064,NA,UT,randolph
+south salt lake_UT,1,84119,NA,UT,south salt lake
+tooele_UT,1,84074,NA,UT,tooele
+provo_UT,1,84603,NA,UT,provo
+amherst_VA,1,24521,NA,VA,amherst
+warm springs_VA,1,24484,NA,VA,warm springs
+grundy_VA,1,24614,NA,VA,grundy
+rustburg_VA,1,41031,NA,VA,rustburg
+berryville_VA,1,22611,NA,VA,berryville
+clintwood_VA,1,24228,NA,VA,clintwood
+dinwiddie_VA,1,23841,NA,VA,dinwiddie
+warrenton_VA,1,20186,NA,VA,warrenton
+winchester_VA,1,22602,NA,VA,winchester
+stanardsville_VA,1,22973,NA,VA,stanardsville
+hanover_VA,1,23069,NA,VA,hanover
+martinsville_VA,1,24112,NA,VA,martinsville
+monterey_VA,1,24465,NA,VA,monterey
+king william_VA,1,23086,NA,VA,king william
+leesburg_VA,1,20177,NA,VA,leesburg
+mathews_VA,1,23109,NA,VA,mathews
+christiansburg_VA,1,24073,NA,VA,christiansburg
+lovingston_VA,1,22949,NA,VA,lovingston
+orange_VA,1,22960,NA,VA,orange
+luray_VA,1,22835,NA,VA,luray
+manassas_VA,1,20110,NA,VA,manassas
+marion_VA,1,24354,NA,VA,marion
+spotsylvania courthouse_VA,1,22553,NA,VA,spotsylvania courthouse
+stafford courthouse_VA,1,22554,NA,VA,stafford courthouse
+surry_VA,1,23883,NA,VA,surry
+montross_VA,1,22520,NA,VA,montross
+bennington_VT,1,5201,NA,VT,bennington
+st. albans_VT,1,5478,NA,VT,st. albans
+newfane_VT,1,5345,NA,VT,newfane
+wenatchee_WA,1,98801,NA,WA,wenatchee
+port angeles_WA,1,98362,NA,WA,port angeles
+vancouver_WA,1,98666,NA,WA,vancouver
+coupeville_WA,1,98239,NA,WA,coupeville
+seattle_WA,1,98104,NA,WA,seattle
+port orchard_WA,1,98366,NA,WA,port orchard
+tacoma_WA,1,98402,NA,WA,tacoma
+everett_WA,1,98201,NA,WA,everett
+spokane_WA,1,99260,NA,WA,spokane
+olympia_WA,1,98502,NA,WA,olympia
+colfax_WA,1,99111,NA,WA,colfax
+green bay_WI,1,54311,NA,WI,green bay
+neillsville_WI,1,54456,NA,WI,neillsville
+prairie du chien_WI,1,53821,NA,WI,prairie du chien
+madison_WI,1,53703,NA,WI,madison
+kenosha_WI,1,53140,NA,WI,kenosha
+milwaukee_WI,1,53233,NA,WI,milwaukee
+phillips_WI,1,54555,NA,WI,phillips
+racine_WI,1,53403,NA,WI,racine
+janesville_WI,1,53545,NA,WI,janesville
+ladysmith_WI,1,54848,NA,WI,ladysmith
+whitehall_WI,1,54773,NA,WI,whitehall
+waukesha_WI,1,53188,NA,WI,waukesha
+waupaca_WI,1,54981,NA,WI,waupaca
+wautoma_WI,1,54982,NA,WI,wautoma
+oshkosh_WI,1,54901,NA,WI,oshkosh
+glenville_WV,1,26351,NA,WV,glenville
+charleston_WV,1,25301,NA,WV,charleston
+weston_WV,1,26452,NA,WV,weston
+welch_WV,1,24801,NA,WV,welch
+harrisville_WV,1,26362,NA,WV,harrisville
+middlebourne_WV,1,26149,NA,WV,middlebourne
+buckhannon_WV,1,26201,NA,WV,buckhannon
+new martinsville_WV,1,26155,NA,WV,new martinsville
+parkersburg_WV,1,26101,NA,WV,parkersburg
+thermopolis_WY,1,82443,NA,WY,thermopolis
+buffalo_WY,1,82834,NA,WY,buffalo
+casper_WY,1,82601,NA,WY,casper
+wheatland_WY,1,82201,NA,WY,wheatland

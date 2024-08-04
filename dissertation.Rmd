@@ -31,6 +31,8 @@ library(patchwork)
 library(tmap)
 library(sf)
 library(tigris)
+library(haven)
+library(mice)
 
 ```
 
@@ -73,8 +75,12 @@ transform_skewed_data <- function(data) {
       data[[col]] <- (max(data[[col]]) - data[[col]])^2
     }
     
-    # Standardize the data
-    #data[[col]] <- scale(data[[col]])
+    if (col == "median_hh_income"){
+      min_val <- min(data[[col]], na.rm = TRUE)
+      max_val <- max(data[[col]], na.rm = TRUE)
+      data[[col]] <- (data[[col]] - min_val) / (max_val - min_val)
+    }
+    
   }
   
   after_skewness <- sapply(data, moments::skewness)  # Calculate skewness after transformation
@@ -88,6 +94,272 @@ transform_skewed_data <- function(data) {
   
   return(data)
 }
+
+process_demo_data <- function(df, place_col) {
+  df %>%
+    rename(
+      total_pop = AV0AA225,
+      num_female = AV1AB225,
+      age_under_5 = B57AA225,
+      age_5_9 = B57AB225,
+      age_10_14 = B57AC225,
+      age_15_17 = B57AD225,
+      age_18_19 = B57AE225,
+      age_20 = B57AF225,
+      age_21 = B57AG225,
+      age_22_24 = B57AH225,
+      age_25_29 = B57AI225,
+      age_30_34 = B57AJ225,
+      age_35_44 = B57AK225,
+      age_45_54 = B57AL225,
+      age_55_59 = B57AM225,
+      age_60_61 = B57AN225,
+      age_62_64 = B57AO225,
+      age_65_74 = B57AP225,
+      age_75_84 = B57AQ225,
+      age_85_up = B57AR225,
+      num_black = B07AB225,
+      num_white = B07AA225,
+      num_asian = B07AD225,
+      num_hispanic = A35AA225,
+      num_less_hs = B85AA225,
+      num_hs_graduate_GED = B85AC225,
+      num_associates = B85AE225,
+      num_bachelors = B85AF225,
+      num_graduate_professional = B85AG225,
+      num_not_in_labor_force = B84AF225,
+      median_hh_income = B79AA225
+    ) %>%
+    mutate(
+      percent_female = num_female / total_pop,
+      perc_age_0_17 = (age_under_5 + age_5_9 + age_10_14 + age_15_17) / total_pop,
+      perc_age_18_34 = (age_18_19 + age_20 + age_21 + age_22_24 + age_25_29 + age_30_34) / total_pop,
+      perc_age_35_59 = (age_35_44 + age_45_54 + age_55_59) / total_pop,
+      perc_age_60_74 = (age_60_61 + age_62_64 + age_65_74) / total_pop,
+      perc_75_up = (age_75_84 + age_85_up) / total_pop,
+      perc_black = num_black / total_pop,
+      perc_asian = num_asian / total_pop,
+      perc_white = num_white / total_pop,
+      perc_hispanic = num_hispanic / total_pop,
+      perc_less_hs = num_less_hs / total_pop,
+      perc_associates = num_associates / total_pop,
+      perc_bachelors = num_bachelors / total_pop,
+      perc_graduate_professional = num_graduate_professional / total_pop,
+      perc_not_in_labor_force = num_not_in_labor_force / total_pop,
+      state_abbr = state.abb[match(STATE, state.name)],
+      PLACE = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city| town| CDP| village| City", "", !!sym(place_col))), # Remove suffixes
+      city_state = paste(PLACE, state_abbr, sep = "_") # Combine place and state
+    ) %>%
+    select(
+      city_state, percent_female, perc_age_0_17, perc_age_18_34, perc_age_35_59,
+      perc_age_60_74, perc_75_up, perc_black, perc_asian, perc_white, perc_hispanic,
+      perc_less_hs, perc_associates, perc_bachelors, perc_graduate_professional,
+      perc_not_in_labor_force, median_hh_income
+    )
+}
+
+prepare_and_save_diff_in_diff <- function(df, protest_type, pre_col, post_col, output_file) {
+  outcome_vars_pre <- df %>%
+    select(agency_name, !!sym(pre_col), !!sym(protest_type)) %>%
+    mutate(time = 0) %>%  # Pre-treatment period indicator
+    rename(opbudget = !!sym(pre_col))
+  
+  outcome_vars_post <- df %>%
+    select(agency_name, !!sym(post_col), !!sym(protest_type)) %>%
+    mutate(time = 1) %>%
+    rename(opbudget = !!sym(post_col))
+  
+  diff_in_diff_df <- bind_rows(outcome_vars_pre, outcome_vars_post)
+  
+  # Create the formula for the model
+  formula <- reformulate(c(paste(protest_type, "* time")), response = "opbudget2021")
+  
+  diff_diff_output <- lm(formula, data = diff_in_diff_df)
+  diff_summary <- summary(diff_diff_output)
+  
+  table <- data.frame(
+    Variable = rownames(diff_summary$coefficients),
+    Estimate = diff_summary$coefficients[, "Estimate"],
+    Std_Error = diff_summary$coefficients[, "Std. Error"],
+    t_value = diff_summary$coefficients[, "t value"],
+    P_Value = diff_summary$coefficients[, "Pr(>|t|)"]
+  )
+  
+  return(table)
+}
+
+create_pscores <- function(df, protest_var, drop_var){
+  filtered_df <- df %>% select(-!!sym(drop_var))
+  
+  # Logistic regression to calculate propensity scores
+  pscores_model <- glm(as.formula(paste(protest_var, "~ mrp_ideology + percent_female + perc_age_0_17 + perc_age_18_34 + perc_age_35_59 + perc_age_60_74 + perc_75_up + perc_black + perc_white + perc_hispanic + perc_less_hs + perc_associates + perc_bachelors + perc_graduate_professional + perc_not_in_labor_force + median_hh_income + has_police_killing + is_city + opbudget2013 + opbudget2016")), 
+    data = filtered_df, 
+    family = binomial(link = "logit")
+  )
+  
+  # Add propensity scores to the data frame
+  filtered_df$p_score <- predict(pscores_model, newdata = filtered_df, type = "response")
+  
+  return(filtered_df)
+}
+
+process_and_plot <- function(df, removed_rows, remove_col, plot_title, output_file) {
+  # Add a column indicating if the row was removed in the original dataset
+  df <- df %>% mutate(removed_status = ifelse(rownames(df) %in% removed_rows, "Removed", "Not Removed"))
+
+  # List of continuous and binary variables to visualize
+  continuous_vars <- c("mrp_ideology", "percent_female", "perc_age_0_17", "perc_age_18_34",
+                       "perc_age_35_59", "perc_age_60_74", "perc_75_up", "perc_black",
+                       "perc_white", "perc_hispanic", "perc_less_hs", "perc_associates",
+                       "perc_bachelors", "perc_graduate_professional", "perc_not_in_labor_force",
+                       "median_hh_income")
+  binary_vars <- c("has_police_killing")
+
+  # Calculate the means for continuous variables and convert to long format
+  continuous_means <- df %>%
+    group_by(removed_status) %>%
+    summarise(across(all_of(continuous_vars), mean, na.rm = TRUE)) %>%
+    pivot_longer(cols = -removed_status, names_to = "variable", values_to = "mean")
+
+  # Calculate the means for binary variables and convert to long format
+  binary_means <- df %>%
+    group_by(removed_status) %>%
+    summarise(across(all_of(binary_vars), mean, na.rm = TRUE)) %>%
+    pivot_longer(cols = -removed_status, names_to = "variable", values_to = "mean") %>%
+    mutate(variable = paste(variable, "(binary)"))
+
+  # Combine both continuous and binary variables
+  combined_means <- bind_rows(continuous_means, binary_means)
+
+  # Plot combined means
+  plot <- ggplot(combined_means, aes(x = mean, y = variable, fill = removed_status)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    labs(x = "Mean", y = "Variable", fill = "Removed Status", title = plot_title) +
+    scale_fill_manual(values = c("Removed" = "red", "Not Removed" = "darkgrey")) +
+    theme_minimal() +
+    theme(axis.text.y = element_text(size = 10), axis.title.y = element_blank())
+
+  return(plot)
+}
+
+# Define a function to initialize the result table
+initialize_result_table <- function() {
+  data.frame(
+    Variable = character(),
+    Control_Mean = numeric(),
+    Treatment_Mean = numeric(),
+    Control_SD = numeric(),
+    Treatment_SD = numeric(),
+    Control_Percentage = numeric(),
+    Treatment_Percentage = numeric(),
+    stringsAsFactors = FALSE
+  )
+}
+
+# Define a function to process each variable and create a new row for the result table
+process_variable <- function(variable, group, data) {
+  variable_names <- c(
+    "mrp_ideology" = "Ideology",
+    "percent_female" = "Percent Female",
+    "perc_age_0_17" = "Percent Age 0-17",
+    "perc_age_18_34" = "Percent Age 18-34",
+    "perc_age_35_59" = "Percent Age 35-59",
+    "perc_age_60_74" = "Percent Age 60-74",
+    "perc_75_up" = "Percent Age 75+",
+    "perc_black" = "Percent Black",
+    "perc_white" = "Percent White",
+    "perc_hispanic" = "Percent Hispanic",
+    "perc_less_hs" = "Percent Less Than High School",
+    "perc_associates" = "Percent Associates",
+    "perc_bachelors" = "Percent Bachelors",
+    "perc_graduate_professional" = "Percent Graduate/Professional",
+    "perc_not_in_labor_force" = "Percent Not in Labor Force",
+    "median_hh_income" = "Median Household Income",
+    "has_police_killing" = "Has Police Killing"
+  )
+  
+  if (variable == "has_police_killing") {
+    # For binary variables, calculate proportions
+    prop_treatment <- mean(data[[variable]][data[[group]] == 1], na.rm = TRUE)
+    prop_control <- mean(data[[variable]][data[[group]] == 0], na.rm = TRUE)
+    data.frame(
+      Variable = variable_names[[variable]],
+      Control_Mean = NA,
+      Treatment_Mean = NA,
+      Control_SD = NA,
+      Treatment_SD = NA,
+      Control_Percentage = as.numeric(prop_control),
+      Treatment_Percentage = as.numeric(prop_treatment),
+      stringsAsFactors = FALSE
+    )
+  } else {
+    # Perform t-test and compute means and standard deviations for continuous variables
+    mean_treatment <- mean(data[[variable]][data[[group]] == 1], na.rm = TRUE)
+    mean_control <- mean(data[[variable]][data[[group]] == 0], na.rm = TRUE)
+    sd_treatment <- sd(data[[variable]][data[[group]] == 1], na.rm = TRUE)
+    sd_control <- sd(data[[variable]][data[[group]] == 0], na.rm = TRUE)
+    data.frame(
+      Variable = variable_names[[variable]],
+      Control_Mean = as.numeric(mean_control),
+      Treatment_Mean = as.numeric(mean_treatment),
+      Control_SD = as.numeric(sd_control),
+      Treatment_SD = as.numeric(sd_treatment),
+      Control_Percentage = NA,
+      Treatment_Percentage = NA,
+      stringsAsFactors = FALSE
+    )
+  }
+}
+
+# Define a function to create the result table
+create_result_table <- function(group, data) {
+  variables <- c("mrp_ideology", "percent_female", "perc_age_0_17", "perc_age_18_34",
+                 "perc_age_35_59", "perc_age_60_74", "perc_75_up", "perc_black",
+                 "perc_white", "perc_hispanic", "perc_less_hs", "perc_associates",
+                 "perc_bachelors", "perc_graduate_professional", "perc_not_in_labor_force",
+                 "median_hh_income", "has_police_killing")
+  
+  result_table <- initialize_result_table()
+  for (variable in variables) {
+    new_row <- process_variable(variable, group, data)
+    result_table <- bind_rows(result_table, new_row)
+  }
+  result_table %>%
+    mutate(
+      Control_Mean = format(Control_Mean, scientific = FALSE, digits = 4),
+      Treatment_Mean = format(Treatment_Mean, scientific = FALSE, digits = 4),
+      Control_SD = format(Control_SD, scientific = FALSE, digits = 4),
+      Treatment_SD = format(Treatment_SD, scientific = FALSE, digits = 4)
+    ) %>%
+    rename(
+      `Control Mean` = Control_Mean,
+      `Treatment Mean` = Treatment_Mean,
+      `Control Std Dev` = Control_SD,
+      `Treatment Std Dev` = Treatment_SD,
+      `Control Percentage` = Control_Percentage,
+      `Treatment Percentage` = Treatment_Percentage
+    )
+}
+
+create_histogram <- function(data, var_name) { #add print to show skewness plots
+  hist <- ggplot(data, aes_string(x = var_name)) +
+    geom_histogram(binwidth = 0.5, fill = "blue", color = "black", alpha = 0.7) +
+    labs(title = paste("Histogram of", var_name), x = var_name, y = "Frequency") +
+    theme_minimal()
+  
+  print(hist)
+}
+
+create_qqplot <- function(data, var_name) { #add print to show skewness plots
+  qqplot<- ggplot(data, aes_string(sample = var_name)) +
+    stat_qq() +
+    stat_qq_line(col = "red") +
+    labs(title = paste("Q-Q Plot of", var_name), x = "Theoretical Quantiles", y = "Sample Quantiles") +
+    theme_minimal()
+  
+  print(hist)
+}
+
 ```
 
 ## Data Sources
@@ -111,92 +383,134 @@ transform_skewed_data <- function(data) {
   - Accessed from mapping Police Violence
 
 
-```{r get_protest_data, eval = FALSE}
-# Get protest data
+```{r get_protest_data}
+# Load protest data
 raw <- read.csv("data/2020-01-01-2024-04-19-United_States.csv")
 
+# Filter for BLM protests in 2020 and process the data
 blm_df <- raw %>%
-  filter(year == 2020, 
-         str_detect(tolower(assoc_actor_1), "blm")) %>%
-  mutate(admin2 = ifelse(event_id_cnty %in% c("USA4796", "USA17359", 
-                                              "USA12192", "USA9274", 
-                                              "USA9021", "USA8471", "USA18357"), 
-                         "new york", admin2),
-         sub_event_type = ifelse(sub_event_type %in% c("Violent demonstration", 
-                                                        "Mob violence",
-                                                       "Protest with intervention",
-                                                        "Excessive force against protesters"),
-                                 "violent_protest", "peaceful_protest"),
-         location = ifelse(location == "", NA, location),
-         admin2 = ifelse(admin2 == "", NA, admin2),
-         location = tolower(location),
-         admin2 = tolower(admin2),
-         admin1 = tolower(admin1),
-         state_abbr = state.abb[match(admin1, tolower(state.name))],
-         city_state = paste(location, state_abbr, sep = "_"),
-         county_state = paste(admin2, state_abbr, sep = "_"))
+  filter(year == 2020, str_detect(tolower(assoc_actor_1), "blm")) %>%
+  mutate(
+    
+    # Update 'admin2' for specific event IDs
+    admin2 = ifelse(event_id_cnty %in% c("USA4796", "USA17359", "USA12192", 
+                                         "USA9274", "USA9021", "USA8471", 
+                                         "USA18357"), "new york", admin2),
+    
+    # Reclassify 'sub_event_type'
+    sub_event_type = ifelse(sub_event_type %in% c("Violent demonstration", 
+                                                  "Mob violence", 
+                                                  "Protest with intervention", 
+                                                  "Excessive force against protesters"),
+                            "violent_protest", "peaceful_protest"),
+    
+    # Replace empty 'location' and 'admin2' with NA
+    location = ifelse(location == "", NA, location),
+    admin2 = ifelse(admin2 == "", NA, admin2),
+    
+    # Convert 'location', 'admin2', and 'admin1' to lowercase
+    location = tolower(location),
+    admin2 = tolower(admin2),
+    admin1 = tolower(admin1),
+    
+    # Get state abbreviation from 'admin1'
+    state_abbr = state.abb[match(admin1, tolower(state.name))],
+    
+    # Create 'city_state' and 'county_state'
+    city_state = paste(location, state_abbr, sep = "_"),
+    county_state = paste(admin2, state_abbr, sep = "_")
+  )
 
+# Summarise data for cities
 cities_blm <- blm_df %>%
   group_by(city_state) %>%
   summarise(
-    violent_protest = ifelse(any(sub_event_type == "violent_protest"), 1, 0),
-    peaceful_protest = ifelse(all(sub_event_type == "peaceful_protest"), 1, 0)
+    violent_protest = as.integer(any(sub_event_type == "violent_protest")),
+    peaceful_protest = as.integer(all(sub_event_type == "peaceful_protest"))
   ) %>%
   mutate(is_city = 1) %>%
   rename(location = city_state)
 
+# Summarise data for counties
 counties_blm <- blm_df %>%
   group_by(county_state) %>%
   summarise(
-    violent_protest = ifelse(any(sub_event_type == "violent_protest"), 1, 0),
-    peaceful_protest = ifelse(all(sub_event_type == "peaceful_protest"), 1, 0)
+    violent_protest = as.integer(any(sub_event_type == "violent_protest")),
+    peaceful_protest = as.integer(all(sub_event_type == "peaceful_protest"))
   ) %>%
   mutate(is_city = 0) %>%
   rename(location = county_state)
 
-blm <- rbind(cities_blm, counties_blm)
+# Combine cities and counties data
+blm <- bind_rows(cities_blm, counties_blm)
 
 ```
 
-```{r get_political_data, eval = FALSE}
-cities_pol_ideo <- read_dta("data/aip_cities_ideology_v2022a.dta")
-counties_pol_ideo <- read_dta("data/aip_counties_ideology_v2022a.dta")
-zips_pol_ideo <- read_dta("data/aip_zips_ideology_v2022a.dta")
+```{r get_political_data}
+# Load political ideology data for cities, counties, and zip codes
+cities_pol_ideo <- read_dta("data/ideo/aip_cities_ideology_v2022a.dta")
+counties_pol_ideo <- read_dta("data/ideo/aip_counties_ideology_v2022a.dta")
+zips_pol_ideo <- read_dta("data/ideo/aip_zips_ideology_v2022a.dta")
 
+# Process cities data
 cities_pol_ideo <- cities_pol_ideo %>%
-  filter(survey_period == "2017-2021") %>% #Only use data from most recent surveys
-  mutate(state_abbr = state.abb[match(state, state.name)], #get abbreviated states
-         city_name = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", city_name)), #remove suffixes
-         city_state = paste(city_name, state_abbr, sep = "_")) %>% #combine county/states
+  
+  # Only use data from the most recent surveys
+  filter(survey_period == "2017-2021") %>%
+  mutate(
+    
+    # Get state abbreviations
+    state_abbr = state.abb[match(state, state.name)], 
+    
+    # Remove suffixes
+    city_name = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", city_name)),  
+
+    # Combine city and state
+    city_state = paste(city_name, state_abbr, sep = "_")
+  ) %>%
+  
+  # Select relevant columns
   select(city_state, mrp_ideology)
 
+# Process counties data
 counties_pol_ideo <- counties_pol_ideo %>%
-  filter(survey_period == "2017-2021") %>% #Only use data from most recent surveys
-  mutate(state_abbr = state.abb[match(state, state.name)], #get abbreviated states
-         county_name = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", county_name)), #remove suffixes
-         county_state = paste(county_name, state_abbr, sep = "_")) %>% #combine county/states
+  
+  # Only use data from the most recent surveys
+  filter(survey_period == "2017-2021") %>%  
+  mutate(
+    
+    # Get state abbreviations
+    state_abbr = state.abb[match(state, state.name)], 
+    
+    # Remove suffixes
+    county_name = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", county_name)),
+    county_state = paste(county_name, state_abbr, sep = "_")  # Combine county and state
+  ) %>%
+  
+  # Select relevant columns
   select(county_state, mrp_ideology)
 
-duplicate_counties <- counties_pol_ideo  %>% 
-  group_by(county_state) %>% 
-  filter(n() > 1)
-
+# Handle duplicate counties by averaging their ideology scores
 counties_pol_ideo <- counties_pol_ideo %>%
   group_by(county_state) %>%
   summarise(across(everything(), mean, na.rm = TRUE)) %>%
   ungroup()
 
+# Process zip code data by name
 zips_pol_ideo_by_name <- zips_pol_ideo %>%
-  mutate(zip_name = str_replace(zip_name, ", ", "_"),
-         zip_name = str_replace(zip_name, "([^_]+)(_.*)", function(x) {
-    paste0(str_to_lower(sub("_.*", "", x)), sub("^[^_]+", "", x))
-  })) %>%
+  mutate(
+    zip_name = str_replace(zip_name, ", ", "_"),
+    zip_name = str_replace(zip_name, "([^_]+)(_.*)", function(x) {
+      paste0(str_to_lower(sub("_.*", "", x)), sub("^[^_]+", "", x))
+    })
+  ) %>%
   group_by(zip_name) %>%
   summarise(across(everything(), mean, na.rm = TRUE)) %>%
   ungroup() %>%
   select(zip_name, mrp_ideology) %>%
   rename(city_state = zip_name)
 
+# Process zip code data by zip number
 zips_pol_ideo_by_num <- zips_pol_ideo %>%
   group_by(zip) %>%
   summarise(across(everything(), mean, na.rm = TRUE)) %>%
@@ -206,81 +520,16 @@ zips_pol_ideo_by_num <- zips_pol_ideo %>%
 
 ```
 
-```{r get_demographic_data, eval = FALSE}
-cities_demo <- read.csv("data/nhgis0006_ts_nominal_place.csv")
-counties_demo <- read.csv("data/nhgis0004_ts_nominal_county.csv")
+```{r get_demographic_data}
+# Load demographic data for cities and counties
+cities_demo <- read.csv("data/demo/nhgis0006_ts_nominal_place.csv")
+counties_demo <- read.csv("data/demo/nhgis0004_ts_nominal_county.csv")
 
-cities_demo_df <- cities_demo %>%
-  rename(total_pop = AV0AA225,
-         num_female = AV1AB225,
-         age_under_5 = B57AA225,
-         age_5_9 = B57AB225,
-         age_10_14 = B57AC225,
-         age_15_17 = B57AD225,
-         age_18_19 = B57AE225,
-         age_20 = B57AF225,
-         age_21 = B57AG225,
-         age_22_24 = B57AH225,
-         age_25_29 = B57AI225,
-         age_30_34 = B57AJ225,
-         age_35_44 = B57AK225,
-         age_45_54 = B57AL225,
-         age_55_59 = B57AM225,
-         age_60_61 = B57AN225,
-         age_62_64 = B57AO225,
-         age_65_74 = B57AP225,
-         age_75_84 = B57AQ225,
-         age_85_up = B57AR225,
-         num_black = B07AB225,
-         num_white = B07AA225,
-         num_asian = B07AD225,
-         num_hispanic = A35AA225, 
-         num_less_hs = B85AA225,
-         num_hs_graduate_GED = B85AC225,
-         num_associates = B85AE225,
-         num_bachelors = B85AF225,
-         num_graduate_professional = B85AG225,
-         num_not_in_labor_force = B84AF225,
-         median_hh_income = B79AA225
-         )%>%
-  mutate(percent_female = num_female / total_pop,
-         perc_age_0_17 = (age_under_5 + 
-                            age_5_9 + 
-                            age_10_14 + 
-                            age_15_17) / total_pop,
-         perc_age_18_34 = (age_18_19 + 
-                             age_20 + 
-                             age_21 + 
-                             age_22_24 + 
-                             age_25_29 + 
-                             age_30_34) / total_pop,
-         perc_age_35_59 = (age_35_44 +
-                             age_45_54 +
-                             age_55_59) / total_pop,
-         perc_age_60_74 = (age_60_61 +
-                             age_62_64 +
-                             age_65_74) / total_pop,
-         perc_75_up = (age_75_84 +
-                         age_85_up) / total_pop,
-         perc_black = num_black / total_pop,
-         perc_asian = num_asian / total_pop,
-         perc_white = num_white / total_pop,
-         perc_hispanic = num_hispanic / total_pop,
-         perc_less_hs = num_less_hs / total_pop,
-         perc_associates = num_associates / total_pop,
-         perc_bachelors = num_bachelors / total_pop,
-         perc_graduate_professional = num_graduate_professional / total_pop,
-         perc_not_in_labor_force = num_not_in_labor_force / total_pop,
-         state_abbr = state.abb[match(STATE, state.name)],
-         PLACE = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city| town| CDP| village| City", "", PLACE)), #remove suffixes
-         city_state = paste(PLACE, state_abbr, sep = "_") #combine county/states
-         ) %>%
-  select(city_state, percent_female, perc_age_0_17, perc_age_18_34, 
-         perc_age_35_59, perc_age_60_74, perc_75_up, perc_black,
-         perc_asian, perc_white, perc_hispanic, perc_less_hs, perc_associates,
-         perc_bachelors, perc_graduate_professional, perc_not_in_labor_force,
-         median_hh_income)
+# Process cities and counties data
+cities_demo_df <- process_demo_data(cities_demo, "PLACE")
+counties_demo_df <- process_demo_data(counties_demo, "COUNTY")
 
+# Summarise cities data and add city indicator
 cities_processed <- cities_demo_df %>%
   group_by(city_state) %>%
   summarise(across(everything(), mean, na.rm = TRUE)) %>%
@@ -288,698 +537,130 @@ cities_processed <- cities_demo_df %>%
   mutate(is_city = 1) %>%
   rename(location = city_state)
 
-counties_demo_df <- counties_demo %>%
-  rename(total_pop = AV0AA225,
-         num_female = AV1AB225,
-         age_under_5 = B57AA225,
-         age_5_9 = B57AB225,
-         age_10_14 = B57AC225,
-         age_15_17 = B57AD225,
-         age_18_19 = B57AE225,
-         age_20 = B57AF225,
-         age_21 = B57AG225,
-         age_22_24 = B57AH225,
-         age_25_29 = B57AI225,
-         age_30_34 = B57AJ225,
-         age_35_44 = B57AK225,
-         age_45_54 = B57AL225,
-         age_55_59 = B57AM225,
-         age_60_61 = B57AN225,
-         age_62_64 = B57AO225,
-         age_65_74 = B57AP225,
-         age_75_84 = B57AQ225,
-         age_85_up = B57AR225,
-         num_black = B07AB225,
-         num_white = B07AA225,
-         num_asian = B07AD225,
-         num_hispanic = A35AA225, 
-         num_less_hs = B85AA225,
-         num_hs_graduate_GED = B85AC225,
-         num_associates = B85AE225,
-         num_bachelors = B85AF225,
-         num_graduate_professional = B85AG225,
-         num_not_in_labor_force = B84AF225,
-         median_hh_income = B79AA225
-         ) %>%
-  mutate(percent_female = num_female / total_pop,
-         perc_age_0_17 = (age_under_5 + 
-                            age_5_9 + 
-                            age_10_14 + 
-                            age_15_17) / total_pop,
-         perc_age_18_34 = (age_18_19 + 
-                             age_20 + 
-                             age_21 + 
-                             age_22_24 + 
-                             age_25_29 + 
-                             age_30_34) / total_pop,
-         perc_age_35_59 = (age_35_44 +
-                             age_45_54 +
-                             age_55_59) / total_pop,
-         perc_age_60_74 = (age_60_61 +
-                             age_62_64 +
-                             age_65_74) / total_pop,
-         perc_75_up = (age_75_84 +
-                         age_85_up) / total_pop,
-         perc_black = num_black / total_pop,
-         perc_asian = num_asian / total_pop,
-         perc_white = num_white / total_pop,
-         perc_hispanic = num_hispanic / total_pop,
-         perc_less_hs = num_less_hs / total_pop,
-         perc_associates = num_associates / total_pop,
-         perc_bachelors = num_bachelors / total_pop,
-         perc_graduate_professional = num_graduate_professional / total_pop,
-         perc_not_in_labor_force = num_not_in_labor_force / total_pop,
-         state_abbr = state.abb[match(STATE, state.name)],
-         COUNTY = tolower(COUNTY) %>%
-           gsub(" county| borough| census area| municipality| parish| city", "", .), # remove suffixes
-         county_state = paste(COUNTY, state_abbr, sep = "_") # combine county/states
-         ) %>%
-  select(county_state, percent_female, perc_age_0_17, perc_age_18_34, 
-         perc_age_35_59, perc_age_60_74, perc_75_up, perc_black,
-         perc_asian, perc_white, perc_hispanic, perc_less_hs, perc_associates,
-         perc_bachelors, perc_graduate_professional, perc_not_in_labor_force,
-         median_hh_income)
-
+# Summarise counties data and add city indicator
 counties_processed <- counties_demo_df %>%
-  group_by(county_state) %>%
+  group_by(city_state) %>%
   summarise(across(everything(), mean, na.rm = TRUE)) %>%
   ungroup() %>%
   mutate(is_city = 0) %>%
-  rename(location = county_state)
-
-demographics <- rbind(counties_processed,cities_processed)
-
-```
-
-```{r get_police_killings, eval = FALSE}
-police_killings_df <- read_excel("data/MPVDatasetDownload.xlsx", 
-                                sheet = "2013-2024 Police Killings")
-
-city_police_killings <- police_killings_df %>%
-  filter(!is.na(City)) %>%
-  mutate(`Date of Incident (month/day/year)` = as.Date(`Date of Incident (month/day/year)`),
-         year = year(`Date of Incident (month/day/year)`),
-         City = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", City)),
-         city_state = paste(tolower(City), State, sep = "_")) %>%
-  filter(year >= 2016 & year <= 2020) %>%
-  group_by(city_state) %>%
-  summarize(count = n(), .groups = 'drop') %>%
-  mutate(has_police_killing = ifelse(count > 0, 1, 0),
-         is_city = 1) %>%
-  select(city_state, has_police_killing, is_city) %>%
   rename(location = city_state)
 
-county_police_killings <- police_killings_df %>%
-  filter(!is.na(County)) %>%
-  mutate(`Date of Incident (month/day/year)` = as.Date(`Date of Incident (month/day/year)`),
-         year = year(`Date of Incident (month/day/year)`),
-         County = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", County)),
-         county_state = paste(tolower(County), State, sep = "_")) %>%
-  filter(year >= 2016 & year <= 2020) %>%
-  group_by(county_state) %>%
-  summarize(count = n(), .groups = 'drop') %>%
-  mutate(has_police_killing = ifelse(count> 0, 1, 0),
-         is_city = 0) %>%
-  select(county_state, has_police_killing, is_city) %>%
-  rename(location = county_state)
+# Combine cities and counties data
+demographics <- bind_rows(cities_processed, counties_processed)
 
-police_killings <- rbind(county_police_killings, city_police_killings)
 ```
 
-```{r get_funding_data}
-load(file='data/38651-0001-Data.rda')
+```{r get_police_killings}
+# Load police killings data
+police_killings_df <- suppressWarnings(
+  suppressMessages(
+    read_excel("data/MPVDatasetDownload.xlsx", sheet = "2013-2024 Police Killings")
+  )
+)
 
-police_df <- da38651.0001 %>%
-  filter(AGENCYSAMPTYPE != "(5) State police") %>%
+# Process city-level police killings data
+city_police_killings <- police_killings_df %>%
+  filter(!is.na(City)) %>%  # Keep rows with non-missing City
   mutate(
-    CITY = str_trim(CITY, side = "both"),
-    AGENCYNAME = str_trim(AGENCYNAME, side = "both"),
-    AGENCYNAME = tolower(AGENCYNAME),
-    City = tolower(CITY),
-    County = ifelse(AGENCYSAMPTYPE == "(4) County police", 
-                    str_extract(AGENCYNAME, ".*(?= county)"), NA),
-    County = case_when(
-       AGENCYNAME == "fraser winter park police department" ~ "grand",
-       AGENCYNAME == "colonial regional police department" ~ "northampton",
-       AGENCYNAME == "charleroi regional police department" ~ "washington",
-       AGENCYNAME == "clear lake-ventura police department" ~ "calhoun",
-       AGENCYNAME == "athens clarke county police department" ~ "clarke",
-       AGENCYNAME == "saint charles county police department" ~ "st. charles",
-       AGENCYNAME == "saint louis county police department" ~ "st. louis",
-       AGENCYNAME == "bath police department" & STATE == "ME" ~ "sagadahoc",
-      AGENCYNAME == "somers town police department" ~ "westchester",
-      AGENCYNAME == "little river - academy police department" ~ "bell",
-      AGENCYNAME == "linn town police department" ~ "walworth",
-      AGENCYNAME == "hot springs police department" ~ "garland",
-      AGENCYNAME == "ventura police department buenaventura" ~ "ventura",
-      AGENCYNAME == "west sacramento police department" ~ "yolo",
-      AGENCYNAME == "miramar police department" ~ "broward",
-      AGENCYNAME == "honolulu police department" ~ "honolulu",
-      AGENCYNAME == "mcleansboro police department" ~ "hamilton",
-      AGENCYNAME == "round lake park police department" ~ "lake",
-      AGENCYNAME == "lasalle police department" ~ "cook",
-      AGENCYNAME == "mount pulaski police department" ~ "logan",
-      AGENCYNAME == "laporte police department" ~ "laporte",
-      AGENCYNAME == "indianapolis metro police department" ~ "marion",
-      AGENCYNAME == "lexington division of police" ~ "fayette",
-      AGENCYNAME == "louisville metro police department" ~ "jefferson",
-      AGENCYNAME == "barnstable police department" ~ "barnstable",
-      AGENCYNAME == "dighton police department" ~ "bristol",
-      AGENCYNAME == "seekonk police department" ~ "bristol",
-      AGENCYNAME == "west tisbury police department" ~ "dukes",
-      AGENCYNAME == "groveland police department" ~ "essex",
-      AGENCYNAME == "methuen police department" ~ "essex",
-      AGENCYNAME == "ashfield police department" ~ "franklin",
-      AGENCYNAME == "west springfield police department" ~ "hampden",
-      AGENCYNAME == "southampton police department" ~ "hampshire",
-      AGENCYNAME == "littleton police department" ~ "middlesex",
-      AGENCYNAME == "tyngsboro police department" ~ "middlesex",
-      AGENCYNAME == "foxboro police department" ~ "norfolk",
-      AGENCYNAME == "carver police department" ~ "plymouth",
-      AGENCYNAME == "blackstone police department" ~ "worcester",
-      AGENCYNAME == "hardwick police department" ~ "worcester",
-      AGENCYNAME == "holden police department" ~ "worcester",
-      AGENCYNAME == "southbridge police department" ~ "worcester",
-      AGENCYNAME == "westminster police department" ~ "worcester",
-      AGENCYNAME == "st michaels police" ~ "talbot",
-      AGENCYNAME == "baileyville police department" ~ "washington",
-      AGENCYNAME == "buxton police department" ~ "york",
-      AGENCYNAME == "huron township police department" ~ "wayne",
-      AGENCYNAME == "brownstown township police department" ~ "wayne",
-      AGENCYNAME == "lees summit police department" ~ "jackson",
-      AGENCYNAME == "city of o'fallon mo police department" ~ "st. charles",
-      AGENCYNAME == "ste genevieve police department" ~ "ste. genevieve",
-      AGENCYNAME == "winston-salem police department" ~ "forsyth",
-      AGENCYNAME == "whispering pines police department" ~ "moore",
-      AGENCYNAME == "center harbor police department" ~ "belknap",
-      AGENCYNAME == "tuftonboro police department" ~ "carroll",
-      AGENCYNAME == "harrisville police department" ~ "cheshire",
-      AGENCYNAME == "carroll police department" ~ "coos",
-      AGENCYNAME == "pelham police department" ~ "hillsborough",
-      AGENCYNAME == "bow police department" ~ "merrimack",
-      AGENCYNAME == "auburn police department" ~ "rockingham",
-      AGENCYNAME == "east kingston police department" ~ "rockingham",
-      AGENCYNAME == "nottingham police department" ~ "rockingham",
-      AGENCYNAME == "lee police department" ~ "strafford",
-      AGENCYNAME == "edgewater police" ~ "bergen",
-      AGENCYNAME == "ho-ho-kus police" ~ "bergen",
-      AGENCYNAME == "montvale police" ~ "bergen",
-      AGENCYNAME == "norwood police" ~ "bergen",
-      AGENCYNAME == "river vale police" ~ "bergen",
-      AGENCYNAME == "wallington police department" ~ "bergen",
-      AGENCYNAME == "woodcliff lake police" ~ "bergen",
-      AGENCYNAME == "riverside township police" ~ "burlington",
-      AGENCYNAME == "cherry hill police" ~ "camden",
-      AGENCYNAME == "haddon heights police" ~ "camden",
-      AGENCYNAME == "mount ephraim police" ~ "camden",
-      AGENCYNAME == "pine valley police" ~ "camden",
-      AGENCYNAME == "runnemede police" ~ "camden",
-      AGENCYNAME == "avalon police department" ~ "cape may",
-      AGENCYNAME == "belleville police" ~ "essex",
-      AGENCYNAME == "bloomfield police" ~ "essex",
-      AGENCYNAME == "cedar grove township police" ~ "essex",
-      AGENCYNAME == "irvington police" ~ "essex",
-      AGENCYNAME == "montclair police" ~ "essex",
-      AGENCYNAME == "orange police" ~ "essex",
-      AGENCYNAME == "verona police" ~ "essex",
-      AGENCYNAME == "north bergen police" ~ "hudson",
-      AGENCYNAME == "weehawken police" ~ "hudson",
-      AGENCYNAME == "tewksbury township police" ~ "hunterdon",
-      AGENCYNAME == "hamilton township police department" ~ "mercer",
-      AGENCYNAME == "edison police" ~ "middlesex",
-      AGENCYNAME == "atlantic highlands police" ~ "monmouth",
-      AGENCYNAME == "neptune city police" ~ "monmouth",
-      AGENCYNAME == "hazlet township police department" ~ "monmouth",
-      AGENCYNAME == "riverdale police" ~ "morris",
-      AGENCYNAME == "beachwood police" ~ "ocean",
-      AGENCYNAME == "jackson township police" ~ "ocean",
-      AGENCYNAME == "lavallette police" ~ "ocean",
-      AGENCYNAME == "little egg harbor township police" ~ "ocean",
-      AGENCYNAME == "point pleasant borough police" ~ "ocean",
-      AGENCYNAME == "seaside heights police" ~ "ocean",
-      AGENCYNAME == "prospect park police" ~ "passaic",
-      AGENCYNAME == "wayne township police" ~ "passaic",
-      AGENCYNAME == "west milford township police" ~ "passaic",
-      AGENCYNAME == "far hills police" ~ "somerset",
-      AGENCYNAME == "ogdensburg police" ~ "sussex",
-      AGENCYNAME == "stanhope police" ~ "sussex",
-      AGENCYNAME == "vernon township police" ~ "sussex",
-      AGENCYNAME == "clark police department" ~ "union",
-      AGENCYNAME == "winfield police" ~ "union",
-      AGENCYNAME == "washington township police" ~ "warren",
-      AGENCYNAME == "amherst town police department" ~ "erie",
-      AGENCYNAME == "town of windham police department" ~ "greene",
-      AGENCYNAME == "kent town police department" ~ "putnam",
-      AGENCYNAME == "pound ridge town police department" ~ "westchester",
-      AGENCYNAME == "west chester police department" ~ "hamilton",
-      AGENCYNAME == "orange village police department" ~ "cuyahoga",
-      AGENCYNAME == "fowler township police department" ~ "trumbull",
-      AGENCYNAME == "hamilton township police department" ~ "warren",
-      AGENCYNAME == "cumberland township police department" ~ "adams",
-      AGENCYNAME == "mckees rocks borough police department" ~ "allegheny",
-      AGENCYNAME == "south park township police department" ~ "allegheny",
-      AGENCYNAME == "parks township police department" ~ "armstrong",
-      AGENCYNAME == "rochester township police department" ~ "beaver",
-      AGENCYNAME == "douglass township police department" ~ "berks",
-      AGENCYNAME == "warminster township police department" ~ "bucks",
-      AGENCYNAME == "buckingham township police department" ~ "bucks",
-      AGENCYNAME == "east conemaugh borough police department" ~ "cambria",
-      AGENCYNAME == "patton township police department" ~ "centre",
-      AGENCYNAME == "upper uwchlan township police department" ~ "chester",
-      AGENCYNAME == "west vincent township police department" ~ "chester",
-      AGENCYNAME == "upper allen township police department" ~ "cumberland",
-      AGENCYNAME == "darby township police department" ~ "delaware",
-      AGENCYNAME == "upper darby township police department" ~ "delaware",
-      AGENCYNAME == "upper providence township police department" ~ "delaware",
-      AGENCYNAME == "scott township police department" ~ "lackawanna",
-      AGENCYNAME == "ephrata police department" ~ "lancaster",
-      AGENCYNAME == "union township police department" ~ "lawrence",
-      AGENCYNAME == "courtdale borough police department" ~ "luzerne",
-      AGENCYNAME == "grove city police department" ~ "mercer",
-      AGENCYNAME == "granville township police department" ~ "mifflin",
-      AGENCYNAME == "east norriton township police department" ~ "montgomery",
-      AGENCYNAME == "lower pottsgrove township police department" ~ "montgomery",
-      AGENCYNAME == "lower frederick township police department" ~ "montgomery",
-      AGENCYNAME == "limerick township police department" ~ "montgomery",
-      AGENCYNAME == "upper nazareth township police department" ~ "northampton",
-      AGENCYNAME == "rush township police department" ~ "schuylkill",
-      AGENCYNAME == "cecil township police department" ~ "washington",
-      AGENCYNAME == "allegheny township police department" ~ "westmoreland",
-      AGENCYNAME == "lower windsor township police department" ~ "york",
-      AGENCYNAME == "west warwick police" ~ "kent",
-      AGENCYNAME == "north smithfield police" ~ "providence",
-      AGENCYNAME == "north kingstown police" ~ "washington",
-      AGENCYNAME == "south kingstown police" ~ "washington",
-      AGENCYNAME == "new shoreham police" ~ "washington",
-      AGENCYNAME == "mccormick police department" ~ "mccormick",
-      AGENCYNAME == "metro nashville police department" ~ "davidson",
-      AGENCYNAME == "rutland town police department" ~ "rutland",
-    AGENCYNAME == "somers town police department" ~ "westchester",
-    AGENCYNAME == "little river - academy police department" ~ "bell",
-    AGENCYNAME == "linn town police department" ~ "walworth",
-    AGENCYNAME == "hot springs police department" ~ "garland",
-    AGENCYNAME == "ventura police department buenaventura" ~ "ventura",
-    AGENCYNAME == "west sacramento police department" ~ "yolo",
-    AGENCYNAME == "metropolitan police department - dc" ~ "district of columbia",
-    AGENCYNAME == "miramar police department" ~ "broward",
-    AGENCYNAME == "honolulu police department" ~ "honolulu",
-    AGENCYNAME == "mcleansboro police department" ~ "hamilton",
-    AGENCYNAME == "round lake park police department" ~ "lake",
-    AGENCYNAME == "lasalle police department" ~ "la salle",
-    AGENCYNAME == "mount pulaski police department" ~ "logan",
-    AGENCYNAME == "laporte police department" ~ "laporte",
-    AGENCYNAME == "indianapolis metro police department" ~ "marion",
-    AGENCYNAME == "lexington division of police" ~ "fayette",
-    AGENCYNAME == "louisville metro police department" ~ "jefferson",
-    AGENCYNAME == "barnstable police department" ~ "barnstable",
-    AGENCYNAME == "dighton police department" ~ "bristol",
-    AGENCYNAME == "seekonk police department" ~ "bristol",
-    AGENCYNAME == "west tisbury police department" ~ "dukes",
-    AGENCYNAME == "groveland police department" ~ "essex",
-    AGENCYNAME == "methuen police department" ~ "essex",
-    AGENCYNAME == "ashfield police department" ~ "franklin",
-    AGENCYNAME == "west springfield police department" ~ "hampden",
-    AGENCYNAME == "southampton police department" ~ "hampshire",
-    AGENCYNAME == "littleton police department" ~ "middlesex",
-    AGENCYNAME == "tyngsboro police department" ~ "middlesex",
-    AGENCYNAME == "foxboro police department" ~ "norfolk",
-    AGENCYNAME == "carver police department" ~ "plymouth",
-    AGENCYNAME == "blackstone police department" ~ "worcester",
-    AGENCYNAME == "hardwick police department" ~ "worcester",
-    AGENCYNAME == "holden police department" ~ "worcester",
-    AGENCYNAME == "southbridge police department" ~ "worcester",
-    AGENCYNAME == "westminster police department" ~ "worcester",
-    AGENCYNAME == "st michaels police" ~ "talbot",
-    AGENCYNAME == "baileyville police department" ~ "washington",
-    AGENCYNAME == "buxton police department" ~ "york",
-    AGENCYNAME == "huron township police department" ~ "wayne",
-    AGENCYNAME == "brownstown township police department" ~ "wayne",
-    AGENCYNAME == "lees summit police department" ~ "jackson",
-    AGENCYNAME == "city of o'fallon mo police department" ~ "st. charles",
-    AGENCYNAME == "ste genevieve police department" ~ "ste. genevieve",
-    AGENCYNAME == "winston-salem police department" ~ "forsyth",
-    AGENCYNAME == "whispering pines police department" ~ "moore",
-    AGENCYNAME == "center harbor police department" ~ "belknap",
-    AGENCYNAME == "tuftonboro police department" ~ "carroll",
-    AGENCYNAME == "harrisville police department" ~ "cheshire",
-    AGENCYNAME == "carroll police department" ~ "coos",
-    AGENCYNAME == "pelham police department" ~ "hillsborough",
-    AGENCYNAME == "bow police department" ~ "merrimack",
-    AGENCYNAME == "auburn police department" ~ "rockingham",
-    AGENCYNAME == "east kingston police department" ~ "rockingham",
-    AGENCYNAME == "nottingham police department" ~ "rockingham",
-    AGENCYNAME == "lee police department" ~ "strafford",
-    AGENCYNAME == "edgewater police" ~ "bergen",
-    AGENCYNAME == "ho-ho-kus police" ~ "bergen",
-    AGENCYNAME == "montvale police" ~ "bergen",
-    AGENCYNAME == "norwood police" ~ "bergen",
-    AGENCYNAME == "river vale police" ~ "bergen",
-    AGENCYNAME == "wallington police department" ~ "bergen",
-    AGENCYNAME == "woodcliff lake police" ~ "bergen",
-    AGENCYNAME == "riverside township police" ~ "burlington",
-    AGENCYNAME == "cherry hill police" ~ "camden",
-    AGENCYNAME == "haddon heights police" ~ "camden",
-    AGENCYNAME == "mount ephraim police" ~ "camden",
-    AGENCYNAME == "pine valley police" ~ "camden",
-    AGENCYNAME == "runnemede police" ~ "camden",
-    AGENCYNAME == "avalon police department" ~ "cape may",
-    AGENCYNAME == "belleville police" ~ "essex",
-    AGENCYNAME == "bloomfield police" ~ "essex",
-    AGENCYNAME == "cedar grove township police" ~ "essex",
-    AGENCYNAME == "irvington police" ~ "essex",
-    AGENCYNAME == "montclair police" ~ "essex",
-    AGENCYNAME == "orange police" ~ "essex",
-    AGENCYNAME == "verona police" ~ "essex",
-    AGENCYNAME == "north bergen police" ~ "hudson",
-    AGENCYNAME == "weehawken police" ~ "hudson",
-    AGENCYNAME == "tewksbury township police" ~ "hunterdon",
-    AGENCYNAME == "hamilton township police department" ~ "mercer",
-    AGENCYNAME == "edison police" ~ "middlesex",
-    AGENCYNAME == "atlantic highlands police" ~ "monmouth",
-    AGENCYNAME == "neptune city police" ~ "monmouth",
-    AGENCYNAME == "hazlet township police department" ~ "monmouth",
-    AGENCYNAME == "riverdale police" ~ "morris",
-    AGENCYNAME == "beachwood police" ~ "ocean",
-    AGENCYNAME == "jackson township police" ~ "ocean",
-    AGENCYNAME == "lavallette police" ~ "ocean",
-    AGENCYNAME == "little egg harbor township police" ~ "ocean",
-    AGENCYNAME == "point pleasant borough police" ~ "ocean",
-    AGENCYNAME == "seaside heights police" ~ "ocean",
-    AGENCYNAME == "prospect park police" ~ "passaic",
-    AGENCYNAME == "wayne township police" ~ "passaic",
-    AGENCYNAME == "west milford township police" ~ "passaic",
-    AGENCYNAME == "far hills police" ~ "somerset",
-    AGENCYNAME == "ogdensburg police" ~ "sussex",
-    AGENCYNAME == "stanhope police" ~ "sussex",
-    AGENCYNAME == "vernon township police" ~ "sussex",
-    AGENCYNAME == "clark police department" ~ "union",
-    AGENCYNAME == "winfield police" ~ "union",
-    AGENCYNAME == "washington township police" ~ "warren",
-    AGENCYNAME == "amherst town police department" ~ "erie",
-    AGENCYNAME == "town of windham police department" ~ "greene",
-    AGENCYNAME == "kent town police department" ~ "putnam",
-    AGENCYNAME == "pound ridge town police department" ~ "westchester",
-    AGENCYNAME == "west chester police department" ~ "butler",
-    AGENCYNAME == "orange village police department" ~ "cuyahoga",
-    AGENCYNAME == "fowler township police department" ~ "trumbull",
-    AGENCYNAME == "hamilton township police department" ~ "warren",
-    AGENCYNAME == "cumberland township police department" ~ "adams",
-    AGENCYNAME == "mckees rocks borough police department" ~ "allegheny",
-    AGENCYNAME == "south park township police department" ~ "allegheny",
-    AGENCYNAME == "parks township police department" ~ "armstrong",
-    AGENCYNAME == "rochester township police department" ~ "beaver",
-    AGENCYNAME == "douglass township police department" ~ "berks",
-    AGENCYNAME == "warminster township police department" ~ "bucks",
-    AGENCYNAME == "buckingham township police department" ~ "bucks",
-    AGENCYNAME == "east conemaugh borough police department" ~ "cambria",
-    AGENCYNAME == "patton township police department" ~ "centre",
-    AGENCYNAME == "upper uwchlan township police department" ~ "chester",
-    AGENCYNAME == "west vincent township police department" ~ "chester",
-    AGENCYNAME == "upper allen township police department" ~ "cumberland",
-    AGENCYNAME == "darby township police department" ~ "delaware",
-    AGENCYNAME == "upper darby township police department" ~ "delaware",
-    AGENCYNAME == "upper providence township police department" ~ "delaware",
-    AGENCYNAME == "scott township police department" ~ "lackawanna",
-    AGENCYNAME == "ephrata police department" ~ "lancaster",
-    AGENCYNAME == "union township police department" ~ "lawrence",
-    AGENCYNAME == "courtdale borough police department" ~ "luzerne",
-    AGENCYNAME == "grove city police department" ~ "mercer",
-    AGENCYNAME == "granville township police department" ~ "mifflin",
-    AGENCYNAME == "east norriton township police department" ~ "montgomery",
-    AGENCYNAME == "lower pottsgrove township police department" ~ "montgomery",
-    AGENCYNAME == "lower frederick township police department" ~ "montgomery",
-    AGENCYNAME == "limerick township police department" ~ "montgomery",
-    AGENCYNAME == "upper nazareth township police department" ~ "northampton",
-    AGENCYNAME == "rush township police department" ~ "schuylkill",
-    AGENCYNAME == "cecil township police department" ~ "washington",
-    AGENCYNAME == "allegheny township police department" ~ "westmoreland",
-    AGENCYNAME == "lower windsor township police department" ~ "york",
-    AGENCYNAME == "west warwick police" ~ "kent",
-    AGENCYNAME == "north smithfield police" ~ "providence",
-    AGENCYNAME == "north kingstown police" ~ "washington",
-    AGENCYNAME == "south kingstown police" ~ "washington",
-    AGENCYNAME == "new shoreham police" ~ "washington",
-    AGENCYNAME == "mccormick police department" ~ "mccormick",
-    AGENCYNAME == "metro nashville police department" ~ "davidson",
-    AGENCYNAME == "rutland town police department" ~ "rutland",
-    AGENCYNAME == "bath police department" & STATE == "NH" ~ "grafton",
-    AGENCYNAME == "brookline police department" & STATE == "NH"~ "hillsborough",
-    AGENCYNAME == "canton police department" & STATE == "MA"~ "norfolk",
-    AGENCYNAME == "newton police department" & STATE == "NH"~ "rockingham",
-    TRUE ~ County),
-    STATE = case_when(
-      AGENCYNAME == "metropolitan police department - dc" ~ "NA",
-      TRUE ~ STATE),
-    City = str_replace(City, " city$", ""),
-    City = if_else(str_detect(AGENCYNAME, "borough") & 
-                     !str_detect(City, "pittsburgh") &
-                     !str_detect(City, "king salmon") &
-                     !str_detect(City, "marlborough") &
-                     !str_detect(City, "gloucester") &
-                     !str_detect(City, "point pleasant boro") &
-                     !str_detect(City, "mc kees rocks") &
-                     !str_detect(City, "conemaugh") &
-                     !str_detect(City, "johnstown") &
-                     !str_detect(City, "erie") &
-                     !str_detect(City, "wilkes barre") &
-                     !str_detect(City, "jonesborough"), 
-                   paste(City, "borough"), 
-                   City),
-    City = if_else(str_detect(City, "saint"),str_replace(City, "saint", "st."), City),
-    City = if_else(str_detect(City, "\\bn\\b"), str_replace(City, "\\bn\\b", "north"), City),
-    City = if_else(str_detect(City, "\\bs\\b"), str_replace(City, "\\bs\\b", "south"), City),
-    City = case_when(
-      AGENCYNAME == "old saybrook police services" ~ "old saybrook center",
-      AGENCYNAME == "stratford police department" ~ "stratford downtown",
-      AGENCYNAME == "bedford police department" & STATE == "PA" ~ "coaldale borough (bedford)",
-      AGENCYNAME == "brookline police department" & STATE == "PA"~ "coaldale borough (bedford)",
-      AGENCYNAME == "cheshire police department" ~ "cheshire village",
-      AGENCYNAME == "east windsor police department" ~ "hartford",
-      AGENCYNAME == "farmington police department" & STATE == "CT" ~ "hartford",
-      AGENCYNAME == "hamden police department" ~ "new haven",
-      AGENCYNAME == "middlebury police department" ~ "new haven",
-      AGENCYNAME == "madison police department" & STATE == "CT" ~ "madison center",
-      AGENCYNAME == "winthrop police department" & STATE == "MA" ~ "winthrop town",
-      AGENCYNAME == "westport police department" & STATE == "CT" ~ "westport village",
-      AGENCYNAME == "fairfield police department" & STATE == "CT" ~ "long hill (fairfield)",
-      AGENCYNAME == "walker county sheriff's department" ~ "lafayette",
-      AGENCYNAME == "avon police department" & STATE == "MA" ~ "holbrook",
-      AGENCYNAME == "ventura county sheriff's office" ~ "san buenaventura (ventura)",
-      AGENCYNAME == "bibb county sheriff's office" ~ "macon-bibb",
-      AGENCYNAME == "douglas county sheriff's office" & STATE == "GA" ~ "douglasville",
-      AGENCYNAME == "milford police department" & STATE == "CT" ~ "milford (balance)",
-      AGENCYNAME == "el paso county sheriff's office" & STATE == "CO" ~ "colorado springs",
-      AGENCYNAME == "st john the baptist parish sheriff's office" ~ "laplace",
-      AGENCYNAME == "spotsylvania county sheriff's office" ~ "spotsylvania courthouse",
-      AGENCYNAME == "somerset county sheriff's office" & STATE == "NJ" ~ "somerville borough",
-      AGENCYNAME == "saint johns county sheriff's office" & STATE == "FL" ~ "st. augustine",
-      AGENCYNAME == "jackson county sheriff's office" & STATE == "MO" ~ "lee's summit",
-      AGENCYNAME == "bedford police department" & STATE == "NH" ~ "manchester",
-      AGENCYNAME == "florence county sheriff's office" & STATE == "SC" ~ "florence",
-      AGENCYNAME == "prospect police department" & STATE == "CT" ~ "naugatuck borough",
-      AGENCYNAME == "franklin police department" & STATE == "MA" ~ "franklin town",
-      AGENCYNAME == "harvard police department" & STATE == "MA" ~ "cambridge",
-      AGENCYNAME == "forsyth county sheriff's office" & STATE == "NC" ~ "winston-salem",
-      AGENCYNAME == "greenville police department" & STATE == "PA" ~ "greenville borough",
-      AGENCYNAME == "fontana police department" & STATE == "WI" ~ "fontana-on-geneva lake",
-      AGENCYNAME == "hillsborough county sheriff's office" & STATE == "FL" ~ "tampa",
-      AGENCYNAME == "jefferson county sheriff's office" & STATE == "KY" ~ "west louisville",
-      AGENCYNAME == "ottawa county sheriff's office" & STATE == "MI" ~ "grand rapids",
-      AGENCYNAME == "richmond county sheriff's office" & STATE == "GA" ~ "augusta-richmond consolidated government (balance)",
-      AGENCYNAME == "rio arriba county sheriff's office" & STATE == "NM" ~ "española",
-      AGENCYNAME == "stafford county sheriff's office" & STATE == "VA" ~ "stafford courthouse",
-      TRUE ~ City
-    ),
-    ZIP = case_when(
-        str_detect(AGENCYNAME, "stoneboro borough police department") ~ "16153",
-        str_detect(AGENCYNAME, "china grove police department") ~ "28023",
-        str_detect(AGENCYNAME, "la porte city police department") ~ "50651",
-        str_detect(AGENCYNAME, "university heights police department") ~ "52246",
-        str_detect(AGENCYNAME, "spaulding police department") ~ "62561",
-        str_detect(AGENCYNAME, "advance police department") ~ "63730",
-        str_detect(AGENCYNAME, "henderson police department") ~ "71334",
-        str_detect(AGENCYNAME, "lake shore police department") ~ "56311",
-        str_detect(AGENCYNAME, "custer city police department") ~ "73639",
-        str_detect(AGENCYNAME, "fairview police department") ~ "75069",
-        str_detect(AGENCYNAME, "clear lake shores police department") ~ "77565",
-        str_detect(AGENCYNAME, "east tawakoni police department") ~ "75472",
-        str_detect(AGENCYNAME, "brighton police department") ~ "35020",
-        str_detect(AGENCYNAME, "frisco city police department") ~ "36445",
-        str_detect(AGENCYNAME, "phenix city police department") ~ "36867",
-        str_detect(AGENCYNAME, "pell city police department") ~ "35125",
-        str_detect(AGENCYNAME, "cave city police department") ~ "72521",
-        str_detect(AGENCYNAME, "johnson police department") ~ "72704",
-        str_detect(AGENCYNAME, "union city police department") ~ "94587",
-        str_detect(AGENCYNAME, "kensington police department") ~ "94707",
-        str_detect(AGENCYNAME, "culver city police department") ~ "90232",
-        str_detect(AGENCYNAME, "belvedere police department") ~ "94920",
-        str_detect(AGENCYNAME, "daly city police department") ~ "94015",
-        str_detect(AGENCYNAME, "commerce city police department") ~ "80022",
-        str_detect(AGENCYNAME, "black hawk police department") ~ "80422",
-        str_detect(AGENCYNAME, "lochbuie police department") ~ "80603",
-        str_detect(AGENCYNAME, "cheshire police department") ~ "6410",
-        str_detect(AGENCYNAME, "fairfield police department") & STATE == "CT" ~ "6096",
-        str_detect(AGENCYNAME, "madison police department") & STATE == "CT" ~ "6443",
-        str_detect(AGENCYNAME, "old saybrook police services") & STATE =="CT"~ "6475",
-        str_detect(AGENCYNAME, "stratford police department") ~ "6615",
-        str_detect(AGENCYNAME, "westport police department") ~ "6880",
-        str_detect(AGENCYNAME, "delaware city police department") ~ "19706",
-        str_detect(AGENCYNAME, "panama city police department") ~ "32401",
-        str_detect(AGENCYNAME, "euharlee police department") ~ "30145",
-        str_detect(AGENCYNAME, "mountain city police department GA") ~ "30562",
-        str_detect(AGENCYNAME, "saint ansgar police department") ~ "50472",
-        str_detect(AGENCYNAME, "sioux city police department") ~ "51101",
-        str_detect(AGENCYNAME, "sauk village police department") ~ "60411",
-        str_detect(AGENCYNAME, "indian head park police department") ~ "60525",
-        str_detect(AGENCYNAME, "northfield police department") ~ "60093",
-        str_detect(AGENCYNAME, "north riverside police department") ~ "60546",
-        str_detect(AGENCYNAME, "east dundee police department") ~ "60118",
-        str_detect(AGENCYNAME, "kildeer police department") ~ "60047",
-        str_detect(AGENCYNAME, "prairie grove police department") ~ "60050",
-        str_detect(AGENCYNAME, "greendale police department") ~ "47240",
-        str_detect(AGENCYNAME, "long beach police department") ~ "46360",
-        str_detect(AGENCYNAME, "tell city police department") ~ "47586",
-        str_detect(AGENCYNAME, "dodge city police department") ~ "67801",
-        str_detect(AGENCYNAME, "scott city police department") ~ "67871",
-        str_detect(AGENCYNAME, "kansas city police department") ~ "66101",
-        str_detect(AGENCYNAME, "edwardsville police department") ~ "66111",
-        str_detect(AGENCYNAME, "bossier city police department") ~ "71111",
-        str_detect(AGENCYNAME, "cottage city police") ~ "20722",
-        str_detect(AGENCYNAME, "landover hills police") ~ "20784",
-        str_detect(AGENCYNAME, "ocean city police") ~ "21842",
-        str_detect(AGENCYNAME, "laurium police department") ~ "49913",
-        str_detect(AGENCYNAME, "lake angelus police department") ~ "48326",
-        str_detect(AGENCYNAME, "reed city police department") ~ "49677",
-        str_detect(AGENCYNAME, "rockwood police department") ~ "48173",
-        str_detect(AGENCYNAME, "lake tapawingo police department") ~ "64015",
-        str_detect(AGENCYNAME, "montgomery city police department") ~ "63361",
-        str_detect(AGENCYNAME, "platte woods police department") ~ "64151",
-        str_detect(AGENCYNAME, "calverton park police department") ~ "63135",
-        str_detect(AGENCYNAME, "frontenac police department") ~ "63131",
-        str_detect(AGENCYNAME, "kansas city police department") ~ "64106",
-        str_detect(AGENCYNAME, "central city police department") ~ "68826",
-        str_detect(AGENCYNAME, "falls city police department") ~ "68355",
-        str_detect(AGENCYNAME, "cape carteret police department") ~ "28584",
-        str_detect(AGENCYNAME, "elizabeth city police department") ~ "27909",
-        str_detect(AGENCYNAME, "atlantic city police") ~ "8401",
-        str_detect(AGENCYNAME, "ventnor city police") ~ "8406",
-        str_detect(AGENCYNAME, "brooklawn borough police") ~ "8030",
-        str_detect(AGENCYNAME, "woodlynne borough police") ~ "8107",
-        str_detect(AGENCYNAME, "north wildwood police department") ~ "8260",
-        str_detect(AGENCYNAME, "jersey city police department") ~ "7302",
-        str_detect(AGENCYNAME, "lawrence township police") ~ "8648",
-        str_detect(AGENCYNAME, "netcong borough police") ~ "7857",
-        str_detect(AGENCYNAME, "franklin borough police") & STATE == "NJ" ~ "7416",
-        str_detect(AGENCYNAME, "silver city police department") ~ "88061",
-        str_detect(AGENCYNAME, "sands point village police department") ~ "11050",
-        str_detect(AGENCYNAME, "town of clarkstown police department") ~ "10954",
-        str_detect(AGENCYNAME, "bronxville village police department") ~ "10708",
-        str_detect(AGENCYNAME, "north kingsville police department") & STATE == "OH" ~ "44048",
-        str_detect(AGENCYNAME, "roaming shores police department") ~ "44084",
-        str_detect(AGENCYNAME, "brooklyn heights village police department") ~ "44131",
-        str_detect(AGENCYNAME, "north randall police department") ~ "44128",
-        str_detect(AGENCYNAME, "elk city police department") ~ "73644",
-        str_detect(AGENCYNAME, "oklahoma city police department") ~ "73102",
-        str_detect(AGENCYNAME, "oregon city police department") ~ "97045",
-        str_detect(AGENCYNAME, "columbia city police department") & STATE == "OR" ~ "97018",
-        str_detect(AGENCYNAME, "millvale borough police department") ~ "15209",
-        str_detect(AGENCYNAME, "elizabeth borough police department") ~ "15037",
-        str_detect(AGENCYNAME, "port vue borough police department") ~ "15133",
-        str_detect(AGENCYNAME, "tarentum borough police department") ~ "15084",
-        str_detect(AGENCYNAME, "leechburg borough police department") ~ "15656",
-        str_detect(AGENCYNAME, "beaver borough police department") ~ "15009",
-        str_detect(AGENCYNAME, "kutztown borough police department") ~ "19530",
-        str_detect(AGENCYNAME, "canton borough police department") ~ "17724",
-        str_detect(AGENCYNAME, "plumstead township police department") ~ "18902",
-        str_detect(AGENCYNAME, "parkesburg borough police department") ~ "19365",
-        str_detect(AGENCYNAME, "knox borough police department") ~ "16232",
-        str_detect(AGENCYNAME, "highspire borough police department") ~ "17034",
-        str_detect(AGENCYNAME, "trainer borough police department") ~ "19061",
-        str_detect(AGENCYNAME, "greencastle borough police department") ~ "17225",
-        str_detect(AGENCYNAME, "brockway borough police department") ~ "15824",
-        str_detect(AGENCYNAME, "sykesville borough police department") ~ "15865",
-        str_detect(AGENCYNAME, "west lampeter township police department") ~ "17602",
-        str_detect(AGENCYNAME, "slatington borough police department") ~ "18080",
-        str_detect(AGENCYNAME, "macungie borough police department") ~ "18062",
-        str_detect(AGENCYNAME, "ashley borough police department") ~ "18706",
-        str_detect(AGENCYNAME, "rockledge borough police department") ~ "19046",
-        str_detect(AGENCYNAME, "royersford borough police department") ~ "19468",
-        str_detect(AGENCYNAME, "tatamy borough police department") ~ "18085",
-        str_detect(AGENCYNAME, "walnutport borough police department") ~ "18088",
-        str_detect(AGENCYNAME, "mifflinburg borough police department") ~ "17844",
-        str_detect(AGENCYNAME, "ligonier borough police department") ~ "15658",
-        str_detect(AGENCYNAME, "delmont borough police department") ~ "15626",
-        str_detect(AGENCYNAME, "meshoppen borough police department") ~ "18630",
-        str_detect(AGENCYNAME, "saint matthews police department") ~ "29135",
-        str_detect(AGENCYNAME, "eagle butte police department") ~ "57625",
-        str_detect(AGENCYNAME, "rapid city police department") ~ "57701",
-        str_detect(AGENCYNAME, "clarksburg police department") ~ "26301",
-        str_detect(AGENCYNAME, "mountain city police department") ~ "37683",
-        str_detect(AGENCYNAME, "kimball police department") ~ "24853",
-        str_detect(AGENCYNAME, "johnson city police department") ~ "37601",
-        str_detect(AGENCYNAME, "palm valley police department") ~ "78552",
-        str_detect(AGENCYNAME, "argyle police department") ~ "76226",
-        str_detect(AGENCYNAME, "northlake police department") ~ "76247",
-        str_detect(AGENCYNAME, "missouri city police department") ~ "77459",
-        str_detect(AGENCYNAME, "league city police department") ~ "77573",
-        str_detect(AGENCYNAME, "bayou vista police department") ~ "77563",
-        str_detect(AGENCYNAME, "seven points police department") ~ "75143",
-        str_detect(AGENCYNAME, "willow park police department") ~ "76087",
-        str_detect(AGENCYNAME, "lakeside police department") ~ "76108",
-        str_detect(AGENCYNAME, "cedar city police department") ~ "84720",
-        str_detect(AGENCYNAME, "salt lake city police department") ~ "84101",
-        str_detect(AGENCYNAME, "dumfries police department") ~ "22026",
-        str_detect(AGENCYNAME, "weber city police department") ~ "24290",
-        str_detect(AGENCYNAME, "weathersfield police department") ~ "44420",
-        str_detect(AGENCYNAME, "royal city police department") ~ "99357",
-        str_detect(AGENCYNAME, "clyde hill police department") ~ "98004",
-        str_detect(AGENCYNAME, "ruston police department") ~ "98407",
-        str_detect(AGENCYNAME, "river hills police department") ~ "53217",
-        str_detect(AGENCYNAME, "west milwaukee police department") ~ "53215",
-        str_detect(AGENCYNAME, "saint marys police department") ~ "15857",
-        str_detect(AGENCYNAME, "lincoln county sheriff's office") ~ "69101",
-        str_detect(AGENCYNAME, "san mateo county sheriff's office") ~ "94063",
-        str_detect(AGENCYNAME, "columbia county sheriff's office") ~ "32055",
-        str_detect(AGENCYNAME, "sac county sheriff's office") ~ "95814",
-        str_detect(AGENCYNAME, "stanton county sheriff's department") ~ "68779",
-        str_detect(AGENCYNAME, "jefferson county sheriff's office") & STATE == "KY" ~ "40202",
-        str_detect(AGENCYNAME, "harford county sheriff's office") ~ "21015",
-        str_detect(AGENCYNAME, "otoe county sheriff's office") ~ "68410",
-        str_detect(AGENCYNAME, "new hanover county sheriff's office") ~ "28401",
-        str_detect(AGENCYNAME, "swain county sheriff's office") ~ "28713",
-        str_detect(AGENCYNAME, "barnes county sheriff's office") ~ "58072",
-        str_detect(AGENCYNAME, "hudson county sheriff's office") & STATE == "NJ" ~ "7302",
-        str_detect(AGENCYNAME, "douglas county sheriff's office") ~ "80109",
-        str_detect(AGENCYNAME, "rockland county sheriff's office") ~ "10977",
-        str_detect(AGENCYNAME, "clackamas county sheriff's office") ~ "97045",
-        str_detect(AGENCYNAME, "campbell county sheriff's office") ~ "41031",
-        str_detect(AGENCYNAME, "cheatham county sheriff's office") ~ "37015",
-        str_detect(AGENCYNAME, "cameron county sheriff's office") ~ "78520",
-        str_detect(AGENCYNAME, "karnes county sheriff's office") ~ "78118",
-        str_detect(AGENCYNAME, "starr county sheriff's office") ~ "78582",
-        str_detect(AGENCYNAME, "spotsylvania county sheriff's office") ~ "22553",
-        str_detect(AGENCYNAME, "stafford county sheriff's office") ~ "22554",
-    TRUE ~ ZIP),
-    is_city = ifelse(!is.na(County), 0, 1),
-    county_state = ifelse(!is.na(County), paste(County, STATE, sep= "_"), NA),
-    city_state = ifelse(is.na(County), paste(City, STATE, sep= "_"), NA),
-    location = ifelse(is_city == 1, city_state, county_state),
-    ZIP = ifelse(substr(ZIP, 1, 1) == "0", substr(ZIP, 2, nchar(ZIP)), ZIP),
-    zip = ZIP
-    ) %>%
-  select(AGENCYNAME, location, OPBUDGET_2019, OPBUDGET, is_city, zip, where(~ all(!is.na(.))))
+    `Date of Incident (month/day/year)` = as.Date(`Date of Incident (month/day/year)`),  # Convert date to Date type
+    year = year(`Date of Incident (month/day/year)`),  # Extract year
+    City = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", City)),  # Remove suffixes
+    city_state = paste(tolower(City), State, sep = "_")  # Combine city and state
+  ) %>%
+  filter(year >= 2016 & year <= 2020) %>%  # Filter for years 2016-2020
+  group_by(city_state) %>%  # Group by city_state
+  dplyr::summarize(count = n(), .groups = 'drop') %>%  # Count incidents
+  mutate(
+    has_police_killing = ifelse(count > 0, 1, 0),  # Indicate presence of police killings
+    is_city = 1  # Indicate it's a city
+  ) %>%
+  select(city_state, has_police_killing, is_city) %>%  # Select relevant columns
+  rename(location = city_state)  # Rename for consistency
 
+# Process county-level police killings data
+county_police_killings <- police_killings_df %>%
+  
+  # Keep rows with non-missing County
+  filter(!is.na(County)) %>%  
+  mutate(
+    
+    # Convert date to Date type
+    `Date of Incident (month/day/year)` = as.Date(`Date of Incident (month/day/year)`), 
+    
+    # Extract year
+    year = year(`Date of Incident (month/day/year)`), 
+    
+    # Remove suffixes
+    County = tolower(gsub(" County| Borough| Census Area| Municipality| Parish| city", "", County)),
+    
+    # Combine county and state
+    county_state = paste(tolower(County), State, sep = "_") 
+  ) %>%
+  
+  # Filter for years 2016-2020
+  filter(year >= 2016 & year <= 2020) %>% 
+  
+  # Group by county_state
+  group_by(county_state) %>%  
+  
+  # Count incidents
+  dplyr::summarize(count = n(), .groups = 'drop') %>%
+  mutate(
+    
+    # Indicate presence of police killings
+    has_police_killing = ifelse(count > 0, 1, 0), 
+    is_city = 0  # Indicate it's a county
+  ) %>%
+  
+  # Select relevant columns
+  select(county_state, has_police_killing, is_city) %>%  
+  
+  # Rename for consistency
+  rename(location = county_state) 
+
+# Combine city and county police killings data
+police_killings <- bind_rows(county_police_killings, city_police_killings)
+
+```
+
+
+```{r get_funding_data}
+load(file='data/funding/38651-0001-Data.rda') #2020
+load(file="data/funding/37323-0001-Data.rda") #2016
+load(file="data/funding/36164-0001-Data.rda") #2013
+location_df <- read_csv("data/location_corrections.csv")
 budgets_2021 <- read_csv("data/opbudgets_2021_2022.csv")
 
-police_df <- police_df %>%
-  left_join(budgets_2021, by = c("AGENCYNAME", "STATE"))
+selected_2016 <- da37323.0001 %>%
+  select(ORI9, OPBUDGET) %>%
+  rename(budget_2016 = OPBUDGET)
 
-police_df <- police_df %>%
+selected_2013 <- da36164.0001 %>%
+  select(ORI9, BDGT_TTL) %>%
+  rename(budget_2013 = BDGT_TTL)
+
+full_police_df <- da38651.0001 %>%
+  left_join(selected_2016, by = "ORI9") %>%
+  left_join(selected_2013, by = "ORI9")
+
+police_df <- full_police_df %>%
+  filter(AGENCYSAMPTYPE != "(5) State police") %>%
+  select(-STATE) %>%
+  mutate(
+    AGENCYNAME = trimws(tolower(AGENCYNAME)),
+  ) %>%
+  bind_cols(location_df) %>%
+  mutate(zip = as.character(zip)) %>%
+  select(
+    AGENCYNAME, location, OPBUDGET_2019, OPBUDGET, is_city, STATE,
+    budget_2016, budget_2013, zip, where(~ all(!is.na(.)))
+  ) %>%
+  left_join(budgets_2021, by = c("AGENCYNAME", "STATE")) %>%
   select(-opbudget2019, -source)
 
 ```
 
-```{r combine_dfs, eval = FALSE}
+```{r combine_dfs}
 full_df <- police_df %>%
   left_join(blm, by = c("location", "is_city")) %>%
   left_join(demographics, by = c("location", "is_city")) %>%
@@ -989,63 +670,132 @@ full_df <- police_df %>%
          violent_protest = ifelse(is.na(violent_protest), 0, violent_protest),
          peaceful_protest = ifelse(is.na(peaceful_protest), 0, peaceful_protest))
 
-full_df_processed <- full_df %>%
+budgets_full <- read_csv("budget_data_selected.csv")
+
+df_cleaned <- full_df %>%
+  distinct(AGENCYNAME, location, .keep_all = TRUE) %>%
+  rename(OPBUDGET2020 = OPBUDGET) %>%
+  select(-budget_2013, -budget_2016, -OPBUDGET_2019, -OPBUDGET2020, -opbudget_2021_2022) %>%
+  bind_cols(budgets_full)
+
+full_df_processed <- df_cleaned %>%
   select(-AGENCYNAME, -SUBMIT_DATE, -ORI9, -CITY, -STATE, -ZIP, 
          -City, -contains("OTH"), -location, -city, -is_city.y) %>% #remove cols that won't work with MissForest
   mutate(zip = as.numeric(zip),
          across(where(is.character), as.factor)) %>%
   rename(is_city = is_city.x)
 
-full_df_imputed <- missForest(full_df_processed,
-                              replace = TRUE)
+full_df_imputed <- missForest(full_df_processed, replace = TRUE)
 
-OOB_error <- full_df_imputed$OOBerror #0.78
+OOB_error <- full_df_imputed$OOBerror #0.42
 
 final_df <- full_df_imputed$ximp
 
 full_df_processed <- as.data.frame(full_df_processed)
 
-final_df_true <- cbind(full_df$AGENCYNAME, full_df$City, full_df$STATE, final_df)
+final_df_true <- cbind(df_cleaned$AGENCYNAME, df_cleaned$City, df_cleaned$STATE,
+                      final_df)
+
+final_df_true
 
 save(final_df_true, file = "full_data.RData")
 ```
 
 ```{r}
-ntree_vals <- c(50, 100, 150)  # Number of trees in the forest
-maxiter_vals <- c(5, 10, 15)   # Maximum number of iterations
-mtry_vals <- c(2, 3)  
+calculate_rmse <- function(df1, df2) {
+  # Ensure only numeric columns are considered
+  numeric_cols <- sapply(df1, is.numeric)
+  df1_numeric <- df1[, numeric_cols]
+  df2_numeric <- df2[, numeric_cols]
+  
+  # Calculate RMSE
+  sqrt(mean((as.matrix(df1_numeric) - as.matrix(df2_numeric))^2, na.rm = TRUE))
+}
 
-# Initialize variables to track best parameters and OOB error
-best_params <- NULL
-min_oob_error <- Inf
+# Initialize lists to store RMSE values
+rmse_mice <- list()
+rmse_missForest <- list()
 
-# Loop over parameter combinations
-for (ntree in ntree_vals) {
-  for (maxiter in maxiter_vals) {
-    for (mtry in mtry_vals) {
-      # Run missForest with current parameters
-      imputed_data <- missForest(full_df_processed, 
-                                 maxiter = maxiter,
-                                 ntree = ntree,
-                                 mtry = mtry,
-                                 replace = TRUE)
-      
-      # Extract OOB error
-      OOB_error <- imputed_data$OOBerror[1]
-      
-      # Check if current OOB error is lower than minimum found so far
-      if (OOB_error < min_oob_error) {
-        min_oob_error <- OOB_error
-        best_params <- list(ntree = ntree, maxiter = maxiter, mtry = mtry)
-      }
-    }
+# Number of iterations
+num_iterations <- 5
+
+# Running MICE and calculating RMSE between successive imputations
+set.seed(123)
+mice_imp <- mice(full_df_processed, m = num_iterations, method = 'rf', maxit = 50, seed = 123)
+for (i in 2:num_iterations) {
+  rmse_mice[[i-1]] <- calculate_rmse(complete(mice_imp, i-1), complete(mice_imp, i))
+}
+
+# Running missForest and calculating RMSE between successive imputations
+set.seed(123)
+imputed_missForest_list <- list()
+for (i in 1:num_iterations) {
+  imputed_missForest_list[[i]] <- missForest(full_df_processed)$ximp
+  if (i > 1) {
+    rmse_missForest[[i-1]] <- calculate_rmse(imputed_missForest_list[[i-1]], imputed_missForest_list[[i]])
   }
 }
 
-# Print best parameters and corresponding OOB error
-cat("Best Parameters:\n")
-print(best_params)
-cat("Minimum OOB Error:", min_oob_error, "\n")
+# Combine RMSE results into a data frame
+rmse_df <- data.frame(
+  Iteration = 1:(num_iterations-1),
+  MICE = unlist(rmse_mice),
+  missForest = unlist(rmse_missForest)
+)
+
+# Reshape the data frame for plotting
+rmse_df_long <- rmse_df %>%
+  pivot_longer(cols = c("MICE", "missForest"), names_to = "Method", values_to = "RMSE")
+
+# Plot RMSE values
+ggplot(rmse_df_long, aes(x = Iteration, y = RMSE, color = Method)) +
+  geom_line() +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "RMSE of Successive Imputations: MICE vs missForest",
+       x = "Iteration",
+       y = "RMSE")
+
+# Function to calculate the range of observed data
+calculate_range <- function(df) {
+  numeric_cols <- sapply(df, is.numeric)
+  df_numeric <- df[, numeric_cols]
+  
+  # Calculate range for each numeric column
+  range_values <- sapply(df_numeric, function(col) diff(range(col, na.rm = TRUE)))
+  range_values[range_values == 0] <- 1 # Avoid division by zero
+  
+  mean(range_values)
+}
+
+# Calculate the mean range of the observed data
+mean_range <- calculate_range(full_df_processed)
+
+# Normalize RMSE values
+normalized_rmse_mice <- sapply(rmse_mice, function(rmse) rmse / mean_range)
+normalized_rmse_missForest <- sapply(rmse_missForest, function(rmse) rmse / mean_range)
+
+# Combine normalized RMSE results into a data frame
+normalized_rmse_df <- data.frame(
+  Iteration = 1:(length(normalized_rmse_mice)),
+  MICE = normalized_rmse_mice,
+  missForest = normalized_rmse_missForest
+)
+
+# Reshape the data frame for plotting
+normalized_rmse_df_long <- normalized_rmse_df %>%
+  pivot_longer(cols = c("MICE", "missForest"), names_to = "Method", values_to = "Normalized_RMSE")
+
+# Plot normalized RMSE values
+figure1 <- ggplot(normalized_rmse_df_long, aes(x = Iteration, y = Normalized_RMSE, color = Method)) +
+  geom_line() +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Normalized RMSE of Successive Imputations: MICE vs missForest",
+       x = "Iteration",
+       y = "Normalized RMSE")
+
+save(figure1, file = "figure1.rda")
 ```
 
 
@@ -1054,209 +804,19 @@ load("full_data.RData")
 
 ```
 
-# Showing pre-matched data
+## Pre-Match Analysis
 
-```{r show_pre_matched_stats_peaceful}
-# Initialize an empty data frame to store results
-result_table <- data.frame(
-  Variable = character(),
-  Control_Mean = numeric(),
-  Treatment_Mean = numeric(),
-  Control_SD = numeric(),
-  Treatment_SD = numeric(),
-  stringsAsFactors = FALSE
-)
-
-# List of variables to analyze
-variables <- c("mrp_ideology", "percent_female", "perc_age_0_17", "perc_age_18_34",
-               "perc_age_35_59", "perc_age_60_74", "perc_75_up", "perc_black",
-               "perc_white", "perc_hispanic", "perc_less_hs",
-               "perc_associates", "perc_bachelors", "perc_graduate_professional",
-               "perc_not_in_labor_force", "median_hh_income", "has_police_killing")
-
-variable_names <- c(
-  "mrp_ideology" = "Ideology",
-  "percent_female" = "Percent Female",
-  "perc_age_0_17" = "Percent Age 0-17",
-  "perc_age_18_34" = "Percent Age 18-34",
-  "perc_age_35_59" = "Percent Age 35-59",
-  "perc_age_60_74" = "Percent Age 60-74",
-  "perc_75_up" = "Percent Age 75+",
-  "perc_black" = "Percent Black",
-  "perc_white" = "Percent White",
-  "perc_hispanic" = "Percent Hispanic",
-  "perc_less_hs" = "Percent Less Than High School",
-  "perc_associates" = "Percent Associates",
-  "perc_bachelors" = "Percent Bachelors",
-  "perc_graduate_professional" = "Percent Graduate/Professional",
-  "perc_not_in_labor_force" = "Percent Not in Labor Force",
-  "median_hh_income" = "Median Household Income",
-  "has_police_killing" = "Has Police Killing"
-)
-
-# Loop over each variable
-for (variable in variables) {
-  if (variable == "has_police_killing") {
-    # For binary variables, calculate proportions
-    prop_treatment <- mean(final_df_true[[variable]][final_df_true$peaceful_protest == 1], na.rm = TRUE)
-    prop_control <- mean(final_df_true[[variable]][final_df_true$peaceful_protest == 0], na.rm = TRUE)
-    
-    # Create a new row for the result_table for binary variable
-    new_row <- data.frame(
-      Variable = variable_names[[variable]],  # Use the new descriptive name
-      Control_Mean = NA,  # Not applicable
-      Treatment_Mean = NA, # Not applicable
-      Control_SD = NA, # Not applicable
-      Treatment_SD = NA, # Not applicable
-      Control_Percentage = as.numeric(prop_control),
-      Treatment_Percentage = as.numeric(prop_treatment),
-      stringsAsFactors = FALSE
-    )
-  } else {
-    # Perform t-test and compute means and standard deviations for continuous variables
-    test <- t.test(final_df_true[[variable]][final_df_true$peaceful_protest == 1], 
-                   final_df_true[[variable]][final_df_true$peaceful_protest == 0])
-    mean_treatment <- mean(final_df_true[[variable]][final_df_true$peaceful_protest == 1], na.rm = TRUE)
-    mean_control <- mean(final_df_true[[variable]][final_df_true$peaceful_protest == 0], na.rm = TRUE)
-    sd_treatment <- sd(final_df_true[[variable]][final_df_true$peaceful_protest == 1], na.rm = TRUE)
-    sd_control <- sd(final_df_true[[variable]][final_df_true$peaceful_protest == 0], na.rm = TRUE)
-    
-    # Create a new row for the result_table
-    new_row <- data.frame(
-      Variable = variable_names[[variable]],  # Use the new descriptive name
-      Control_Mean = as.numeric(mean_control),
-      Treatment_Mean = as.numeric(mean_treatment),
-      Control_SD = as.numeric(sd_control),
-      Treatment_SD = as.numeric(sd_treatment),
-      Control_Percentage = NA, # Not applicable
-      Treatment_Percentage = NA, # Not applicable
-      stringsAsFactors = FALSE
-    )
-  }
-  
-  # Append the new row to result_table
-  result_table <- bind_rows(result_table, new_row)
-}
-
-table1 <- result_table %>%
-  mutate(
-    Control_Mean = format(Control_Mean, scientific = FALSE, digits = 4),
-    Treatment_Mean = format(Treatment_Mean, scientific = FALSE, digits = 4),
-    Control_SD = format(Control_SD, scientific = FALSE, digits = 4),
-    Treatment_SD = format(Treatment_SD, scientific = FALSE, digits = 4)
-  )  %>%
-  rename(`Control Mean` = Control_Mean,
-         `Treatment Mean` = Treatment_Mean,
-         `Control Std Dev` = Control_SD,
-         `Treatment Std Dev` = Treatment_SD,
-         `Control Percentage` = Control_Percentage,
-         `Treatment Percentage` = Treatment_Percentage)
-
+```{r generate_pre_matched_tables}
+# Generate tables
+table1 <- create_result_table("peaceful_protest", final_df_true)
 save(table1, file = "table1.rda")
-```
 
-```{r show_pre_matched_stats_violent}
-# Initialize an empty data frame to store results
-result_table <- data.frame(
-  Variable = character(),
-  Control_Mean = numeric(),
-  Treatment_Mean = numeric(),
-  Control_SD = numeric(),
-  Treatment_SD = numeric(),
-  stringsAsFactors = FALSE
-)
-
-# List of variables to analyze
-variables <- c("mrp_ideology", "percent_female", "perc_age_0_17", "perc_age_18_34",
-               "perc_age_35_59", "perc_age_60_74", "perc_75_up", "perc_black",
-               "perc_white", "perc_hispanic", "perc_less_hs",
-               "perc_associates", "perc_bachelors", "perc_graduate_professional",
-               "perc_not_in_labor_force", "median_hh_income", "has_police_killing")
-
-variable_names <- c(
-  "mrp_ideology" = "Ideology",
-  "percent_female" = "Percent Female",
-  "perc_age_0_17" = "Percent Age 0-17",
-  "perc_age_18_34" = "Percent Age 18-34",
-  "perc_age_35_59" = "Percent Age 35-59",
-  "perc_age_60_74" = "Percent Age 60-74",
-  "perc_75_up" = "Percent Age 75+",
-  "perc_black" = "Percent Black",
-  "perc_white" = "Percent White",
-  "perc_hispanic" = "Percent Hispanic",
-  "perc_less_hs" = "Percent Less Than High School",
-  "perc_associates" = "Percent Associates",
-  "perc_bachelors" = "Percent Bachelors",
-  "perc_graduate_professional" = "Percent Graduate/Professional",
-  "perc_not_in_labor_force" = "Percent Not in Labor Force",
-  "median_hh_income" = "Median Household Income",
-  "has_police_killing" = "Has Police Killing"
-)
-
-# Loop over each variable
-for (variable in variables) {
-  if (variable == "has_police_killing") {
-    # For binary variables, calculate proportions
-    prop_treatment <- mean(final_df_true[[variable]][final_df_true$violent_protest == 1], na.rm = TRUE)
-    prop_control <- mean(final_df_true[[variable]][final_df_true$violent_protest == 0], na.rm = TRUE)
-    
-    # Create a new row for the result_table for binary variable
-    new_row <- data.frame(
-      Variable = variable_names[[variable]],  # Use the new descriptive name
-      Control_Mean = NA,  # Not applicable
-      Treatment_Mean = NA, # Not applicable
-      Control_SD = NA, # Not applicable
-      Treatment_SD = NA, # Not applicable
-      Control_Percentage = as.numeric(prop_control),
-      Treatment_Percentage = as.numeric(prop_treatment),
-      stringsAsFactors = FALSE
-    )
-  } else {
-    # Perform t-test and compute means and standard deviations for continuous variables
-    test <- t.test(final_df_true[[variable]][final_df_true$violent_protest == 1], 
-                   final_df_true[[variable]][final_df_true$violent_protest == 0])
-    mean_treatment <- mean(final_df_true[[variable]][final_df_true$violent_protest == 1], na.rm = TRUE)
-    mean_control <- mean(final_df_true[[variable]][final_df_true$violent_protest == 0], na.rm = TRUE)
-    sd_treatment <- sd(final_df_true[[variable]][final_df_true$violent_protest == 1], na.rm = TRUE)
-    sd_control <- sd(final_df_true[[variable]][final_df_true$violent_protest == 0], na.rm = TRUE)
-    
-    # Create a new row for the result_table
-    new_row <- data.frame(
-      Variable = variable_names[[variable]],  # Use the new descriptive name
-      Control_Mean = as.numeric(mean_control),
-      Treatment_Mean = as.numeric(mean_treatment),
-      Control_SD = as.numeric(sd_control),
-      Treatment_SD = as.numeric(sd_treatment),
-      Control_Percentage = NA, # Not applicable
-      Treatment_Percentage = NA, # Not applicable
-      stringsAsFactors = FALSE
-    )
-  }
-  
-  # Append the new row to result_table
-  result_table <- bind_rows(result_table, new_row)
-}
-
-table2 <- result_table %>%
-  mutate(
-    Control_Mean = format(Control_Mean, scientific = FALSE, digits = 4),
-    Treatment_Mean = format(Treatment_Mean, scientific = FALSE, digits = 4),
-    Control_SD = format(Control_SD, scientific = FALSE, digits = 4),
-    Treatment_SD = format(Treatment_SD, scientific = FALSE, digits = 4)
-  )  %>%
-  rename(`Control Mean` = Control_Mean,
-         `Treatment Mean` = Treatment_Mean,
-         `Control Std Dev` = Control_SD,
-         `Treatment Std Dev` = Treatment_SD,
-         `Control Percentage` = Control_Percentage,
-         `Treatment Percentage` = Treatment_Percentage)
-
+table2 <- create_result_table("violent_protest", final_df_true)
 save(table2, file = "table2.rda")
+
 ```
 
-
-### Normalize Data
-```{r fix_skewness}
+```{r normalize_data}
 skewed_data <- final_df_true %>%
   select(mrp_ideology, percent_female, perc_age_0_17, 
          perc_age_18_34, perc_age_35_59, perc_age_60_74, perc_75_up,
@@ -1267,27 +827,6 @@ skewed_data <- final_df_true %>%
 # Transform skewed data
 normalized_data <- transform_skewed_data(skewed_data)
 
-# Function to create histogram using ggplot
-create_histogram <- function(data, var_name) { #add print to show skewness plots
-  hist <- ggplot(data, aes_string(x = var_name)) +
-    geom_histogram(binwidth = 0.5, fill = "blue", color = "black", alpha = 0.7) +
-    labs(title = paste("Histogram of", var_name), x = var_name, y = "Frequency") +
-    theme_minimal()
-  
-  print(hist)
-}
-
-# Function to create Q-Q plot using ggplot
-create_qqplot <- function(data, var_name) { #add print to show skewness plots
-  qqplot<- ggplot(data, aes_string(sample = var_name)) +
-    stat_qq() +
-    stat_qq_line(col = "red") +
-    labs(title = paste("Q-Q Plot of", var_name), x = "Theoretical Quantiles", y = "Sample Quantiles") +
-    theme_minimal()
-  
-  print(hist)
-}
-
 for (var_name in colnames(normalized_data)) {
   create_histogram(normalized_data, var_name)
   create_qqplot(normalized_data, var_name)
@@ -1297,11 +836,14 @@ final_df_true <- as.data.frame(final_df_true)
 normalized_data <- as.data.frame(normalized_data)
 
 # Merge county_state column from full_protest_data with normalized_test
-normalized_df <- cbind(agency_name = final_df_true$`full_df$AGENCYNAME`, 
-                       city = final_df_true$`full_df$City`,
-                       state = final_df_true$`full_df$STATE`,
+normalized_df <- cbind(agency_name = final_df_true$`df_cleaned$AGENCYNAME`, 
+                       city = final_df_true$`df_cleaned$City`,
+                       state = final_df_true$`df_cleaned$STATE`,
+                       opbudget2013 = final_df_true$budget_2013,
+                       opbudget2016 = final_df_true$budget_2016,
                        opbudget2019 = final_df_true$OPBUDGET_2019,
-                       opbudget = final_df_true$oppudget_2021_2022,
+                       opbudget2020 = final_df_true$OPBUDGET2020,
+                       opbudget2021 = final_df_true$opbudget_2021_2022,
                        is_city = final_df_true$is_city,
                        has_police_killing = final_df_true$has_police_killing,
                        violent_protest = final_df_true$violent_protest,
@@ -1316,91 +858,19 @@ save(normalized_df, file = "normalized_data.RData")
 load("normalized_data.RData")
 ```
 
-### DID Pre-Matching
-
-```{r peaceful_pre}
-outcome_vars_pre <- normalized_df %>%
-  select(agency_name, opbudget2019, peaceful_protest) %>%
-  mutate(time = 0) %>%
-  rename(opbudget = opbudget2019)
-
-outcome_vars_post <- normalized_df %>%
-  select(agency_name, opbudget, peaceful_protest) %>%
-  mutate(time = 1)
-
-diff_in_diff_df <- rbind(outcome_vars_pre, outcome_vars_post)
-
-diff_diff_output <- lm(opbudget ~ peaceful_protest*time, data = diff_in_diff_df)
-
-pre_peaceful_sum <- summary(diff_diff_output)
-
-# Extract the coefficients, standard errors, t-values, and p-values
-coefficients <- pre_peaceful_sum$coefficients
-
-# Convert to a data frame
-table3 <- data.frame(
-  Variable = rownames(coefficients),
-  Estimate = coefficients[, "Estimate"],
-  Std_Error = coefficients[, "Std. Error"],
-  t_value = coefficients[, "t value"],
-  P_Value = coefficients[, "Pr(>|t|)"]
-)
-
+```{r conduct_DID_pre_match}
+table3 <- prepare_and_save_diff_in_diff(normalized_df, "peaceful_protest", "opbudget2019", "opbudget2021")
 save(table3, file = "table3.rda")
-```
 
-```{r violent_pre}
-outcome_vars_pre <- normalized_df %>%
-  select(agency_name, opbudget2019, violent_protest) %>%
-  mutate(time = 0) %>%
-  rename(opbudget = opbudget2019)
-
-outcome_vars_post <- normalized_df %>%
-  select(agency_name, opbudget, violent_protest) %>%
-  mutate(time = 1)
-
-diff_in_diff_df <- rbind(outcome_vars_pre, outcome_vars_post)
-
-diff_diff_output <- lm(opbudget ~ violent_protest*time, data = diff_in_diff_df)
-
-pre_violent_sum <- summary(diff_diff_output)
-
-# Extract the coefficients, standard errors, t-values, and p-values
-coefficients <- pre_violent_sum$coefficients
-
-# Convert to a data frame
-table4 <- data.frame(
-  Variable = rownames(coefficients),
-  Estimate = coefficients[, "Estimate"],
-  Std_Error = coefficients[, "Std. Error"],
-  t_value = coefficients[, "t value"],
-  P_Value = coefficients[, "Pr(>|t|)"]
-)
-
+table4 <- prepare_and_save_diff_in_diff(normalized_df, "violent_protest", "opbudget2019", "opbudget2021")
 save(table4, file = "table4.rda")
+
 ```
 
-## Propensity Scores
+## Matching
 
-I created propensity scores using County Demographics
-
-```{r peaceful_protests_pscores, fig.height = 7, fig.width = 15}
-peaceful_protests <- normalized_df %>%
-  select(-violent_protest)
-
-peaceful_protests_pscores <- glm(peaceful_protest ~ mrp_ideology + percent_female +
-                                perc_age_0_17 + perc_age_18_34 + perc_age_35_59 + 
-                                perc_age_60_74 + perc_75_up + perc_black + 
-                                perc_white + perc_hispanic +
-                                perc_less_hs + perc_associates + perc_bachelors + 
-                                perc_graduate_professional + perc_not_in_labor_force + 
-                                median_hh_income + has_police_killing + is_city,
-                              data = peaceful_protests,
-                              family = binomial(link = "logit"))
-
-peaceful_protests$p_score <- predict(peaceful_protests_pscores,
-                                             newdata = peaceful_protests,
-                                             type = "response")
+```{r create_p_scores, fig.height = 7, fig.width = 15}
+peaceful_protests <- create_pscores(normalized_df, "peaceful_protest", "violent_protest")
 
 plot_peaceful_protests <- ggplot(peaceful_protests) + 
   aes(x = p_score, fill = factor(peaceful_protest), color = factor(peaceful_protest)) + 
@@ -1411,25 +881,7 @@ plot_peaceful_protests <- ggplot(peaceful_protests) +
        title = "Propensity Scores: Peaceful Protest: County Demographics") + 
   theme_minimal()
 
-```
-
-```{r violent_protests_pscores, fig.height = 7, fig.width = 15}
-violent_protests <- normalized_df %>%
-  select(-peaceful_protest)
-
-violent_protests_pscores <- glm(violent_protest ~ mrp_ideology + percent_female +
-                                perc_age_0_17 + perc_age_18_34 + perc_age_35_59 + 
-                                perc_age_60_74 + perc_75_up + perc_black + 
-                                perc_white + perc_hispanic +
-                                perc_less_hs + perc_associates + perc_bachelors + 
-                                perc_graduate_professional + perc_not_in_labor_force + 
-                                median_hh_income + has_police_killing + is_city,
-                              data = violent_protests,
-                              family = binomial(link = "logit"))
-
-violent_protests$p_score <- predict(violent_protests_pscores,
-                                             newdata = violent_protests,
-                                             type = "response")
+violent_protests <- create_pscores(normalized_df, "violent_protest", "peaceful_protest")
 
 plot_violent_protests <- ggplot(violent_protests) + 
   aes(x = p_score, fill = factor(violent_protest), color = factor(violent_protest)) + 
@@ -1440,31 +892,26 @@ plot_violent_protests <- ggplot(violent_protests) +
        title = "Propensity Scores: Violent Protest: County Demographics") + 
   theme_minimal()
 
-grid.arrange(plot_peaceful_protests, plot_violent_protests, nrow = 1)
 ```
-
-<br/ >
-
-## Matching
 
 ```{r conduct_match_it, echo = TRUE}
 m_out_peaceful <- MatchIt::matchit(peaceful_protest~p_score, 
                           data = peaceful_protests,
                           method = "genetic",
-                          ratio = 3,
-                          replace = T,
+                          ratio = 1,
+                          replace = F,
                           distance = "mahalanobis")
 
 m_out_violent <- MatchIt::matchit(violent_protest~p_score, 
                           data = violent_protests,
                           method = "genetic",
-                          ratio = 3,
-                          replace = T,
+                          ratio = 2,
+                          replace = F,
                           distance = "mahalanobis")
 
 ```
 
-```{r show_treat_control_groups}
+```{r output_matchit_results}
 m_data_peaceful <- MatchIt::match.data(m_out_peaceful)
 m_data_violent <- MatchIt::match.data(m_out_violent)
 
@@ -1473,7 +920,7 @@ num_control <- counts[as.character(0)]  # Number of control units
 num_treatment <- counts[as.character(1)]
 
 cat("The peaceful matched data set has", dim(m_data_peaceful)[1], "counties.", num_control, "are in control",
-    num_treatment, "are in treatment.", "The original dataset had", nrow(normalized_df), "counties.")
+    num_treatment, "are in treatment.", "The original dataset had", nrow(normalized_df), "counties. \n\n")
 
 counts <- table(m_data_violent$violent_protest)
 num_control <- counts[as.character(0)]  # Number of control units
@@ -1484,272 +931,133 @@ cat("The violent matched data set has", dim(m_data_violent)[1], "counties.", num
 
 ```
 
+```{r removed_rows}
+original_rows_peaceful <- rownames(peaceful_protests)
+original_rows_violent <- rownames(violent_protests)
 
-```{r show_group_metrics_peace}
-# Initialize an empty data frame to store results
-result_table <- data.frame(
-  Variable = character(),
-  Control_Mean = numeric(),
-  Treatment_Mean = numeric(),
-  Control_SD = numeric(),
-  Treatment_SD = numeric(),
-  stringsAsFactors = FALSE
-)
+matched_rows_peaceful <- rownames(m_data_peaceful)
+matched_rows_violent <- rownames(m_data_violent)
 
-# List of variables to analyze
-variables <- c("mrp_ideology", "percent_female", "perc_age_0_17", "perc_age_18_34",
-               "perc_age_35_59", "perc_age_60_74", "perc_75_up", "perc_black",
-               "perc_white", "perc_hispanic", "perc_less_hs",
-               "perc_associates", "perc_bachelors", "perc_graduate_professional",
-               "perc_not_in_labor_force", "median_hh_income", "has_police_killing")
+# Find the rows that were removed during matching
+removed_rows_peaceful <- setdiff(original_rows_peaceful, matched_rows_peaceful)
+removed_rows_violent <- setdiff(original_rows_violent, matched_rows_violent)
 
-variable_names <- c(
-  "mrp_ideology" = "Ideology",
-  "percent_female" = "Percent Female",
-  "perc_age_0_17" = "Percent Age 0-17",
-  "perc_age_18_34" = "Percent Age 18-34",
-  "perc_age_35_59" = "Percent Age 35-59",
-  "perc_age_60_74" = "Percent Age 60-74",
-  "perc_75_up" = "Percent Age 75+",
-  "perc_black" = "Percent Black",
-  "perc_white" = "Percent White",
-  "perc_hispanic" = "Percent Hispanic",
-  "perc_less_hs" = "Percent Less Than High School",
-  "perc_associates" = "Percent Associates",
-  "perc_bachelors" = "Percent Bachelors",
-  "perc_graduate_professional" = "Percent Graduate/Professional",
-  "perc_not_in_labor_force" = "Percent Not in Labor Force",
-  "median_hh_income" = "Median Household Income",
-  "has_police_killing" = "Has Police Killing"
-)
+removed_data_peaceful <- peaceful_protests[removed_rows_peaceful, ]
+removed_data_violent <- violent_protests[removed_rows_violent, ]
 
-# Loop over each variable
-for (variable in variables) {
-  if (variable == "has_police_killing") {
-    # For binary variables, calculate proportions
-    prop_treatment <- mean(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 1], na.rm = TRUE)
-    prop_control <- mean(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 0], na.rm = TRUE)
-    
-    # Create a new row for the result_table for binary variable
-    new_row <- data.frame(
-      Variable = variable_names[[variable]],  # Use the new descriptive name
-      Control_Mean = NA,  # Not applicable
-      Treatment_Mean = NA, # Not applicable
-      Control_SD = NA, # Not applicable
-      Treatment_SD = NA, # Not applicable
-      Control_Percentage = as.numeric(prop_control),
-      Treatment_Percentage = as.numeric(prop_treatment),
-      stringsAsFactors = FALSE
-    )
-  } else {
-    # Perform t-test and compute means and standard deviations for continuous variables
-    test <- t.test(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 1], 
-                   m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 0])
-    mean_treatment <- mean(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 1], na.rm = TRUE)
-    mean_control <- mean(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 0], na.rm = TRUE)
-    sd_treatment <- sd(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 1], na.rm = TRUE)
-    sd_control <- sd(m_data_peaceful[[variable]][m_data_peaceful$peaceful_protest == 0], na.rm = TRUE)
-    
-    # Create a new row for the result_table
-    new_row <- data.frame(
-      Variable = variable_names[[variable]],  # Use the new descriptive name
-      Control_Mean = as.numeric(mean_control),
-      Treatment_Mean = as.numeric(mean_treatment),
-      Control_SD = as.numeric(sd_control),
-      Treatment_SD = as.numeric(sd_treatment),
-      Control_Percentage = NA, # Not applicable
-      Treatment_Percentage = NA, # Not applicable
-      stringsAsFactors = FALSE
-    )
-  }
-  
-  # Append the new row to result_table
-  result_table <- bind_rows(result_table, new_row)
-}
-
-table5 <- result_table %>%
-  mutate(
-    Control_Mean = format(Control_Mean, scientific = FALSE, digits = 4),
-    Treatment_Mean = format(Treatment_Mean, scientific = FALSE, digits = 4),
-    Control_SD = format(Control_SD, scientific = FALSE, digits = 4),
-    Treatment_SD = format(Treatment_SD, scientific = FALSE, digits = 4)
-  )  %>%
-  rename(`Control Mean` = Control_Mean,
-         `Treatment Mean` = Treatment_Mean,
-         `Control Std Dev` = Control_SD,
-         `Treatment Std Dev` = Treatment_SD,
-         `Control Percentage` = Control_Percentage,
-         `Treatment Percentage` = Treatment_Percentage)
-
-save(table5, file = "table5.rda")
 ```
 
-```{r show_group_metrics_violent}
-# Initialize an empty data frame to store results
-result_table <- data.frame(
-  Variable = character(),
-  Control_Mean = numeric(),
-  Treatment_Mean = numeric(),
-  Control_SD = numeric(),
-  Treatment_SD = numeric(),
-  stringsAsFactors = FALSE
+```{r plot_removed_rows}
+# Process and plot for peaceful protests
+figure2 <- process_and_plot(
+  df = normalized_df,
+  removed_rows = removed_rows_peaceful,
+  remove_col = "peaceful_protest",
+  plot_title = "Propensity Scores: Peaceful Protest",
+  output_file = "figure1.rda"
 )
 
-# List of variables to analyze
-variables <- c("mrp_ideology", "percent_female", "perc_age_0_17", "perc_age_18_34",
-               "perc_age_35_59", "perc_age_60_74", "perc_75_up", "perc_black",
-               "perc_white", "perc_hispanic", "perc_less_hs",
-               "perc_associates", "perc_bachelors", "perc_graduate_professional",
-               "perc_not_in_labor_force", "median_hh_income", "has_police_killing")
-
-variable_names <- c(
-  "mrp_ideology" = "Ideology",
-  "percent_female" = "Percent Female",
-  "perc_age_0_17" = "Percent Age 0-17",
-  "perc_age_18_34" = "Percent Age 18-34",
-  "perc_age_35_59" = "Percent Age 35-59",
-  "perc_age_60_74" = "Percent Age 60-74",
-  "perc_75_up" = "Percent Age 75+",
-  "perc_black" = "Percent Black",
-  "perc_white" = "Percent White",
-  "perc_hispanic" = "Percent Hispanic",
-  "perc_less_hs" = "Percent Less Than High School",
-  "perc_associates" = "Percent Associates",
-  "perc_bachelors" = "Percent Bachelors",
-  "perc_graduate_professional" = "Percent Graduate/Professional",
-  "perc_not_in_labor_force" = "Percent Not in Labor Force",
-  "median_hh_income" = "Median Household Income",
-  "has_police_killing" = "Has Police Killing"
+# Process and plot for violent protests
+figure3 <- process_and_plot(
+  df = normalized_df,
+  removed_rows = removed_rows_violent,
+  remove_col = "violent_protest",
+  plot_title = "Propensity Scores: Violent Protest",
+  output_file = "figure2.rda"
 )
 
-# Loop over each variable
-for (variable in variables) {
-  if (variable == "has_police_killing") {
-    # For binary variables, calculate proportions
-    prop_treatment <- mean(m_data_violent[[variable]][m_data_violent$violent_protest == 1], na.rm = TRUE)
-    prop_control <- mean(m_data_violent[[variable]][m_data_violent$violent_protest == 0], na.rm = TRUE)
-    
-    # Create a new row for the result_table for binary variable
-    new_row <- data.frame(
-      Variable = variable_names[[variable]],  # Use the new descriptive name
-      Control_Mean = NA,  # Not applicable
-      Treatment_Mean = NA, # Not applicable
-      Control_SD = NA, # Not applicable
-      Treatment_SD = NA, # Not applicable
-      Control_Percentage = as.numeric(prop_control),
-      Treatment_Percentage = as.numeric(prop_treatment),
-      stringsAsFactors = FALSE
-    )
-  } else {
-    # Perform t-test and compute means and standard deviations for continuous variables
-    test <- t.test(m_data_violent[[variable]][m_data_violent$violent_protest == 1], 
-                   m_data_violent[[variable]][m_data_violent$violent_protest == 0])
-    mean_treatment <- mean(m_data_violent[[variable]][m_data_violent$violent_protest == 1], na.rm = TRUE)
-    mean_control <- mean(m_data_violent[[variable]][m_data_violent$violent_protest == 0], na.rm = TRUE)
-    sd_treatment <- sd(m_data_violent[[variable]][m_data_violent$violent_protest == 1], na.rm = TRUE)
-    sd_control <- sd(m_data_violent[[variable]][m_data_violent$violent_protest == 0], na.rm = TRUE)
-    
-    # Create a new row for the result_table
-    new_row <- data.frame(
-      Variable = variable_names[[variable]],  # Use the new descriptive name
-      Control_Mean = as.numeric(mean_control),
-      Treatment_Mean = as.numeric(mean_treatment),
-      Control_SD = as.numeric(sd_control),
-      Treatment_SD = as.numeric(sd_treatment),
-      Control_Percentage = NA, # Not applicable
-      Treatment_Percentage = NA, # Not applicable
-      stringsAsFactors = FALSE
-    )
-  }
-  
-  # Append the new row to result_table
-  result_table <- bind_rows(result_table, new_row)
-}
+save(figure2, file = "figure2.rda")
+save(figure3, file = "figure3.rda")
+```
 
-table6 <- result_table %>%
-  mutate(
-    Control_Mean = format(Control_Mean, scientific = FALSE, digits = 4),
-    Treatment_Mean = format(Treatment_Mean, scientific = FALSE, digits = 4),
-    Control_SD = format(Control_SD, scientific = FALSE, digits = 4),
-    Treatment_SD = format(Treatment_SD, scientific = FALSE, digits = 4)
-  )  %>%
-  rename(`Control Mean` = Control_Mean,
-         `Treatment Mean` = Treatment_Mean,
-         `Control Std Dev` = Control_SD,
-         `Treatment Std Dev` = Treatment_SD,
-         `Control Percentage` = Control_Percentage,
-         `Treatment Percentage` = Treatment_Percentage)
+```{r generate_post_matched_tables}
+table5 <- create_result_table("peaceful_protest", m_data_peaceful)
+save(table5, file = "table5.rda")
 
+table6 <- create_result_table("violent_protest", m_data_violent)
 save(table6, file = "table6.rda")
 ```
 
-### DID Post Matching
+```{r conduct_DID_post_match}
+table7 <- prepare_and_save_diff_in_diff(m_data_peaceful, "peaceful_protest", 
+                              "opbudget2019", "opbudget2021")
+save(table7, file = "table7.rda")
 
-```{r peaceful_post}
-outcome_vars_pre <- m_data_peaceful %>%
-  select(agency_name, opbudget2019, peaceful_protest) %>%
-  mutate(time = 0) %>%
-  rename(opbudget = opbudget2019)
-
-outcome_vars_post <- m_data_peaceful %>%
-  select(agency_name, opbudget, peaceful_protest) %>%
-  mutate(time = 1)
-
-diff_in_diff_peace <- rbind(outcome_vars_pre, outcome_vars_post)
-
-diff_diff_output <- lm(opbudget ~ peaceful_protest*time, data = diff_in_diff_peace)
-
-summary(diff_diff_output)
+table8 <- prepare_and_save_diff_in_diff(m_data_violent, "violent_protest", 
+                              "opbudget2019", "opbudget2021")
+save(table8, file = "table8.rda")
 
 ```
 
-```{r violent_post, echo = TRUE}
-outcome_vars_pre <- m_data_violent %>%
-  select(agency_name, opbudget2019, violent_protest) %>%
-  mutate(time = 0) %>%
-  rename(opbudget = opbudget2019)
+# Parallel Trends
 
-outcome_vars_post <- m_data_violent %>%
-  select(agency_name, opbudget, violent_protest) %>%
-  mutate(time = 1)
+```{r}
+budget_2013 <- m_data_peaceful %>%
+    select(agency_name, opbudget2013) %>%
+    mutate(peaceful_protest = 0,
+           year = 2013) %>%
+    rename(opbudget = opbudget2013)
 
-diff_in_diff_violent <- rbind(outcome_vars_pre, outcome_vars_post)
+budget_2016 <- m_data_peaceful %>%
+    select(agency_name, opbudget2016) %>%
+    mutate(peaceful_protest = 0,
+           year = 2016) %>%
+    rename(opbudget = opbudget2016)
 
-diff_diff_output <- lm(opbudget ~ violent_protest*time, data = diff_in_diff_violent)
+budget_2019 <- m_data_peaceful %>%
+    select(agency_name, opbudget2019) %>%
+    mutate(peaceful_protest = 0,
+           year = 2019) %>%
+    rename(opbudget = opbudget2019)
 
-summary(diff_diff_output)
+budget_2020 <- m_data_peaceful %>%
+    select(agency_name, opbudget2020) %>%
+    mutate(peaceful_protest = 0,
+           year = 2020) %>%
+    rename(opbudget = opbudget2020)
+  
+budget_2021 <- m_data_peaceful %>%
+    select(agency_name, opbudget2021, peaceful_protest) %>%
+    mutate(year = 2021) %>%
+    rename(opbudget = opbudget2021)
+  
+diff_in_diff_df <- bind_rows(budget_2013, budget_2016, budget_2019, budget_2020, budget_2021)
 
+reg1 <- lm(opbudget~peaceful_protest + factor(time), data = diff_in_diff_df) 
+
+summary(reg1)
+
+coefs <- coef(reg1)[3:4]
+upper <- confint.lm(reg1, vcov. = vcovHC(reg1, type = "HC0"))[3:4, 2] 
+lower <- confint.lm(reg1, vcov. = vcovHC(reg1, type = "HC0"))[3:4, 1] 
+
+estudy <- data.frame(
+  cbind(coefs, lower, upper)) %>% 
+  mutate(
+    time = c(0,1)
+)
+
+new_row <- data.frame( 
+  coefs = 0,
+  lower = 0,
+  upper = 0,
+  time = 2020 )
+
+estudy <- rbind(estudy, new_row) %>% data.frame()
+
+estudy %>% ggplot() + aes(x = time, y = coefs) +
+  geom_vline(xintercept = -1, color = "pink", linetype='dashed', alpha = 0.75, size = 1) +
+  geom_hline(yintercept = 0, color = "grey") +
+  geom_point(color = "blue", size = 3, alpha = 0.75) +
+  geom_line(color = "blue") +
+  geom_errorbar(aes(ymin = lower, ymax = upper), color = "blue", width = 0) +
+  theme_minimal()
 ```
 
-#### Parallel Trends
 
-```{r peaceful}
-diff_in_diff_peace %>% group_by(peaceful_protest, time) %>%
-  summarise(opbudget = mean(opbudget)) %>%
-  ggplot() + aes(x = time, y = opbudget, color = factor(peaceful_protest)) +
-  geom_point(size = 5) +
-  geom_line() +
-  geom_line(data = . %>% filter(peaceful_protest == 0), aes(y = opbudget + 10000), color = "grey") + labs(color = "Treated") +
-  scale_x_continuous(breaks = c(0 , 1), labels = c("Before", "After")) + theme_minimal() +
-  xlab("") +
-  ylab("")
+# Mapping
 
-```
-
-```{r violent}
-diff_in_diff_violent %>% group_by(violent_protest, time) %>%
-  summarise(opbudget = mean(opbudget)) %>%
-  ggplot() + aes(x = time, y = opbudget, color = factor(violent_protest)) +
-  geom_point(size = 5) +
-  geom_line() +
-  geom_line(data = . %>% filter(violent_protest == 0), aes(y = opbudget + 10000), color = "grey") + labs(color = "Treated") +
-  scale_x_continuous(breaks = c(0 , 1), labels = c("Before", "After")) + theme_minimal() +
-  xlab("") +
-  ylab("")
-```
-
-
-```{r, eval = FALSE}
+```{r}
 counties_blm_map <- counties_blm %>%
   ungroup %>%
   select(-county_state)
