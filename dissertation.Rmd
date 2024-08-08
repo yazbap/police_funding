@@ -33,6 +33,7 @@ library(sf)
 library(tigris)
 library(haven)
 library(mice)
+library(scales)
 
 ```
 
@@ -172,7 +173,7 @@ prepare_and_save_diff_in_diff <- function(df, protest_type, pre_col, post_col, o
   diff_in_diff_df <- bind_rows(outcome_vars_pre, outcome_vars_post)
   
   # Create the formula for the model
-  formula <- reformulate(c(paste(protest_type, "* time")), response = "opbudget2021")
+  formula <- reformulate(c(paste(protest_type, "* time")), response = "opbudget")
   
   diff_diff_output <- lm(formula, data = diff_in_diff_df)
   diff_summary <- summary(diff_diff_output)
@@ -341,25 +342,104 @@ create_result_table <- function(group, data) {
     )
 }
 
-create_histogram <- function(data, var_name) { #add print to show skewness plots
-  hist <- ggplot(data, aes_string(x = var_name)) +
-    geom_histogram(binwidth = 0.5, fill = "blue", color = "black", alpha = 0.7) +
-    labs(title = paste("Histogram of", var_name), x = var_name, y = "Frequency") +
-    theme_minimal()
+calculate_rmse <- function(df1, df2) {
+  # Ensure only numeric columns are considered
+  numeric_cols <- sapply(df1, is.numeric)
+  df1_numeric <- df1[, numeric_cols]
+  df2_numeric <- df2[, numeric_cols]
   
-  print(hist)
+  # Calculate RMSE
+  sqrt(mean((as.matrix(df1_numeric) - as.matrix(df2_numeric))^2, na.rm = TRUE))
 }
 
-create_qqplot <- function(data, var_name) { #add print to show skewness plots
-  qqplot<- ggplot(data, aes_string(sample = var_name)) +
-    stat_qq() +
-    stat_qq_line(col = "red") +
-    labs(title = paste("Q-Q Plot of", var_name), x = "Theoretical Quantiles", y = "Sample Quantiles") +
-    theme_minimal()
+calculate_range <- function(df) {
+  numeric_cols <- sapply(df, is.numeric)
+  df_numeric <- df[, numeric_cols]
   
-  print(hist)
+  # Calculate range for each numeric column
+  range_values <- sapply(df_numeric, function(col) diff(range(col, na.rm = TRUE)))
+  range_values[range_values == 0] <- 1 # Avoid division by zero
+  
+  mean(range_values)
 }
 
+compute_summary_stats <- function(data) {
+  # Remove NA values
+  clean_data <- na.omit(data)
+  
+  # Calculate statistics
+  min_val <- min(clean_data, na.rm = TRUE)
+  q1 <- quantile(clean_data, 0.25, na.rm = TRUE)
+  median_val <- median(clean_data, na.rm = TRUE)
+  mean_val <- mean(clean_data, na.rm = TRUE)
+  q3 <- quantile(clean_data, 0.75, na.rm = TRUE)
+  max_val <- max(clean_data, na.rm = TRUE)
+  na_count <- sum(is.na(data))
+  
+  # Format statistics with commas
+  formatted_stats <- c(
+    "Min." = comma(min_val),
+    "1st Qu." = comma(q1),
+    "Median" = comma(median_val),
+    "Mean" = comma(mean_val),
+    "3rd Qu." = comma(q3),
+    "Max." = comma(max_val)
+  )
+  
+  return(formatted_stats)
+}
+
+run_parallel_trends <- function(data, protest_var, reference_year = "2019") {
+  # Create individual data frames for each year
+  budget_2013 <- data %>%
+    select(agency_name, opbudget2013, !!sym(protest_var)) %>%
+    mutate(year = 2013) %>%
+    rename(opbudget = opbudget2013)
+  
+  budget_2016 <- data %>%
+    select(agency_name, opbudget2016, !!sym(protest_var)) %>%
+    mutate(year = 2016) %>%
+    rename(opbudget = opbudget2016)
+  
+  budget_2019 <- data %>%
+    select(agency_name, opbudget2019, !!sym(protest_var)) %>%
+    mutate(year = 2019) %>%
+    rename(opbudget = opbudget2019)
+  
+  budget_2020 <- data %>%
+    select(agency_name, opbudget2020, !!sym(protest_var)) %>%
+    mutate(year = 2020) %>%
+    rename(opbudget = opbudget2020)
+  
+  budget_2021 <- data %>%
+    select(agency_name, opbudget2021, !!sym(protest_var)) %>%
+    mutate(year = 2021) %>%
+    rename(opbudget = opbudget2021)
+  
+  # Combine all yearly data frames into one
+  diff_in_diff_df <- bind_rows(budget_2013, budget_2016, budget_2019, budget_2020, budget_2021)
+  
+  # Set year as a factor and set the reference level
+  diff_in_diff_df$year <- as.factor(diff_in_diff_df$year)
+  diff_in_diff_df$year <- relevel(diff_in_diff_df$year, ref = reference_year)
+  
+  # Run the regression model
+  model_formula <- as.formula(paste("opbudget ~", protest_var, "* factor(year)"))
+  reg1 <- lm(model_formula, data = diff_in_diff_df)
+  
+  diff_summary <- summary(reg1)
+  
+  table <- data.frame(
+    Variable = rownames(diff_summary$coefficients),
+    Estimate = diff_summary$coefficients[, "Estimate"],
+    Std_Error = diff_summary$coefficients[, "Std. Error"],
+    t_value = diff_summary$coefficients[, "t value"],
+    P_Value = diff_summary$coefficients[, "Pr(>|t|)"]
+  )
+  
+  # Return the summary of the regression model
+  return(table)
+}
 ```
 
 ## Data Sources
@@ -685,6 +765,11 @@ full_df_processed <- df_cleaned %>%
          across(where(is.character), as.factor)) %>%
   rename(is_city = is_city.x)
 
+save(full_df_processed, file = "before_imputation.RData")
+
+```
+
+```{r impute, eval = FALSE}
 full_df_imputed <- missForest(full_df_processed, replace = TRUE)
 
 OOB_error <- full_df_imputed$OOBerror #0.42
@@ -701,17 +786,7 @@ final_df_true
 save(final_df_true, file = "full_data.RData")
 ```
 
-```{r}
-calculate_rmse <- function(df1, df2) {
-  # Ensure only numeric columns are considered
-  numeric_cols <- sapply(df1, is.numeric)
-  df1_numeric <- df1[, numeric_cols]
-  df2_numeric <- df2[, numeric_cols]
-  
-  # Calculate RMSE
-  sqrt(mean((as.matrix(df1_numeric) - as.matrix(df2_numeric))^2, na.rm = TRUE))
-}
-
+```{r imputation_line_chart, eval = FALSE}
 # Initialize lists to store RMSE values
 rmse_mice <- list()
 rmse_missForest <- list()
@@ -756,18 +831,6 @@ ggplot(rmse_df_long, aes(x = Iteration, y = RMSE, color = Method)) +
        x = "Iteration",
        y = "RMSE")
 
-# Function to calculate the range of observed data
-calculate_range <- function(df) {
-  numeric_cols <- sapply(df, is.numeric)
-  df_numeric <- df[, numeric_cols]
-  
-  # Calculate range for each numeric column
-  range_values <- sapply(df_numeric, function(col) diff(range(col, na.rm = TRUE)))
-  range_values[range_values == 0] <- 1 # Avoid division by zero
-  
-  mean(range_values)
-}
-
 # Calculate the mean range of the observed data
 mean_range <- calculate_range(full_df_processed)
 
@@ -791,11 +854,57 @@ figure1 <- ggplot(normalized_rmse_df_long, aes(x = Iteration, y = Normalized_RMS
   geom_line() +
   geom_point() +
   theme_minimal() +
-  labs(title = "Normalized RMSE of Successive Imputations: MICE vs missForest",
-       x = "Iteration",
+  labs(x = "Iteration",
        y = "Normalized RMSE")
 
 save(figure1, file = "figure1.rda")
+```
+
+```{r imputation_summary_stats, fig.height = 10, fig.width = 10, eval = FALSE}
+
+# Load data (assuming "before_imputation.RData" has the required datasets)
+load("before_imputation.RData")
+
+columns_to_show <- c("OPBUDGET_2019", "OPBUDGET2020", "opbudget_2021_2022")
+custom_labels <- c("OPBUDGET_2019" = "2019 Budget", "OPBUDGET2020" = "2020 Budget",
+                   "opbudget_2021_2022" = "2021 Budget"
+                   )
+
+# Initialize list to store summary statistics
+summary_stats <- list()
+
+for (col_name in columns_to_show) {
+  # Check if the column exists in the dataset and is numeric
+  if (col_name %in% names(final_df_true) && col_name %in% names(full_df_processed) && is.numeric(final_df_true[[col_name]]) && is.numeric(full_df_processed[[col_name]])) {
+    # Calculate and format summary statistics for the imputed and original data
+    imputed_stats <- compute_summary_stats(final_df_true[[col_name]])
+    original_stats <- compute_summary_stats(full_df_processed[[col_name]])
+    
+    # Get the custom label for the current column
+    custom_label <- custom_labels[col_name]
+    
+    # Combine the statistics into a dataframe
+    stats_df <- data.frame(
+      Statistic = names(imputed_stats),
+      Imputed = as.character(imputed_stats),
+      Original = as.character(original_stats)
+    )
+    
+    colnames(stats_df)[1] <- paste("Statistic:", custom_label)
+    
+    # Remove rows with NA values
+    stats_df <- stats_df[complete.cases(stats_df), ]
+    
+    # Store the statistics dataframe in the list
+    summary_stats[[col_name]] <- stats_df
+  } else {
+    warning(paste("Column", col_name, "is not numeric or does not exist in both datasets."))
+  }
+}
+
+# Print the summary statistics (or use them as needed)
+save(summary_stats, file = "summary_stats.rda")
+
 ```
 
 
@@ -826,11 +935,6 @@ skewed_data <- final_df_true %>%
 
 # Transform skewed data
 normalized_data <- transform_skewed_data(skewed_data)
-
-for (var_name in colnames(normalized_data)) {
-  create_histogram(normalized_data, var_name)
-  create_qqplot(normalized_data, var_name)
-}
 
 final_df_true <- as.data.frame(final_df_true)
 normalized_data <- as.data.frame(normalized_data)
@@ -991,168 +1095,11 @@ save(table8, file = "table8.rda")
 
 # Parallel Trends
 
-```{r}
-budget_2013 <- m_data_peaceful %>%
-    select(agency_name, opbudget2013) %>%
-    mutate(peaceful_protest = 0,
-           year = 2013) %>%
-    rename(opbudget = opbudget2013)
+```{r run_trends}
+parallel_peaceful <- run_parallel_trends(data = m_data_peaceful, protest_var = "peaceful_protest")
+save(parallel_peaceful, file = "parallel_peaceful.rda")
 
-budget_2016 <- m_data_peaceful %>%
-    select(agency_name, opbudget2016) %>%
-    mutate(peaceful_protest = 0,
-           year = 2016) %>%
-    rename(opbudget = opbudget2016)
-
-budget_2019 <- m_data_peaceful %>%
-    select(agency_name, opbudget2019) %>%
-    mutate(peaceful_protest = 0,
-           year = 2019) %>%
-    rename(opbudget = opbudget2019)
-
-budget_2020 <- m_data_peaceful %>%
-    select(agency_name, opbudget2020) %>%
-    mutate(peaceful_protest = 0,
-           year = 2020) %>%
-    rename(opbudget = opbudget2020)
-  
-budget_2021 <- m_data_peaceful %>%
-    select(agency_name, opbudget2021, peaceful_protest) %>%
-    mutate(year = 2021) %>%
-    rename(opbudget = opbudget2021)
-  
-diff_in_diff_df <- bind_rows(budget_2013, budget_2016, budget_2019, budget_2020, budget_2021)
-
-reg1 <- lm(opbudget~peaceful_protest + factor(time), data = diff_in_diff_df) 
-
-summary(reg1)
-
-coefs <- coef(reg1)[3:4]
-upper <- confint.lm(reg1, vcov. = vcovHC(reg1, type = "HC0"))[3:4, 2] 
-lower <- confint.lm(reg1, vcov. = vcovHC(reg1, type = "HC0"))[3:4, 1] 
-
-estudy <- data.frame(
-  cbind(coefs, lower, upper)) %>% 
-  mutate(
-    time = c(0,1)
-)
-
-new_row <- data.frame( 
-  coefs = 0,
-  lower = 0,
-  upper = 0,
-  time = 2020 )
-
-estudy <- rbind(estudy, new_row) %>% data.frame()
-
-estudy %>% ggplot() + aes(x = time, y = coefs) +
-  geom_vline(xintercept = -1, color = "pink", linetype='dashed', alpha = 0.75, size = 1) +
-  geom_hline(yintercept = 0, color = "grey") +
-  geom_point(color = "blue", size = 3, alpha = 0.75) +
-  geom_line(color = "blue") +
-  geom_errorbar(aes(ymin = lower, ymax = upper), color = "blue", width = 0) +
-  theme_minimal()
+# For violent protests
+parallel_violent <- run_parallel_trends(data = m_data_violent, protest_var = "violent_protest")
+save(parallel_violent, file = "parallel_violent.rda")
 ```
-
-
-# Mapping
-
-```{r}
-counties_blm_map <- counties_blm %>%
-  ungroup %>%
-  select(-county_state)
-
-cities_blm_map <- cities_blm %>%
-  ungroup %>%
-  select(-city_state)
-
-protest_locations <- rbind(counties_blm_map, cities_blm_map)
-
-protest_locations_processed <- protest_locations %>%
-  mutate(event_type = ifelse(violent_protest == 1, "violent_protest",
-                      ifelse(peaceful_protest == 1, "peaceful_protest", "no protest")))
-
-tmap_mode("view")
-
-shp <- tigris::states()
-
-# Remove the long archipelago of islands to the northwest of Hawaii to fix scale
-shp <- shp  %>% filter(REGION != 9) %>% shift_geometry()
-
-vis <- tm_shape(shp) + 
-  tm_borders()
-
-protests <- st_as_sf(protest_locations, coords = c("longitude", "latitude"))
-
-protests_processed <- cbind(protests, protest_locations_processed$event_type)
-
-vis <- vis + tm_shape(protests) +
-  tm_bubbles(size=0.05, alpha =0.5)
-```
-
-```{r}
-library(tidygeocoder)
-
-police_deparment_names <- paste(normalized_df$agency_name, normalized_df$state)
-
-View(normalized_df)
-
-geo_coded_results <- geo(na_1, method = "arcgis", full_results = TRUE)
-
-geo_coded_results_df <- geo_coded_results %>%
-  select(address, lat, long)
-
-not_na_2 <- as.data.frame(filter(geo_coded_results_df, !is.na(geo_coded_results_df$lat)))
-
-na_1 <- unlist(na_1)
-
-save(not_na_2, file = "not_na_2.RData")
-
-not_na <- rbind(not_na_1, not_na_2)
-```
-
-```{r}
-tmap_mode("view")
-
-shp <- tigris::states()
-
-# Remove the long archipelago of islands to the northwest of Hawaii to fix scale
-shp <- shp  %>% filter(REGION != 9) %>% shift_geometry()
-
-vis <- tm_shape(shp) + 
-  tm_borders()
-
-police_stations <- st_as_sf(not_na, coords = c("long", "lat"))
-
-vis <- vis + tm_shape(police_stations) +
-  tm_bubbles(size=0.05, alpha =0.5)
-```
-
-```{r}
-library(units)
-
-check_proximity <- function(police_station, protests) {
-  distances <- st_distance(police_station, protests)
-  distances_miles <- set_units(distances, "miles")
-  within_radius <- distances_miles <= set_units(5, "miles")
-  protest_types <- protests[within_radius, "protest_locations_processed.event_type"]
-  
-  violent_protest <- any(protest_types$event_type == "violent_protest")
-  peaceful_protest <- any(protest_types$event_type == "peaceful_protest")
-  
-  return(data.frame(
-    department_name = police_stations$address,
-    peaceful_protest = as.integer(peaceful_protest),
-    violent_protest = as.integer(violent_protest)
-  ))
-}
-
-# Apply the function to each police station
-results <- do.call(rbind, lapply(1:nrow(police_stations), function(i) {
-  check_proximity(police_stations[i,], protests_processed)
-}))
-
-# View the results
-print(results)
-```
-

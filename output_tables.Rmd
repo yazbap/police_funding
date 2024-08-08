@@ -1,7 +1,9 @@
 ---
-title: "output_tables"
-output: pdf_document
-date: "2024-07-21"
+title: "Appendix"
+output:
+  pdf_document: default
+  word_document: default
+date: "2024-08-15"
 geometry: margin=0.75in
 ---
 
@@ -22,69 +24,88 @@ load("table8.rda")
 load("figure1.rda")
 load("figure2.rda")
 load("figure3.rda")
+load("summary_stats.rda")
+load("parallel_peaceful.rda")
+load("parallel_violent.rda")
 ```
 
-## Table 1 - Peaceful Analysis Pre Matching
-```{r table1, echo = FALSE, results='asis'}
-kable(table1, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
-                        booktabs=TRUE)
-```
+## Figure 1 - Normalized RMSE of Successive Imputations: MICE vs missForest
 
-## Table 2 - Violent Analysis Pre Matching
-```{r table2, echo = FALSE, results='asis'}
-kable(table2, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
-                        booktabs=TRUE)
-```
-
-## Table 3 - DID Analysis Pre-Matching Peaceful
-```{r table3, echo = FALSE, results='asis'}
-kable(table3, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
-                        booktabs=TRUE)
-```
-
-## Table 4 - DID Analysis Pre-Matching Violent
-```{r table4, echo = FALSE, results='asis'}
-kable(table4, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
-                        booktabs=TRUE)
-```
-
-## Table 5 - Peaceful Analysis Post-Matching
-```{r table5, echo = FALSE, results='asis'}
-kable(table5, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
-                        booktabs=TRUE)
-```
-
-## Table 6 - Violent Analysis Post-Matching
-```{r table6, echo = FALSE, results='asis'}
-kable(table6, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
-                        booktabs=TRUE)
-```
-
-## Figure 3: Normalized RMSE of Successive Imputations: MICE vs missForest
-
-```{r}
+```{r figure1, echo = FALSE, results='asis'}
 figure1
 ```
 
-
 ## Figure 2 - Peaceful Analysis: Comparison of Means for Removed vs. Not Removed Rows
-```{r figure1, echo = FALSE, results='asis'}
+```{r figure2, echo = FALSE, results='asis'}
 figure2
 ```
 
 ## Figure 3 - Violent Analysis: Comparison of Means for Removed vs. Not Removed Rows
-```{r}
+```{r figrue3, echo = FALSE, results='asis'}
 figure3
 ```
 
-## Table 7 - DID Analysis Post-Matching Peaceful
-```{r table7, echo = FALSE, results='asis'}
-kable(table7, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
-                        booktabs=TRUE)
+\newpage
+
+## Table 1 - Summary Stats Comparing Imputed vs. Original Data
+
+```{r table1, echo = FALSE, results='asis'}
+kable(summary_stats, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE) %>%
+  kable_styling(latex_options = c("hold_position"))
 ```
 
-## Table 8 - DID Analysis Post-Matching Violent
+\newpage
+
+## Table 2 - Peaceful Analysis Parallel Trends
+```{r parallel_peaceful, echo = FALSE, results='asis'}
+kable(parallel_peaceful, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE)
+```
+
+## Table 3 - Violent Analysis Parallel Trends
+```{r parallel_violent, echo = FALSE, results='asis'}
+kable(parallel_violent, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE)
+```
+
+\newpage
+
+## Table 4 - Peaceful Analysis Pre Matching
+```{r table2, echo = FALSE, results='asis'}
+kable(table1, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE)
+```
+
+## Table 5 - Violent Analysis Pre Matching
+```{r table3, echo = FALSE, results='asis'}
+kable(table2, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE)
+```
+
+## Table 6 - DID Analysis Pre-Matching Peaceful
+```{r table4, echo = FALSE, results='asis'}
+kable(table3, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
+```
+
+## Table 7 - DID Analysis Pre-Matching Violent
+```{r table5, echo = FALSE, results='asis'}
+kable(table4, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
+```
+
+## Table 8 - Peaceful Analysis Post-Matching
+```{r table6, echo = FALSE, results='asis'}
+kable(table5, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
+```
+
+\newpage
+
+## Table 9 - Violent Analysis Post-Matching
+```{r table7, echo = FALSE, results='asis'}
+kable(table6, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
+```
+
+## Table 10 - DID Analysis Post-Matching Peaceful
 ```{r table8, echo = FALSE, results='asis'}
-kable(table8, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),
-                        booktabs=TRUE)
+kable(table7, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
+```
+
+## Table 11 - DID Analysis Post-Matching Violent
+```{r table9, echo = FALSE, results='asis'}
+kable(table8, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
 ```
