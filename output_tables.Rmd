@@ -8,22 +8,21 @@ geometry: margin=0.75in
 ---
 
 ```{r setup, include=FALSE}
-# Load data into global environment. 
 library(finalfit)
 library(dplyr)
 library(knitr)
 library(kableExtra)
-load("tables_figures/table1.rda")
-load("tables_figures/table2.rda")
-load("tables_figures/table3.rda")
-load("tables_figures/table4.rda")
-load("tables_figures/table5.rda")
-load("tables_figures/table6.rda")
-load("tables_figures/table7.rda")
-load("tables_figures/table8.rda")
+load("tables_figures/did_pre_matching_peaceful.rda")
+load("tables_figures/did_pre_matching_violent.rda")
+load("tables_figures/balance_pre_match_peaceful.rda")
+load("tables_figures/balance_pre_match_violent.rda")
+load("tables_figures/balance_post_match_peaceful.rda")
+load("tables_figures/balance_post_match_violent.rda")
+load("tables_figures/did_post_matching_peaceful.rda")
+load("tables_figures/did_post_matching_violent.rda")
 load("tables_figures/figure1.rda")
-load("tables_figures/figure2.rda")
-load("tables_figures/figure3.rda")
+load("tables_figures/removed_peaceful.rda")
+load("tables_figures/removed_violent.rda")
 load("tables_figures/summary_stats.rda")
 load("tables_figures/parallel_peaceful.rda")
 load("tables_figures/parallel_violent.rda")
@@ -35,77 +34,77 @@ load("tables_figures/parallel_violent.rda")
 figure1
 ```
 
-## Figure 2 - Peaceful Analysis: Comparison of Means for Removed vs. Not Removed Rows
-```{r figure2, echo = FALSE, results='asis'}
-figure2
+## Figure 2 - Peaceful Analysis: Comparison of Means for Removed vs. Unremoved Rows
+```{r removed_peaceful, echo = FALSE, results='asis'}
+removed_peaceful
 ```
 
 ## Figure 3 - Violent Analysis: Comparison of Means for Removed vs. Not Removed Rows
-```{r figrue3, echo = FALSE, results='asis'}
-figure3
+```{r removed_violent, echo = FALSE, results='asis'}
+removed_violent
 ```
 
 \newpage
 
-## Table 1 - Summary Stats Comparing Imputed vs. Original Data
+## Table 1 - Summary Statistics: Comparing Imputed vs. Original Data
 
-```{r table1, echo = FALSE, results='asis'}
+```{r summary_stats, echo = FALSE, results='asis'}
 kable(summary_stats, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE) %>%
   kable_styling(latex_options = c("hold_position"))
 ```
 
 \newpage
 
-## Table 2 - Peaceful Analysis Parallel Trends
+## Table 2 - Parallel Trends Analysis: Peaceful Protests
 ```{r parallel_peaceful, echo = FALSE, results='asis'}
 kable(parallel_peaceful, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE)
 ```
 
-## Table 3 - Violent Analysis Parallel Trends
+## Table 3 - Parallel Trends Analysis: Violent Protests
 ```{r parallel_violent, echo = FALSE, results='asis'}
 kable(parallel_violent, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE)
 ```
 
 \newpage
 
-## Table 4 - Peaceful Analysis Pre Matching
-```{r table2, echo = FALSE, results='asis'}
-kable(table1, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE)
+## Table 4 - Comparison of Treatment and Control Group: Peacful Protests Pre-Matching
+```{r balance_pre_match_peaceful, echo = FALSE, results='asis'}
+kable(balance_pre_match_peaceful, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE)
 ```
 
-## Table 5 - Violent Analysis Pre Matching
-```{r table3, echo = FALSE, results='asis'}
-kable(table2, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE)
+## Table 5 - Comparison of Treatment and Control Group: Violent Protests Pre-Matching
+```{r balance_pre_match_violent, echo = FALSE, results='asis'}
+kable(balance_pre_match_violent, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE)
 ```
 
-## Table 6 - DID Analysis Pre-Matching Peaceful
-```{r table4, echo = FALSE, results='asis'}
-kable(table3, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
+## Table 6 - DID Analysis with Pre-Matched Data: Peaceful Protests
+```{r did_pre_matching_peaceful, echo = FALSE, results='asis'}
+kable(did_pre_matching_peaceful, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
 ```
 
-## Table 7 - DID Analysis Pre-Matching Violent
-```{r table5, echo = FALSE, results='asis'}
-kable(table4, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
+## Table 7 - DID Analysis with Pre-Matched Data: Violent Protests
+```{r did_pre_matching_violent, echo = FALSE, results='asis'}
+kable(did_pre_matching_violent, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
 ```
 
-## Table 8 - Peaceful Analysis Post-Matching
-```{r table6, echo = FALSE, results='asis'}
-kable(table5, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
+## Table 8 - Comparison of Treatment and Control Group: Peaceful Protests Post-Matching
+```{r balance_post_match_peaceful, echo = FALSE, results='asis'}
+kable(balance_post_match_peaceful, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
 ```
 
 \newpage
 
-## Table 9 - Violent Analysis Post-Matching
-```{r table7, echo = FALSE, results='asis'}
-kable(table6, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
+## Table 9 - Comparison of Treatment and Control Group: Violent Protests Post-Matching
+```{r balance_post_match_violent, echo = FALSE, results='asis'}
+kable(balance_post_match_violent, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
 ```
 
-## Table 10 - DID Analysis Post-Matching Peaceful
-```{r table8, echo = FALSE, results='asis'}
-kable(table7, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
+## Table 10 - DID Analysis with Post-Matched Data: Peaceful Protests
+```{r did_post_matching_peaceful, echo = FALSE, results='asis'}
+kable(did_post_matching_peaceful, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
 ```
 
-## Table 11 - DID Analysis Post-Matching Violent
-```{r table9, echo = FALSE, results='asis'}
-kable(table8, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
+## Table 11 - DID Analysis with Post-Matched Data: Violent Protests
+```{r did_post_matching_violent, echo = FALSE, results='asis'}
+kable(did_post_matching_violent, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"),booktabs=TRUE)
 ```

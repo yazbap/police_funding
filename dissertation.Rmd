@@ -34,8 +34,29 @@ library(tigris)
 library(haven)
 library(mice)
 library(scales)
+library(RSQLite)
 
 ```
+
+```{r create_cache_database}
+# Assign the directory and database name
+cache_database <- 'cache_database/policing_data.db' 
+
+# Ensure the directory exists (create it if it doesn't)
+if (!dir.exists("cache_database")) {
+  dir.create("cache_database")
+}
+
+# Connect to the SQLite database
+db <- dbConnect(RSQLite::SQLite(), cache_database)
+
+# Check if the database file exists
+file.exists(cache_database) # This should return TRUE if the database was created
+
+# Disconnect from the database
+dbDisconnect(db)
+```
+
 
 ```{r functions}
 # Function to standardize data types based on the first data frame
@@ -204,7 +225,7 @@ create_pscores <- function(df, protest_var, drop_var){
   return(filtered_df)
 }
 
-process_and_plot <- function(df, removed_rows, remove_col, plot_title, output_file) {
+process_and_plot <- function(df, removed_rows, remove_col) {
   # Add a column indicating if the row was removed in the original dataset
   df <- df %>% mutate(removed_status = ifelse(rownames(df) %in% removed_rows, "Removed", "Not Removed"))
 
@@ -214,20 +235,43 @@ process_and_plot <- function(df, removed_rows, remove_col, plot_title, output_fi
                        "perc_white", "perc_hispanic", "perc_less_hs", "perc_associates",
                        "perc_bachelors", "perc_graduate_professional", "perc_not_in_labor_force",
                        "median_hh_income")
+  
   binary_vars <- c("has_police_killing")
+  
+  # Create a named vector for mapping variables to their labels
+  var_labels <- c(
+    "mrp_ideology" = "Ideology",
+    "percent_female" = "Percent Female",
+    "perc_age_0_17" = "Percent Age 0-17",
+    "perc_age_18_34" = "Percent Age 18-34",
+    "perc_age_35_59" = "Percent Age 35-59",
+    "perc_age_60_74" = "Percent Age 60-74",
+    "perc_75_up" = "Percent Age 75+",
+    "perc_black" = "Percent Black",
+    "perc_white" = "Percent White",
+    "perc_hispanic" = "Percent Hispanic",
+    "perc_less_hs" = "Percent Less Than High School",
+    "perc_associates" = "Percent Associates",
+    "perc_bachelors" = "Percent Bachelors",
+    "perc_graduate_professional" = "Percent Graduate/Professional",
+    "perc_not_in_labor_force" = "Percent Not in Labor Force",
+    "median_hh_income" = "Median Household Income",
+    "has_police_killing" = "Has Police Killing"
+  )
 
   # Calculate the means for continuous variables and convert to long format
   continuous_means <- df %>%
     group_by(removed_status) %>%
     summarise(across(all_of(continuous_vars), mean, na.rm = TRUE)) %>%
-    pivot_longer(cols = -removed_status, names_to = "variable", values_to = "mean")
+    pivot_longer(cols = -removed_status, names_to = "variable", values_to = "mean") %>%
+    mutate(variable = var_labels[variable])
 
   # Calculate the means for binary variables and convert to long format
   binary_means <- df %>%
     group_by(removed_status) %>%
     summarise(across(all_of(binary_vars), mean, na.rm = TRUE)) %>%
     pivot_longer(cols = -removed_status, names_to = "variable", values_to = "mean") %>%
-    mutate(variable = paste(variable, "(binary)"))
+    mutate(variable = paste(var_labels[variable], "(binary)"))
 
   # Combine both continuous and binary variables
   combined_means <- bind_rows(continuous_means, binary_means)
@@ -235,7 +279,7 @@ process_and_plot <- function(df, removed_rows, remove_col, plot_title, output_fi
   # Plot combined means
   plot <- ggplot(combined_means, aes(x = mean, y = variable, fill = removed_status)) +
     geom_bar(stat = "identity", position = "dodge") +
-    labs(x = "Mean", y = "Variable", fill = "Removed Status", title = plot_title) +
+    labs(x = "Mean", y = "Variable", fill = "Removed Status") +
     scale_fill_manual(values = c("Removed" = "red", "Not Removed" = "darkgrey")) +
     theme_minimal() +
     theme(axis.text.y = element_text(size = 10), axis.title.y = element_blank())
@@ -374,7 +418,6 @@ compute_summary_stats <- function(data) {
   mean_val <- mean(clean_data, na.rm = TRUE)
   q3 <- quantile(clean_data, 0.75, na.rm = TRUE)
   max_val <- max(clean_data, na.rm = TRUE)
-  na_count <- sum(is.na(data))
   
   # Format statistics with commas
   formatted_stats <- c(
@@ -465,7 +508,7 @@ run_parallel_trends <- function(data, protest_var, reference_year = "2019") {
 
 ```{r get_protest_data}
 # Load protest data
-raw <- read.csv("data/2020-01-01-2024-04-19-United_States.csv")
+raw <- read.csv("data/protests/2020-01-01-2024-04-19-United_States.csv")
 
 # Filter for BLM protests in 2020 and process the data
 blm_df <- raw %>%
@@ -528,9 +571,9 @@ blm <- bind_rows(cities_blm, counties_blm)
 
 ```{r get_political_data}
 # Load political ideology data for cities, counties, and zip codes
-cities_pol_ideo <- read_dta("data/ideo/aip_cities_ideology_v2022a.dta")
-counties_pol_ideo <- read_dta("data/ideo/aip_counties_ideology_v2022a.dta")
-zips_pol_ideo <- read_dta("data/ideo/aip_zips_ideology_v2022a.dta")
+cities_pol_ideo <- read_dta("data/ideology/aip_cities_ideology_v2022a.dta")
+counties_pol_ideo <- read_dta("data/ideology/aip_counties_ideology_v2022a.dta")
+zips_pol_ideo <- read_dta("data/ideology/aip_zips_ideology_v2022a.dta")
 
 # Process cities data
 cities_pol_ideo <- cities_pol_ideo %>%
@@ -602,8 +645,8 @@ zips_pol_ideo_by_num <- zips_pol_ideo %>%
 
 ```{r get_demographic_data}
 # Load demographic data for cities and counties
-cities_demo <- read.csv("data/demo/nhgis0006_ts_nominal_place.csv")
-counties_demo <- read.csv("data/demo/nhgis0004_ts_nominal_county.csv")
+cities_demo <- read.csv("data/demographics/nhgis0006_ts_nominal_place.csv")
+counties_demo <- read.csv("data/demographics/nhgis0004_ts_nominal_county.csv")
 
 # Process cities and counties data
 cities_demo_df <- process_demo_data(cities_demo, "PLACE")
@@ -634,7 +677,7 @@ demographics <- bind_rows(cities_processed, counties_processed)
 # Load police killings data
 police_killings_df <- suppressWarnings(
   suppressMessages(
-    read_excel("data/MPVDatasetDownload.xlsx", sheet = "2013-2024 Police Killings")
+    read_excel("data/police_killings/police_killings.xlsx", sheet = "2013-2024 Police Killings")
   )
 )
 
@@ -708,8 +751,8 @@ police_killings <- bind_rows(county_police_killings, city_police_killings)
 load(file='data/funding/38651-0001-Data.rda') #2020
 load(file="data/funding/37323-0001-Data.rda") #2016
 load(file="data/funding/36164-0001-Data.rda") #2013
-location_df <- read_csv("data/location_corrections.csv")
-budgets_2021 <- read_csv("data/opbudgets_2021_2022.csv")
+location_df <- read_csv("data/funding/location_corrections.csv")
+budgets <- read_csv("data/funding/budget_corrections.csv")
 
 selected_2016 <- da37323.0001 %>%
   select(ORI9, OPBUDGET) %>%
@@ -732,11 +775,10 @@ police_df <- full_police_df %>%
   bind_cols(location_df) %>%
   mutate(zip = as.character(zip)) %>%
   select(
-    AGENCYNAME, location, OPBUDGET_2019, OPBUDGET, is_city, STATE,
-    budget_2016, budget_2013, zip, where(~ all(!is.na(.)))
+    AGENCYNAME, location, is_city, STATE, zip, where(~ all(!is.na(.)))
   ) %>%
-  left_join(budgets_2021, by = c("AGENCYNAME", "STATE")) %>%
-  select(-opbudget2019, -source)
+  left_join(budgets, by = c("AGENCYNAME", "STATE")) %>%
+  select(-source_budget_2021)
 
 ```
 
@@ -750,40 +792,55 @@ full_df <- police_df %>%
          violent_protest = ifelse(is.na(violent_protest), 0, violent_protest),
          peaceful_protest = ifelse(is.na(peaceful_protest), 0, peaceful_protest))
 
-budgets_full <- read_csv("budget_data_selected.csv")
-
 df_cleaned <- full_df %>%
-  distinct(AGENCYNAME, location, .keep_all = TRUE) %>%
-  rename(OPBUDGET2020 = OPBUDGET) %>%
-  select(-budget_2013, -budget_2016, -OPBUDGET_2019, -OPBUDGET2020, -opbudget_2021_2022) %>%
-  bind_cols(budgets_full)
+  distinct(AGENCYNAME, location, .keep_all = TRUE)
 
-full_df_processed <- df_cleaned %>%
+df_pre_imputation <- df_cleaned %>%
   select(-AGENCYNAME, -SUBMIT_DATE, -ORI9, -CITY, -STATE, -ZIP, 
          -City, -contains("OTH"), -location, -city, -is_city.y) %>% #remove cols that won't work with MissForest
   mutate(zip = as.numeric(zip),
          across(where(is.character), as.factor)) %>%
   rename(is_city = is_city.x)
 
-save(full_df_processed, file = "before_imputation.RData")
-
 ```
 
+```{r save_pre_imputation_df}
+db <- dbConnect(RSQLite::SQLite(), cache_database) # Connect
+#dbWriteTable(db, "df_pre_imputation", df_pre_imputation) # Write
+dbDisconnect(db) # Disconnect
+
+db <- dbConnect(RSQLite::SQLite(), cache_database) # Connect
+df_pre_imputation <- dbGetQuery(db,
+                           "SELECT *
+                           FROM df_pre_imputation") # Conduct query
+dbDisconnect(db) # Disconnect
+```
+
+
 ```{r impute, eval = FALSE}
-full_df_imputed <- missForest(full_df_processed, replace = TRUE)
+full_df_imputed <- missForest(df_pre_imputation, replace = TRUE)
 
 OOB_error <- full_df_imputed$OOBerror #0.42
 
 final_df <- full_df_imputed$ximp
 
-full_df_processed <- as.data.frame(full_df_processed)
+df_pre_imputation <- as.data.frame(df_pre_imputation)
 
-final_df_true <- cbind(df_cleaned$AGENCYNAME, df_cleaned$City, df_cleaned$STATE,
+df_post_imputation <- cbind(df_cleaned$AGENCYNAME, df_cleaned$City, df_cleaned$STATE,
                       final_df)
 
-final_df_true
+```
 
-save(final_df_true, file = "full_data.RData")
+```{r save_post_imputation_df}
+db <- dbConnect(RSQLite::SQLite(), cache_database) # Connect
+#dbWriteTable(db, "df_post_imputation", df_post_imputation) # Write
+dbDisconnect(db) # Disconnect
+
+db <- dbConnect(RSQLite::SQLite(), cache_database) # Connect
+df_post_imputation <- dbGetQuery(db,
+                           "SELECT *
+                           FROM df_post_imputation") # Conduct query
+dbDisconnect(db) # Disconnect
 ```
 
 ```{r imputation_line_chart, eval = FALSE}
@@ -796,7 +853,7 @@ num_iterations <- 5
 
 # Running MICE and calculating RMSE between successive imputations
 set.seed(123)
-mice_imp <- mice(full_df_processed, m = num_iterations, method = 'rf', maxit = 50, seed = 123)
+mice_imp <- mice(df_pre_imputation, m = num_iterations, method = 'rf', maxit = 50, seed = 123)
 for (i in 2:num_iterations) {
   rmse_mice[[i-1]] <- calculate_rmse(complete(mice_imp, i-1), complete(mice_imp, i))
 }
@@ -805,7 +862,7 @@ for (i in 2:num_iterations) {
 set.seed(123)
 imputed_missForest_list <- list()
 for (i in 1:num_iterations) {
-  imputed_missForest_list[[i]] <- missForest(full_df_processed)$ximp
+  imputed_missForest_list[[i]] <- missForest(df_pre_imputation)$ximp
   if (i > 1) {
     rmse_missForest[[i-1]] <- calculate_rmse(imputed_missForest_list[[i-1]], imputed_missForest_list[[i]])
   }
@@ -832,7 +889,7 @@ ggplot(rmse_df_long, aes(x = Iteration, y = RMSE, color = Method)) +
        y = "RMSE")
 
 # Calculate the mean range of the observed data
-mean_range <- calculate_range(full_df_processed)
+mean_range <- calculate_range(df_pre_imputation)
 
 # Normalize RMSE values
 normalized_rmse_mice <- sapply(rmse_mice, function(rmse) rmse / mean_range)
@@ -857,17 +914,15 @@ figure1 <- ggplot(normalized_rmse_df_long, aes(x = Iteration, y = Normalized_RMS
   labs(x = "Iteration",
        y = "Normalized RMSE")
 
-save(figure1, file = "figure1.rda")
+save(figure1, file = "tables_figures/figure1.rda")
+
 ```
 
-```{r imputation_summary_stats, fig.height = 10, fig.width = 10, eval = FALSE}
 
-# Load data (assuming "before_imputation.RData" has the required datasets)
-load("before_imputation.RData")
-
-columns_to_show <- c("OPBUDGET_2019", "OPBUDGET2020", "opbudget_2021_2022")
-custom_labels <- c("OPBUDGET_2019" = "2019 Budget", "OPBUDGET2020" = "2020 Budget",
-                   "opbudget_2021_2022" = "2021 Budget"
+```{r imputation_summary_stats, fig.height = 10, fig.width = 10}
+columns_to_show <- c("budget_2019", "budget_2020", "budget_2021")
+custom_labels <- c("Obudget_2019" = "2019 Budget", "budget_2020" = "2020 Budget",
+                   "budget_2021" = "2021 Budget"
                    )
 
 # Initialize list to store summary statistics
@@ -875,10 +930,10 @@ summary_stats <- list()
 
 for (col_name in columns_to_show) {
   # Check if the column exists in the dataset and is numeric
-  if (col_name %in% names(final_df_true) && col_name %in% names(full_df_processed) && is.numeric(final_df_true[[col_name]]) && is.numeric(full_df_processed[[col_name]])) {
+  if (col_name %in% names(df_post_imputation) && col_name %in% names(df_pre_imputation) && is.numeric(df_post_imputation[[col_name]]) && is.numeric(df_pre_imputation[[col_name]])) {
     # Calculate and format summary statistics for the imputed and original data
-    imputed_stats <- compute_summary_stats(final_df_true[[col_name]])
-    original_stats <- compute_summary_stats(full_df_processed[[col_name]])
+    imputed_stats <- compute_summary_stats(df_post_imputation[[col_name]])
+    original_stats <- compute_summary_stats(df_pre_imputation[[col_name]])
     
     # Get the custom label for the current column
     custom_label <- custom_labels[col_name]
@@ -903,13 +958,7 @@ for (col_name in columns_to_show) {
 }
 
 # Print the summary statistics (or use them as needed)
-save(summary_stats, file = "summary_stats.rda")
-
-```
-
-
-```{r load_full_data}
-load("full_data.RData")
+save(summary_stats, file = "tables_figures/summary_stats.rda")
 
 ```
 
@@ -917,16 +966,16 @@ load("full_data.RData")
 
 ```{r generate_pre_matched_tables}
 # Generate tables
-table1 <- create_result_table("peaceful_protest", final_df_true)
-save(table1, file = "table1.rda")
+balance_pre_match_peaceful <- create_result_table("peaceful_protest", df_post_imputation)
+save(balance_pre_match_peaceful, file = "tables_figures/balance_pre_match_peaceful.rda")
 
-table2 <- create_result_table("violent_protest", final_df_true)
-save(table2, file = "table2.rda")
+balance_pre_match_violent <- create_result_table("violent_protest", df_post_imputation)
+save(balance_pre_match_violent, file = "tables_figures/balance_pre_match_violent.rda")
 
 ```
 
 ```{r normalize_data}
-skewed_data <- final_df_true %>%
+skewed_data <- df_post_imputation %>%
   select(mrp_ideology, percent_female, perc_age_0_17, 
          perc_age_18_34, perc_age_35_59, perc_age_60_74, perc_75_up,
          perc_black, perc_white, perc_hispanic, perc_less_hs,
@@ -936,40 +985,72 @@ skewed_data <- final_df_true %>%
 # Transform skewed data
 normalized_data <- transform_skewed_data(skewed_data)
 
-final_df_true <- as.data.frame(final_df_true)
+df_post_imputation <- as.data.frame(df_post_imputation)
 normalized_data <- as.data.frame(normalized_data)
 
 # Merge county_state column from full_protest_data with normalized_test
-normalized_df <- cbind(agency_name = final_df_true$`df_cleaned$AGENCYNAME`, 
-                       city = final_df_true$`df_cleaned$City`,
-                       state = final_df_true$`df_cleaned$STATE`,
-                       opbudget2013 = final_df_true$budget_2013,
-                       opbudget2016 = final_df_true$budget_2016,
-                       opbudget2019 = final_df_true$OPBUDGET_2019,
-                       opbudget2020 = final_df_true$OPBUDGET2020,
-                       opbudget2021 = final_df_true$opbudget_2021_2022,
-                       is_city = final_df_true$is_city,
-                       has_police_killing = final_df_true$has_police_killing,
-                       violent_protest = final_df_true$violent_protest,
-                       peaceful_protest = final_df_true$peaceful_protest,
+normalized_df <- cbind(agency_name = df_post_imputation$`df_cleaned$AGENCYNAME`, 
+                       city = df_post_imputation$`df_cleaned$City`,
+                       state = df_post_imputation$`df_cleaned$STATE`,
+                       opbudget2013 = df_post_imputation$budget_2013,
+                       opbudget2016 = df_post_imputation$budget_2016,
+                       opbudget2019 = df_post_imputation$budget_2019,
+                       opbudget2020 = df_post_imputation$budget_2020,
+                       opbudget2021 = df_post_imputation$budget_2021,
+                       is_city = df_post_imputation$is_city,
+                       has_police_killing = df_post_imputation$has_police_killing,
+                       violent_protest = df_post_imputation$violent_protest,
+                       peaceful_protest = df_post_imputation$peaceful_protest,
                        normalized_data)
 
-save(normalized_df, file = "normalized_data.RData")
-  
+normalized_df$opbudget2013 = log(normalized_df$opbudget2013)
+normalized_df$opbudget2016 = log(normalized_df$opbudget2016)
+normalized_df$opbudget2019 = log(normalized_df$opbudget2019)
+normalized_df$opbudget2020 = log(normalized_df$opbudget2020)
+normalized_df$opbudget2021 = log(normalized_df$opbudget2021)
+
 ```
 
+```{r save_normalized_data}
+db <- dbConnect(RSQLite::SQLite(), cache_database) # Connect
+#dbWriteTable(db, "normalized_df", normalized_df) # Write
+dbDisconnect(db) # Disconnect
+
+db <- dbConnect(RSQLite::SQLite(), cache_database) # Connect
+normalized_df <- dbGetQuery(db,
+                           "SELECT *
+                           FROM normalized_df") # Conduct query
+dbDisconnect(db) # Disconnect
+
+```
+
+
 ```{r load_normalized_data}
-load("normalized_data.RData")
+max_opbudget2019 <- max(normalized_df$opbudget2019[!is.infinite(normalized_df$opbudget2019)], na.rm = TRUE)
+max_opbudget2020 <- max(normalized_df$opbudget2020[!is.infinite(normalized_df$opbudget2020)], na.rm = TRUE)
+max_opbudget2021 <- max(normalized_df$opbudget2021[!is.infinite(normalized_df$opbudget2021)], na.rm = TRUE)
+
+normalized_df$opbudget2019 <- ifelse(is.infinite(normalized_df$opbudget2019), 
+                                     max_opbudget2019, normalized_df$opbudget2019)
+normalized_df$opbudget2020 <- ifelse(is.infinite(normalized_df$opbudget2020), 
+                                     max_opbudget2020, normalized_df$opbudget2020)
+normalized_df$opbudget2021 <- ifelse(is.infinite(normalized_df$opbudget2021), 
+                                     max_opbudget2021, normalized_df$opbudget2021)
 ```
 
 ```{r conduct_DID_pre_match}
-table3 <- prepare_and_save_diff_in_diff(normalized_df, "peaceful_protest", "opbudget2019", "opbudget2021")
-save(table3, file = "table3.rda")
+did_pre_matching_peaceful <- prepare_and_save_diff_in_diff(normalized_df, 
+                                                           "peaceful_protest", 
+                                                           "opbudget2019", 
+                                                           "opbudget2021")
+save(did_pre_matching_peaceful, file = "tables_figures/did_pre_matching_peaceful.rda")
 
-table4 <- prepare_and_save_diff_in_diff(normalized_df, "violent_protest", "opbudget2019", "opbudget2021")
-save(table4, file = "table4.rda")
+did_pre_matching_violent <- prepare_and_save_diff_in_diff(normalized_df, "violent_protest", 
+                                        "opbudget2019", "opbudget2021")
+save(did_pre_matching_violent, file = "tables_figures/did_pre_matching_violent.rda")
 
 ```
+
 
 ## Matching
 
@@ -1053,43 +1134,39 @@ removed_data_violent <- violent_protests[removed_rows_violent, ]
 
 ```{r plot_removed_rows}
 # Process and plot for peaceful protests
-figure2 <- process_and_plot(
+removed_peaceful <- process_and_plot(
   df = normalized_df,
   removed_rows = removed_rows_peaceful,
-  remove_col = "peaceful_protest",
-  plot_title = "Propensity Scores: Peaceful Protest",
-  output_file = "figure1.rda"
+  remove_col = "peaceful_protest"
 )
 
 # Process and plot for violent protests
-figure3 <- process_and_plot(
+removed_violent <- process_and_plot(
   df = normalized_df,
   removed_rows = removed_rows_violent,
-  remove_col = "violent_protest",
-  plot_title = "Propensity Scores: Violent Protest",
-  output_file = "figure2.rda"
+  remove_col = "violent_protest"
 )
 
-save(figure2, file = "figure2.rda")
-save(figure3, file = "figure3.rda")
+save(removed_peaceful, file = "tables_figures/removed_peaceful.rda")
+save(removed_violent, file = "tables_figures/removed_violent.rda")
 ```
 
 ```{r generate_post_matched_tables}
-table5 <- create_result_table("peaceful_protest", m_data_peaceful)
-save(table5, file = "table5.rda")
+balance_post_match_peaceful <- create_result_table("peaceful_protest", m_data_peaceful)
+save(balance_post_match_peaceful, file = "tables_figures/balance_post_match_peaceful.rda")
 
-table6 <- create_result_table("violent_protest", m_data_violent)
-save(table6, file = "table6.rda")
+balance_post_match_violent <- create_result_table("violent_protest", m_data_violent)
+save(balance_post_match_violent, file = "tables_figures/balance_post_match_violent.rda")
 ```
 
 ```{r conduct_DID_post_match}
-table7 <- prepare_and_save_diff_in_diff(m_data_peaceful, "peaceful_protest", 
+did_post_matching_peaceful <- prepare_and_save_diff_in_diff(m_data_peaceful, "peaceful_protest", 
                               "opbudget2019", "opbudget2021")
-save(table7, file = "table7.rda")
+save(did_post_matching_peaceful, file = "tables_figures/did_post_matching_peaceful.rda")
 
-table8 <- prepare_and_save_diff_in_diff(m_data_violent, "violent_protest", 
+did_post_matching_violent <- prepare_and_save_diff_in_diff(m_data_violent, "violent_protest", 
                               "opbudget2019", "opbudget2021")
-save(table8, file = "table8.rda")
+save(did_post_matching_violent, file = "tables_figures/did_post_matching_violent.rda")
 
 ```
 
@@ -1097,9 +1174,9 @@ save(table8, file = "table8.rda")
 
 ```{r run_trends}
 parallel_peaceful <- run_parallel_trends(data = m_data_peaceful, protest_var = "peaceful_protest")
-save(parallel_peaceful, file = "parallel_peaceful.rda")
+save(parallel_peaceful, file = "tables_figures/parallel_peaceful.rda")
 
 # For violent protests
 parallel_violent <- run_parallel_trends(data = m_data_violent, protest_var = "violent_protest")
-save(parallel_violent, file = "parallel_violent.rda")
+save(parallel_violent, file = "tables_figures/parallel_violent.rda")
 ```
