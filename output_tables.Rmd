@@ -46,23 +46,21 @@ removed_violent
 
 \newpage
 
-## Table 1 - Summary Statistics: Comparing Imputed vs. Original Data
-
-```{r summary_stats, echo = FALSE, results='asis'}
-kable(summary_stats, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE) %>%
-  kable_styling(latex_options = c("hold_position"))
-```
-
-\newpage
-
-## Table 2 - Parallel Trends Analysis: Peaceful Protests
+## Table 1 - Parallel Trends Analysis: Peaceful Protests
 ```{r parallel_peaceful, echo = FALSE, results='asis'}
 kable(parallel_peaceful, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE)
 ```
 
-## Table 3 - Parallel Trends Analysis: Violent Protests
+## Table 2 - Parallel Trends Analysis: Violent Protests
 ```{r parallel_violent, echo = FALSE, results='asis'}
 kable(parallel_violent, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE)
+```
+
+## Table 3 - Summary Statistics: Comparing Imputed vs. Original Data
+
+```{r summary_stats, echo = FALSE, results='asis'}
+kable(summary_stats, row.names=FALSE, align=c("l", "l", "r", "r", "r", "r"), booktabs=TRUE) %>%
+  kable_styling(latex_options = c("hold_position"))
 ```
 
 \newpage

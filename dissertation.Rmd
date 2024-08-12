@@ -820,7 +820,7 @@ dbDisconnect(db) # Disconnect
 ```{r impute, eval = FALSE}
 full_df_imputed <- missForest(df_pre_imputation, replace = TRUE)
 
-OOB_error <- full_df_imputed$OOBerror #0.42
+OOB_error <- full_df_imputed$OOBerror
 
 final_df <- full_df_imputed$ximp
 
@@ -875,19 +875,6 @@ rmse_df <- data.frame(
   missForest = unlist(rmse_missForest)
 )
 
-# Reshape the data frame for plotting
-rmse_df_long <- rmse_df %>%
-  pivot_longer(cols = c("MICE", "missForest"), names_to = "Method", values_to = "RMSE")
-
-# Plot RMSE values
-ggplot(rmse_df_long, aes(x = Iteration, y = RMSE, color = Method)) +
-  geom_line() +
-  geom_point() +
-  theme_minimal() +
-  labs(title = "RMSE of Successive Imputations: MICE vs missForest",
-       x = "Iteration",
-       y = "RMSE")
-
 # Calculate the mean range of the observed data
 mean_range <- calculate_range(df_pre_imputation)
 
@@ -921,7 +908,7 @@ save(figure1, file = "tables_figures/figure1.rda")
 
 ```{r imputation_summary_stats, fig.height = 10, fig.width = 10}
 columns_to_show <- c("budget_2019", "budget_2020", "budget_2021")
-custom_labels <- c("Obudget_2019" = "2019 Budget", "budget_2020" = "2020 Budget",
+custom_labels <- c("budget_2019" = "2019 Budget", "budget_2020" = "2020 Budget",
                    "budget_2021" = "2021 Budget"
                    )
 
